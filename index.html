@@ -1,18 +1,21 @@
 <!--
 I must say, web development isn't my main experience, so here goes
-a complete lack of convention!
+a complete lack of convention! (and learning experience from which
+to meet convention thereof)
 
--Yours truly, Michael Belousov
+- Yours truly, Michael Belousov
+
 -->
+
+<!-- The font is ubuntu, Thank you! -->
 
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="index.js"></script>
-        <!--<style src="bootstrap.min.css"></style>-->
         <style src="index.css"></style>
+
         <meta charset="UTF-8">
         <meta name="description" content="Mike's resume mostly">
         <meta name="keywords" content="Keys,Words,Maybe">
@@ -37,24 +40,10 @@ a complete lack of convention!
         </header>
 
         <!-- main -->
-        <div id=layout style="clear:both;">
-
-            <!-- side bar -->
-            <div id="sidebar">
-                <div style="float:right;" class="mikpanel miksidebar">
-                    Things and Perhaps Stuff
-                    <ul>
-                        <li>About</li>
-                        <li>Work Stuff</li>
-                        <li>Design</li>
-                        <li>Fun Thoughts</li>
-                        <li>Projects</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="csidebar" id="layout">
 
             <!-- page content -->
-            <div style="float:left;" id="content">
+            <div id="content">
 
                 <p class="mikpanel">
                 This is me, Mike. I like things.
@@ -68,34 +57,57 @@ a complete lack of convention!
                 </p>
 
                 <!-- terminal test -->
-                <p class="terminal">
-                mike@hiswebsite.com[~]$ python3
-                <br>
-                &gt;&gt;&gt; def mike():
-                <br>
-                ...    
-                <br>
-                </p>
+                <div class = "mikpanel">
+                    <p class="terminal">
+                    mike@mike.com[~]$ python3
+                    <br>
+                    &gt;&gt;&gt; def mike():
+                    <br>
+                    ...         class Blah: pass
+                    <br>
+                    ...         return Blah()
+                    <br>
+                    &gt;&gt;&gt;
+                    <br>
+                    </p>
+                </div>
 
             </div>
+
+            <!-- side bar -->
+            <div class="mikpanel miksidebar">
+                Things and Perhaps Stuff
+                <ul>
+                    <li>About</li>
+                    <li>Work Stuff</li>
+                    <li>Design</li>
+                    <li>3D</li>
+                    <li>Comics</li>
+                    <li>Fun Thoughts</li>
+                    <li>Projects</li>
+                </ul>
+            </div>
+
         </div>
     </body>
 </html>
+
 
 <style>
 @font-face {
     font-family: ubuntu;
     font-weight: bold;
-    src: url(Ubuntu/Ubuntu-Bold.ttf);
+    src: url(Ubuntu/Ubuntu-Medium.ttf);
 }
 @font-face {
     font-family: ubuntu;
     font-weight: normal;
-    src: url(Ubuntu/Ubuntu-Medium.ttf);
+    src: url(Ubuntu/Ubuntu-Light.ttf);
 }
 body {
     font-family: ubuntu;
     text-align: justify;
+    font-size: 11pt;
 }
 .terminal {
     font-family: "Lucida Console";
@@ -110,15 +122,18 @@ body {
     padding: 10pt;
     margin: 10pt;
 }
+.mikpanel .terminal {
+    margin: 3pt;
+}
 .mikpanel {
     font-family: ubuntu;
     font-weight: normal;
     background: #dfdfdf;
     padding: 9pt;
     margin: 8pt;
-    display: block;
+    display: inherit;
     width: auto; 
-    box-shadow: -2pt 3pt #bbbbbb;
+    box-shadow: -3pt 2pt #bbbbbb;
     clear: both;
     overflow: auto;
 }
@@ -128,10 +143,27 @@ header .mikpanel {
     vertical-align: middle;
 }
 .miksidebar {
-    position: absolute;
+    /*width: auto;*/
+    text-align: left;
+    position: fixed;
     right: 0;
+    z-index: 1;
+    overflow-x: hidden;
     margin-right: 0pt;
     padding-right: 25pt;
+}
+.miksidebar {
+    /*width: auto;*/
+    text-align: left;
+    /*position: fixed;*/
+    right: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    margin-right: 0pt;
+    padding-right: 25pt;
+}
+.csidebar {
+    display: inline-block;
 }
 h2 {
     padding: 3pt;
@@ -140,6 +172,7 @@ h2 {
 }
 .share {
     padding: 2pt;
+    padding-left: 20pt;
     margin: 2pt;
     width: 25pt;
 }
@@ -150,8 +183,38 @@ h2 {
 
 <script type="text/javascript">
 
+function percent(num) {
+    return num.toString() + '%';
+}
+
+function pt(num) {
+    return num.toString() + 'pt';
+}
+
 $(document).ready(function() {
-    //console.log('ready'); 
+    $(window).resize();
 });
+
+
+//fold sidebar on screen size
+/*
+$(window).on('resize', function() {
+    var pagewidth = $(window).width();
+
+    if (pagewidth < 600) {
+        //$('.miksidebar')
+    }
+    else {
+        var sidebarwidth = $('#sidebar').width();
+        $('#content').width(pt(pagewidth - sidebarwidth));
+    }
+
+    console.log('RESIZE');
+    console.log('pagewidth=', pagewidth);
+    console.log('sidebar=', $('#sidebar').width());
+    console.log('content=', $('#content').width());
+
+});
+*/
 
 </script>
