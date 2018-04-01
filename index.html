@@ -5,54 +5,105 @@ a complete lack of convention!
 -Yours truly, Michael Belousov
 -->
 
-<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="index.js"></script>
-<style src="bootstrap.min.css"></style>
-<style src="index.css"></style>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <!--<style src="bootstrap.min.css"></style>-->
+        <style src="index.css"></style>
         <meta charset="UTF-8">
         <meta name="description" content="Mike's resume mostly">
         <meta name="keywords" content="Keys,Words,Maybe">
         <meta name="author" content="Michael Belousov">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <div class="header">
-            Michael Belousov
-            <div class="pull-right">
-                <img width="50pt" class="icon-pull-right" src=""> </img>
-                <img width="50pt" class="icon-pull-right" src=""> </img>
-            </div>
-        </div>
     </head>
     <body>
-        <div class="container">
+        <header>
+            <div class="mikpanel" id="header-div">
+                <h2 style="float:left;">Michael Belousov</h2> 
+                <div style="float:right;">
+                    <a class="linkwrap" href="https://github.com/MichaelBelousov/">
+                        <img class="share" src="github-256.png"/> 
+                    </a>
+                    <a class="linkwrap" href="https://github.com/MichaelBelousov/">
+                        <img class="share" src="github-256.png"/> 
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div id="content">
+            <div class="mikpanel">
+            This is me, Mike. I like things.
+            </div>
+            <p class="mikpanel">
+            These include C++, Python, Bash, Linux, Java, Scheme. <br>
+            I like these things <br> <br>
+            I also like this <br>
+            and this <br>
+            </p>
         </div>
-        <footer class="footer">
-        </footer>
+        <div id="sidebar">
+            <div class="mikpanel miksidebar">
+                Hello I'm a side bar apparently (unless on mobile...)
+                <ul class="float:left;">
+                    <li>About</li>
+                    <li>Blog</li>
+                    <li>Projects</li>
+                </ul>
+            </div>
+        </div>
     </body>
 </html>
 
 <style>
 @font-face {
     font-family: ubuntu;
+    font-weight: bold;
+    src: url(Ubuntu/Ubuntu-Bold.ttf);
+}
+@font-face {
+    font-family: ubuntu;
+    font-weight: normal;
     src: url(Ubuntu/Ubuntu-Medium.ttf);
 }
 body {
     font-family: ubuntu;
     text-align: justify;
 }
-.header {
-    background: #aaaaaa;
-    padding: 0em;
-    margin: 0em;
-    border: 0em;
-    color: #222222;
-    height: 30px;
-    width: 100%;
+.mikpanel {
+    font-family: ubuntu;
+    font-weight: normal;
+    background: #dfdfdf;
+    padding: 9pt;
+    margin: 8pt;
+    display: block; /* table */
+    /* width: auto; */
+    box-shadow: 2pt 2pt #bbbbbb;
+    clear: both;
+    overflow: auto;
 }
-.icon-pull-right {
-    float: right;
+header .mikpanel {
+    padding: 9pt;
+    margin: 1pt;
+}
+.miksidebar {
+    position: absolute;
+    right: 0;
+    margin-right: 0;
+}
+h2 {
+    padding: 2pt;
+    margin: 2pt;
+}
+.share {
+    padding: 2pt;
+    margin: 2pt;
+    width: 25pt;
+}
+.linkwrap {
+    display: inline-block;
 }
 </style>
 
