@@ -220,18 +220,13 @@ h2 {
 
 <script type="text/javascript">
 
-/* TODO:
-perform the PRE formatting hack before loading the actual elements... see
-if the loader can be hacked or css can do something better
+//NOTE: this stuff can't be the best way to do this,
+//but for now it suffices well
 
-NOTE:
-the site has to be self contained and use AJAX instead of links to not
-flicker during the reload, while this hack is in place. But that's easy
-with tabs.
-*/
-
-function format_pres() {
-    $('pre').each(function() {
+//format the pres in a document, given a jQuery
+//instance over that document
+function format_pres(jQ) {
+    jQ.find('pre').each(function() {
         var pre = $(this);
         var txt = pre.text();
         var lines = txt.split("\n");
@@ -257,7 +252,24 @@ function format_pres() {
     });
 }
 
+//format a clump of HTML
+function format(html) {
+    //second jQuery instance for temporary doc from 
+    doc = document.implementation.createHTMLDocument();
+    jQ2 = jQuery(doc);
+    jQ2.find('body').append(html);
+    format_pres(jQ2);
+    return jQ2.find('body')[0].innerHTML;
+}
+
+//all tabs in case ever needed
+var tabs = $('.miksidebar>ul>li>a');
+//the currently open tab
+var opentab = $('#homeaboutlink');
+
+//open a tab from a link, following the naming convention
 function open_tab(tablink) {
+    opentab = tablink;
     var source = tablink;
     if (typeof(tablink) !== "string")
     {
@@ -271,20 +283,11 @@ function open_tab(tablink) {
         success : function (data) {
             var content = $('#content');
             content.empty();
+            data = format(data);
             content.append(data);
-            format_pres();
         }
     });
 }
-
-/*
-$(window).bind('load', function() {
-    format_pres();
-});
-*/
-
-var tabs = $('.miksidebar>ul>li>a');
-var opentab = $('#homeaboutlink');
 
 $(document).ready(function() {
     open_tab(opentab);
