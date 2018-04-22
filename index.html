@@ -1,3 +1,5 @@
+<!doctype html>
+
 <!--
 I must say, web development isn't my main experience, so here goes
 a complete lack of convention! (and learning experience from which
@@ -9,39 +11,43 @@ The primarily used font is Ubuntu, thank you!
 
 -->
 
-<!-- TODO:
-    switch to flexbox for sidebar adaptive sizing
--->
-
-
-<!DOCTYPE html>
 <html lang="en">
     <head>
-        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" 
+            src="jquery-3.3.1.min.js"></script>
         <style src="index.css"></style>
-
         <meta charset="UTF-8">
-        <meta name="description" content="A place for mike to write things">
-        <meta name="keywords" content="Keys,Words,Maybe">
-        <meta name="author" content="Michael Belousov">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" 
+            content="A place for mike to write things">
+        <meta name="keywords" 
+            content="Mike">
+        <meta name="author" 
+            content="Michael Belousov">
+        <meta name="viewport" 
+            content="width=device-width, initial-scale=1.0">
     </head>
     <body>
 
         <!-- header -->
         <header>
             <div class="mikpanel" id="header-div">
-                <h2 style="float:left;">Michael Belousov</h2> 
+                <h2 style="float:left;"><b>Michael Belousov</b></h2> 
                 <div style="float:right;">
-                    <a class="linkwrap" href="https://github.com/MichaelBelousov/">
-                        <img class="share" src="github-256.png"/> 
+                    <a class="linkwrap" 
+                        href="https://github.com/MichaelBelousov/">
+                        <img alt="github" 
+                            class="share share-left" 
+                            src="github-256.png"/> 
                     </a>
-                    <a class="linkwrap" href="https://github.com/MichaelBelousov/">
-                        <img class="share" src="github-256.png"/> 
+                    <a class="linkwrap" 
+                        href="https://github.com/MichaelBelousov/">
+                        <img alt="github" 
+                            class="share" 
+                            src="github-256.png"/> 
                     </a>
                 </div>
             </div>
-        </header>
+        </header> <!-- end header -->
 
         <!-- main -->
         <div id="layout">
@@ -53,46 +59,49 @@ The primarily used font is Ubuntu, thank you!
                 This is me, Mike. I like things.
                 </p>
 
-                <p class="mikpanel">
-                These include C++, Python, Bash, Linux, Java, Scheme. <br>
-                I like these things <br> <br>
-                I also like this <br>
-                and this <br>
-                </p>
+                <pre class="mikpanel">
+                These include C++, Python, Bash, Linux, Java, Scheme.
+                I like these things
+
+                I also like this
+                and this
+                </pre>
 
                 <!-- terminal test -->
                 <div class = "mikpanel">
-                    <p class="terminal">
+                    <pre class="terminal">
                     mike@mike.com[~]$ python3
-                    <br>
                     &gt;&gt;&gt; def mike():
-                    <br>
                     ...     class Blah: pass
-                    <br>
                     ...     return Blah()
-                    <br>
                     &gt;&gt;&gt;
-                    <br>
-                    </p>
+                    </pre>
+                    <pre class="terminal">
+                    mike@mike.com[~]$ I'm also a terminal!
+                    Error: command not recognized and unterminated single-quoted literal
+                    mike@mike.com[~]$ But can I indent now?
+                        yes
+                            why yes you
+                                        can
+                            I hope
+                    </pre>
                 </div>
             </div> <!-- end content -->
 
             <!-- side bar -->
             <div id="sidebar" class="mikpanel miksidebar">
-                Things and Perhaps Stuff
-                <ul>
-                    <li>About</li>
-                    <li>Work Stuff</li>
-                    <li>Design</li>
-                    <li>3D</li>
-                    <li>Comics</li>
-                    <li>Fun Thoughts</li>
-                    <li>Writing/Books</li>
-                    <li>Projects</li>
+                Things and Stuff
+                <ul style="list-style-type:none;margin:0;padding:0.5em;">
+                    <li><a href="/index.html">About</a></li>
+                    <li><a href="/index.html">Work Stuff</a></li>
+                    <li><a href="/index.html">Design</a></li>
+                    <li><a href="/index.html">3D</a></li>
+                    <li><a href="/index.html">Comics</a></li>
+                    <li><a href="/index.html">Fun Thoughts</a></li>
+                    <li><a href="/index.html">Writing/Books</a></li>
+                    <li><a href="/index.html">Projects</a></li>
                 </ul>
-            </div>
-
-
+            </div> <!-- end of sidebar -->
             
         </div> <!-- end layout -->
 
@@ -128,6 +137,10 @@ body {
     width: auto;
     padding: 10pt;
     margin: 10pt;
+    box-shadow: -1pt 2pt #666666;
+    font-size: 90%;
+    line-height: 130%;
+    white-space: pre-wrap;
 }
 .mikpanel .terminal {
     margin: 3pt;
@@ -141,7 +154,7 @@ body {
     box-shadow: -3pt 2pt #bbbbbb;
     clear: both;
     overflow: auto;
-    border-radius: 1pt;
+    border-radius: 2pt;
     width: auto;
 }
 header .mikpanel {
@@ -152,8 +165,7 @@ header .mikpanel {
 .miksidebar {
     width: auto;
     float: right;
-    /*position: fixed;*/
-    max-width: 170px;
+    max-width: 10em;
     text-align: left;
     right: 0;
     z-index: 1;
@@ -161,20 +173,14 @@ header .mikpanel {
     margin-right: -8pt;
     padding-right: 12pt;
 }
-#layout {
-    display: flex;
-    flex-row: row wrap;
+.mikpanel:hover {
+    box-shadow: -4pt 4pt #bbbbbb;
 }
-#layout > * {
-    flex: 1 100%;
+/* sidebar links */
+.miksidebar > ul > li > a {
+    color: black;
 }
-@media all and(min-width: 800px) {
-    #content { flex: 2 0px; }
-    .miksidebar { content: 2; }
-    header .mikpanel    { order: 1; }
-    .miksidebar         { order: 2; }
-    #content            { order: 3; }
-}
+
 h2 {
     padding: 3pt;
     margin: 4pt;
@@ -186,23 +192,69 @@ h2 {
     margin: 2pt;
     width: 25pt;
 }
+.share-left {
+    padding-left: 0pt;
+}
 .linkwrap {
     display: inline-block;
 }
+
+/* flexbox magic! */
+
+#layout > * {
+    flex: 1 100%;
+}
+#layout {
+    display: flex;
+    flex-row: row wrap;
+}
+@media all and(min-width: 800px) {
+    #content { flex: 2 0px; }
+    .miksidebar         { content: 2; }
+    header .mikpanel    { order: 1; }
+    .miksidebar         { order: 2; }
+    #content            { order: 3; }
+}
+
 </style>
 
 <script type="text/javascript">
 
-function percent(num) {
-    return num.toString() + '%';
-}
+/* TODO:
+perform the PRE formatting hack before loading the actual elements... see
+if the loader can be hacked or css can do something better
 
-function pt(num) {
-    return num.toString() + 'pt';
-}
+NOTE:
+the site has to be self contained and use AJAX instead of links to not
+flicker during the reload, while this hack is in place. But that's easy
+with tabs.
+*/
 
-$(document).ready(function() {
-    $(window).resize();
+$(window).bind('load', function() {
+    $('pre').each(function() {
+        var pre = $(this);
+        var txt = pre.text();
+        var lines = txt.split("\n");
+        if (!lines[0])  //remove first line if empty
+            lines.pop(0);
+        if (!lines[lines.length-1])  //ditto last line
+            lines.pop(lines.length-1);
+        //find the whitespace used on the first line
+        if (lines)
+        {
+            var indent = 0;
+            var line = lines[0];
+            for (var i = 0; 
+                (line[i] == ' ' || line[i] == '\n' || line[i] == '\t')
+                && i < lines[0].length; 
+                i++) 
+                indent++;
+            lines.forEach(function(ln, i) {
+                lines[i] = ln.substr(indent);
+            });
+        }
+        pre.text(lines.join('\n'));
+    });
 });
 
 </script>
