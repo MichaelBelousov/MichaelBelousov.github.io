@@ -9,6 +9,10 @@ The primarily used font is Ubuntu, thank you!
 
 -->
 
+<!-- TODO:
+    switch to flexbox for sidebar adaptive sizing
+-->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,10 +44,10 @@ The primarily used font is Ubuntu, thank you!
         </header>
 
         <!-- main -->
-        <div class="csidebar" id="layout">
+        <div id="layout">
 
             <!-- page content -->
-            <div id="content">
+            <div id="content" class="content">
 
                 <p class="mikpanel">
                 This is me, Mike. I like things.
@@ -63,19 +67,18 @@ The primarily used font is Ubuntu, thank you!
                     <br>
                     &gt;&gt;&gt; def mike():
                     <br>
-                    ...         class Blah: pass
+                    ...     class Blah: pass
                     <br>
-                    ...         return Blah()
+                    ...     return Blah()
                     <br>
                     &gt;&gt;&gt;
                     <br>
                     </p>
                 </div>
-
-            </div>
+            </div> <!-- end content -->
 
             <!-- side bar -->
-            <div class="mikpanel miksidebar">
+            <div id="sidebar" class="mikpanel miksidebar">
                 Things and Perhaps Stuff
                 <ul>
                     <li>About</li>
@@ -89,7 +92,10 @@ The primarily used font is Ubuntu, thank you!
                 </ul>
             </div>
 
-        </div>
+
+            
+        </div> <!-- end layout -->
+
     </body>
 </html>
 
@@ -131,12 +137,12 @@ body {
     font-weight: normal;
     background: #dfdfdf;
     padding: 9pt;
-    margin: 8pt;
-    display: inherit;
-    width: auto; 
+    margin: 5pt;
     box-shadow: -3pt 2pt #bbbbbb;
     clear: both;
     overflow: auto;
+    border-radius: 1pt;
+    width: auto;
 }
 header .mikpanel {
     padding: 9pt;
@@ -144,27 +150,30 @@ header .mikpanel {
     vertical-align: middle;
 }
 .miksidebar {
-    /*width: auto;*/
-    text-align: left;
-    position: fixed;
-    right: 0;
-    z-index: 1;
-    overflow-x: hidden;
-    margin-right: 0pt;
-    padding-right: 25pt;
-}
-.miksidebar {
-    /*width: auto;*/
-    text-align: left;
+    width: auto;
+    float: right;
     /*position: fixed;*/
+    max-width: 170px;
+    text-align: left;
     right: 0;
     z-index: 1;
     overflow-x: hidden;
-    margin-right: 0pt;
-    padding-right: 25pt;
+    margin-right: -8pt;
+    padding-right: 12pt;
 }
-.csidebar {
-    display: inline-block;
+#layout {
+    display: flex;
+    flex-row: row wrap;
+}
+#layout > * {
+    flex: 1 100%;
+}
+@media all and(min-width: 800px) {
+    #content { flex: 2 0px; }
+    .miksidebar { content: 2; }
+    header .mikpanel    { order: 1; }
+    .miksidebar         { order: 2; }
+    #content            { order: 3; }
 }
 h2 {
     padding: 3pt;
@@ -195,27 +204,5 @@ function pt(num) {
 $(document).ready(function() {
     $(window).resize();
 });
-
-
-//fold sidebar on screen size
-/*
-$(window).on('resize', function() {
-    var pagewidth = $(window).width();
-
-    if (pagewidth < 600) {
-        //$('.miksidebar')
-    }
-    else {
-        var sidebarwidth = $('#sidebar').width();
-        $('#content').width(pt(pagewidth - sidebarwidth));
-    }
-
-    console.log('RESIZE');
-    console.log('pagewidth=', pagewidth);
-    console.log('sidebar=', $('#sidebar').width());
-    console.log('content=', $('#content').width());
-
-});
-*/
 
 </script>
