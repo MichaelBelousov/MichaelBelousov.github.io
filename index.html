@@ -95,6 +95,13 @@ The primarily used font is Ubuntu, thank you!
             
         </div> <!-- end layout -->
 
+        <!-- footer -->
+        <footer>
+            <div class="mikpanel" id="footer-div">
+                <i>Michael Belousov  &mdash; &copy; 2018</i>
+            </div>
+        </footer> <!-- end footer-->
+
     </body>
 </html>
 
@@ -133,13 +140,13 @@ body {
     white-space: pre-wrap;
 }
 .mikpanel .terminal {
-    margin: 3pt;
+    margin: 8pt;
 }
 .mikpanel {
     font-family: ubuntu;
     font-weight: normal;
     background: #dfdfdf;
-    padding: 9pt;
+    padding: 10pt;
     margin: 5pt;
     box-shadow: -3pt 2pt #bbbbbb;
     clear: both;
@@ -151,6 +158,12 @@ header .mikpanel {
     padding: 9pt;
     margin: 1pt;
     vertical-align: middle;
+}
+footer .mikpanel {
+    padding: 8pt;
+    margin: 5pt;
+    vertical-align: middle;
+    text-align: center;
 }
 .miksidebar {
     width: auto;
@@ -226,6 +239,7 @@ h2 {
 //format the pres in a document, given a jQuery
 //instance over that document
 function format_pres(jQ) {
+    //TODO: add coloring to keywords using tags?
     jQ.find('pre').each(function() {
         var pre = $(this);
         var txt = pre.text();
