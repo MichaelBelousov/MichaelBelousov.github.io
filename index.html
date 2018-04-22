@@ -54,52 +54,39 @@ The primarily used font is Ubuntu, thank you!
 
             <!-- page content -->
             <div id="content" class="content">
-
-                <p class="mikpanel">
-                This is me, Mike. I like things.
-                </p>
-
-                <pre class="mikpanel">
-                These include C++, Python, Bash, Linux, Java, Scheme.
-                I like these things
-
-                I also like this
-                and this
-                </pre>
-
-                <!-- terminal test -->
-                <div class = "mikpanel">
-                    <pre class="terminal">
-                    mike@mike.com[~]$ python3
-                    &gt;&gt;&gt; def mike():
-                    ...     class Blah: pass
-                    ...     return Blah()
-                    &gt;&gt;&gt;
-                    </pre>
-                    <pre class="terminal">
-                    mike@mike.com[~]$ I'm also a terminal!
-                    Error: command not recognized and unterminated single-quoted literal
-                    mike@mike.com[~]$ But can I indent now?
-                        yes
-                            why yes you
-                                        can
-                            I hope
-                    </pre>
-                </div>
             </div> <!-- end content -->
 
             <!-- side bar -->
             <div id="sidebar" class="mikpanel miksidebar">
                 Things and Stuff
                 <ul style="list-style-type:none;margin:0;padding:0.5em;">
-                    <li><a href="/index.html">About</a></li>
-                    <li><a href="/index.html">Work Stuff</a></li>
-                    <li><a href="/index.html">Design</a></li>
-                    <li><a href="/index.html">3D</a></li>
-                    <li><a href="/index.html">Comics</a></li>
-                    <li><a href="/index.html">Fun Thoughts</a></li>
-                    <li><a href="/index.html">Writing/Books</a></li>
-                    <li><a href="/index.html">Projects</a></li>
+                    <li><a class="ajax"
+                            id="homelink" 
+                            href="#">Home</a></li>
+                    <li><a class="ajax"
+                            id="aboutlink" 
+                            href="/about.html">About</a></li>
+                    <li><a class="ajax"
+                           id="worklink"
+                            href="/work.html">Work Stuff</a></li>
+                    <li><a class="ajax"
+                            id="designlink"
+                            href="/design.html">Design</a></li>
+                    <li><a class="ajax"
+                            id="3dlink"
+                            href="/3d.html">3D</a></li>
+                    <li><a class="ajax"
+                            id="comicslink"
+                            href="/comics.html">Comics</a></li>
+                    <li><a class="ajax"
+                            id="funlink"
+                            href="/fun.html">Fun Thoughts</a></li>
+                    <li><a class="ajax"
+                            id="bookslink"
+                            href="/books.html">Writing/Books</a></li>
+                    <li><a class="ajax"
+                            id="projectslink"
+                            href="/projects.html">Projects</a></li>
                 </ul>
             </div> <!-- end of sidebar -->
             
@@ -180,6 +167,11 @@ header .mikpanel {
 .miksidebar > ul > li > a {
     color: black;
 }
+.miksidebar > ul > li > a:hover {
+    font-size: 12pt;
+}
+
+/* sharing and headers */
 
 h2 {
     padding: 3pt;
@@ -197,6 +189,11 @@ h2 {
 }
 .linkwrap {
     display: inline-block;
+}
+/* doesn't work anyway */
+.linkwrap img:hover {
+    color: #2323aa;
+    size: 20pt;
 }
 
 /* flexbox magic! */
@@ -230,7 +227,7 @@ flicker during the reload, while this hack is in place. But that's easy
 with tabs.
 */
 
-$(window).bind('load', function() {
+function format_pres() {
     $('pre').each(function() {
         var pre = $(this);
         var txt = pre.text();
@@ -240,13 +237,13 @@ $(window).bind('load', function() {
         if (!lines[lines.length-1])  //ditto last line
             lines.pop(lines.length-1);
         //find the whitespace used on the first line
-        if (lines)
-        {
+        if (lines) {
             var indent = 0;
             var line = lines[0];
             for (var i = 0; 
-                (line[i] == ' ' || line[i] == '\n' || line[i] == '\t')
-                && i < lines[0].length; 
+                i < lines[0].length
+                && (line[i] == ' ' 
+                    || line[i] == '\t');
                 i++) 
                 indent++;
             lines.forEach(function(ln, i) {
@@ -255,6 +252,43 @@ $(window).bind('load', function() {
         }
         pre.text(lines.join('\n'));
     });
+}
+
+function open_tab(tablink) {
+    var source = tablink;
+    if (typeof(tablink) !== "string")
+    {
+        var id = tablink.attr('id');
+        //all tab ids are named as "filenamelink"
+        //the corresponding file is thus "/filename.html"
+        var filename = id.substring(0, id.length-4);
+        source = '/' + filename + '.html';
+    }
+    $.ajax(source, {
+        success : function (data) {
+            var content = $('#content');
+            content.empty();
+            content.append(data);
+            format_pres();
+        }
+    });
+}
+
+/*
+$(window).bind('load', function() {
+    format_pres();
+});
+*/
+
+var tabs = $('.miksidebar>ul>li>a');
+var opentab = $('#homelink');
+
+$(document).ready(function() {
+    open_tab(opentab);
+});
+
+$(document).on('click', 'a.ajax', function() {
+    open_tab($(this));
 });
 
 </script>
