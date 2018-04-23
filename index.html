@@ -168,7 +168,7 @@ footer .mikpanel {
 .miksidebar {
     width: auto;
     float: right;
-    max-width: 10em;
+    min-width: 10em;
     text-align: left;
     right: 0;
     z-index: 1;
@@ -184,7 +184,7 @@ footer .mikpanel {
     color: black;
 }
 .miksidebar > ul > li > a:hover {
-    font-size: 12pt;
+    font-size: 14pt;
 }
 
 /* sharing and headers */
@@ -214,23 +214,20 @@ h2 {
 
 /* flexbox magic! */
 
-#layout > * {
-    flex: 1 100%;
-}
 #layout {
     display: flex;
-    flex-row: row wrap;
 }
 /*
 TODO: add new order for smaller devices with
 side bar as top bar
 */
-@media all and(min-width: 800px) {
-    #content { flex: 2 0px; }
+/* adapt to mobile screens (sidebar before content, not aside) */
+@media all and(max-width: 600px) {
+    #content { flex: 2; }
     .miksidebar         { content: 2; }
     header .mikpanel    { order: 1; }
-    .miksidebar         { order: 2; }
-    #content            { order: 3; }
+    .miksidebar         { content: 2; order: 3; }
+    #content            { order: 2; }
 }
 
 </style>
