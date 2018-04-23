@@ -221,6 +221,10 @@ h2 {
     display: flex;
     flex-row: row wrap;
 }
+/*
+TODO: add new order for smaller devices with
+side bar as top bar
+*/
 @media all and(min-width: 800px) {
     #content { flex: 2 0px; }
     .miksidebar         { content: 2; }
@@ -232,6 +236,12 @@ h2 {
 </style>
 
 <script type="text/javascript">
+
+/*
+TODO [list]:
+- add terminal language class for keyword highlighting
+- make better in general
+*/
 
 //NOTE: this stuff can't be the best way to do this,
 //but for now it suffices well
@@ -276,14 +286,15 @@ function format(html) {
     return jQ2.find('body')[0].innerHTML;
 }
 
-//all tabs in case ever needed
-var tabs = $('.miksidebar>ul>li>a');
-//the currently open tab
-var opentab = $('#homeaboutlink');
+//get/put currently open tab in local storage
+var opentab = '#homeaboutlink'
+if (localStorage.getItem('opentab') == null)
+    localStorage.setItem('opentab', opentab);
+else
+    opentab = localStorage.getItem('opentab');
 
 //open a tab from a link, following the naming convention
 function open_tab(tablink) {
-    opentab = tablink;
     var source = tablink;
     if (typeof(tablink) !== "string")
     {
@@ -293,6 +304,8 @@ function open_tab(tablink) {
         var filename = id.substring(0, id.length-4);
         source = '/' + filename + '.html';
     }
+    opentab = '#'+tablink.attr('id');
+    localStorage.setItem('opentab', opentab);
     $.ajax(source, {
         success : function (data) {
             var content = $('#content');
@@ -304,11 +317,14 @@ function open_tab(tablink) {
 }
 
 $(document).ready(function() {
-    open_tab(opentab);
+    open_tab($(opentab));
 });
 
 $(document).on('click', 'a.ajax', function() {
     open_tab($(this));
 });
-
 </script>
+
+<!-- main site functions script 
+<script type="text/javascript" src="index.js"></script>
+-->
