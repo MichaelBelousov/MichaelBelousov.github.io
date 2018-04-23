@@ -1,0 +1,10 @@
+{
+    "posts" : [
+        {
+            "name" : "On Centralization",
+            "date" : "April 22, 2018",
+            "url" : "/on_centralization.html"
+        }
+    ],
+    "comment" : "This JSON file describes the blogging for this site. As opposed to a real dynamic server solution (i.e. a sane database and backend), I have elected to use some JSON, client side javascript, and some linux and Bash utilities for writing, formatting, and storing my posts. Hopefully you don't dislike me after that."
+}
