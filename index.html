@@ -58,39 +58,44 @@ The primarily used font is Ubuntu, thank you!
 
             <!-- side bar -->
             <div id="sidebar" class="mikpanel miksidebar">
-                Things and Stuff
-                <ul style="list-style-type:none;margin:0;padding:0.5em;">
-                    <li><a class="ajax"
-                            id="homeaboutlink" 
-                            href="#">Home/About</a></li>
-                    <li><a class="ajax"
-                           id="worklink"
-                            href="#">Work Stuff</a></li>
-                    <li><a class="ajax"
-                            id="designlink"
-                            href="#">Design</a></li>
-                    <li><a class="ajax"
-                            id="3dlink"
-                            href="#">3D</a></li>
-                    <li><a class="ajax"
-                            id="comicslink"
-                            href="#">Comics</a></li>
-                    <li><a class="ajax"
-                            id="funlink"
-                            href="#">Fun Thoughts</a></li>
-                    <li><a class="ajax"
-                            id="bookslink"
-                            href="#">Writing/Books</a></li>
-                    <li><a class="ajax"
-                            id="projectslink"
-                            href="#">Projects</a></li>
-                    <li><a class="ajax"
-                            id="linkslink"
-                            href="#">Links</a></li>
-                    <li><a class="ajax"
-                            id="colleagueslink"
-                            href="#">Colleagues</a></li>
-                </ul>
+                <div id="sidebar-content"> 
+                    Things and Stuff
+                    <ul>
+                        <li><a class="ajax"
+                                id="homeaboutlink" 
+                                href="#">Home/About</a></li>
+                        <li><a class="ajax"
+                               id="worklink"
+                                href="#">Work Stuff</a></li>
+                        <li><a class="ajax"
+                                id="designlink"
+                                href="#">Design</a></li>
+                        <li><a class="ajax"
+                                id="3dlink"
+                                href="#">3D</a></li>
+                        <li><a class="ajax"
+                                id="comicslink"
+                                href="#">Comics</a></li>
+                        <li><a class="ajax"
+                                id="funlink"
+                                href="#">Fun Thoughts</a></li>
+                        <li><a class="ajax"
+                                id="bookslink"
+                                href="#">Writing/Books</a></li>
+                        <li><a class="ajax"
+                                id="projectslink"
+                                href="#">Projects</a></li>
+                        <li><a class="ajax"
+                                id="linkslink"
+                                href="#">Links</a></li>
+                        <li><a class="ajax"
+                                id="colleagueslink"
+                                href="#">Colleagues</a></li>
+                        <li><a class="ajax"
+                                id="articles" 
+                                href="#">Articles</a></li>
+                    </ul>
+                </div>
             </div> <!-- end of sidebar -->
             
         </div> <!-- end layout -->
@@ -154,6 +159,9 @@ body {
     border-radius: 2pt;
     width: auto;
 }
+.mikpanel:hover {
+    box-shadow: -4pt 4pt #bbbbbb;
+}
 header .mikpanel {
     padding: 9pt;
     margin: 1pt;
@@ -176,17 +184,21 @@ footer .mikpanel {
     margin-right: -8pt;
     padding-right: 12pt;
 }
-.mikpanel:hover {
-    box-shadow: -4pt 4pt #bbbbbb;
+#sidebar-content {
+    position: fixed;
 }
 /* sidebar links */
-.miksidebar > ul > li > a {
+#sidebar-content > ul > li > a {
     color: black;
 }
-.miksidebar > ul > li > a:hover {
+#sidebar-content > ul > li > a:hover {
     font-size: 14pt;
 }
-
+#sidebar-content > ul {
+    list-style-type:none;
+    margin:0;
+    padding:0.5em;
+}
 /* sharing and headers */
 
 h2 {
@@ -321,7 +333,3 @@ $(document).on('click', 'a.ajax', function() {
     open_tab($(this));
 });
 </script>
-
-<!-- main site functions script 
-<script type="text/javascript" src="index.js"></script>
--->
