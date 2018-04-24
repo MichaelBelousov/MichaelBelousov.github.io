@@ -1,0 +1,44 @@
+<div class="mikpanel">
+    <p>
+    Various articles I've collected or written.
+    I like to refrain from politics, I don't think anything here
+    would say otherwise.
+    </p>
+    <ul id="articles-list">
+        <li></li>
+    </ul>
+</div>
+<script type="text/javascript">
+
+class blogtable {}
+
+class blogrecord {}
+
+/*
+function json_from_blogrecord(rec)
+{
+    var result = {};
+    var lines = rec.split('\n');
+    for (var i = 0; i < lines.length; i++)
+    {
+        var entry = lines[i].split();
+        var entryobj = {};
+        entryobj.title  = entry[1];
+        entryobj.date   = entry[2];
+        entryobj.url    = entry[3];
+        result[entryobj.title] = entryobj;
+    }
+}
+*/
+
+$.ajax('/blog.txt', {
+    success : function (data) {
+        var json = blogtable(data);
+        var articles = $('#articles-list');
+        //for (var i=0; i < json.length
+        //TODO: add articles as list items
+        //articles.append(
+    }
+});
+
+</script>
