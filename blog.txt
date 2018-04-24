@@ -1,0 +1,4 @@
+# this shall be a record-style plain text document meant for modification by awk and
+# parsing by client side javascript for maintaining my blog and any written articles
+
+on_centralization.txt 4/22/18
