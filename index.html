@@ -37,13 +37,13 @@ The primarily used font is Ubuntu, thank you!
                         href="https://github.com/MichaelBelousov/">
                         <img alt="github" 
                             class="share share-left" 
-                            src="github-256.png"/> 
+                            src="resources/img/github-256.png"/> 
                     </a>
                     <a class="linkwrap" 
                         href="https://github.com/MichaelBelousov/">
                         <img alt="github" 
                             class="share" 
-                            src="github-256.png"/> 
+                            src="resources/img/github-256.png"/> 
                     </a>
                 </div>
             </div>
@@ -115,12 +115,12 @@ The primarily used font is Ubuntu, thank you!
 @font-face {
     font-family: ubuntu;
     font-weight: bold;
-    src: url(Ubuntu/Ubuntu-Medium.ttf);
+    src: url(resources/fonts/Ubuntu/Ubuntu-Medium.ttf);
 }
 @font-face {
     font-family: ubuntu;
     font-weight: normal;
-    src: url(Ubuntu/Ubuntu-Light.ttf);
+    src: url(resources/fonts/Ubuntu/Ubuntu-Light.ttf);
 }
 body {
     font-family: ubuntu;
@@ -177,6 +177,7 @@ footer .mikpanel {
     width: auto;
     float: right;
     min-width: 10em;
+    min-height: 14em;
     text-align: left;
     right: 0;
     z-index: 1;
@@ -233,14 +234,14 @@ h2 {
 TODO: add new order for smaller devices with
 side bar as top bar
 */
-/* adapt to mobile screens (sidebar before content, not aside) */
-@media all and(max-width: 600px) {
-    #content { flex: 2; }
-    .miksidebar         { content: 2; }
-    header .mikpanel    { order: 1; }
-    .miksidebar         { content: 2; order: 3; }
-    #content            { order: 2; }
-}
+/*
+@media all and (max-width: 600px) {
+*/
+#content            { flex: 2; }
+.miksidebar         { content: 2; }
+header .mikpanel    { order: 1; }
+.miksidebar         { content: 2; order: 3; }
+#content            { order: 2; }
 
 </style>
 
@@ -248,7 +249,7 @@ side bar as top bar
 
 /*
 TODO [list]:
-- add terminal language class for keyword highlighting
+- add terminal language classes for keyword/syntax highlighting
 - make better in general
 */
 
