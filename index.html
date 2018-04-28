@@ -92,7 +92,7 @@ The primarily used font is Ubuntu, thank you!
                                 id="colleagueslink"
                                 href="#">Colleagues</a></li>
                         <li><a class="ajax"
-                                id="articles" 
+                                id="articleslink" 
                                 href="#">Articles</a></li>
                     </ul>
                 </div>
@@ -162,16 +162,18 @@ body {
 .mikpanel:hover {
     box-shadow: -4pt 4pt #bbbbbb;
 }
-header .mikpanel {
+header > .mikpanel {
     padding: 9pt;
     margin: 1pt;
     vertical-align: middle;
 }
-footer .mikpanel {
+footer > .mikpanel {
     padding: 8pt;
     margin: 5pt;
     vertical-align: middle;
     text-align: center;
+}
+.mikpanel > .mikpanel {
 }
 .miksidebar {
     width: auto;
@@ -182,7 +184,7 @@ footer .mikpanel {
     right: 0;
     z-index: 1;
     overflow-x: hidden;
-    margin-right: -8pt;
+    /*margin-right: -8pt;*/
     padding-right: 12pt;
 }
 #sidebar-content {
@@ -220,7 +222,7 @@ h2 {
     display: inline-block;
 }
 /* doesn't work anyway */
-.linkwrap img:hover {
+.linkwrap > img:hover {
     color: #2323aa;
     size: 20pt;
 }
@@ -230,18 +232,27 @@ h2 {
 #layout {
     display: flex;
 }
-/*
-TODO: add new order for smaller devices with
-side bar as top bar
-*/
-/*
+#content { 
+    order: 1; 
+}
+.miksidebar { 
+    order: 2; 
+}
+
 @media all and (max-width: 600px) {
-*/
-#content            { flex: 2; }
-.miksidebar         { content: 2; }
-header .mikpanel    { order: 1; }
-.miksidebar         { content: 2; order: 3; }
-#content            { order: 2; }
+    #layout {
+        flex-direction: column;
+    }
+    #sidebar-content {
+        position: relative;
+    }
+    .miksidebar { 
+        order: 1; 
+    }
+    #content { 
+        order: 2; 
+    }
+}
 
 </style>
 
@@ -250,7 +261,7 @@ header .mikpanel    { order: 1; }
 /*
 TODO [list]:
 - add terminal language classes for keyword/syntax highlighting
-- make better in general
+- clean up
 */
 
 //NOTE: this stuff can't be the best way to do this,
