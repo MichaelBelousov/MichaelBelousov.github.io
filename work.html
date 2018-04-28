@@ -1,0 +1,24 @@
+
+<div>
+    <div id="pdfcontainer" class="mikpanel">
+        <center>
+            <h3>Michael Belousov's Resume:</h3>
+            <object id="resumepdf" data="resources/resume/resume.pdf" type="application/pdf"> 
+                <p> You can't see it apparently. My resume as a PDF should be 
+                <a href="resources/resume/resume.pdf">here</a>.</p>
+            </object >
+        </center>
+    </div>
+</div>
+
+<style>
+/* TODO:
+   dynamic (or adaptive) sizing of this element
+*/
+#resumepdf {
+    width: 9.5in;
+    height: 11.8in;
+}
+#resumepdf > center > object {
+}
+</style>

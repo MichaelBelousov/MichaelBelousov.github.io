@@ -1,3 +1,3 @@
-[submodule "Resume"]
-	path = Resume
+[submodule "resources/resume"]
+	path = resources/resume
 	url = https://github.com/MichaelBelousov/Resume.git
