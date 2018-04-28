@@ -1,0 +1,144 @@
+@font-face {
+    font-family: ubuntu;
+    font-weight: bold;
+    src: url(resources/fonts/Ubuntu/Ubuntu-Medium.ttf);
+}
+@font-face {
+    font-family: ubuntu;
+    font-weight: normal;
+    src: url(resources/fonts/Ubuntu/Ubuntu-Light.ttf);
+}
+body {
+    font-family: ubuntu;
+    text-align: justify;
+    font-size: 12pt;
+    overflow-x: hidden;
+}
+.terminal {
+    font-family: "Lucida Console";
+    font-weight: normal;
+    background: #2a2a2a;
+    color: #dedede;
+    border: 3pt;
+    border-radius: 6pt;
+    border-color: #9d9d9d;
+    border-style: solid;
+    width: auto;
+    padding: 10pt;
+    margin: 10pt;
+    box-shadow: -1pt 2pt #666666;
+    font-size: 90%;
+    line-height: 130%;
+    white-space: pre-wrap;
+}
+.mikpanel .terminal {
+    margin: 8pt;
+}
+.mikpanel {
+    font-family: ubuntu;
+    font-weight: normal;
+    background: #dfdfdf;
+    padding: 12pt;
+    margin: 5pt;
+    box-shadow: -3pt 2pt #bbbbbb;
+    clear: both;
+    overflow: auto;
+    border-radius: 2pt;
+    width: auto;
+}
+.mikpanel:hover {
+    box-shadow: -4pt 4pt #bbbbbb;
+}
+header > .mikpanel {
+    padding: 9pt;
+    margin: 1pt;
+    vertical-align: middle;
+}
+footer > .mikpanel {
+    padding: 8pt;
+    margin: 5pt;
+    vertical-align: middle;
+    text-align: center;
+}
+.mikpanel > .mikpanel {
+}
+.miksidebar {
+    width: auto;
+    float: right;
+    min-width: 10em;
+    min-height: 14em;
+    text-align: left;
+    right: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    margin-right: -8pt;
+    padding-right: 12pt;
+}
+#sidebar-content {
+    position: fixed;
+}
+/* sidebar links */
+#sidebar-content > ul > li > a {
+    color: black;
+}
+#sidebar-content > ul > li > a:hover {
+    font-size: 14pt;
+}
+#sidebar-content > ul {
+    list-style-type:none;
+    margin:0;
+    padding:0.5em;
+}
+/* sharing and headers */
+
+h2 {
+    padding: 3pt;
+    margin: 4pt;
+    font-weight: normal;
+}
+.share {
+    padding: 2pt;
+    padding-left: 20pt;
+    margin: 2pt;
+    width: 25pt;
+}
+.share-left {
+    padding-left: 0pt;
+}
+.linkwrap {
+    display: inline-block;
+}
+/* doesn't work anyway */
+.linkwrap > img:hover {
+    color: #2323aa;
+    size: 20pt;
+}
+
+/* flexbox magic! */
+
+#layout {
+    display: flex;
+}
+#content { 
+    order: 1; 
+    flex: 2;
+}
+.miksidebar { 
+    order: 2; 
+}
+
+@media all and (max-width: 600px) {
+    #layout {
+        flex-direction: column;
+    }
+    #sidebar-content {
+        position: relative;
+    }
+    .miksidebar { 
+        order: 1; 
+    }
+    #content { 
+        order: 2; 
+    }
+}
+
