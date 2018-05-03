@@ -120,11 +120,19 @@ h2 {
     display: flex;
 }
 #content { 
+    /*
+     * TODO: use flexbox for the content column
+    display: flex;
+    flex-flow: column nowrap;
+    */
     order: 1; 
     flex: 2;
 }
 .miksidebar { 
     order: 2; 
+}
+#content > * {
+    /*flex: 1;*/
 }
 
 @media all and (max-width: 600px) {
