@@ -1,13 +1,15 @@
 <!doctype html>
 
 <!--
-I must say, web development isn't my main experience, so here goes
-a complete lack of convention! (and learning experience from which
-to meet convention thereof of course).
 
-- Yours truly, Michael Belousov
+I must say, web development isn't my field of expertise, but I 
+tried and hopefully succeeded in providing a unique site that 
+should work across all browsers, look nice on mobile devices,
+and convey a development theme.
 
-The primarily used font is Ubuntu, thank you! 
+The primarily used font is the lovely ubuntu font, thank you! 
+
+- Mike B
 
 -->
 
@@ -39,12 +41,6 @@ The primarily used font is Ubuntu, thank you!
                         href="https://github.com/MichaelBelousov/">
                         <img alt="github" 
                             class="share share-left" 
-                            src="resources/img/github-256.png"/> 
-                    </a>
-                    <a class="linkwrap" 
-                        href="https://github.com/MichaelBelousov/">
-                        <img alt="github" 
-                            class="share" 
                             src="resources/img/github-256.png"/> 
                     </a>
                 </div>
@@ -94,8 +90,8 @@ The primarily used font is Ubuntu, thank you!
                                 id="colleagueslink"
                                 href="#">Colleagues</a></li>
                         <li><a class="ajax"
-                                id="articleslink" 
-                                href="#">Articles</a></li>
+                                id="bloghtml" 
+                                href="#">Blog</a></li>
                     </ul>
                 </div>
             </div> <!-- end of sidebar -->
@@ -173,7 +169,7 @@ else
     opentab = localStorage.getItem('opentab');
 
 //open a tab from a link, following the naming convention
-function open_tab(tablink) {
+function open_tab(tablink, empty=true) {
     var source = tablink;
     if (typeof(tablink) !== "string")
     {
@@ -182,13 +178,14 @@ function open_tab(tablink) {
         //the corresponding file is thus "/filename.html"
         var filename = id.substring(0, id.length-4);
         source = '/' + filename + '.html';
+        opentab = '#'+tablink.attr('id');
+        localStorage.setItem('opentab', opentab);
     }
-    opentab = '#'+tablink.attr('id');
-    localStorage.setItem('opentab', opentab);
     $.ajax(source, {
         success : function (data) {
             var content = $('#content');
-            content.empty();
+            if (empty)
+                content.empty();
             data = format(data);
             content.append(data);
         }

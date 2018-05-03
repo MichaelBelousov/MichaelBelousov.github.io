@@ -8,7 +8,9 @@
         <li></li>
     </ul>
 </div>
+
 <script type="text/javascript">
+
 
 class blogtable {}
 
@@ -40,5 +42,37 @@ $.ajax('/blog.txt', {
         //articles.append(
     }
 });
+
+</script>
+
+<script type="text/javascript">
+
+/* FIXME:
+    - load pages as people scroll down, 
+    which isn't necessary yet given the tiny size of the site
+*/
+
+//open a tab from a link, following the naming convention
+function open_tab(tablink) {
+    var source = tablink;
+    if (typeof(tablink) !== "string")
+    {
+        var id = tablink.attr('id');
+        //all tab ids are named as "filenamelink"
+        //the corresponding file is thus "/filename.html"
+        var filename = id.substring(0, id.length-4);
+        source = '/' + filename + '.html';
+        opentab = '#'+tablink.attr('id');
+        localStorage.setItem('opentab', opentab);
+    }
+    $.ajax(source, {
+        success : function (data) {
+            var content = $('#content');
+            content.empty();
+            data = format(data);
+            content.append(data);
+        }
+    });
+}
 
 </script>
