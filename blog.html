@@ -1,78 +1,23 @@
-<div class="mikpanel">
-    <p>
-    Various articles I've collected or written.
-    I like to refrain from politics, I don't think anything here
-    would say otherwise.
-    </p>
-    <ul id="articles-list">
-        <li></li>
-    </ul>
-</div>
-
 <script type="text/javascript">
-
-
-class blogtable {}
-
-class blogrecord {}
-
-/*
-function json_from_blogrecord(rec)
-{
-    var result = {};
-    var lines = rec.split('\n');
-    for (var i = 0; i < lines.length; i++)
-    {
-        var entry = lines[i].split();
-        var entryobj = {};
-        entryobj.title  = entry[1];
-        entryobj.date   = entry[2];
-        entryobj.url    = entry[3];
-        result[entryobj.title] = entryobj;
-    }
-}
+/* TODO:
+    - load pages as people scroll down, 
+    (which isn't necessary yet given the tiny size of the site)
+    - add more post metadata via git hooks, i.e. generating title,
+    post date, last edit date, etc
 */
 
-$.ajax('/blog.txt', {
+function blogtable (data) {
+    this.records = data.split('\n');
+}
+
+$.ajax('/blog/record.txt', {
     success : function (data) {
-        var json = blogtable(data);
-        var articles = $('#articles-list');
-        //for (var i=0; i < json.length
-        //TODO: add articles as list items
-        //articles.append(
+        data = data.trimEnd();
+        var table = new blogtable(data);
+        var articles = table.records;
+        for (var i = 0; i < articles.length; i++)
+            open_tab('/blog/'+articles[i], false);
     }
 });
-
-</script>
-
-<script type="text/javascript">
-
-/* FIXME:
-    - load pages as people scroll down, 
-    which isn't necessary yet given the tiny size of the site
-*/
-
-//open a tab from a link, following the naming convention
-function open_tab(tablink) {
-    var source = tablink;
-    if (typeof(tablink) !== "string")
-    {
-        var id = tablink.attr('id');
-        //all tab ids are named as "filenamelink"
-        //the corresponding file is thus "/filename.html"
-        var filename = id.substring(0, id.length-4);
-        source = '/' + filename + '.html';
-        opentab = '#'+tablink.attr('id');
-        localStorage.setItem('opentab', opentab);
-    }
-    $.ajax(source, {
-        success : function (data) {
-            var content = $('#content');
-            content.empty();
-            data = format(data);
-            content.append(data);
-        }
-    });
-}
 
 </script>
