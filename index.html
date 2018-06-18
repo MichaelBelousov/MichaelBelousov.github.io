@@ -2,10 +2,8 @@
 
 <!--
 
-I must say, web development isn't my field of expertise, but I 
-tried and hopefully succeeded in providing a unique site that 
-should work across all browsers, look nice on mobile devices,
-and convey a development theme.
+Web development isn't my area of expertise but I should remake this
+website after having learned about a lot more frontend technologies
 
 The primarily used font is the lovely ubuntu font, thank you! 
 
@@ -100,11 +98,9 @@ The primarily used font is the lovely ubuntu font, thank you!
                         <li><a class="ajax"
                                 id="colleagueslink"
                                 href="#">Colleagues</a></li>
-                        <!--
                         <li><a class="ajax"
                                 id="bloghtml" 
                                 href="#">Blog</a></li>
-                        -->
                     </ul>
                 </div>
             </div> <!-- end of sidebar -->
@@ -138,7 +134,7 @@ TODO [list]:
 //instance over that document
 function format_pres(jQ) {
     //TODO: add coloring to keywords using tags?
-    jQ.find('pre').each(function() {
+    jQ.find('.terminal').each(function() {
         var pre = $(this);
         var txt = pre.text();
         var lines = txt.split("\n");

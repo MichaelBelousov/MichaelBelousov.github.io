@@ -13,6 +13,7 @@ function blogtable (data) {
 $.ajax('/blog/record.txt', {
     success : function (data) {
         data = data.trimEnd();
+        console.log(data);
         var table = new blogtable(data);
         var articles = table.records;
         for (var i = 0; i < articles.length; i++)
