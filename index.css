@@ -67,7 +67,7 @@ footer > .mikpanel {
     float: right;
     /* TODO: proper padding for flexbox content */
     min-width: 10em;
-    min-height: 11em;
+    /*min-height: 8em;*/
     text-align: left;
     right: 0;
     z-index: 1;
