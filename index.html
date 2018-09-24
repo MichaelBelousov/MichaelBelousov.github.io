@@ -206,7 +206,8 @@ but I don't mind this stuff too
 
         $(document).ready(function() {
             open_tab($(opentab));
-            $('#sidebar').height(
+            $('#sidebar').css(
+                'min-height',
                 $('#sidebar-content').outerHeight()
             );
         });
