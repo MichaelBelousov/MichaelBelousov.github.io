@@ -28,6 +28,97 @@ The primarily used font is the lovely ubuntu font, thank you!
             content="width=device-width, initial-scale=1.0">
         <meta name="image"
             content="favicon.ico">
+        <script type="text/javascript">
+
+        /*
+        TODO [list]:
+        - add terminal language classes for keyword/syntax highlighting
+        - clean up
+        - perhaps use markdown rendering for blogs?
+        */
+
+        //NOTE: this stuff can't be the best way to do this,
+        //but for now it suffices well
+
+        //format the pres in a document, given a jQuery
+        //instance over that document
+        function format_pres(jQ) {
+            //TODO: add coloring to keywords using tags?
+            jQ.find('.terminal').each(function() {
+                var pre = $(this);
+                var txt = pre.text();
+                var lines = txt.split("\n");
+                if (!lines[0])  //remove first line if empty
+                    lines.pop(0);
+                if (!lines[lines.length-1])  //ditto last line
+                    lines.pop(lines.length-1);
+                //find the whitespace used on the first line
+                if (lines) {
+                    var indent = 0;
+                    var line = lines[0];
+                    for (var i = 0; 
+                        i < lines[0].length
+                        && (line[i] == ' ' 
+                            || line[i] == '\t');
+                        i++) 
+                        indent++;
+                    lines.forEach(function(ln, i) {
+                        lines[i] = ln.substr(indent);
+                    });
+                }
+                pre.text(lines.join('\n'));
+            });
+        }
+
+        //format a clump of HTML
+        function format(html) {
+            //second jQuery instance for temporary doc from 
+            doc = document.implementation.createHTMLDocument();
+            jQ2 = jQuery(doc);
+            jQ2.find('body').append(html);
+            format_pres(jQ2);
+            return jQ2.find('body')[0].innerHTML;
+        }
+
+        //get/put currently open tab in local storage
+        var opentab = '#homeaboutlink'
+        if (localStorage.getItem('opentab') == null)
+            localStorage.setItem('opentab', opentab);
+        else
+            opentab = localStorage.getItem('opentab');
+
+        //open a tab from a link, following the naming convention
+        function open_tab(tablink, empty=true) {
+            var source = tablink;
+            if (typeof(tablink) !== "string")
+            {
+                var id = tablink.attr('id');
+                //all tab ids are named as "filenamelink"
+                //the corresponding file is thus "/filename.html"
+                var filename = id.substring(0, id.length-4);
+                source = '/' + filename + '.html';
+                opentab = '#'+tablink.attr('id');
+                localStorage.setItem('opentab', opentab);
+            }
+            $.ajax(source, {
+                success : function (data) {
+                    var content = $('#content');
+                    if (empty)
+                        content.empty();
+                    data = format(data);
+                    content.append(data);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            open_tab($(opentab));
+        });
+
+        $(document).on('click', 'a.ajax', function() {
+            open_tab($(this));
+        });
+        </script>    
     </head>
     <body>
 
@@ -120,94 +211,4 @@ The primarily used font is the lovely ubuntu font, thank you!
 </html>
 
 
-<script type="text/javascript">
 
-/*
-TODO [list]:
-- add terminal language classes for keyword/syntax highlighting
-- clean up
-- perhaps use markdown rendering for blogs?
-*/
-
-//NOTE: this stuff can't be the best way to do this,
-//but for now it suffices well
-
-//format the pres in a document, given a jQuery
-//instance over that document
-function format_pres(jQ) {
-    //TODO: add coloring to keywords using tags?
-    jQ.find('.terminal').each(function() {
-        var pre = $(this);
-        var txt = pre.text();
-        var lines = txt.split("\n");
-        if (!lines[0])  //remove first line if empty
-            lines.pop(0);
-        if (!lines[lines.length-1])  //ditto last line
-            lines.pop(lines.length-1);
-        //find the whitespace used on the first line
-        if (lines) {
-            var indent = 0;
-            var line = lines[0];
-            for (var i = 0; 
-                i < lines[0].length
-                && (line[i] == ' ' 
-                    || line[i] == '\t');
-                i++) 
-                indent++;
-            lines.forEach(function(ln, i) {
-                lines[i] = ln.substr(indent);
-            });
-        }
-        pre.text(lines.join('\n'));
-    });
-}
-
-//format a clump of HTML
-function format(html) {
-    //second jQuery instance for temporary doc from 
-    doc = document.implementation.createHTMLDocument();
-    jQ2 = jQuery(doc);
-    jQ2.find('body').append(html);
-    format_pres(jQ2);
-    return jQ2.find('body')[0].innerHTML;
-}
-
-//get/put currently open tab in local storage
-var opentab = '#homeaboutlink'
-if (localStorage.getItem('opentab') == null)
-    localStorage.setItem('opentab', opentab);
-else
-    opentab = localStorage.getItem('opentab');
-
-//open a tab from a link, following the naming convention
-function open_tab(tablink, empty=true) {
-    var source = tablink;
-    if (typeof(tablink) !== "string")
-    {
-        var id = tablink.attr('id');
-        //all tab ids are named as "filenamelink"
-        //the corresponding file is thus "/filename.html"
-        var filename = id.substring(0, id.length-4);
-        source = '/' + filename + '.html';
-        opentab = '#'+tablink.attr('id');
-        localStorage.setItem('opentab', opentab);
-    }
-    $.ajax(source, {
-        success : function (data) {
-            var content = $('#content');
-            if (empty)
-                content.empty();
-            data = format(data);
-            content.append(data);
-        }
-    });
-}
-
-$(document).ready(function() {
-    open_tab($(opentab));
-});
-
-$(document).on('click', 'a.ajax', function() {
-    open_tab($(this));
-});
-</script>
