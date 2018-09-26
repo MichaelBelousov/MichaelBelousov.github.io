@@ -1,0 +1,164 @@
+<div class="mikpanel blog">
+    <h3 style="margin:1pt;">A Guide to Avoiding Office Products like the Plague</h3>
+    <h5 style="margin:1pt;">September 25, 2018</h5>
+
+    <p>
+    Microsoft is fine. They have some good (great) stuff. I love TypeScript,
+    C# has some excellent design choices as a language 
+    (e.g. struct vs. class type semantics), even if I don't really use it
+    often.
+    But this is about Microsoft Office, the corporate DSL<sup>1</sup>.
+    </p>
+
+    <p>
+    I used Word as a main word processor for years, it's a fine, 
+    oft well-thought-out suite of tools.
+    I've even used excel, though I'm no spreadsheet savant. But I don't
+    use either of them anymore, and haven't for a couple of years. 
+    In my undergraduate senior year (right now), 
+    I have a professor. An alright guy; yet it's become blatantly
+    obvious that he's a sycophant of the devil. He requires our group
+    submit all texts in <i>.docx</i><sup>2</sup> format. That is probably 
+    the most oppressive limitation I've ever received in my academic career. 
+    I have always had the sweet, sweet, sanctity of the PDF to depend on.
+    Well anyway, it prompted me to think over my toolset and how I've 
+    been writing essays, reports, diagrams, tables, and graphs for 
+    the last two academic seasons. And I wanted to share.
+    </p>
+
+    <p>
+    If you like rejecting Facebook, Google, or you know, anything that is
+    convenient like myself, then here's my recipe to avoiding Microsoft 
+    Office 365 days of the year (not accounting for leap years)<sup>3</sup>.
+    </p>
+
+    <h5>Ingredient 1: Latex(?)</h5>
+    <p>
+    OK, so you can't really get away with not having something to typeset
+    for you. That's where good old steep-learning-curve latex comes in. I
+    pronounce it as "laaaaaaaa-(sing it)-tech", not like that rubber that
+    I am allergic to.
+    Latex is hard to learn but if you want a stubborn, beautiful
+    report tool which uses plaintext for input, then latex will do quite
+    well. Then you can use your favorite text 
+    ed<span style="font-size:3">v</span>i<span style="font-size:3">m</span>tor. The problem with latex, is it lacks a certain element of programmability
+    that, for example, excel is alleged to have. You "can't" modify your data
+    and then automatically recompute your average or any other function of
+    such data. Or can you?
+    </p>
+
+    <h5>Ingredient 3: Scripting Language</h5>
+    <p>
+    I use Python as my example, since that's what I use, but you can use PHP
+    for all I care. The idea is simple. Unlike your Office document which will
+    likely require some fancy APIs or at least XML parsing to edit, latex
+    source files are just, you know, plaintext. So you can edit them anyhow
+    you like. My approach is a simple mapping from latex source to Python
+    formatting. If I were to just write Python formatting syntax for all
+    my latex, I would probably spontaneously combust. Take a look:
+    </p>
+    <p class="terminal">
+    \\begin{{document}}
+        \\frac{{kill}}{{me}}
+    \\end{{document}}
+    </p>
+    <p>
+    That's almost as bad as chained ternary expressions with JSX.
+    So I hide that behind a script, and instead created a simple syntax for 
+    keyed formatting. My latex superset takes about 4 lines of python code,
+    and looks like so:
+    </p>
+    <pre class="terminal">
+    \begin{document}
+        \frac{&lt;&lt;numerator&gt;&gt;}{&lt;&lt;denominator&gt;&gt;}
+    \end{document}
+    </pre>
+
+    <p>
+    Quite literally, all my code has to do is replace all braces with 
+    escaped double braces, ditto for backslashes, and then replace all 
+    double angle brackets with a formatting brace. 
+    Then you just have your values and or data in python.
+    Yes, you need a <i>couple</i> other things to do tables, but that's also
+    some 5 lines of code that is mostly just string joining. And I'll include
+    it if you're concerned. It really doesn't take much work if you know
+    latex and python to accomplish this. Here's my loading function:
+    </p>
+    <pre class="terminal">
+    def load_pytex(path):
+        txt = open(path).read()
+        txt = txt.replace('{','{{').replace('}','}}')    
+        txt = txt.replace(r'\', r'\\')
+        txt = txt.replace('&lt;&lt;', '{').replace('&gt;&gt;', '}')
+        return txt  # or subproc.check_output(['pdflatex' ...
+    </pre>
+    <p>
+    But wait... certainly we can do better? Indeed we can! Just adding two
+    fake macros in latex will make this all look way more TeX-savvy. Let's
+    add a <pre>\pyeval</pre> fake macro, and a <pre>pyexec</pre> environment
+    so that we can get something like so:
+    </p>
+    <pre class="terminal">
+    \begin{pyexec}
+        
+    \end{pyexec}
+    </pre>
+    <p>
+    Since the patterns are not recursive in latex, (since the content of the 
+    environment is not latex, there cannot be another nested environment),
+    We can use incredibly naive means to brutally accomplish this immediately.
+    </p>
+    <pre class="terminal">
+    import re
+    from textwrap import dedent
+    def render_pytex(path):
+        src = open(path).read()
+        src = re.sub(r'\\begin\{pyexec\}\n(.*?)\n\\end\{pyexec\}',
+                      lambda t: exec(dedent(t[1]), globals()),
+                      src, flags=re.MULTILINE)
+        src = re.sub(r'\\pyeval\{(.*?)\}',
+                    lambda t: eval(t[1]),
+                    src, flags=re.MULTILINE)
+    </pre>
+    <p>
+    </p>
+
+    <h5>Ingredient 2: Markdown</h5>
+    <p>
+    An alternative that I use for notes instead of reports is just markdown, which renders to html and through other tools like pandoc can be used for
+    a <i>lot</i> more.
+    Plus you can use CSS style sheets to change stuff up.
+
+    </p>
+
+    <h5>Ingredient 3: Google Drawings?</h5>
+
+
+    <p>
+    Appendix?:
+        <ol>
+            <li>
+                <b>DSL</b>: domain specific language. 
+                Wouldn't it be funny to have a dystopian future 
+                where people can only communicate via powerpoints?
+            </li>
+            <li>
+                <b>.docx</b>: The Microsoft Word file format. 
+                Some compressed XML if I recall correctly and there used 
+                to be a .doc format too. 
+                But seriously, How do you not know this? 
+                Even I know this and I practically live under several rocks.
+            </li>
+            <li>
+                <b>Markdown</b>: Proof that no one who writes blogposts should be using HTML like I am currently.
+            </li>
+        </ol>
+    </p>
+
+
+</div>
+<style>
+.blog {
+    text-align: left;
+}
+</style>
