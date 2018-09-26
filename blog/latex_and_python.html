@@ -19,7 +19,7 @@
     I have a professor. An alright guy; yet it's become blatantly
     obvious that he's a sycophant of the devil. He requires our group
     submit all texts in <i>.docx</i><sup>2</sup> format. That is probably 
-    the most oppressive limitation I've ever received in my academic career. 
+    the most oppressive constraint I've ever received in my academic career. 
     I have always had the sweet, sweet, sanctity of the PDF to depend on.
     Well anyway, it prompted me to think over my toolset and how I've 
     been writing essays, reports, diagrams, tables, and graphs for 
@@ -27,21 +27,24 @@
     </p>
 
     <p>
-    If you like rejecting Facebook, Google, or you know, anything that is
-    convenient like myself, then here's my recipe to avoiding Microsoft 
+    If you, like myself, enjoy rejecting Facebook, Google, or you know, anything that is
+    convenient, then here's my recipe to avoiding Microsoft 
     Office 365 days of the year (not accounting for leap years)<sup>3</sup>.
     </p>
 
-    <h5>Ingredient 1: Latex(?)</h5>
+    <h5>Ingredient 1: LaTeX(?)</h5>
     <p>
-    OK, so you can't really get away with not having something to typeset
-    for you. That's where good old steep-learning-curve latex comes in. I
-    pronounce it as "laaaaaaaa-(sing it)-tech", not like that rubber that
+    OK, so you can't really get away with not having typesetting.
+    That's where good old steep-learning-curve LaTeX comes in.  
+    I'll offer an easier (though perhaps less complete) substitution later.
+    I pronounce it as "laaaaaaaa-(sing it)-tech", not like that rubber that
     I am allergic to.
-    Latex is hard to learn but if you want a stubborn, beautiful
-    report tool which uses plaintext for input, then latex will do quite
-    well. Then you can use your favorite text 
-    ed<span style="font-size:3">v</span>i<span style="font-size:3">m</span>tor. The problem with latex, is it lacks a certain element of programmability
+    LaTeX is considered difficult to learn but if you want a beautiful
+    report tool which uses plaintext for input, then LaTeX will do more 
+    than quite well. Then you can use your favorite text 
+    ed<span style="font-size:3">v</span>i<span style="font-size:3">m</span>tor.
+    The remaining problem with LaTeX, is it lacks a certain element of 
+    programmability
     that, for example, excel is alleged to have. You "can't" modify your data
     and then automatically recompute your average or any other function of
     such data. Or can you?
@@ -51,28 +54,27 @@
     <p>
     I use Python as my example, since that's what I use, but you can use PHP
     for all I care. The idea is simple. Unlike your Office document which will
-    likely require some fancy APIs or at least XML parsing to edit, latex
+    likely require some fancy APIs or at least XML parsing to edit, LaTeX
     source files are just, you know, plaintext. So you can edit them anyhow
-    you like. My approach is a simple mapping from latex source to Python
-    formatting. If I were to just write Python formatting syntax for all
-    my latex, I would probably spontaneously combust. Take a look:
+    you like. The first time I ever did this, my approach was a simple 
+    mapping from LaTeX source to Python formatting strings.
+    If I were to just write Python formatting syntax for all
+    my LaTeX, I would probably spontaneously combust. Take a look:
     </p>
     <p class="terminal">
     \\begin{{document}}
         \\frac{{kill}}{{me}}
-    \\end{{document}}
-    </p>
+    \\end{{document}}</p>
     <p>
     That's almost as bad as chained ternary expressions with JSX.
     So I hide that behind a script, and instead created a simple syntax for 
-    keyed formatting. My latex superset takes about 4 lines of python code,
+    keyed formatting. My LaTeX superset takes about 5 lines of python code,
     and looks like so:
     </p>
-    <pre class="terminal">
-    \begin{document}
-        \frac{&lt;&lt;numerator&gt;&gt;}{&lt;&lt;denominator&gt;&gt;}
-    \end{document}
-    </pre>
+    <pre class="terminal">\begin{document}
+    \frac{&lt;&lt;numerator&gt;&gt;}{&lt;&lt;denominator&gt;&gt;}
+\end{document}
+</pre>
 
     <p>
     Quite literally, all my code has to do is replace all braces with 
@@ -82,61 +84,187 @@
     Yes, you need a <i>couple</i> other things to do tables, but that's also
     some 5 lines of code that is mostly just string joining. And I'll include
     it if you're concerned. It really doesn't take much work if you know
-    latex and python to accomplish this. Here's my loading function:
+    LaTeX and python to accomplish this. Here's my loading function:
     </p>
-    <pre class="terminal">
-    def load_pytex(path):
-        txt = open(path).read()
-        txt = txt.replace('{','{{').replace('}','}}')    
-        txt = txt.replace(r'\', r'\\')
-        txt = txt.replace('&lt;&lt;', '{').replace('&gt;&gt;', '}')
-        return txt  # or subproc.check_output(['pdflatex' ...
-    </pre>
+    <pre class="terminal">def load_pytex(path):
+    txt = open(path).read()
+    txt = txt.replace('{','{{').replace('}','}}')    
+    txt = txt.replace(r'\', r'\\')
+    txt = txt.replace('&lt;&lt;', '{').replace('&gt;&gt;', '}')
+    txt.format(**vars)
+    return txt  # or subproc.check_output(['pdfLaTeX' ...
+</pre>
     <p>
-    But wait... certainly we can do better? Indeed we can! Just adding two
-    fake macros in latex will make this all look way more TeX-savvy. Let's
-    add a <pre>\pyeval</pre> fake macro, and a <pre>pyexec</pre> environment
-    so that we can get something like so:
+    But wait... certainly we can do better? Let's do something even more
+    sinful. Fake macros in LaTeX will make this all look way more TeX-savvy. 
+    Let's add a </p><pre>\pyeval</pre> pseudo-command, and a <pre>pyexec</pre> 
+    pseudo-environment so that we can get something like so:
+    <p></p>
+    <pre class="terminal">\begin{pyexec}
+    name = 'John Smith'
+\end{pyexec}
+
+Hello I am \pyeval{name}
+</pre>
+    <p>
+    Our environment can't be nested (the content is Python, not LaTeX...),
+    so we will use regular expressions to do this very quickly.
+    The real caveats that exist are an evaluation of a dictionary literal
+    (or any braces-containing construct), or valid Python code containing
+    the environent end marker, e.g.:
     </p>
-    <pre class="terminal">
-    \begin{pyexec}
-        
-    \end{pyexec}
-    </pre>
+    <pre class="terminal">\begin{pyexec}
+    hate_you = r'\end{pyexec}'
+\end{pyexec}
+
+\pyeval{ h = {'hello': 'world'} } # which brace do we end on?
+</pre>
     <p>
-    Since the patterns are not recursive in latex, (since the content of the 
-    environment is not latex, there cannot be another nested environment),
-    We can use incredibly naive means to brutally accomplish this immediately.
+    For simplicity, and since this is our own hack and not a production
+    solution which would involve perhaps TeX compiler plugin, (maybe LuaTeX
+    can do that?), we'll assume no one has used the end marker, and we'll
+    require escaping of right braces in the \pyeval command. Take a moment
+    to digest that regular expression. I think it's easier to come up
+    with on your own. And if yours is better, which is likely, please
+    show me.
     </p>
-    <pre class="terminal">
-    import re
-    from textwrap import dedent
-    def render_pytex(path):
-        src = open(path).read()
-        src = re.sub(r'\\begin\{pyexec\}\n(.*?)\n\\end\{pyexec\}',
-                      lambda t: exec(dedent(t[1]), globals()),
-                      src, flags=re.MULTILINE)
-        src = re.sub(r'\\pyeval\{(.*?)\}',
-                    lambda t: eval(t[1]),
-                    src, flags=re.MULTILINE)
-    </pre>
+    <pre class="terminal">import re
+from textwrap import dedent
+def render_pytex(path):
+    src = open(path).read()
+    src = re.sub(r'\\begin\{pyexec\}\n(.*?)\n\\end\{pyexec\}',
+                  lambda t: exec(dedent(t[1]), globals()),
+                  src, flags=re.MULTILINE)
+    src = re.sub(r'\\pyeval\{((((?&lt;=\\)[\}])|.)*)\}',
+                 lambda t: eval(t[1].replace(r'\}','}'),
+                src, flags=re.MULTILINE)
+</pre>
     <p>
+    Now, the last thing to do is to use data files for your tables and
+    your graphs and you've got a fully programmable document typesetting
+    environment. In fact, it's way better than excel (imho) and far more
+    extensible. Try:
+    </p>
+    <pre class="terminal">\begin{pyexec}
+    from scipy.optimize import curve_fit
+    from random import random as rand
+    from itertools import count, product as crossproduct
+    bin = crossproduct((0,1),repeat=5)
+    data = list(zip(count(), bin))
+    # add a count of set bits as a column
+    for row in data:
+        d, b = row
+        row.append(b.count(1))
+    randpts = [[rand(),rand()] for _ in range(100)]
+\end{pyexec}
+
+\section*{Data Stuff}
+
+\begin{tabular}{|c|c|}
+    \hline
+    Decimal &amp; Binary &amp; 1-Bits \\
+    \hline
+    \pyeval{'\n'.join(('&amp;'.join(map(str,d)) for d in data))}
+    \hline
+\end{tabular}
+
+# use unpack+zip hack to get list of x and y coords
+Best Fit: \pyeval{curve_fit(lambda x,m,b: m*x+b, zip(*randpts))} 
+</pre>
+    <p>
+    Now you've got the power of Python, and all of it's wonderful packages,
+    embedded in your document. The last issue is diagramming.
     </p>
 
-    <h5>Ingredient 2: Markdown</h5>
+    <h5>Ingredient 3: Whatever</h5>
     <p>
-    An alternative that I use for notes instead of reports is just markdown, which renders to html and through other tools like pandoc can be used for
-    a <i>lot</i> more.
-    Plus you can use CSS style sheets to change stuff up.
-
+    There are many Diagramming applications that you can use. 
+    I've used primarily Blender
+    and Google Drawings, the latter for easy diagramming and the former for
+    more intense graphics. If Blender is too hard (it's not worth learning
+    to write papers), and Google Drawings not independent enough, then
+    learn Inkscape or Tikz, etc. *.svg is a good format for vector images
+    and preserving resolution, and you can use the <a><i>svg</i></a> package
+    to include them trivially.
     </p>
 
-    <h5>Ingredient 3: Google Drawings?</h5>
+    <p>
+    Now that we have our recipe, it's time for some suitable substitutions
+    </p>
+
+    <h5>Substitute for 1: Markdown</h5>
+    <p>
+    An alternative to LaTeX, that I use for taking notes in class,
+    is just Markdown, which renders to html and other formats through
+    tools like pandoc. You could also use ReStructured Text or some 
+    other markup language, so long as there exists some document rendering
+    tool for it. 
+    </p>
+    <p>
+    The  most useful things about using Markdown, are the effortless
+    simplicity of the language (and learning it!) and the decoupling 
+    of styling from content with CSS. This is likely to be the easier
+    to use alternative, and you can still be inspired by our embedding
+    of Python in LaTeX and use a custom html tag for python embedding.
+    It might look like:
+    </p>
+    <pre class="terminal">My Document
+===========
+
+&lt;pyexec&gt;
+from operator import mul
+&lt;/pyexec&gt;
+
+_this is my document_, 
+and I **like** the number &lt;pyeval&gt;mul(5,3)&lt;/pyeval&gt;
+</pre>
+    <p>
+    Even more interesting, would be to integrate some LaTeX compilation,
+    from packages like <a><i>katex</i></a> to embed LaTeX in your markdown
+    where you're already embedding Python. 
+    At that point I hope you can somehow embed Python in the LaTeX embedded
+    in your Markdown without getting hurt.
+    </p>
+
+    <h5>Substitution for 2: Other Scripting Language</h5>
+    <p>
+    Are you the last person on earth, besides myself, who might like Perl?
+    Are you twistedly enamored by the parasite that is PHP<sup>4</sup>? 
+    Do you still like JavaScript?
+    I bet you want R in your document source.
+    Or perhaps you somehow want to use C++ for high performance documents? I would
+    still write a Python wrapper for any high performance functions, it will
+    make your reports more readable and less C++<sup>5</sup>.
+    Even if you are actually excited by the idea of embedding C++ in latex,
+    which admittedly even I am as a fan of C++, the syntax will clash too
+    much.
+    And finally, here's a demonstration of what using an entirely different 
+    language will look like, not that it's very differnt. 
+    You can implement the actual templating yourself.
+    </p>
+    <pre class="terminal">\begin{jsexec}
+    const blah = require('')
+\end{pyexec}
+
+\section*{Data Stuff}
+
+\begin{tabular}{|c|c|}
+    \hline
+    Decimal &amp; Binary &amp; 1-Bits \\
+    \hline
+    \pyeval{'\n'.join(('&amp;'.join(map(str,d)) for d in data))}
+    \hline
+\end{tabular}
+
+# use unpack+zip hack to get list of x and y coords
+Best Fit: \pyeval{curve_fit(lambda x,m,b: m*x+b, zip(*randpts))} 
+</pre>
+
 
 
     <p>
     Appendix?:
-        <ol>
+        </p><ol>
             <li>
                 <b>DSL</b>: domain specific language. 
                 Wouldn't it be funny to have a dystopian future 
@@ -153,7 +281,7 @@
                 <b>Markdown</b>: Proof that no one who writes blogposts should be using HTML like I am currently.
             </li>
         </ol>
-    </p>
+    <p></p>
 
 
 </div>
