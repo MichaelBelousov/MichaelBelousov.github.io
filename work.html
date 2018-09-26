@@ -4,23 +4,37 @@
         <center>
             <h3>Michael Belousov's Resume:</h3>
             <iframe id="resumepdf" 
-                width="100%"
-                height="500px"
                 src="https://docs.google.com/gview?url=http://github.com/MichaelBelousov/resume/raw/master/resume.pdf&embedded=true"
                 frameborder="0"> 
-                <p> You can't see it apparently. My resume as a PDF should be 
-                <a href="resources/resume/resume.pdf">here</a>.</p>
-            </object >
+                <p> You can't see it apparently. My resume as a PDF should 
+                    be at my github page,  
+                <a href="http://github.com/MichaelBelousov/resume">here</a>.</p>
+            </iframe>
         </center>
     </div>
+    <style>
+    /* TODO:
+       - better dynamic sizing of the iframe...
+       - replace these IDs with classes
+    */
+    #resumepdf {
+        width: 100%;
+        height: 500px;
+    }
+    #pdfcontainer {
+        overflow: hidden;
+    }
+    </style>
+    <script>
+    function resizePDFViewer() {
+        $('#resumepdf').height(
+            $(window).height()
+            - $('#header-div').height()
+            - $('#footer-div').height()
+        );
+    }
+    $(document).ready(resizePDFViewer);
+    $(window).resize(resizePDFViewer);
+    </script>
 </div>
 
-<style>
-/* TODO:
-   dynamic (or adaptive) sizing of this element
-*/
-#resumepdf {
-    width: 1000px;;
-    height: 1000px;
-}
-</style>
