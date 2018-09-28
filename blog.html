@@ -17,8 +17,16 @@ $.ajax('/blog/record.txt', {
         var table = new blogtable(data);
         var articles = table.records;
         for (var i = 0; i < articles.length; i++)
-            open_tab('/blog/'+articles[i], false);
+            open_tab('/blog/'+articles[i], i, false);
     }
 });
 
 </script>
+<style>
+.blog {
+    text-align: left;
+}
+p code {
+    margin: 5pt;
+}
+</style>

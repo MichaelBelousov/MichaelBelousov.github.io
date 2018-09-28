@@ -181,7 +181,7 @@ but I don't mind this stuff too
             opentab = localStorage.getItem('opentab');
 
         //open a tab from a link, following the naming convention
-        function open_tab(tablink, empty=true) {
+        function open_tab(tablink, loc=0, empty=true) {
             var source = tablink;
             if (typeof(tablink) !== "string")
             {
@@ -194,12 +194,16 @@ but I don't mind this stuff too
                 localStorage.setItem('opentab', opentab);
             }
             $.ajax(source, {
-                success : function (data) {
-                    var content = $('#content');
-                    if (empty)
-                        content.empty();
+                success: function (data) {
                     data = format(data);
-                    content.append(data);
+                    var content = $('#content');
+                    if (empty) content.empty();
+                    var contents = $('#content .blog');
+                    var target = contents[loc];
+                    if (target)
+                        $(data).insertBefore(target);
+                    else
+                        content.append(data);
                 }
             });
         }
