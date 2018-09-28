@@ -3,17 +3,18 @@
     <h5 style="margin:1pt;">September 25, 2018</h5>
 
     <p>
-    TypeScript is probably my favorite Microsoft technology in recent
-    memory. Coming from C++, static constraints and constructs were
-    a relieving addition to JavaScript.
-    C# has some excellent design choices as a language, even if I don't
-    really use it much. Its struct vs. class semantics, are an amazing
+    TypeScript is probably my favorite Microsoft technology. 
+    Static constraints and language constructs in the style of C++
+    were a relieving addition to JavaScript.
+    C# is also quite good, it has some excellent design choices as a language, 
+    even if I don't really use it much. For instance, its struct vs. class semantics, 
+    are an amazing
     answer to the issues of C++'s explicit referencing for dynamic types. 
-    I may not be a fan of most of the Visual Studio development environment, 
-    either; it tries to be too magical for me, and I prefer to understand
-    my tools.
-    But this isn't about Microsoft technologies, this is about
-    the pervasive corporate DSL<sup>1</sup>, Microsoft Office.
+    As for IDEs<sup>0</sup>, I'm not a fan of the Visual Studio environment;
+    it tries to be too magical for me, and I prefer to work <i>with</i> my tools.
+    The point is, I need a disclaimer. Microsoft does good things. 
+    But this isn't about Microsoft. This is about that most
+    pervasive corporate DSL<sup>1</sup>, Microsoft Office.
     </p>
 
     <p>
@@ -23,11 +24,12 @@
     But I haven't used either in a couple of years.
     Presently, in my undergraduate senior year, 
     my "Senior Design" team has a faculty coordinator.
-    He's an alright guy; yet it's become blatantly
-    obvious that he's made a deal with the devil. He requires our group
+    He's an alright guy. He's your mediocre academic Computer Science faculty. 
+    Yet it's become blatantly
+    obvious that he's but a pawn of the devil. He requires our group
     submit all assignments in <i>.docx</i><sup>2</sup> format. That is 
-    probably the most sadistically oppressive limitation 
-    I've ever received in my academic career. 
+    probably the most oppressive limitation 
+    I've ever been dealth in my academic career. 
     I have never been denied the sweet sanctity of a PDF option.
     </p>
     <p>
@@ -85,13 +87,11 @@
     If I were to just write it directly in Python source,
     I would probably spontaneously combust. Take a look:
     </p>
-    <p class="terminal">
-    r"""
-    \begin{{document}}
-    \frac{{ {kill} }}{{ {me} }}
-    \end{{document}}
-    """.format(kill=5, me=10)
-    </p>
+    <p class=terminal>r"""
+\begin{{document}}
+\frac{{ {kill} }}{{ {me} }}
+\end{{document}}
+""".format(kill=5, me=10)</p>
     <p>
     That's almost as bad as chained ternary expressions with JSX.
     But the idea is that python named formatting keys are denoted by a
@@ -284,16 +284,30 @@
     <!-- TODO: write a short compiler wrapper -->
 
     <p>
-    Now just alias your tex compiler with the python preprocessing:
+    Let's use an alias for a quick and dirty command wrapper.
+    A better alternative would be an intelligent cli wrapper 
+    that doesn't require you to pipeline your input. While we're being dirty, make
+    sure to use an absolute path and stick this alias in your <code>.bashrc</code>.
     </p>
-    <pre>
-    alias pytex='python'
+
+    <pre class=terminal>
+    alias pytex='python /path/pytex_evalscript.py | pdftex'
+    </pre>
+
+    <p>
+    And now we can do something like the following:
+    </p>
+
+    <pre class=terminal>
+    cat paper.tex | pytex -jobname=paper
     </pre>
 
     <br/>
 
     <p>
-    Now that we have our recipe, it's time for some notable substitutions
+    And done. Now we should have a full, convenient, brittle, homebrewed non-production
+    TeX extension. For our personal use anyway.
+    So now that we have our recipe, it's time for some notable substitutions
     </p>
 
     <h4>Substitute for 1: Markdown</h4>
@@ -383,7 +397,7 @@
 
     <p>
     And there we go. So you can take this stuff here and make a script
-    wrapping around your favorite compiler to evaluate your scripted
+    wrapping around your favorite TeX compiler to evaluate your scripted
     expressions first as part of a compilation pipeline. Or you can see
     If you want to make this a production tool, go prevent
     the string literal end marker issue by ignoring string literals, 
@@ -401,7 +415,11 @@
 
     <p>
     Appendix/Glossary:
-        </p><ol>
+        </p><ol start=0>
+            <li>
+                <b>IDE</b>: An application used to make Computer Science
+                students even dumber than they already are.
+            </li>
             <li>
                 <b>DSL</b>: domain specific language. 
                 Wouldn't it be funny to have a dystopian future 
@@ -432,7 +450,7 @@
             </li>
             <li>
                 <b>PHP</b>: As much as I laugh at PHP, 
-                <a href="">read the rant</a>, it's probably the easiest 
+                <a href="https://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design/">read the rant</a>, it's probably the easiest 
                 to do templating with since that's part
                 of the design of the language. Although have fun using it
                 in LaTeX.
