@@ -3,21 +3,25 @@
     <h5 style="margin:1pt;">September 25, 2018</h5>
 
     <p>
-    Microsoft is fine. They have some good (great) stuff. I love TypeScript,
+    TypeScript, is probably my favorite Microsoft Product.
     C# has some excellent design choices as a language, even if I don't
-    really use it much (e.g. struct vs. class semantics). But this is 
-    about Microsoft Office, tenacious the corporate DSL<sup>1</sup>.
+    really use it much. It's struct vs. class semantics, are a great
+    answer to the issues of C++ explicit referencing for dynamic types. 
+    I'm not a fan of most of the Visual Studio development environment,
+    it's tries to be too magical for me.
+    But I don't want to talk about Microsoft technologies, I want to
+    talk about the corporate DSL<sup>1</sup>, Microsoft Office.
     </p>
 
     <p>
     I used Word as a main word processor for several years, it's a fine, 
     oft well-thought-out suite of tools.
-    I've even used excel, though I'm no spreadsheet savant. But I don't
+    I've even used Excel, though I'm no spreadsheet savant. But I don't
     use either of them anymore, and haven't for a couple of years. 
     In my undergraduate senior year (presently), 
-    I have this professor leading our Senior Design Project. 
+    I have this professor leading our cumulative engineering project.
     He's an alright guy; yet it's become blatantly
-    obvious that he's a sycophant of the devil. He requires our group
+    obvious that he's a pawn of the devil. He requires our group
     submit all texts in <i>.docx</i><sup>2</sup> format. That is probably 
     the most oppressive constraint I've ever received in my academic career. 
     I have always had the sweet, sweet, sanctity of the PDF to depend on.
@@ -31,11 +35,10 @@
     <p>
     If you, like myself, enjoy rejecting Facebook, Google, or you know, 
     anything that is convenient, then here's my recipe to avoiding 
-    Microsoft Office 365 days of the year 
-    (not accounting for leap years)<sup>3</sup>.
+    Microsoft Office 365 days of the year<sup>3</sup>.
     </p>
 
-    <h5>Ingredient 1: LaTeX</h5>
+    <h4>Ingredient 1: LaTeX</h4>
     <p>
     OK, so you can't really get away with not having typesetting.
     The best and boldest choice is the engineer's typesetter. 
@@ -47,19 +50,22 @@
     report tool which uses plaintext for input, then LaTeX will do more 
     than quite well.  With plaintext, the chief advantage is that you 
     can use your favorite text 
-    ed<span style="font-size:3">v</span>i<span style="font-size:3">m</span>tor.
-    All that's really left once having LaTeX is an itch for programmability.
-    That trait which, for example, Microsoft Excel is alleged to have. 
-    LaTeX does initially to embed logic, which you may want for
+    ed<span class=vim >v</span>i<span class=vim>m</span>tor.
+    With LaTeX, all that's really left is an itch for programmability,
+    the trait which, Microsoft Excel is alleged to have. 
+    LaTeX does not initially allow you to embed logic, it understands its'
+    place as a markup language. But you may want contextually appropriate
+    logic for
     calculating statistical metrics, curve fittings, etc. You can do it
-    separately, but if your data changes, you need to reintroduce said
-    changes.
+    separately and even through some packages that I should probably 
+    research, but if your data changes, you need to reintroduce said
+    changes and glue them back into your document.
     </p>
 
-    <h5>Ingredient 2: Scripting Language</h5>
+    <h4>Ingredient 2: Scripting Language</h4>
     <p>
     I use Python as my example, since that's what I use, but you can 
-    use PHP for all I care. The idea is simple. Unlike your Office 
+    use PHP<sup>4</sup> for all I care. The idea is simple. Unlike your Office 
     document which will likely require some fancy APIs (Office 365) 
     or at least XML parsing to edit, LaTeX source files are just, 
     you know, plaintext. So you can edit them anyhow
@@ -69,9 +75,11 @@
     I would probably spontaneously combust. Take a look:
     </p>
     <p class="terminal">
-    \\begin{{document}}
-        \\frac{{kill}}{{me}}
-    \\end{{document}}
+    r"""
+    \begin{{document}}
+    \frac{{ {kill} }}{{ {me} }}
+    \end{{document}}
+    """.format(kill=5, me=10)
     </p>
     <p>
     That's almost as bad as chained ternary expressions with JSX.
@@ -79,15 +87,15 @@
     keyed formatting. My LaTeX superset takes about 5 lines of python code,
     and looks like so:
     </p>
-    <pre class="terminal">
+    <pre class=terminal>
     \begin{document}
         \frac{&lt;&lt;numerator&gt;&gt;}{&lt;&lt;denominator&gt;&gt;}
     \end{document}
-</pre>
+    </pre>
 
     <p>
     Quite literally, all my code has to do is replace all braces with 
-    escaped double braces, ditto for backslashes, and then replace all 
+    escaped double braces, and then replace all 
     double angle brackets with a single formatting brace. 
     Then you just have your values and or data in python, read the file
     and submit it to the Python formatter with the expected keyword
@@ -98,11 +106,10 @@
     So anyway, here's an example formatting/loading function on the
     previous installment of Python embedding in LaTeX:
     </p>
-    <pre class="terminal">
+    <pre class=terminal>
     def load_pytex(path):
         txt = open(path).read()
         txt = txt.replace('{','{{').replace('}','}}')    
-        txt = txt.replace(r'\', r'\\')
         txt = txt.replace('&lt;&lt;', '{').replace('&gt;&gt;', '}')
         txt.format(**vars)
         return txt  # or subproc.check_output(['pdfLaTeX' ...
@@ -122,7 +129,7 @@
     <code>\pyexec</code> pseudo-environment so that we can get something 
     like so:
     </p>
-    <pre class="terminal">
+    <pre class=terminal>
     \begin{pyexec}
         name = 'John'
     \end{pyexec}
@@ -136,7 +143,7 @@
     (or any braces-containing construct), or valid Python code containing
     the environent end marker, e.g.:
     </p>
-    <pre class="terminal">
+    <pre class=terminal>
     \begin{pyexec}
         hate_you = r'\end{pyexec}'
     \end{pyexec}
@@ -150,15 +157,15 @@
     and think of the regular expression for capturing all text
     between the pyexec environment opening and ending marker. Then think
     of the regular expression for the <code>\pyeval</code> argument,
-    recalling that it it cannot end on an backslash-escaped right brace.
+    recalling that it cannot end on an backslash-escaped right brace.
     If you come up with better regular expressions, let me know.
     As a sidenote, to achieve a production solution would involve 
-    perhaps some [Lua]<sup>4</sup>TeX compiler plugin or something
+    perhaps some [Lua]<sup>5</sup>TeX compiler plugin or something
     fancy. I've never made any LaTeX packages, so I'm not certain to
     what extent I can inject Python into them. But, here's a simple
     implementation or our idea:
     </p>
-    <pre class="terminal">
+    <pre class=terminal>
     import re
     from textwrap import dedent
     def render_pytex(path):
@@ -177,7 +184,7 @@
     So let's see what our LaTeX document source would look like
     while using that.
     </p>
-    <pre class="terminal">
+    <pre class=terminal>
     \begin{pyexec}
         from scipy.optimize import curve_fit
         from random import random as rand
@@ -219,7 +226,7 @@
     so that we can fill our documents with informative diagrams.
     </p>
 
-    <h5>Ingredient 3: Whatever</h5>
+    <h4>Ingredient 3: Whatever</h4>
     <p>
     There are a lot of diagramming tools out there.
     I've used primarily Blender and Google Drawings,
@@ -239,7 +246,7 @@
     Now that we have our recipe, it's time for some notable substitutions
     </p>
 
-    <h5>Substitute for 1: Markdown<sup>5</sup></h5>
+    <h4>Substitute for 1: Markdown<sup>6</sup></h4>
     <p>
     An alternative to LaTeX, that I use for taking notes in classes,
     is just Markdown, which renders to html and other formats through
@@ -258,7 +265,7 @@
     of Python in LaTeX and use a custom html tag for python embedding.
     It might look like:
     </p>
-    <pre class="terminal">
+    <pre class=terminal>
     My Document
     ===========
 
@@ -279,17 +286,17 @@
     simplicity (Markdown), and complexity only when you need it (LaTeX).
     </p>
 
-    <h5>Substitution for 2: Other Scripting Language</h5>
+    <h4>Substitution for 2: Other Scripting Language</h4>
     <p>
     Are you the last person on earth, besides myself, who might like Perl?
-    Are you twistedly enamored by the parasite that is PHP<sup>6</sup>? 
+    Are you twistedly enamored by the parasite that is PHP.
     Perhaps you're an ES7 &gt; Python person, or maybe you want to add
     the ability to put R's graphs in your document source.
     If you think about it, the same principles of what we're doing 
     currently apply, just hope that templating with your language is 
     as easy to implement as it was for Python.
     </p>
-    <pre class="terminal">
+    <pre class=terminal>
     \begin{CppExec}
         //someone (me) should totally do this with Cling
         #include &lt;vector&gt;
@@ -330,34 +337,36 @@
     Appendix?:
         </p><ol>
             <li>
-                <b>1. DSL</b>: domain specific language. 
+                <b>DSL</b>: domain specific language. 
                 Wouldn't it be funny to have a dystopian future 
                 where people can only communicate via powerpoints?
             </li>
             <li>
-                <b>2. *.docx</b>: The Microsoft Word file format. 
+                <b>*.docx</b>: The Microsoft Word file format. 
                 Some compressed XML if I recall correctly and there used 
                 to be a .doc format too. 
             </li>
             <li>
-                <b>3. You will end up using MS Office</b>: Growing up is learning
-                that you will have to give up and use MS Office.
+                <b>This does not account for leap years</b>: 
+                Growing up is learning that you will have to give up 
+                and use MS Office. I suppose then I have grown up because
+                I do use MS Office when it's necessary.
             </li>
             <li>
-                <b>4. LuaTeX</b>: An extensible TeX compiler. I haven't
+                <b>PHP</b>: As much as I laugh at PHP, 
+                <a href="">read the rant</a>, it's probably the easiest 
+                to do templating with since that's part
+                of the design of the language. Although have fun using it
+                in LaTeX.
+            </li>
+            <li>
+                <b>LuaTeX</b>: An extensible TeX compiler. I haven't
                 looked into it much but it is likely the best candidate for
                 embedding Python in the TeX compilation process. Though it's
                 likely easier to embed Lua, one might think. 
             </li>
             <li>
-                <b>5. Markdown</b>: Proof that no one who writes blogposts should be writing pure HTML like I am currently. How can I even tolerate writing out ampersand literals...
-            </li>
-            <li>
-                <b>6. PHP</b>: As much as I laugh at PHP, 
-                <a href="">read the rant</a>, it's probably the easiest 
-                to do templating with since that's part
-                of the design of the language. Although have fun using it
-                in LaTeX.
+                <b>Markdown</b>: Proof that no one who writes blogposts should be writing pure HTML like I am currently. How can I even tolerate writing out ampersand literals...
             </li>
         </ol>
     <p></p>
@@ -367,5 +376,8 @@
 <style>
 .blog {
     text-align: left;
+}
+span.vim {
+    font-size: 3pt;
 }
 </style>
