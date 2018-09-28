@@ -46,7 +46,7 @@ body {
     border-radius: 2pt;
     width: auto;
     position: relative;
-    left: -2px;
+    left: -1px;
 }
 .mikpanel:hover {
     box-shadow: -4pt 4pt #bbbbbb;
