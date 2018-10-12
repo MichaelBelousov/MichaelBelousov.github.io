@@ -10,13 +10,21 @@ function blogtable (data) {
     this.records = data.split('\n');
 }
 
-$.ajax('/blog/record.txt?'+Math.random(), { //parameter is a silly no-caching hack
+//parameter is a silly no-caching hack
+$.ajax('/blog/record.txt?'+Math.random(), { 
     success : function (data) {
         data = data.trimEnd();
         var table = new blogtable(data);
         var articles = table.records;
         for (var i = 0; i < articles.length; i++)
             open_tab('/blog/'+articles[i], i, false);
+        /*
+        var posts = $('h1');
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i];
+            post.wrap('<a name="'+urlencode(articles[i])+'/>);
+        }
+        */
     }
 });
 
