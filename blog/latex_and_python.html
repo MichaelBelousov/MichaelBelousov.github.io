@@ -7,7 +7,7 @@
     Static constraints and language constructs in the style of C++
     were a relieving addition to JavaScript.
     C# is also quite good, it has some excellent design choices as a language, 
-    even if I don't really use it much. For instance, its struct vs. class semantics, 
+    even if I don't really use it much. Its struct vs. class semantics, 
     are an amazing
     answer to the issues of C++'s explicit referencing for dynamic types. 
     As for IDEs<sup>0</sup>, I'm not a fan of the Visual Studio environment;
@@ -19,28 +19,26 @@
 
     <p>
     I used Word as a main word processor for several years, it's a fine, 
-    oft well-thought-out suite of tools.
+    oft well thought-out suite of tools.
     I've even used Excel, though I'm no spreadsheet savant. 
     But I haven't used either in a couple of years.
     Presently, in my undergraduate senior year, 
     my "Senior Design" team has a faculty coordinator.
-    He's an alright guy. He's your mediocre academic Computer Science faculty. 
+    He's an alright guy, your median academic Computer Science faculty. 
     Yet it's become blatantly
-    obvious that he's but a pawn of the devil. He requires our group
-    submit all assignments in <i>.docx</i><sup>2</sup> format. That is 
+    obvious that he's a pawn of the devil. He requires our group
+    submit all assignments in <i>.docx</i><sup>2</sup> format, which is 
     probably the most oppressive limitation 
-    I've ever been dealth in my academic career. 
-    I have never been denied the sweet sanctity of a PDF option.
+    I've ever been dealt in my academic career. 
+    I have never been denied the sweet sanctity of a PDF option before.
     </p>
+
     <p>
     That constraint prompted me to think over my 
     reporting toolset and how I've 
     been writing, diagramming, proving, compiling, and visualizing data for
     the last two academic seasons. And I wanted to share my somewhat
-    unique approach, one that I find rather intuitive and satisfying.
-    </p>
-
-    <p>
+    unique approach, one that I find rather satisfying.
     Without further ado; 
     if you, like myself, occasionally enjoy rejecting Facebook, Google, 
     or you know, anything that is convenient<sup>3</sup>, 
@@ -58,7 +56,7 @@
     rubber that I am allergic to.
     LaTeX is considered difficult to learn but if you come from a 
     programming audience then hopefully you've discovered the power of
-    plain text. By allowing simple non-WYSIWYG<sup>5</sup> editing,
+    plaintext. By allowing simple non-WYSIWYG<sup>5</sup> editing,
     the expressiveness of your other toolsets are empowered. 
     With plaintext document source, you can use your favorite text 
     ed<span class=vim >v</span>i<span class=vim>m</span>tor, and your
@@ -77,14 +75,31 @@
 
     <h4>Ingredient 2: Scripting - Python</h4>
     <p>
-    I use Python as my example, since that's what I use, but you can 
-    use PHP<sup>7</sup> for all I care. The idea is simple. Unlike your Office 
-    document which will likely require some fancy APIs (Office 365) 
-    or at least XML parsing to edit, LaTeX source files are just, 
+    So we've chosen a markup language, and, ideally, from it we've also
+    found a typesetter or otherwise renderer for producing fancy documents
+    from it. But now we need to integrate higher level logic and programmability
+    to our markup. For this, I use Python as my example, because that's my personal
+    choice. You on the other hand can 
+    use PHP<sup>7</sup> for all I care. 
+    </p>
+    <p>
+    What we hope to get from combining these, is a fierce competitor to the office
+    environment. Where Excel is the logical component which is embedded in Word.
+    One thing that combination does not do, is allowing you to add logic to the 
+    textual content of your document. Hopefully, if we even need it, our solution 
+    will be comprehensive enough to make even that simple and elegant.
+    To do something similar in the Office suite would likely require some fancy 
+    APIs (Office 365 maybe?) 
+    or at least nontrivial (XML) parsing to edit. <br/>
+    LaTeX source files are just, 
     you know, plaintext. So you can edit them anyhow
-    you like. The first time I ever did this, my approach was a tiny
+    you like. 
+    </p>
+    <p>
+    The first time I ever decided I wanted to embed my python interactive session
+    or otherwise document-oriented logic in the document itself, my approach was a tiny
     mapping from LaTeX source to Python formatting key syntax.
-    If I were to just write it directly in Python source,
+    If I were to just write that directly in Python source,
     I would probably spontaneously combust. Take a look:
     </p>
     <p class=terminal>r"""
@@ -94,16 +109,21 @@
 """.format(kill=5, me=10)</p>
     <p>
     That's almost as bad as chained ternary expressions with JSX.
-    But the idea is that python named formatting keys are denoted by a
-    braced expression, and real braces are doubled to escape them.
-    Backslash doubling I can avoid by making it a raw string, but that
-    isn't an option in all use cases.
-    Regardless, I hid that behind a script, and instead created a 
+    Python named formatting keys are denoted by a
+    braced expression, and intended braces are escaped by doubling them.
+    Backslash doubling I can avoid by making it a raw string literal, but that
+    can be inconvenient in other cases which means I may need to double those too
+    when applying this method. <br/>
+    What I wanted to have, was a nearly standard LaTeX source file that could be
+    preprocessed by a small python script that generates the values for all the
+    keywords, and inserts them in all the appropriate locations like regular
+    Python formatting<br/>
+    So to hide the horrible double bracing, I instead created a 
     simple alternate syntax for keyed formatting that wouldn't require me
-    to escape common character.. 
-    My dumb and ugly LaTeX superset templater takes about 5 lines of python 
-    code,
-    and looks like so:
+    to escape such common characters.
+    My dumb and ugly LaTeX superset templater took about 5 lines of python 
+    code to template,
+    and I chose for my LaTeX to look like so:
     </p>
     <pre class=terminal>
     \begin{document}
@@ -120,7 +140,7 @@
     read this template from some file,
     and submit it to the Python formatter with the expected keyword
     arguments that you used in the document source 
-    (e.g. &lt;&lt;numberator&gt;&gt;).
+    (e.g. &lt;&lt;numerator&gt;&gt;).
     After we find a better way to do this all, 
     we can even add a function to translate python 2-dimensional
     lists into the tabular cell format of LaTeX, which will make tabling
@@ -222,9 +242,9 @@
 
     \begin{tabular}{|c|c|}
         \hline
-        Decimal &amp; Binary &amp; 1-Bits \\
+        Decimal & Binary & 1-Bits \\
         \hline
-        \pyeval{'\n'.join(('&amp;'.join(map(str,d)) for d in data))}
+        \pyeval{'\n'.join(('&'.join(map(str,d)) for d in data))}
         % we can extract the above one-liner for reuse in tabular 
         % construction and any horizontally partitioned context
         \hline
@@ -384,7 +404,7 @@
         #include &lt;algorithm&gt;
         std::vector&lt;int&gt; ints = {1,7,5,9};
         template&lt;typename T&gt;
-        operator&lt;&lt;(std::ostream& os, const std::vector<T>& vec) {
+        operator&lt;&lt;(std::ostream& os, const std::vector&lt;T&gt;& vec) {
             for (const auto& x : vec) os &lt;&lt; x &lt;&lt; ", ";
         }
         //I'd use R but I've forgotten what little I knew of R
