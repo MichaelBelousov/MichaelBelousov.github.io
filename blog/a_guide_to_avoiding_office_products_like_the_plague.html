@@ -1,53 +1,88 @@
 <div class="mikpanel blog">
-    <h3 style="margin:1pt;">Empowering LaTeX</h3>
+    <h3 style="margin:1pt;">A Guide to Avoiding Office Products like the Plague</h3>
     <h5 style="margin:1pt;">September 25, 2018</h5>
 
-    <!-- 
-    Originally this article was titled 
-    "A Guide to Avoiding Microsoft
-    Office Products like the Plague", but I've since relented, partially
-    out of fear of ostracization by potential employers this early in my
-    career. Is it just me, or does HR just not understand me?
-    woes of me...
-    the article still exists somewhere in the source, go find it
-    -->
-
     <p>
-    I've been using LaTeX primarily for typesetting my homeworks and
-    varying reports and texts in my undergraduate education. It's
-    overkill and my assignments are often undeserving, but the 
-    formula rendering is exquisite. 
+    TypeScript is probably my favorite Microsoft technology. 
+    Static constraints and language constructs in the style of C++
+    were a relieving addition to JavaScript.
+    C# is also quite good, it has some excellent design choices as a language, 
+    even if I don't really use it much. For instance, its struct vs. class semantics, 
+    are an amazing
+    answer to the issues of C++'s explicit referencing for dynamic types. 
+    As for IDEs<sup>0</sup>, I'm not a fan of the Visual Studio environment;
+    it tries to be too magical for me, and I prefer to work <i>with</i> my tools.
+    The point is, I need a disclaimer. Microsoft does good things. 
+    But this isn't about Microsoft. This is about that most
+    pervasive corporate DSL<sup>1</sup>, Microsoft Office.
     </p>
 
     <p>
-    The one nagging gap in my homework stack early on was an itch for 
-    programmability, that trait which Excel is alleged to have. 
-    Personally, I've always kicked up a Python interpretter any
-    time I needed a calculation, and I quickly began depending on
-    Python for more intense derivations and data routines. I scratched
-    up a utility module for producing LaTeX tables and pgfplots graphics
-    from various data formats, and used it frequently with minimal
-    copy and paste glue (thank you Cygwin's 
-    <code>/dev/clipboard</code> when I was using Windows).
+    I used Word as a main word processor for several years, it's a fine, 
+    oft well-thought-out suite of tools.
+    I've even used Excel, though I'm no spreadsheet savant. 
+    But I haven't used either in a couple of years.
+    Presently, in my undergraduate senior year, 
+    my "Senior Design" team has a faculty coordinator.
+    He's an alright guy. He's your mediocre academic Computer Science faculty. 
+    Yet it's become blatantly
+    obvious that he's but a pawn of the devil. He requires our group
+    submit all assignments in <i>.docx</i><sup>2</sup> format. That is 
+    probably the most oppressive limitation 
+    I've ever been dealth in my academic career. 
+    I have never been denied the sweet sanctity of a PDF option.
+    </p>
+    <p>
+    That constraint prompted me to think over my 
+    reporting toolset and how I've 
+    been writing, diagramming, proving, compiling, and visualizing data for
+    the last two academic seasons. And I wanted to share my somewhat
+    unique approach, one that I find rather intuitive and satisfying.
     </p>
 
     <p>
-    But larger projects begged for more complete tools; like that time
-    I was assigned the visualization and statistical metric calculations
-    of 26 different samples from a dataset.
-    A sane person would have used the charting features
-    in the Excel spreadsheet it was provided in, but I am no sane man.
-    I exported to csv immediately and made an incredibly primitive 
-    toolkit for embedding Python logic in LaTeX. Revisiting it a
-    couple of months later improved my approach massively and I 
-    would consider the design bridging on complete, although simple.
-    Maybe I'll make a pip-installable package that provides
-    command line utilities for it at some point in the future.
+    Without further ado; 
+    if you, like myself, occasionally enjoy rejecting Facebook, Google, 
+    or you know, anything that is convenient<sup>3</sup>, 
+    then here's my recipe for avoiding Microsoft Office 
+    365 days of the year<sup>4</sup>.
     </p>
 
+    <h4>Ingredient 1: Typesetting - LaTeX</h4>
     <p>
-    The first time attemped gluing my Pythonisms into LaTeX, 
-    my design was a tiny
+    So you need a typesetter. Something that knows how to converse
+    with your printer, perhaps, but probably not these days.
+    The first and boldest choice is the engineer's typesetter,
+    Steep-learning-curve LaTeX. 
+    Firstly, I pronounce it as "laaaaaaaa-(sing it)-tech", unlike the
+    rubber that I am allergic to.
+    LaTeX is considered difficult to learn but if you come from a 
+    programming audience then hopefully you've discovered the power of
+    plain text. By allowing simple non-WYSIWYG<sup>5</sup> editing,
+    the expressiveness of your other toolsets are empowered. 
+    With plaintext document source, you can use your favorite text 
+    ed<span class=vim >v</span>i<span class=vim>m</span>tor, and your
+    favorite text processing utilities.
+    In fact, with LaTeX, all that's really left is an itch for programmability,
+    the trait which, Microsoft Excel is alleged to have. 
+    TeX<sup>6</sup> does not initially allow you to embed logic, it understands its'
+    place as a markup language. But you may want contextually appropriate
+    logic for
+    calculating statistical metrics, curve fittings, etc. You can do it
+    separately and even through some packages that I should probably 
+    research, but if your data changes, you need to reintroduce said
+    changes and glue them back into your document. So we need a really
+    strong and convenient glue.
+    </p>
+
+    <h4>Ingredient 2: Scripting - Python</h4>
+    <p>
+    I use Python as my example, since that's what I use, but you can 
+    use PHP<sup>7</sup> for all I care. The idea is simple. Unlike your Office 
+    document which will likely require some fancy APIs (Office 365) 
+    or at least XML parsing to edit, LaTeX source files are just, 
+    you know, plaintext. So you can edit them anyhow
+    you like. The first time I ever did this, my approach was a tiny
     mapping from LaTeX source to Python formatting key syntax.
     If I were to just write it directly in Python source,
     I would probably spontaneously combust. Take a look:
@@ -59,15 +94,16 @@
 """.format(kill=5, me=10)</p>
     <p>
     That's almost as bad as chained ternary expressions with JSX.
-    But the idea is that Python named formatting keys are denoted by a
+    But the idea is that python named formatting keys are denoted by a
     braced expression, and real braces are doubled to escape them.
     Backslash doubling I can avoid by making it a raw string, but that
     isn't an option in all use cases.
     Regardless, I hid that behind a script, and instead created a 
     simple alternate syntax for keyed formatting that wouldn't require me
-    to escape common characters.
-    My dumb and ugly LaTeX superset templater took about 5 lines of 
-    Python code to process, and looked like so:
+    to escape common character.. 
+    My dumb and ugly LaTeX superset templater takes about 5 lines of python 
+    code,
+    and looks like so:
     </p>
     <pre class=terminal>
     \begin{document}
@@ -85,7 +121,10 @@
     and submit it to the Python formatter with the expected keyword
     arguments that you used in the document source 
     (e.g. &lt;&lt;numberator&gt;&gt;).
-    Here's the naive templating implementation:
+    After we find a better way to do this all, 
+    we can even add a function to translate python 2-dimensional
+    lists into the tabular cell format of LaTeX, which will make tabling
+    a breeze. Here's my naive templating implementation:
     </p>
     <pre class=terminal>
     def load_pytex(path, **kwargs):
@@ -371,7 +410,7 @@
 
     <p>
     Oh, and if you don't want to use any of this, 
-    go check out Libre/Open Office. 
+    go check out Libre/Open Office.
     </p>
 
     <p>
