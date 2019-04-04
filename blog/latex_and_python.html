@@ -1,28 +1,24 @@
 <div class="mikpanel blog">
-    <h3 style="margin:1pt;">Empowering LaTeX</h3>
-    <h5 style="margin:1pt;">September 25, 2018</h5>
-
-    <!-- 
-    Originally this article was titled 
-    "A Guide to Avoiding Microsoft
-    Office Products like the Plague", but I've since relented, partially
-    out of fear of ostracization by potential employers this early in my
-    career. Is it just me, or does HR just not understand me?
-    woes of me...
-    the article still exists somewhere in the source, go find it
-    -->
+    <h3 style="margin:1pt;">Empowering LaTeX (PyTeXc)</h3>
+    <h5 style="margin:1pt;">April 4, 2019</h5>
 
     <p>
     I've been using LaTeX primarily for typesetting my homeworks and
     varying reports and texts in my undergraduate education. It's
     overkill and my assignments are often undeserving, but the 
-    formula rendering is exquisite. 
+    formula rendering is exquisite. For the classes that truly
+    deserve it, it's worth it all. <!-- maybe move in to the middle
+    of last paragraph? -->
     </p>
 
     <p>
-    The one nagging gap in my homework stack early on was an itch for 
-    programmability, that trait which Excel is alleged to have. 
-    Personally, I've always kicked up a Python interpretter any
+    The one nagging gap in my homework development stack early on
+    was an itch for 
+    programmability, that trait which Excel is alleged to have.
+    But I have a gripe with Excel, which I consider to be a
+    scripting language for the uninitiated, feeble-minded bottom
+    feeders.
+    Personally, I've always kicked up a Python interpreter any
     time I needed a calculation, and I quickly began depending on
     Python for more intense derivations and data routines. I scratched
     up a utility module for producing LaTeX tables and pgfplots graphics
@@ -36,36 +32,34 @@
     I was assigned the visualization and statistical metric calculations
     of 26 different samples from a dataset.
     A sane person would have used the charting features
-    in the Excel spreadsheet it was provided in, but I am no sane man.
+    in the Excel spreadsheet it was provided in, but sanity is not
+    my priority.
     I exported to csv immediately and made an incredibly primitive 
     toolkit for embedding Python logic in LaTeX. Revisiting it a
-    couple of months later improved my approach massively and I 
-    would consider the design bridging on complete, although simple.
-    Maybe I'll make a pip-installable package that provides
-    command line utilities for it at some point in the future.
+    couple of months later, I refined my toolkit massively and I 
+    would consider the design complete, while alternative implementation
+    approaches merit some exploration.
     </p>
 
     <p>
-    The first time attemped gluing my Pythonisms into LaTeX, 
-    my design was a tiny
-    mapping from LaTeX source to Python formatting key syntax.
-    If I were to just write it directly in Python source,
-    I would probably spontaneously combust. Take a look:
+    The first time I attemped gluing my Pythonisms into LaTeX, 
+    my design was a tiny mapping from a LaTeX grammar extension
+    to Python formatting key syntax.
+    If I were to write my LaTeX code directly in a Python string,
+    and attempt to use formatting keys,
+    I would probably spontaneously combust. Here's a demonstration:
     </p>
-    <p class=terminal>r"""
-\begin{{document}}
-\frac{{ {kill} }}{{ {me} }}
-\end{{document}}
-""".format(kill=5, me=10)</p>
+    <p class=terminal>
+    r"""\begin{{document}}
+    \frac{{ {kill} }}{{ {me} }}
+    \end{{document}}""".format(kill=5, me=10)</p>
     <p>
-    That's almost as bad as chained ternary expressions with JSX.
-    But the idea is that Python named formatting keys are denoted by a
-    braced expression, and real braces are doubled to escape them.
+    That's almost as crufty as chained ternary expressions in JSX.
     Backslash doubling I can avoid by making it a raw string, but that
     isn't an option in all use cases.
-    Regardless, I hid that behind a script, and instead created a 
-    simple alternate syntax for keyed formatting that wouldn't require me
-    to escape common characters.
+    Regardless, I hid this formatting ugliness behind a script, using a
+    scripted LaTeX language extension to specify Python formatting keys
+    that wouldn't require me to escape braces every 5 characters.
     My dumb and ugly LaTeX superset templater took about 5 lines of 
     Python code to process, and looked like so:
     </p>
@@ -79,12 +73,13 @@
     Quite literally, all my code has to do is replace all braces with 
     escaped double braces, and then replace all 
     double angle brackets with a single formatting brace, thus yielding
-    the original python source, while allowing raw LaTeX to look familiar.
-    Then you just produce your values and/or data in your python module, 
+    the valid Python formatting keys, while allowing raw LaTeX to look
+    at least familiar.
+    Then you just produce your values and/or data in your Python script, 
     read this template from some file,
     and submit it to the Python formatter with the expected keyword
     arguments that you used in the document source 
-    (e.g. &lt;&lt;numberator&gt;&gt;).
+    (e.g. &lt;&lt;numerator&gt;&gt;).
     Here's the naive templating implementation:
     </p>
     <pre class=terminal>
@@ -93,10 +88,10 @@
         txt = txt.replace('{','{{').replace('}','}}')    
         txt = txt.replace('&lt;&lt;', '{').replace('&gt;&gt;', '}')
         txt.format(**kwargs)
-        return txt  # or subproc.check_output(['pdfLaTeX' ...
+        return txt  # or subproc.check_output(['pdflatex' ...
 </pre>
     <p>
-    So this works, but it would be quite annoying to have a python
+    So this works, but it would be quite annoying to have a Python
     context so decoupled from the usage context. Calculating things
     without regard to the location in the document, and being
     unable to change the logic while editing the document without
@@ -117,49 +112,25 @@
     Hello I am \pyeval{' '.join([name,'Smith'])}
     </pre>
     <p>
-    Our environment can't be nested (the content is Python, not LaTeX...),
-    so we will use regular expressions to do this rapidly.
-    We have two caveats, however. Our <code>\pyeval</code> expression could
-    contain a dictionary or set literal (any braces-containing construct). 
-    Or, our <code>pyexec</code> environment could have
-    valid Python code containing the environment end marker, e.g.:
+
+    Originally I implemented (knowing my transgressions) a naive
+    regular expression based implementation, but this has many problems
+
+    <ul>
+        <li> I want to ignore false ends in quotes and comments
+        <li> I want to allow counting of nested braces in pyeval
+            expressions so that you don't need to escape all right
+            braces. (Regular expressions can't find the valid ending
+            brace of a nested expression)
+    </ul>
+    Checkout the following examples:
     </p>
     <pre class=terminal>
     \begin{pyexec}
         hate_you = r'\end{pyexec}'
     \end{pyexec}
 
-    \pyeval{ h = {'hello': 'world'} } # which brace do we end on?
-</pre>
-    <p>
-    For simplicity, and since this is our own hack and not a production
-    solution, we'll assume no one has used the end marker, and we'll
-    require escaping of right braces in the \pyeval command. I'll leave
-    a proper solution (for the pyexec problem) as an exercise to the 
-    reader, and recommend looking into LuaTeX<sup>8</sup>, an extensible
-    TeX compiler (though I think a compiler adapter would be sturdy and
-    sufficient).
-    On then, Stop and think of the regular expression for capturing all text
-    between the pyexec environment opening and ending marker. Then think
-    of the regular expression for the <code>\pyeval</code> argument,
-    recalling that it cannot end on a backslash-escaped right brace.
-    If you come up with better regular expressions than I did, let me know.
-    Here's a simple implementation of our better embedded templating:
-    </p>
-    <pre class=terminal>
-    import re
-    from textwrap import dedent  # for optional starting indent
-    def render_pytex(path):
-        src = open(path).read()
-        scope = {}
-        def pyexec(match):
-            exec(dedent(match[1]), scope)
-            return ''
-        src = re.sub(r'\\begin\{pyexec\}\n(.*?)\n\\end\{pyexec\}',
-                      pyexec, src, flags=re.MULTILINE)
-        src = re.sub(r'\\pyeval\{(.*?)(?&lt;!\\)\}',
-                     lambda t: eval(t[1].replace(r'\}','}', scope), 
-                     src) 
+    \pyeval{h = {'hello': 'world', 'x': {}}}  # which brace do we end on?
     </pre>
     <p>
     So let's see what our LaTeX document source would look like
@@ -200,7 +171,7 @@
     your graphs and you've got a fully programmable document typesetting
     environment. You can even write a small latextools module like I have,
     for any common utilities like that nested join in the tabular that 
-    produces cells for a 2-dimensional python iterable.
+    produces cells for a 2-dimensional Python iterable.
     At last, I would argue, that we have a tool more extensible than Excel, 
     it's got 
     all of PyPI behind it, with numpy, scipy, and all the packages
@@ -239,37 +210,16 @@
     something I've had to make programmable often enough,
     and there are a plenty of tools for designing your diagrams.
     If you've needed to do it before, chances are you already have
-    one, and you can throw that application's output into LaTeX properly yourself.
+    one, and you can throw that application's output into LaTeX
+    properly yourself.
     </p>
 
     <!-- TODO: write a short compiler wrapper -->
 
     <p>
-    Let's use an alias for a quick and dirty command wrapper.
-    A better alternative would be an intelligent cli wrapper 
-    that doesn't require you to pipeline your input. While we're being dirty, make
-    sure to use an absolute path and stick this alias in your <code>.bashrc</code>.
-    </p>
-
-    <pre class=terminal>
-    alias pytex='python /path/pytex_evalscript.py | pdftex'
-    </pre>
-
-    <p>
     And now we can do something like the following:
     </p>
 
-    <pre class=terminal>
-    cat paper.tex | pytex -jobname=paper
-    </pre>
-
-    <br/>
-
-    <p>
-    And done. Now we should have a full, convenient, brittle, homebrewed non-production
-    TeX extension. For our personal use anyway.
-    So now that we have our recipe, it's time for some notable substitutions
-    </p>
 
     <h4>Substitute for 1: Markdown</h4>
     <p>
@@ -314,6 +264,7 @@
     import csv
     data = list(csv.reader('mycsv.csv'))
     ```
+
     </pre>
     <p>
     You could go a whole another step and integrate some LaTeX math
@@ -321,10 +272,11 @@
     Check out packages like <a href=""><i>katex</i></a> 
     to embed LaTeX in your markdown
     where you're already embedding Python. 
-    At that point I hope you can somehow embed Python in the LaTeX embedded
+    At that point I hope you can somehow embed Python in the LaTeX
+    embedded
     in your Markdown without getting hurt, but it would bring together
     the best of all worlds. Programmability (Python), extensibility (PyPI), 
-    simplicity (Markdown), and complexity only when you need it (LaTeX).
+    simplicity (Markdown), and beauty when you need it (LaTeX).
     </p>
 
     <h4>Substitution for 2: Other Scripting Language</h4>
@@ -332,14 +284,14 @@
     Are you the last person on earth, besides myself, who might like Perl? <br/>
     Are you twistedly enamored by the parasite that is PHP? <br/>
     Perhaps you're a node.js &gt; Python person, <br/>
-    or maybe you want to focus on R and its visualization. <br/>
+    or maybe you want to focus on R and its visualizations. <br/>
     If you think about it, the same principles of what we're doing 
     currently apply, just hope that templating with your language is 
     as easy to implement as it was for Python.
     </p>
     <pre class=terminal>
     \begin{CppExec}
-        //someone (me) should totally do this with Cling
+        //someone should totally do this with Cling
         #include &lt;vector&gt;
         #include &lt;iostream&gt;
         #include &lt;algorithm&gt;
@@ -348,12 +300,16 @@
         operator&lt;&lt;(std::ostream& os, const std::vector<T>& vec) {
             for (const auto& x : vec) os &lt;&lt; x &lt;&lt; ", ";
         }
-        //I'd use R but I've forgotten what little I knew of R
+        //I'd use R but I don't use it enough to have a working vocabulary
     \end{CppExec}
 
-    \section*{C++ Sucks}
+    \section*{C++ isn't right for this}
 
-    \pyeval{ std::sort(ints), ints }
+    If I were writing a C++ latex templater, I would probably source
+    transform each cpptex file into a C++ program emits the latex
+    code. Also, you could probably write some of this stuff in lex/yacc
+
+    \CPPeval{ std::sort(ints), ints }
     </pre>
 
     <p>
@@ -372,6 +328,18 @@
     <p>
     Oh, and if you don't want to use any of this, 
     go check out Libre/Open Office. 
+    </p>
+
+    <p>
+    Alternative Solutions:
+    <ul>
+        <li> Markdown renderer plugin
+        <li> LuaTeX plugin
+        <li> lex/yacc implementation
+        <li> not regular expressions
+        <li> the C preprocessor?
+        <li> <a href="">cog</a>
+    </ul>
     </p>
 
     <p>
