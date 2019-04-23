@@ -70,44 +70,44 @@ but I don't mind this stuff too
                             it is more flexible
                         -->
                         <li><a class="ajax"
-                                id="homeaboutlink" 
-                                href="#">Home/About</a></li>
+                                id="home" 
+                                href="#home">Home/About</a></li>
                         <li><a class="ajax"
-                               id="worklink"
-                                href="#">Work (Resume)</a></li>
+                               id="work"
+                                href="#work">Work (Resume)</a></li>
                         <!--
                         <li><a class="ajax"
-                                id="designlink"
-                                href="#">Design</a></li>
+                                id="design"
+                                href="#design">Design</a></li>
                         -->
                         <li><a class="ajax"
-                                id="3dlink"
-                                href="#">3D</a></li>
+                                id="3d"
+                                href="#3d">3D</a></li>
                         <!--
                         <li><a class="ajax"
-                                id="comicslink"
-                                href="#">Comics</a></li>
+                                id="comics"
+                                href="#comics">Comics</a></li>
                         <li><a class="ajax"
-                                id="funlink"
-                                href="#">Fun Thoughts</a></li>
+                                id="fun"
+                                href="#fun">Fun Thoughts</a></li>
                         <li><a class="ajax"
-                                id="bookslink"
-                                href="#">Reading/Books</a></li>
+                                id="books"
+                                href="#books">Reading/Books</a></li>
                         <li><a class="ajax"
-                                id="projectslink"
-                                href="#">Projects</a></li>
+                                id="projects"
+                                href="#projects">Projects</a></li>
                         -->
                         <li><a class="ajax"
-                                id="linkslink"
-                                href="#">Links</a></li>
+                                id="links"
+                                href="#links">Links</a></li>
                         <!--
                         <li><a class="ajax"
-                                id="colleagueslink"
-                                href="#">Colleagues</a></li>
+                                id="colleagues"
+                                href="#colleagues">Colleagues</a></li>
                         -->
                         <li><a class="ajax"
                                 id="bloghtml" 
-                                href="#">Blog</a></li>
+                                href="#blog">Blog</a></li>
                     </ul>
                 </div>
             </div> <!-- end of sidebar -->
@@ -122,6 +122,24 @@ but I don't mind this stuff too
         </footer> <!-- end footer-->
 
         <script type="text/javascript">
+
+        routes = {
+            home: fetch('/homeabout.html'),
+            work: fetch('/work.html'),
+            //design: fetch('/design.html'),
+            _3d: fetch('/3d.html'),
+            //comics: fetch('/comics.html'),
+            //fun: fetch('/fun.html'),
+            //books: fetch('/books.html'),
+            //projects: fetch('/projects.html'),
+            links: fetch('/links.html'),
+            //colleagues: fetch('/colleagues.html'),
+            blog: fetch('/blog.html')
+        }
+
+        for (const route in routes)
+            routes[route].then(
+                resp => routes[route] = resp.text());
 
         /*
         TODO [list]:
@@ -163,7 +181,7 @@ but I don't mind this stuff too
             });
         }
 
-        //format a clump of HTML
+        //format HTML as necessary
         function format(html) {
             //second jQuery instance for temporary doc from 
             doc = document.implementation.createHTMLDocument();
@@ -173,12 +191,14 @@ but I don't mind this stuff too
             return jQ2.find('body')[0].innerHTML;
         }
 
-        //get/put currently open tab in local storage
-        var opentab = '#homeaboutlink'
-        if (localStorage.getItem('opentab') == null)
-            localStorage.setItem('opentab', opentab);
-        else
-            opentab = localStorage.getItem('opentab');
+        function openRoute(route) {
+            actualOpenRoute = () =>
+                $('#content').innerHTML = format(routes[route]);
+            if (routes[route] instanceof Promise)
+                routes[route].then(actualOpenRoute);
+            else
+                actualOpenRoute();
+        }
 
         //open a tab from a link, following the naming convention
         function open_tab(tablink, loc=0, empty=true) {
@@ -217,7 +237,7 @@ but I don't mind this stuff too
         });
 
         $(document).on('click', 'a.ajax', function() {
-            open_tab($(this));
+            openRoute($(this.attrs.home)).
         });
         </script>
     </body>
