@@ -69,44 +69,44 @@ but I don't mind this stuff too
                             so I am not relying on a naming convention and
                             it is more flexible
                         -->
-                        <li><a class="ajax"
-                                id="home" 
-                                href="#home">Home/About</a></li>
-                        <li><a class="ajax"
+                        <li><a class="route"
+                                id="homeabout" 
+                                href="#homeabout">Home/About</a></li>
+                        <li><a class="route"
                                id="work"
                                 href="#work">Work (Resume)</a></li>
                         <!--
-                        <li><a class="ajax"
+                        <li><a class="route"
                                 id="design"
                                 href="#design">Design</a></li>
                         -->
-                        <li><a class="ajax"
+                        <li><a class="route"
                                 id="3d"
                                 href="#3d">3D</a></li>
                         <!--
-                        <li><a class="ajax"
+                        <li><a class="route"
                                 id="comics"
                                 href="#comics">Comics</a></li>
-                        <li><a class="ajax"
+                        <li><a class="route"
                                 id="fun"
                                 href="#fun">Fun Thoughts</a></li>
-                        <li><a class="ajax"
+                        <li><a class="route"
                                 id="books"
                                 href="#books">Reading/Books</a></li>
-                        <li><a class="ajax"
+                        <li><a class="route"
                                 id="projects"
                                 href="#projects">Projects</a></li>
                         -->
-                        <li><a class="ajax"
+                        <li><a class="route"
                                 id="links"
                                 href="#links">Links</a></li>
                         <!--
-                        <li><a class="ajax"
+                        <li><a class="route"
                                 id="colleagues"
                                 href="#colleagues">Colleagues</a></li>
                         -->
-                        <li><a class="ajax"
-                                id="bloghtml" 
+                        <li><a class="route"
+                                id="blog" 
                                 href="#blog">Blog</a></li>
                     </ul>
                 </div>
@@ -123,11 +123,11 @@ but I don't mind this stuff too
 
         <script type="text/javascript">
 
-        routes = {
-            home: fetch('/homeabout.html'),
+        const routes = {
+            homeabout: fetch('/homeabout.html'),
             work: fetch('/work.html'),
             //design: fetch('/design.html'),
-            _3d: fetch('/3d.html'),
+            '3d': fetch('/3d.html'),
             //comics: fetch('/comics.html'),
             //fun: fetch('/fun.html'),
             //books: fetch('/books.html'),
@@ -135,11 +135,7 @@ but I don't mind this stuff too
             links: fetch('/links.html'),
             //colleagues: fetch('/colleagues.html'),
             blog: fetch('/blog.html')
-        }
-
-        for (const route in routes)
-            routes[route].then(
-                resp => routes[route] = resp.text());
+        };
 
         /*
         TODO [list]:
@@ -192,12 +188,12 @@ but I don't mind this stuff too
         }
 
         function openRoute(route) {
-            actualOpenRoute = () =>
-                $('#content').innerHTML = format(routes[route]);
-            if (routes[route] instanceof Promise)
-                routes[route].then(actualOpenRoute);
-            else
-                actualOpenRoute();
+            routes[route].then(resp => {
+                resp.text().then(text => {
+                    const content = format(text);
+                    $('#content').html(content);
+                });
+            });
         }
 
         //open a tab from a link, following the naming convention
@@ -228,17 +224,18 @@ but I don't mind this stuff too
             });
         }
 
-        $(document).ready(function() {
-            open_tab($(opentab));
+        $(document).ready(() => {
+            openRoute('homeabout');
+            // TODO: move to something else...?
             $('#sidebar').css(
                 'min-height',
                 $('#sidebar-content').outerHeight()
             );
         });
 
-        $(document).on('click', 'a.ajax', function() {
-            openRoute($(this.attrs.home)).
-        });
+        $(document).on('click', 'a.route',
+                       evt => openRoute(evt.target.id));
+
         </script>
     </body>
 </html>
