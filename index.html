@@ -189,7 +189,7 @@ but I don't mind this stuff too
 
         function openRoute(route) {
             routes[route].then(resp => {
-                resp.text().then(text => {
+                resp.clone().text().then(text => {
                     const content = format(text);
                     $('#content').html(content);
                 });
