@@ -191,6 +191,7 @@ but I don't mind this stuff too
         function openRoute(route) {
             routes[route].then(resp => {
                 resp.clone().text().then(text => {
+                    // TODO: prevent reformatting everytime its run!
                     const content = format(text);
                     $('#content').html(content);
                     window.history.pushState(
@@ -203,7 +204,12 @@ but I don't mind this stuff too
         }
 
         window.onpopstate = () => {
-            $('#content').html('/'+routes[window.location.hash]);
+            routes['/'+window.location.hash].then(resp => {
+                resp.clone().text().then(text => {
+                    const content = format(text);
+                    $('#content').html(content);
+                });
+            });
         }
 
         //open a tab from a link, following the naming convention
