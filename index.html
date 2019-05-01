@@ -69,45 +69,45 @@ but I don't mind this stuff too
                             so I am not relying on a naming convention and
                             it is more flexible
                         -->
-                        <li><a class="ajax"
-                                id="homeaboutlink" 
-                                href="#">Home/About</a></li>
-                        <li><a class="ajax"
-                               id="worklink"
-                                href="#">Work (Resume)</a></li>
+                        <li><a class="route"
+                                id="homeabout" 
+                                href="#/homeabout">Home/About</a></li>
+                        <li><a class="route"
+                               id="work"
+                                href="#/work">Work (Resume)</a></li>
                         <!--
-                        <li><a class="ajax"
-                                id="designlink"
-                                href="#">Design</a></li>
+                        <li><a class="route"
+                                id="design"
+                                href="#design">Design</a></li>
                         -->
-                        <li><a class="ajax"
-                                id="3dlink"
-                                href="#">3D</a></li>
+                        <li><a class="route"
+                                id="3d"
+                                href="#/3d">3D</a></li>
                         <!--
-                        <li><a class="ajax"
-                                id="comicslink"
-                                href="#">Comics</a></li>
-                        <li><a class="ajax"
-                                id="funlink"
-                                href="#">Fun Thoughts</a></li>
-                        <li><a class="ajax"
-                                id="bookslink"
-                                href="#">Reading/Books</a></li>
-                        <li><a class="ajax"
-                                id="projectslink"
-                                href="#">Projects</a></li>
+                        <li><a class="route"
+                                id="comics"
+                                href="#comics">Comics</a></li>
+                        <li><a class="route"
+                                id="fun"
+                                href="#fun">Fun Thoughts</a></li>
+                        <li><a class="route"
+                                id="books"
+                                href="#books">Reading/Books</a></li>
+                        <li><a class="route"
+                                id="projects"
+                                href="#projects">Projects</a></li>
                         -->
-                        <li><a class="ajax"
-                                id="linkslink"
-                                href="#">Links</a></li>
+                        <li><a class="route"
+                                id="links"
+                                href="#/links">Links</a></li>
                         <!--
-                        <li><a class="ajax"
-                                id="colleagueslink"
-                                href="#">Colleagues</a></li>
+                        <li><a class="route"
+                                id="colleagues"
+                                href="#colleagues">Colleagues</a></li>
                         -->
-                        <li><a class="ajax"
-                                id="bloghtml" 
-                                href="#">Blog</a></li>
+                        <li><a class="route"
+                                id="blog" 
+                                href="#/blog">Blog</a></li>
                     </ul>
                 </div>
             </div> <!-- end of sidebar -->
@@ -123,18 +123,39 @@ but I don't mind this stuff too
 
         <script type="text/javascript">
 
+        /* While I heavily prefer newer ECMAScript with its features
+         * or even better TypeScript, I'm not setting up a babel
+         * compile step with duplicate code in vcs, this is fine
+         */
+
+        var routes = {
+            '/': fetch('/homeabout.html'),
+            '#/homeabout': fetch('/homeabout.html'),
+            '#/work': fetch('/work.html'),
+            //design: fetch('/design.html'),
+            '#/3d': fetch('/3d.html'),
+            //comics: fetch('/comics.html'),
+            //fun: fetch('/fun.html'),
+            //books: fetch('/books.html'),
+            //projects: fetch('/projects.html'),
+            '#/links': fetch('/links.html'),
+            //colleagues: fetch('/colleagues.html'),
+            '#/blog': fetch('/blog.html')
+        };
+
+        var route_content_cache = {};
+
         /*
         TODO [list]:
         - add terminal language classes for keyword/syntax highlighting
-        - clean up
         - perhaps use markdown rendering for blogs?
         */
 
-        //NOTE: this stuff can't be the best way to do this,
-        //but for now it suffices well
+        // NOTE: this stuff can't be the best way to do this,
+        // but for now it suffices well
 
-        //format the pres in a document, given a jQuery
-        //instance over that document
+        // format the pres in a document, given a jQuery
+        // instance over that document
         function format_pres(jQ) {
             //TODO: add coloring to keywords using tags?
             jQ.find('.terminal').each(function() {
@@ -163,9 +184,9 @@ but I don't mind this stuff too
             });
         }
 
-        //format a clump of HTML
+        // format HTML as necessary
         function format(html) {
-            //second jQuery instance for temporary doc from 
+            // second jQuery instance for temporary doc from 
             doc = document.implementation.createHTMLDocument();
             jQ2 = jQuery(doc);
             jQ2.find('body').append(html);
@@ -173,52 +194,47 @@ but I don't mind this stuff too
             return jQ2.find('body')[0].innerHTML;
         }
 
-        //get/put currently open tab in local storage
-        var opentab = '#homeaboutlink'
-        if (localStorage.getItem('opentab') == null)
-            localStorage.setItem('opentab', opentab);
-        else
-            opentab = localStorage.getItem('opentab');
-
-        //open a tab from a link, following the naming convention
-        function open_tab(tablink, loc=0, empty=true) {
-            var source = tablink;
-            if (typeof(tablink) !== "string")
-            {
-                var id = tablink.attr('id');
-                //all tab ids are named as "filenamelink"
-                //the corresponding file is thus "/filename.html"
-                var filename = id.substring(0, id.length-4);
-                source = '/' + filename + '.html';
-                opentab = '#'+tablink.attr('id');
-                localStorage.setItem('opentab', opentab);
-            }
-            $.ajax(source, {
-                success: function (data) {
-                    data = format(data);
-                    var content = $('#content');
-                    if (empty) content.empty();
-                    var contents = $('#content .blog');
-                    var target = contents[loc];
-                    if (target)
-                        $(data).insertBefore(target);
-                    else
-                        content.append(data);
-                }
+        function doOpenRoute(route) {
+            return routes[route].then(resp => {
+                resp.clone().text().then(text => {
+                    // TODO: prevent reformatting everytime its run!
+                    var content = format(text);
+                    $('#content').html(content);
+                });
             });
         }
 
-        $(document).ready(function() {
-            open_tab($(opentab));
+        function openRoute(route) {
+            doOpenRoute(route).then(resp =>
+                window.history.pushState(
+                    {},
+                    '/'+route,
+                    window.location.origin+'/'+route
+                )
+            );
+        }
+
+        window.onpopstate = (evt) => {
+            if (evt.state)
+                doOpenRoute(window.location.hash);
+        }
+
+        $(document).ready(() => {
+            openRoute('#/homeabout');
+            // TODO: move to somewhere more appropriate?
             $('#sidebar').css(
                 'min-height',
                 $('#sidebar-content').outerHeight()
             );
         });
 
-        $(document).on('click', 'a.ajax', function() {
-            open_tab($(this));
+        $(document).on('click', 'a.route', evt => {
+            var href = evt.target.href;
+            var fragment_start = href.indexOf('#');
+            var fragment = href.substr(fragment_start);
+            openRoute(fragment)
         });
+
         </script>
     </body>
 </html>
