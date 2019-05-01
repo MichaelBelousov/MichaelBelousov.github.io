@@ -214,36 +214,9 @@ but I don't mind this stuff too
             );
         }
 
-        window.onpopstate =
-            () => doOpenRoute(window.location.hash);
-
-
-        //open a tab from a link, following the naming convention
-        function open_tab(tablink, loc=0, empty=true) {
-            var source = tablink;
-            if (typeof(tablink) !== "string")
-            {
-                var id = tablink.attr('id');
-                //all tab ids are named as "filenamelink"
-                //the corresponding file is thus "/filename.html"
-                var filename = id.substring(0, id.length-4);
-                source = '/' + filename + '.html';
-                opentab = '#'+tablink.attr('id');
-                localStorage.setItem('opentab', opentab);
-            }
-            $.ajax(source, {
-                success: function (data) {
-                    data = format(data);
-                    var content = $('#content');
-                    if (empty) content.empty();
-                    var contents = $('#content .blog');
-                    var target = contents[loc];
-                    if (target)
-                        $(data).insertBefore(target);
-                    else
-                        content.append(data);
-                }
-            });
+        window.onpopstate = (evt) => {
+            if (evt.state)
+                doOpenRoute(window.location.hash);
         }
 
         $(document).ready(() => {
