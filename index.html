@@ -123,7 +123,12 @@ but I don't mind this stuff too
 
         <script type="text/javascript">
 
-        const routes = {
+        /* While I heavily prefer newer ECMAScript with its features
+         * or even better TypeScript, I'm not setting up a babel
+         * compile step with duplicate code in vcs, this is fine
+         */
+
+        var routes = {
             '/': fetch('/homeabout.html'),
             '#/homeabout': fetch('/homeabout.html'),
             '#/work': fetch('/work.html'),
@@ -138,20 +143,19 @@ but I don't mind this stuff too
             '#/blog': fetch('/blog.html')
         };
 
-        const route_content_cache = {};
+        var route_content_cache = {};
 
         /*
         TODO [list]:
         - add terminal language classes for keyword/syntax highlighting
-        - clean up
         - perhaps use markdown rendering for blogs?
         */
 
-        //NOTE: this stuff can't be the best way to do this,
-        //but for now it suffices well
+        // NOTE: this stuff can't be the best way to do this,
+        // but for now it suffices well
 
-        //format the pres in a document, given a jQuery
-        //instance over that document
+        // format the pres in a document, given a jQuery
+        // instance over that document
         function format_pres(jQ) {
             //TODO: add coloring to keywords using tags?
             jQ.find('.terminal').each(function() {
@@ -180,9 +184,9 @@ but I don't mind this stuff too
             });
         }
 
-        //format HTML as necessary
+        // format HTML as necessary
         function format(html) {
-            //second jQuery instance for temporary doc from 
+            // second jQuery instance for temporary doc from 
             doc = document.implementation.createHTMLDocument();
             jQ2 = jQuery(doc);
             jQ2.find('body').append(html);
@@ -194,7 +198,7 @@ but I don't mind this stuff too
             return routes[route].then(resp => {
                 resp.clone().text().then(text => {
                     // TODO: prevent reformatting everytime its run!
-                    const content = format(text);
+                    var content = format(text);
                     $('#content').html(content);
                 });
             });
@@ -251,13 +255,12 @@ but I don't mind this stuff too
             );
         });
 
-        $(document).on('click', 'a.route',
-                       evt => {
-                           const href = evt.target.href;
-                           const fragment_start = href.indexOf('#');
-                           const fragment = href.substr(fragment_start);
-                           openRoute(fragment)
-                       });
+        $(document).on('click', 'a.route', evt => {
+            var href = evt.target.href;
+            var fragment_start = href.indexOf('#');
+            var fragment = href.substr(fragment_start);
+            openRoute(fragment)
+        });
 
         </script>
     </body>
