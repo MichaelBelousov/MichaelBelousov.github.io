@@ -138,6 +138,8 @@ but I don't mind this stuff too
             '#/blog': fetch('/blog.html')
         };
 
+        const route_content_cache = {};
+
         /*
         TODO [list]:
         - add terminal language classes for keyword/syntax highlighting
@@ -188,29 +190,29 @@ but I don't mind this stuff too
             return jQ2.find('body')[0].innerHTML;
         }
 
-        function openRoute(route) {
-            routes[route].then(resp => {
+        function doOpenRoute(route) {
+            return routes[route].then(resp => {
                 resp.clone().text().then(text => {
                     // TODO: prevent reformatting everytime its run!
                     const content = format(text);
                     $('#content').html(content);
-                    window.history.pushState(
-                        {},
-                        '/'+route,
-                        window.location.origin+'/'+route
-                    );
                 });
             });
         }
 
-        window.onpopstate = () => {
-            routes['/'+window.location.hash].then(resp => {
-                resp.clone().text().then(text => {
-                    const content = format(text);
-                    $('#content').html(content);
-                });
-            });
+        function openRoute(route) {
+            doOpenRoute(route).then(resp =>
+                window.history.pushState(
+                    {},
+                    '/'+route,
+                    window.location.origin+'/'+route
+                )
+            );
         }
+
+        window.onpopstate =
+            () => doOpenRoute(window.location.hash);
+
 
         //open a tab from a link, following the naming convention
         function open_tab(tablink, loc=0, empty=true) {
