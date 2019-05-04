@@ -129,7 +129,7 @@ but I don't mind this stuff too
          */
 
         var routes = {
-            '/': fetch('/homeabout.html'),
+            '': fetch('/homeabout.html'),
             '#/homeabout': fetch('/homeabout.html'),
             '#/work': fetch('/work.html'),
             //design: fetch('/design.html'),
@@ -220,7 +220,7 @@ but I don't mind this stuff too
         }
 
         $(document).ready(() => {
-            openRoute('#/homeabout');
+            openRoute(window.location.hash);
             // TODO: move to somewhere more appropriate?
             $('#sidebar').css(
                 'min-height',

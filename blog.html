@@ -24,7 +24,6 @@ function loadBlogs() {
             fetch(`blog/${article}`)
             .then(blog_resp => blog_resp.text())
             .then((j => text => {
-                console.log('j', j);
                 var this_blog_content = format(text);
                 var this_blog = $(this_blog_content);
                 var blogs_in_dom = $('#content .blog');
