@@ -40,10 +40,13 @@
     and attempt to use formatting keys,
     I would probably spontaneously combust. It looks like this:
     </p>
-    <p class=terminal>
+
+    <pre class=terminal>
     r"""\begin{{document}}
     \frac{{ {kill} }}{{ {me} }}
-    \end{{document}}""".format(kill=5, me=10)</p>
+    \end{{document}}""".format(kill=5, me=10)
+    </pre>
+
     <p>
     That's almost as crufty as chained ternary expressions in JSX.
     Backslash doubling I can avoid by making it a raw string, but that
@@ -55,6 +58,7 @@
     My dumb and ugly LaT<sub>E</sub>X superset templater took about 5 lines of 
     Python code to process, and the source looked like:
     </p>
+
     <pre class=terminal>
     \begin{document}
         \frac{&lt;&lt;numerator&gt;&gt;}{&lt;&lt;denominator&gt;&gt;}
