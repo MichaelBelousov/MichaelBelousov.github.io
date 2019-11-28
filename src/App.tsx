@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import { ReactComponent as Logo } from './logo.svg';
 import styles from './App.module.scss';
 
 const App = () => {
@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="App">
       <header className={styles.appHeader}>
-        <img src={logo} className={styles.appLogo} alt="logo" />
+        <Logo className={styles.appLogo}>logo</Logo>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
