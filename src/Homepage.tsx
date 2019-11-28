@@ -1,12 +1,11 @@
 import React from 'react';
-import styles from './Homepage.module.scss';
 
 const Homepage = () => {
   return (
     <div>
       <p> Hi, I'm Michael Belousov. I'm a programmer and digital artist. </p>
       <p>
-        Some software components that I've used in an advanced capacity include:
+        Some software components/stacks that I've used in an advanced capacity include:
         <ul>
           {[
             'C++, C', 
@@ -19,13 +18,17 @@ const Homepage = () => {
             'Elm', 
             'React.js', 
             'Vue.js', 
-            'HTML5, css, sass', 
+            'HTML5, css, sass, SVG', 
             'webpack, yarn, npm, lerna, ...etc',
             'PostgreSQL, mongodb', 
             'Java',
             'PHP',
             'Lisp',
             'LaTeX',
+            'Octopus',
+            'Gitlab',
+            'Azure, azure storage',
+            'GNU make',
           ].map(s => <li>{s}</li>)}
         </ul>
       </p>
@@ -33,11 +36,26 @@ const Homepage = () => {
       Things I'm looking to use on a next project include:
       <ul>
         {[
-          'Haskell', 
-          'Clojure', 
           'Go', 
           'Rust', 
+          'Haskell', 
+          'Clojure', 
         ].map(s => <li>{s}</li>)}
+      </ul>
+      </p>
+      <p>
+      Some projects I might be working on:
+      <ul>
+        {[
+          ['Sizr', 'refactoring refactored, using a uniquely human-oriented AST query DSL' +
+          ' for declaring terse source transforms'
+          ], 
+          ['Fluster', 'a programming language, with fun features like recasing imports and a' +
+            ' focus on reuse, not concerned with runtimes and using a C-style virtual machine model'
+          ],
+          ['Untitled', 'unquestionably correct code formatting with a DSL and spring physics'], 
+          ['Engem', 'realtime graphics stuff'],
+        ].map(([title, desc]) => <li><strong>{title}</strong> {desc}</li>)}
       </ul>
       </p>
     </div>
