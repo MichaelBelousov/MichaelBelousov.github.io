@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactComponent as Logo } from './logo.svg';
 import styles from './App.module.scss';
+import blog from './test.md';
 
 const App = () => {
   console.log(styles);
@@ -20,6 +21,7 @@ const App = () => {
           Learn React
         </a>
       </header>
+      <div dangerouslySetInnerHTML={{__html: blog}} />
     </div>
   );
 };

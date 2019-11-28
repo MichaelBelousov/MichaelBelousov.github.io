@@ -473,7 +473,7 @@ module.exports = function(webpackEnv) {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'sass-loader'
+                'fast-sass-loader'
               ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -492,8 +492,16 @@ module.exports = function(webpackEnv) {
                   modules: true,
                   getLocalIdent: getCSSModuleLocalIdent,
                 },
-                'sass-loader'
+                'fast-sass-loader'
               ),
+            },
+            // markdown loading chain
+            {
+              test: /\.md$/,
+              use: [
+                { loader: require.resolve('html-loader') },
+                { loader: require.resolve('markdown-loader') },
+              ],
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
