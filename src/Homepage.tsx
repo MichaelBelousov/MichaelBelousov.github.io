@@ -22,15 +22,18 @@ const Homepage = () => {
             'webpack, yarn, npm, lerna, ...etc',
             'PostgreSQL, mongodb', 
             'Java',
-            'PHP',
             'Lisp',
             'LaTeX',
             'Octopus',
             'Gitlab',
             'Azure, azure storage',
             'GNU make',
+            'lex/flex/reflex, yacc/Bison',
+            'LLVM',
+            '.NET, C#',
           ].map(s => <li>{s}</li>)}
         </ul>
+        I've used other stuff that may not warrant mention, such as PHP.
       </p>
       <p>
       Things I'm looking to use on a next project include:
@@ -57,6 +60,10 @@ const Homepage = () => {
           ['Engem', 'realtime graphics stuff'],
         ].map(([title, desc]) => <li><strong>{title}</strong> {desc}</li>)}
       </ul>
+      </p>
+      <p>
+      I'm interested in lots of things and if you think you have one of them, feel free
+      to contact me via email.
       </p>
     </div>
   );

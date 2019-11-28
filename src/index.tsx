@@ -1,21 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styles from './index.module.scss';
 import './index.scss';
 import Homepage from './Homepage';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const routed = (
-  <Router>
-    <header>
-      <nav/>
-    </header>
-    <Switch>
-      <Route exact path="/">
-        <Homepage />
-      </Route>
-    </Switch>
-  </Router>
+  <div className={styles.pageWrapper} >
+    <Router>
+      <header>
+        <nav/>
+      </header>
+      <Switch>
+        <Route exact path="/">
+          <Homepage />
+        </Route>
+      </Switch>
+    </Router>
+  </div>
 );
 
 ReactDOM.render(routed, document.getElementById('root'));
