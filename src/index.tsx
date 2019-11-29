@@ -3,18 +3,23 @@ import ReactDOM from 'react-dom';
 import styles from './index.module.scss';
 import './index.scss';
 import Homepage from './Homepage';
+import WorkPage from './WorkPage';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 const routed = (
   <div className={styles.pageWrapper} >
     <Router>
       <header>
-        <nav/>
+        <Link to="/"> Home </Link>
+        <Link to="/work"> Work </Link>
       </header>
       <Switch>
         <Route exact path="/">
           <Homepage />
+        </Route>
+        <Route exact path="/work">
+          <WorkPage />
         </Route>
       </Switch>
     </Router>
