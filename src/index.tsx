@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from './index.module.scss';
 import './index.scss';
-import Homepage from './Homepage';
+import HomePage from './HomePage';
 import WorkPage from './WorkPage';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
@@ -16,7 +16,7 @@ const routed = (
       </header>
       <Switch>
         <Route exact path="/">
-          <Homepage />
+          <HomePage />
         </Route>
         <Route exact path="/work">
           <WorkPage />
