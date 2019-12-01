@@ -6,37 +6,38 @@ const Homepage = () => {
       <p> Hi, I'm Michael Belousov. I'm a programmer and digital artist. </p>
       <p>
         Some software components/stacks that I've used in an advanced capacity include:
-        <ul>
-          {[
-            'C++, C', 
-            'Python', 
-            'Bash', 
-            'TypeScript, JavaScript, Node.js', 
-            'git', 
-            'Blender', 
-            'Linux/GNU', 
-            'Elm', 
-            'React.js', 
-            'Vue.js', 
-            'HTML5, css, sass, SVG', 
-            'webpack, yarn, npm, lerna, ...etc',
-            'PostgreSQL, mongodb', 
-            'Java',
-            'Lisp',
-            'LaTeX',
-            'Octopus',
-            'Gitlab',
-            'Azure, azure storage',
-            'GNU make',
-            'lex/flex/reflex, yacc/Bison',
-            'LLVM',
-            '.NET, C#',
-          ].map(s => <li>{s}</li>)}
-        </ul>
         I've used other stuff that may not warrant mention, such as PHP.
       </p>
+      <ul>
+        {[
+          'C++, C', 
+          'Python', 
+          'Bash', 
+          'TypeScript, JavaScript, Node.js', 
+          'git', 
+          'Blender', 
+          'Linux/GNU', 
+          'Elm', 
+          'React.js', 
+          'Vue.js', 
+          'HTML5, css, sass, SVG', 
+          'webpack, yarn, npm, lerna, ...etc',
+          'PostgreSQL, mongodb', 
+          'Java',
+          'Lisp',
+          'LaTeX',
+          'Gitlab',
+          'Azure, ADO, Azure storage, Octopus',
+          'GNU make',
+          'lex/flex/reflex, yacc/Bison',
+          'LLVM',
+          '.NET, C#',
+        ].map(s => <li>{s}</li>)}
+      </ul>
+
       <p>
       Things I'm looking to use on a next project include:
+      </p>
       <ul>
         {[
           'Go', 
@@ -45,9 +46,10 @@ const Homepage = () => {
           'Clojure', 
         ].map(s => <li>{s}</li>)}
       </ul>
-      </p>
+
       <p>
       Some projects I might be working on:
+      </p>
       <ul>
         {[
           ['Sizr', 'refactoring refactored, using a uniquely human-oriented AST query DSL' +
@@ -60,7 +62,7 @@ const Homepage = () => {
           ['Engem', 'realtime graphics stuff'],
         ].map(([title, desc]) => <li><strong>{title}</strong> {desc}</li>)}
       </ul>
-      </p>
+
       <p>
       I'm interested in lots of things and if you think you have one of them, feel free
       to contact me via email.

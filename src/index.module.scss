@@ -1,4 +1,19 @@
+@import "constants.scss";
 
 .pageWrapper {
-  padding: 22px 1in;
+  padding: 1in;
+}
+
+.navLink {
+  &, &:link, &:visited {
+    color: $body;
+    text-decoration: underline;
+    font-weight: 700;
+  }
+  &:hover {
+    color: orange;
+  }
+  &:not(:first-child) {
+    margin-left: 22px;
+  }
 }

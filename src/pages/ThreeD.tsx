@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ThreeDPage.module.scss';
+import styles from './ThreeD.module.scss';
 
 import badFace from '../images/bad_face.png';
 import bubbleShield from '../images/bubble_shield.gif';
@@ -25,7 +25,7 @@ const ClickableImage = (props: React.HTMLProps<HTMLImageElement>) => {
   );
 };
 
-const ThreeDPage = () => {
+const ThreeD = () => {
   return (
     <div>
       <p>
@@ -42,31 +42,32 @@ const ThreeDPage = () => {
       A couple of decades ago, my dad donated $20 to help
       make <a href="https://blender.org">Blender</a> free and open-source.
       When I wanted to do digital art, he had the foresight to show it to
-      me. I didn't keep to it for long, being young (maybe 11), and unaware
-      of how to use the advanced tools. I liked the concept, but didn't seek
-      out any tutorials. Later, when I returned to it, I was just moving
-      vertices around like an idiot. My dad saw what I was doing and again
+      me. I didn't keep to it for long, being young (maybe 11), and stupid
+      I never figured out to use it comfortably. I liked the concept, but didn't seek
+      out any tutorials. Later, when I returned to it, I was still just moving
+      vertices around like an idiot. My dad saw what I was doing and
       showed me a video of someone else using Blender, combining tools to
-      do interesting things. The realization that I could twist and drive
-      tools with each other, and think outside the box led me to try new
-      things, watch tutorials and eventually truly learn Blender.
+      do interesting things (it was actually the subdiv workflow).
+      The realization that I could twist and drive tools with each other,
+      really just think outside the box led me to try new
+      things, watch tutorials, and eventually truly learn Blender.
       </p>
 
       <p>
-      Soon my dad would call my time blendering polygon twiddling,
-      pejoratively.  He probably wanted me programming, but he failed to
-      teach me a couple
-      of times prior. I don't think we made a good teacher/pupil pair. We
-      make a good pair now, after I taught myself the fundamentals. I
-      introduced myself to programming much later, one of my first experiences
-      being Python scripting in Blender to do mechanical things faster.
+      Soon my dad would pejoratively call my time blendering: "polygon twiddling",
+      He probably wanted me experimenting with programming, but he failed to teach me a
+      couple of times prior. I don't think we made a good teacher/pupil pair at the time.
+      We make a good pair now, after I taught myself the fundamentals. I
+      reintroduced myself to programming much later in my youth, one of my first
+      experiences being Python scripting in Blender to do mechanical things faster. Which
+      my dad ended up helping me with that too.
       </p>
 
       <p>
-      Now I'm not really sure which I am first. I seem to program more, and
-      program things other than art. But when I do art, it's often driven by
-      programming, I'm not sure what the intersection is. Maybe I just ought
-      to write more.
+      Now I'm not really sure what percent I am programmer, and what proportion artist.
+      I'd give it 60-60. I seem to program more, and program things other than art. But when I
+      do art, it's often driven by programming, I'm not sure what the intersection is.
+      Maybe I just ought to write more.
       </p>
 
       <p>
@@ -98,4 +99,4 @@ const ThreeDPage = () => {
   );
 };
 
-export default ThreeDPage;
+export default ThreeD;
