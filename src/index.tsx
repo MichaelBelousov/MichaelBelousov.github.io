@@ -13,6 +13,7 @@ const routed = (
         <Link className={styles.navLink} to="/">Home</Link>
         <Link className={styles.navLink} to="/work">Work</Link>
         <Link className={styles.navLink} to="/3d">3D</Link>
+        <Link className={styles.navLink} to="/blog">Blog</Link>
       </header>
       <Switch>
         <Route exact path="/">
@@ -23,6 +24,9 @@ const routed = (
         </Route>
         <Route exact path="/3d">
           <pages.ThreeD />
+        </Route>
+        <Route exact path="/blog">
+          <pages.Blog />
         </Route>
       </Switch>
     </Router>
