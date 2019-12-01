@@ -364,12 +364,19 @@ module.exports = function(webpackEnv) {
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
             {
-              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+              test: /\.bmp$/,
               loader: require.resolve('url-loader'),
               options: {
                 limit: imageInlineSizeLimit,
                 name: 'static/media/[name].[hash:8].[ext]',
               },
+            },
+            {
+              test: /\.(gif|png|jpe?g|svg)$/i,
+              use: [
+                require.resolve('file-loader'),
+                require.resolve('image-webpack-loader'),
+              ]
             },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
@@ -499,8 +506,8 @@ module.exports = function(webpackEnv) {
             {
               test: /\.md$/,
               use: [
-                { loader: require.resolve('html-loader') },
-                { loader: require.resolve('markdown-loader') },
+                require.resolve('html-loader'),
+                require.resolve('markdown-loader'),
               ],
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
