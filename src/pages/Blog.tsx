@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Blog.module.scss';
+// TODO: dynamic import for speed
+import superThinRaiiWrappersPost from '../blog/Super_Thin_RAII_Wrappers_for_C_Types.md';
+import billWurtzPost from '../blog/billwurtz.md';
 
 const PostWrapper = ({children}: {children?: React.ReactNode}) => {
   return <div className={styles.post}>{children}</div>;
@@ -32,9 +35,11 @@ const Blog = () => {
   const [loadingNext, setLoadingNext] = useState(true);
   return (
     <div ref={container} className={styles.container}>
-      {loadingNext && <BlogLoader />}
+      <Post body={billWurtzPost} />
+      <Post body={superThinRaiiWrappersPost} />
     </div>
   );
 };
 
 export default Blog;
+
