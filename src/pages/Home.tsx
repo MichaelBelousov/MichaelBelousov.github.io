@@ -5,8 +5,8 @@ const Homepage = () => {
     <div>
       <p> Hi, I'm Michael Belousov. I'm a programmer and digital artist. </p>
       <p>
-        Some software components/stacks that I've used in an advanced capacity include:
-        I've used other stuff that may not warrant mention, such as PHP.
+        Some software components/stacks that I've used in an advanced capacity are listed below.
+        I've used other stuff that may not warrant mention (except to lampoon), such as PHP.
       </p>
       <ul>
         {[
@@ -32,7 +32,7 @@ const Homepage = () => {
           'lex/flex/reflex, yacc/Bison',
           'LLVM',
           '.NET, C#',
-        ].map(s => <li>{s}</li>)}
+        ].map(s => <li key={s}>{s}</li>)}
       </ul>
 
       <p>
@@ -44,7 +44,7 @@ const Homepage = () => {
           'Rust', 
           'Haskell', 
           'Clojure', 
-        ].map(s => <li>{s}</li>)}
+        ].map(s => <li key={s}>{s}</li>)}
       </ul>
 
       <p>
@@ -60,7 +60,7 @@ const Homepage = () => {
           ],
           ['Untitled', 'unquestionably correct code formatting with a DSL and spring physics'], 
           ['Engem', 'realtime graphics stuff'],
-        ].map(([title, desc]) => <li><strong>{title}</strong> {desc}</li>)}
+        ].map(([title, desc]) => <li key={title}><strong>{title}</strong> {desc}</li>)}
       </ul>
 
       <p>

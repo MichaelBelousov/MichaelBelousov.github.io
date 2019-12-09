@@ -3,7 +3,7 @@
 .pageWrapper {
   @media only screen {
     @media (max-width: 700px) {
-      padding: 8px;
+      padding: 12px;
     }
     @media (min-width: 700px) {
       padding: 1in;
@@ -13,41 +13,41 @@
 
 header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  @media only screen {
-    @media (max-width: 700px) {
-      flex-direction: column;
-    }
-    @media (min-width: 700px) {
-      flex-direction: row;
-    }
-  }
-  * > {
-    line-height: 0;
-  }
-  padding-bottom: 22px;
   
-  .navLink {
-    &, &:link, &:visited {
-      font-size: 2rem;
-      color: $body;
-      text-decoration: initial;
-      font-style: italic;
-      font-weight: 700;
-      transition: font-size 100ms ease;
-      line-height: 0; //HACK: grow upwards
-    }
-    &:hover {
-      color: orange;
-      font-size: 2.5em;
-    }
-    &:not(:first-child) {
-      margin-left: 22px;
-    }
-  }
+  .left {
+    display: flex;
 
-  title {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    // HACK: spaced items without left buffer
+    margin-left: -22px;
+    padding: 11px;
+    .navLink {
+      margin: 11px;
+    }
+
+    .navLink {
+      &, &:link, &:visited {
+        font-size: 2rem;
+        @media only screen and (max-width: 700px) {
+          font-size: 1.5rem;
+        }
+        color: $body;
+        text-decoration: initial;
+        font-style: italic;
+        font-weight: 700;
+        transition: font-size 100ms ease;
+        height: 2.5rem;
+        vertical-align: middle;
+      }
+      &:hover {
+        color: orange;
+        font-size: 2.5em;
+      }
+    }
   }
 }
 
