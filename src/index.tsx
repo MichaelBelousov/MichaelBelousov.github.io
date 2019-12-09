@@ -10,11 +10,17 @@ const routed = (
   <div className={styles.pageWrapper}>
     <Router>
       <header>
-        <Link className={styles.navLink} to="/">Home</Link>
-        <Link className={styles.navLink} to="/work">Work</Link>
-        <Link className={styles.navLink} to="/3d">3D</Link>
-        <Link className={styles.navLink} to="/blog">Blog</Link>
+        <div className="left">
+          <Link className={styles.navLink} to="/">Home</Link>
+          <Link className={styles.navLink} to="/work">Work</Link>
+          <Link className={styles.navLink} to="/3d">3D</Link>
+          <Link className={styles.navLink} to="/blog">Blog</Link>
+        </div>
+        <div className="right">
+          <h1>Mike Belousov</h1>
+        </div>
       </header>
+      <hr/>
       <Switch>
         <Route exact path="/">
           <pages.Home />

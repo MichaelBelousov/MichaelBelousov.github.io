@@ -5,7 +5,7 @@ import superThinRaiiWrappersPost from '../blog/Super_Thin_RAII_Wrappers_for_C_Ty
 import billWurtzPost from '../blog/billwurtz.md';
 
 const PostWrapper = ({children}: {children?: React.ReactNode}) => {
-  return <div className={styles.post}>{children}</div>;
+  return <div className={styles.post}>{children}<hr/></div>;
 };
 
 const BlogLoader = () => {

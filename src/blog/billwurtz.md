@@ -1,10 +1,9 @@
 # Bill Wurtz
 ### August 28, 2018
 
-Just a shout-out to Bill Wurtz.
+Shout-out to Bill Wurtz.
 
 
-His website is a real treat, especially for unrealistic early internet nostalgites and design aficionados. 
-It reminds me of a simpler time when personal websites were awesome.
+His website is a real treat, it harkens back to the early web styles (or lack thereof). It reminds me of a simpler time when websites were awesome.
 
-[billwurtz.com](https://billwurtz.com)
+Check it out: [billwurtz.com](https://billwurtz.com)
