@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Blog.module.scss';
-// TODO: dynamic import for speed
+// TODO: dynamic import blogs for speed
 import superThinRaiiWrappersPost from '../blog/Super_Thin_RAII_Wrappers_for_C_Types.md';
 import billWurtzPost from '../blog/billwurtz.md';
+import hljs from 'highlight.js';
+// TODO: import just used languages, and send a PR to @types/highlight.js for that?
+
+hljs.initHighlightingOnLoad();
 
 const PostWrapper = ({children}: {children?: React.ReactNode}) => {
   return <div className={styles.post}>{children}<hr/></div>;
