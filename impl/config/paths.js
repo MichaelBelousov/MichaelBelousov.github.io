@@ -65,6 +65,37 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
+const getFilesFromDir = (dir, fileTypes) => {
+  const filesToReturn = [];
+  const walkDir = (currentPath) => {
+    const files = fs.readdirSync(currentPath);
+    for (let i in files) {
+      const curFile = path.join(currentPath, files[i]);      
+      if (fs.statSync(curFile).isFile() && fileTypes.indexOf(path.extname(curFile)) != -1) {
+        filesToReturn.push(curFile);
+      } else if (fs.statSync(curFile).isDirectory()) {
+        walkDir(curFile);
+      }
+    }
+  };
+  walkDir(dir);
+  return filesToReturn; 
+}
+
+const getAppPages = () => {
+  return getFilesFromDir(
+    resolveApp('src/pages'),
+    ['.ts', '.tsx']
+  ).reduce((obj, fPath) => {
+    const entryChunkName = fPath
+      .replace(path.extname(fPath), '')
+      .replace(resolveApp('src/pages'), '')
+    ;
+    obj[entryChunkName] = `./${fPath}`;
+    return obj;
+  }, {})
+};
+
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
@@ -73,6 +104,7 @@ module.exports = {
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   appIndexJs: resolveModule(resolveApp, 'src/index'),
+  appPages: getAppPages(),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
