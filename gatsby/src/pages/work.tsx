@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react';
-import styles from "./Work.module.scss"
+import styles from "./work.module.scss"
 
 const calcHeight = (windowHeight: number)  => {
 };

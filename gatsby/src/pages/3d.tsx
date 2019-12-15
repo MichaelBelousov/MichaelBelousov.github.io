@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ThreeD.module.scss';
+import styles from './3d.module.scss';
 
 /*
 import badFace from '../images/bad_face.png';
