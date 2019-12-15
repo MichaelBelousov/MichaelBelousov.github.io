@@ -1,0 +1,479 @@
+<div class="mikpanel blog">
+    <h3 style="margin:1pt;">A Guide to Avoiding Office Products like the Plague</h3>
+    <h5 style="margin:1pt;">September 25, 2018</h5>
+
+    <p>
+    TypeScript is probably my favorite Microsoft technology. 
+    Static constraints and language constructs in the style of C++
+    were a relieving addition to JavaScript.
+    C# is also quite good, it has some excellent design choices as a language, 
+    even if I don't really use it much. For instance, its struct vs. class semantics, 
+    are an amazing
+    answer to the issues of C++'s explicit referencing for dynamic types. 
+    As for IDEs<sup>0</sup>, I'm not a fan of the Visual Studio environment;
+    it tries to be too magical for me, and I prefer to work <i>with</i> my tools.
+    The point is, I need a disclaimer. Microsoft does good things. 
+    But this isn't about Microsoft. This is about that most
+    pervasive corporate DSL<sup>1</sup>, Microsoft Office.
+    </p>
+
+    <p>
+    I used Word as a main word processor for several years, it's a fine, 
+    oft well-thought-out suite of tools.
+    I've even used Excel, though I'm no spreadsheet savant. 
+    But I haven't used either in a couple of years.
+    Presently, in my undergraduate senior year, 
+    my "Senior Design" team has a faculty coordinator.
+    He's an alright guy. He's your mediocre academic Computer Science faculty. 
+    Yet it's become blatantly
+    obvious that he's but a pawn of the devil. He requires our group
+    submit all assignments in <i>.docx</i><sup>2</sup> format. That is 
+    probably the most oppressive limitation 
+    I've ever been dealth in my academic career. 
+    I have never been denied the sweet sanctity of a PDF option.
+    </p>
+    <p>
+    That constraint prompted me to think over my 
+    reporting toolset and how I've 
+    been writing, diagramming, proving, compiling, and visualizing data for
+    the last two academic seasons. And I wanted to share my somewhat
+    unique approach, one that I find rather intuitive and satisfying.
+    </p>
+
+    <p>
+    Without further ado; 
+    if you, like myself, occasionally enjoy rejecting Facebook, Google, 
+    or you know, anything that is convenient<sup>3</sup>, 
+    then here's my recipe for avoiding Microsoft Office 
+    365 days of the year<sup>4</sup>.
+    </p>
+
+    <h4>Ingredient 1: Typesetting - LaTeX</h4>
+    <p>
+    So you need a typesetter. Something that knows how to converse
+    with your printer, perhaps, but probably not these days.
+    The first and boldest choice is the engineer's typesetter,
+    Steep-learning-curve LaTeX. 
+    Firstly, I pronounce it as "laaaaaaaa-(sing it)-tech", unlike the
+    rubber that I am allergic to.
+    LaTeX is considered difficult to learn but if you come from a 
+    programming audience then hopefully you've discovered the power of
+    plain text. By allowing simple non-WYSIWYG<sup>5</sup> editing,
+    the expressiveness of your other toolsets are empowered. 
+    With plaintext document source, you can use your favorite text 
+    ed<span class=vim >v</span>i<span class=vim>m</span>tor, and your
+    favorite text processing utilities.
+    In fact, with LaTeX, all that's really left is an itch for programmability,
+    the trait which, Microsoft Excel is alleged to have. 
+    TeX<sup>6</sup> does not initially allow you to embed logic, it understands its'
+    place as a markup language. But you may want contextually appropriate
+    logic for
+    calculating statistical metrics, curve fittings, etc. You can do it
+    separately and even through some packages that I should probably 
+    research, but if your data changes, you need to reintroduce said
+    changes and glue them back into your document. So we need a really
+    strong and convenient glue.
+    </p>
+
+    <h4>Ingredient 2: Scripting - Python</h4>
+    <p>
+    I use Python as my example, since that's what I use, but you can 
+    use PHP<sup>7</sup> for all I care. The idea is simple. Unlike your Office 
+    document which will likely require some fancy APIs (Office 365) 
+    or at least XML parsing to edit, LaTeX source files are just, 
+    you know, plaintext. So you can edit them anyhow
+    you like. The first time I ever did this, my approach was a tiny
+    mapping from LaTeX source to Python formatting key syntax.
+    If I were to just write it directly in Python source,
+    I would probably spontaneously combust. Take a look:
+    </p>
+    <p class=terminal>r"""
+\begin{{document}}
+\frac{{ {kill} }}{{ {me} }}
+\end{{document}}
+""".format(kill=5, me=10)</p>
+    <p>
+    That's almost as bad as chained ternary expressions with JSX.
+    But the idea is that python named formatting keys are denoted by a
+    braced expression, and real braces are doubled to escape them.
+    Backslash doubling I can avoid by making it a raw string, but that
+    isn't an option in all use cases.
+    Regardless, I hid that behind a script, and instead created a 
+    simple alternate syntax for keyed formatting that wouldn't require me
+    to escape common character.. 
+    My dumb and ugly LaTeX superset templater takes about 5 lines of python 
+    code,
+    and looks like so:
+    </p>
+    <pre class=terminal>
+    \begin{document}
+        \frac{&lt;&lt;numerator&gt;&gt;}{&lt;&lt;denominator&gt;&gt;}
+    \end{document}
+    </pre>
+
+    <p>
+    Quite literally, all my code has to do is replace all braces with 
+    escaped double braces, and then replace all 
+    double angle brackets with a single formatting brace, thus yielding
+    the original python source, while allowing raw LaTeX to look familiar.
+    Then you just produce your values and/or data in your python module, 
+    read this template from some file,
+    and submit it to the Python formatter with the expected keyword
+    arguments that you used in the document source 
+    (e.g. &lt;&lt;numberator&gt;&gt;).
+    After we find a better way to do this all, 
+    we can even add a function to translate python 2-dimensional
+    lists into the tabular cell format of LaTeX, which will make tabling
+    a breeze. Here's my naive templating implementation:
+    </p>
+    <pre class=terminal>
+    def load_pytex(path, **kwargs):
+        txt = open(path).read()
+        txt = txt.replace('{','{{').replace('}','}}')    
+        txt = txt.replace('&lt;&lt;', '{').replace('&gt;&gt;', '}')
+        txt.format(**kwargs)
+        return txt  # or subproc.check_output(['pdfLaTeX' ...
+</pre>
+    <p>
+    So this works, but it would be quite annoying to have a python
+    context so decoupled from the usage context. Calculating things
+    without regard to the location in the document, and being
+    unable to change the logic while editing the document without
+    switching files.
+    Certainly we can do better? Let's do something sinful. 
+    </p>
+    <p>
+    Fake macros in LaTeX will make this all look way more TeX-savvy. 
+    Let's add a <code>\pyeval</code> pseudo-command, and a 
+    <code>pyexec</code> pseudo-environment so that we can get something 
+    like so:
+    </p>
+    <pre class=terminal>
+    \begin{pyexec}
+        name = 'John'
+    \end{pyexec}
+
+    Hello I am \pyeval{' '.join([name,'Smith'])}
+    </pre>
+    <p>
+    Our environment can't be nested (the content is Python, not LaTeX...),
+    so we will use regular expressions to do this rapidly.
+    We have two caveats, however. Our <code>\pyeval</code> expression could
+    contain a dictionary or set literal (any braces-containing construct). 
+    Or, our <code>pyexec</code> environment could have
+    valid Python code containing the environment end marker, e.g.:
+    </p>
+    <pre class=terminal>
+    \begin{pyexec}
+        hate_you = r'\end{pyexec}'
+    \end{pyexec}
+
+    \pyeval{ h = {'hello': 'world'} } # which brace do we end on?
+</pre>
+    <p>
+    For simplicity, and since this is our own hack and not a production
+    solution, we'll assume no one has used the end marker, and we'll
+    require escaping of right braces in the \pyeval command. I'll leave
+    a proper solution (for the pyexec problem) as an exercise to the 
+    reader, and recommend looking into LuaTeX<sup>8</sup>, an extensible
+    TeX compiler (though I think a compiler adapter would be sturdy and
+    sufficient).
+    On then, Stop and think of the regular expression for capturing all text
+    between the pyexec environment opening and ending marker. Then think
+    of the regular expression for the <code>\pyeval</code> argument,
+    recalling that it cannot end on a backslash-escaped right brace.
+    If you come up with better regular expressions than I did, let me know.
+    Here's a simple implementation of our better embedded templating:
+    </p>
+    <pre class=terminal>
+    import re
+    from textwrap import dedent  # for optional starting indent
+    def render_pytex(path):
+        src = open(path).read()
+        scope = {}
+        def pyexec(match):
+            exec(dedent(match[1]), scope)
+            return ''
+        src = re.sub(r'\\begin\{pyexec\}\n(.*?)\n\\end\{pyexec\}',
+                      pyexec, src, flags=re.MULTILINE)
+        src = re.sub(r'\\pyeval\{(.*?)(?&lt;!\\)\}',
+                     lambda t: eval(t[1].replace(r'\}','}', scope), 
+                     src) 
+    </pre>
+    <p>
+    So let's see what our LaTeX document source would look like
+    while using that.
+    </p>
+    <pre class=terminal>
+    \begin{pyexec}
+        from scipy.optimize import curve_fit
+        from random import random as rand
+        from itertools import count, product as crossproduct
+        bin = crossproduct((0,1),repeat=5)
+        data = list(zip(count(), bin))
+        # add a count of set bits as a column
+        for row in data:
+            d, b = row
+            row.append(b.count(1))
+        randpts = [[rand(),rand()] for _ in range(100)]
+    \end{pyexec}
+
+    \section*{Data Stuff}
+
+    \begin{tabular}{|c|c|}
+        \hline
+        Decimal &amp; Binary &amp; 1-Bits \\
+        \hline
+        \pyeval{'\n'.join(('&amp;'.join(map(str,d)) for d in data))}
+        % we can extract the above one-liner for reuse in tabular 
+        % construction and any horizontally partitioned context
+        \hline
+    \end{tabular}
+
+    % use unpack+zip hack to get separate lists of x then y coords
+    Best Fit: \pyeval{curve_fit(lambda x,m,b: m*x+b, zip(*randpts))} 
+    </pre>
+
+    <p>
+    Now, the last thing to do is to use data files for your tables and
+    your graphs and you've got a fully programmable document typesetting
+    environment. You can even write a small latextools module like I have,
+    for any common utilities like that nested join in the tabular that 
+    produces cells for a 2-dimensional python iterable.
+    At last, I would argue, that we have a tool more extensible than Excel, 
+    it's got 
+    all of PyPI behind it, with numpy, scipy, and all the packages
+    you could want&emdash; embedded in your document.
+    The next step is making sure we have a competent graphing utility,
+    that can be integrated with our typesetter and scripting.
+    </p>
+
+    <!-- TODO: make more introductory for LaTeX and -->
+
+    <h4>Ingredient 3: Graphing - pgfplots</h4>
+    <p>
+    I would say you could use any graphing utility and include it as
+    any media you want, but that won't let you take advantage of the
+    combination we've developed thus far. If you want to fully use 
+    LaTeX and your scripting language, use a LaTeX
+    integrated graphing package like pgfplots<sup>9</sup>. That way
+    your script templating can be used in the graphs.
+    Finally, the only thing
+    that remains for our recipe is a substitute of Microsoft's Visio, 
+    so that we can fill our documents with appropriate diagrams.
+    </p>
+
+    <h4>Ingredient 4: Diagramming and Visualization - *</h4>
+    <p>
+    There are a lot of diagramming tools out there.
+    I've used primarily Blender, Google Drawings, Gimp,
+    and some InkScape.
+    Google Drawings is great for shapely diagrams, flowcharts, and
+    etc. I use blender for more intense graphics and visualizations, 
+    but I don't recommend learning it for typesetting.
+    If Google Drawings is not independent enough, then
+    learn Inkscape or even better Tikz.
+    This ingredient is definitely the one
+    that I have worried about the least. Diagramming isn't
+    something I've had to make programmable often enough,
+    and there are a plenty of tools for designing your diagrams.
+    If you've needed to do it before, chances are you already have
+    one, and you can throw that application's output into LaTeX properly yourself.
+    </p>
+
+    <!-- TODO: write a short compiler wrapper -->
+
+    <p>
+    Let's use an alias for a quick and dirty command wrapper.
+    A better alternative would be an intelligent cli wrapper 
+    that doesn't require you to pipeline your input. While we're being dirty, make
+    sure to use an absolute path and stick this alias in your <code>.bashrc</code>.
+    </p>
+
+    <pre class=terminal>
+    alias pytex='python /path/pytex_evalscript.py | pdftex'
+    </pre>
+
+    <p>
+    And now we can do something like the following:
+    </p>
+
+    <pre class=terminal>
+    cat paper.tex | pytex -jobname=paper
+    </pre>
+
+    <br/>
+
+    <p>
+    And done. Now we should have a full, convenient, brittle, homebrewed non-production
+    TeX extension. For our personal use anyway.
+    So now that we have our recipe, it's time for some notable substitutions
+    </p>
+
+    <h4>Substitute for 1: Markdown</h4>
+    <p>
+    An alternative markup language to LaTeX, that I use for taking 
+    notes in classes, is Markdown<sup>10</sup>.
+    Markdown typically renders to HTML but you can use tools like
+    pandoc to convert it to a tradional paper style.
+    If you've ever used GitHub, you've probably
+    seen rendered Markdown even if you didn't realize it. Most flashy
+    READMEs are rendered Markdown.
+    You could also use ReStructured Text or some 
+    other minimal markup language, so long as you can render it out
+    to your required medium.
+    </p>
+    <p>
+    The most useful things about embracing Markdown, are definitely
+    the effortless simplicity of the language and the decoupling 
+    of styling from content with CSS. Markdown will be much easier
+    to learn than LaTeX, and you can still be inspired by our script 
+    embedding and use a custom XML tag (Markdown includes HTML)  
+    for Python embedding. It might look like:
+    </p>
+    <pre class=terminal>
+    My Document
+    ===========
+
+    &lt;pyexec&gt;
+    from operator import mul
+    &lt;/pyexec&gt;
+
+    _this is my document_, 
+    and I **like** the number &lt;pyeval&gt;mul(5,3)&lt;/pyeval&gt;
+    </pre>
+    <p>
+    You could even use the inline source syntax:
+    </p>
+    <pre class=terminal>
+    My Document
+    ===========
+
+    ```pyexec
+    import csv
+    data = list(csv.reader('mycsv.csv'))
+    ```
+    </pre>
+    <p>
+    You could go a whole another step and integrate some LaTeX math
+    rendering, for the sweet, sweet mathematical formulas.
+    Check out packages like <a href=""><i>katex</i></a> 
+    to embed LaTeX in your markdown
+    where you're already embedding Python. 
+    At that point I hope you can somehow embed Python in the LaTeX embedded
+    in your Markdown without getting hurt, but it would bring together
+    the best of all worlds. Programmability (Python), extensibility (PyPI), 
+    simplicity (Markdown), and complexity only when you need it (LaTeX).
+    </p>
+
+    <h4>Substitution for 2: Other Scripting Language</h4>
+    <p>
+    Are you the last person on earth, besides myself, who might like Perl? <br/>
+    Are you twistedly enamored by the parasite that is PHP? <br/>
+    Perhaps you're a node.js &gt; Python person, <br/>
+    or maybe you want to focus on R and its visualization. <br/>
+    If you think about it, the same principles of what we're doing 
+    currently apply, just hope that templating with your language is 
+    as easy to implement as it was for Python.
+    </p>
+    <pre class=terminal>
+    \begin{CppExec}
+        //someone (me) should totally do this with Cling
+        #include &lt;vector&gt;
+        #include &lt;iostream&gt;
+        #include &lt;algorithm&gt;
+        std::vector&lt;int&gt; ints = {1,7,5,9};
+        template&lt;typename T&gt;
+        operator&lt;&lt;(std::ostream& os, const std::vector<T>& vec) {
+            for (const auto& x : vec) os &lt;&lt; x &lt;&lt; ", ";
+        }
+        //I'd use R but I've forgotten what little I knew of R
+    \end{CppExec}
+
+    \section*{C++ Sucks}
+
+    \pyeval{ std::sort(ints), ints }
+    </pre>
+
+    <p>
+    And there we go. So you can take this stuff here and make a script
+    wrapping around your favorite TeX compiler to evaluate your scripted
+    expressions first as part of a compilation pipeline. Or you can see
+    If you want to make this a production tool, go prevent
+    the string literal end marker issue by ignoring string literals, 
+    and research LuaTeX and general TeX packages and extensions to see 
+    where a Python evaluation step can be added. I would
+    appreciate it certainly. But that's a lot of work and while I'm 
+    the only person doing this still, I'll just stick to my &lt;20 lines
+    of code that works 99.99% of the time.
+    </p>
+
+    <p>
+    Oh, and if you don't want to use any of this, 
+    go check out Libre/Open Office.
+    </p>
+
+    <p>
+    Appendix/Glossary:
+        </p><ol start=0>
+            <li>
+                <b>IDE</b>: An application used to make Computer Science
+                students even dumber than they already are.
+            </li>
+            <li>
+                <b>DSL</b>: domain specific language. 
+                Wouldn't it be funny to have a dystopian future 
+                where people can only communicate via powerpoints?
+            </li>
+            <li>
+                <b>*.docx</b>: The Microsoft Word file format. 
+                Some compressed XML if I recall correctly and there used 
+                to be a .doc format too. 
+            </li>
+            <li>
+                <b>Convenience</b>: 
+                I'll have a post on the "convenience" of the 
+                Software-as-a-Service/non-self-hostable product model
+                to clarify what I mean there. The post is currently a WIP.
+            </li>
+            <li>
+                <b>This does not account for leap years</b>: 
+                Growing up is learning that you will have to give up 
+                and use MS Office. I suppose then I have grown up because
+                I do use MS Office when it's necessary.
+            </li>
+            <li>
+                <b>WYSIWYG</b>: What You See Is What You Get
+            </li>
+            <li>
+                <b>TeX</b>: <a href="https://tex.stackexchange.com/questions/49/what-is-the-difference-between-tex-and-latex">The difference between TeX, and LaTeX</a>
+            </li>
+            <li>
+                <b>PHP</b>: As much as I laugh at PHP, 
+                <a href="https://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design/">read the rant</a>, it's probably the easiest 
+                to do templating with since that's part
+                of the design of the language. Although have fun using it
+                in LaTeX.
+            </li>
+            <li>
+                <b>LuaTeX</b>: An extensible TeX compiler. I haven't
+                looked into it much but it is likely the best candidate for
+                embedding Python in the TeX compilation process. Though it's
+                likely easier to embed Lua, one might think. 
+            </li>
+            <li>
+                <b>pgfplots</b>: <a href="http://pgfplots.sourceforge.net/gallery.html">Learn by example</a>
+            </li>
+            <li>
+                <b>Markdown</b>: Proof that no one who writes blogposts should be writing pure HTML like I am currently. How can I even tolerate writing out ampersand literals...
+            </li>
+        </ol>
+    <p></p>
+
+
+</div>
+<style>
+span.vim {
+    font-size: 3pt;
+}
+</style>
