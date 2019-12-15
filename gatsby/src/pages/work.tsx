@@ -2,12 +2,14 @@ import React, { useLayoutEffect, useState } from 'react';
 import styles from "./work.module.scss"
 import Layout from '../components/layout';
 
+// TODO: replace with object? can't remember why I stopped using an object element
+
 const calcHeight = (windowHeight: number)  => {
 };
 
 const Work = () => {
 
-  const [height, setHeight] = useState(window.innerHeight);
+  const [height, setHeight] = useState(/*window.innerHeight*/ "7in");
 
   useLayoutEffect(() => {
     const resizePDF = () => {
