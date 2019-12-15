@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './3d.module.scss';
+import Layout from '../components/layout';
 
 /*
 import badFace from '../images/bad_face.png';
@@ -29,7 +30,7 @@ const ClickableImage = (props: React.HTMLProps<HTMLImageElement>) => {
 
 const ThreeD = () => {
   return (
-    <div>
+    <Layout pageTitle="3D">
       <p>
       I always thought I would end up doing art before I learned
       to love programming. But, I don't have the innate talent that
@@ -99,7 +100,7 @@ const ThreeD = () => {
         <ClickableImage src={undersuitHandGreeble} alt="undersuitHandGreeble" />
         */}
       </div>
-    </div>
+    </Layout>
   );
 };
 

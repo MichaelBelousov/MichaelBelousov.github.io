@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import styles from "./work.module.scss"
+import Layout from '../components/layout';
 
 const calcHeight = (windowHeight: number)  => {
 };
@@ -17,7 +18,7 @@ const Work = () => {
   }, []);
 
   return (
-    <div>
+    <Layout pageTitle="Work">
       <p> It isn't up to date, since I'm not looking for new serious employment right now. </p>
       <div className={styles.container}>
         <h3>Michael Belousov's Resume:</h3>
@@ -33,7 +34,7 @@ const Work = () => {
           <a href="http://github.com/MichaelBelousov/resume">here</a>.</p>
         </iframe>
       </div>
-    </div>
+    </Layout>
   );
 };
 
