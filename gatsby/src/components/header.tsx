@@ -14,6 +14,7 @@ const Header = () => (
     <div className={styles.right}>
       <h1>Mike Belousov</h1>
     </div>
+    <hr/>
   </header>
 )
 
