@@ -1,3 +1,9 @@
+---
+path: "/blog/super-thin-raii-wrappers-for-c-types"
+title: "Super Thin RAII Wrappers for C Types"
+date: "2018-06-17"
+---
+
 # Super Thin RAII Wrappers for C Types
 
 ### June 17, 2018

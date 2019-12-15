@@ -1,3 +1,9 @@
+---
+path: "/blog/empowering-LaTeX"
+title: "Empowering LaTeX (PyLaTeXc)"
+date: "2019-05-04"
+---
+
 # Empowering LaT<sub>E</sub>X (PyLaT<sub>E</sub>Xc)
 ### May 4, 2019
 

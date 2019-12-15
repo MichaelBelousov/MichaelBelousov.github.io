@@ -1,3 +1,9 @@
+---
+path: "/blog/photoshop-is-no-longer-my-sketch-pad"
+title: "Photoshop is no longer my sketch pad"
+date: "2019-07-13"
+---
+
 # Photoshop is no longer my sketch pad
 ### July 13, 2019
 

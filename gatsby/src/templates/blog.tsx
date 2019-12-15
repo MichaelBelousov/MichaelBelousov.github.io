@@ -13,7 +13,7 @@ export default function Template({
       <h1>{title}</h1>
       <h3>{date}</h3>
       <div dangerouslySetInnerHTML={{ __html: html }} />
-    </div>;
+    </div>
   );
 };
 
