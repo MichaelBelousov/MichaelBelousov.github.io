@@ -4,9 +4,6 @@ title: "Photoshop is no longer my sketch pad"
 date: "2019-05-04"
 ---
 
-# Convex Hull of Polygons and the Melkman Algorithm
-### May 4, 2019
-
 For my computational geometry course, I and a small team of my pears wrote a 
 visualization comparing the naive and the Melkman convex hull
 finding algorithms, with some pedagogical narration, it

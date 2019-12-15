@@ -4,9 +4,6 @@ title: "Photoshop is no longer my sketch pad"
 date: "2019-07-13"
 ---
 
-# Photoshop is no longer my sketch pad
-### July 13, 2019
-
 I needed to do a top-down draft, a design of something I would be 3D-modeling later, and so I opened up
 my 2D drawing toolkit. Once photoshop, it was actually more recently Krita. I bumped the resolution to
 5000x5000 pixels, and had to think deeply about it.

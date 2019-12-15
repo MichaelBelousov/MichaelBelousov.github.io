@@ -4,9 +4,6 @@ title: "Bill Wurtz"
 date: "2018-08-28"
 ---
 
-# Bill Wurtz
-### August 28, 2018
-
 Shout-out to Bill Wurtz.
 
 

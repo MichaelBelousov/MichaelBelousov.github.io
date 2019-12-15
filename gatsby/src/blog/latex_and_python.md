@@ -4,9 +4,6 @@ title: "Empowering LaTeX (PyLaTeXc)"
 date: "2019-05-04"
 ---
 
-# Empowering LaT<sub>E</sub>X (PyLaT<sub>E</sub>Xc)
-### May 4, 2019
-
 The one nagging gap in my homework development stack early on
 was an itch for 
 programmability, that trait which Excel is alleged to have.

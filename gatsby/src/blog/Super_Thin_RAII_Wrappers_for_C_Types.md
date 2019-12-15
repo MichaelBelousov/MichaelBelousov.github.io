@@ -4,10 +4,6 @@ title: "Super Thin RAII Wrappers for C Types"
 date: "2018-06-17"
 ---
 
-# Super Thin RAII Wrappers for C Types
-
-### June 17, 2018
-
 Let's partake in some template indulgence. Suppose we have some C language
 library that we're linking to our amazing C++ project, but it leaves us with
 a few sad C "constructors" and "deleters" surrounding a struct, like any
