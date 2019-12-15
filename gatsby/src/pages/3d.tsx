@@ -2,23 +2,6 @@ import React from 'react';
 import styles from './3d.module.scss';
 import Layout from '../components/layout';
 
-/*
-import badFace from '../images/bad_face.png';
-import bubbleShield from '../images/bubble_shield.gif';
-import cubesMess from '../images/cubes_mess.png';
-import dirtyHog from '../images/dirty_hog.jpeg';
-import fire from '../images/fire.gif';
-import fireDot from '../images/fire_dot.gif';
-import generatedBadRocks from '../images/generated_bad_rocks.png';
-import generatedNebula from '../images/generated_nebula.png';
-import goldHog from '../images/gold_hog.png';
-import magnumBack from '../images/magnum_back.png';
-import mongoose from '../images/mongoose.png';
-import parametricArmorWear from '../images/parametric_armor_wear.gif';
-import revolver from '../images/revolver.png';
-import turretWireframe from '../images/turret_wireframe.png';
-import undersuitHandGreeble from '../images/undersuit_hand_greeble.png';
-*/
 
 const ClickableImage = (props: React.HTMLProps<HTMLImageElement>) => {
   return (
@@ -82,23 +65,21 @@ const ThreeD = () => {
       </p>
 
       <div className={styles.container}>
-        {/*
-        <ClickableImage src={badFace} alt="badFace" />
-        <ClickableImage src={bubbleShield} alt="bubbleShield" />
-        <ClickableImage src={cubesMess} alt={cubesMess} />
-        <ClickableImage src={dirtyHog} alt="dirtyHog" />
-        <ClickableImage src={fire} alt="fire" />
-        <ClickableImage src={fireDot} alt="fireDot" />
-        <ClickableImage src={generatedBadRocks} alt="generatedBadRocks" />
-        <ClickableImage src={generatedNebula} alt="generatedNebula" />
-        <ClickableImage src={goldHog} alt="goldHog" />
-        <ClickableImage src={magnumBack} alt="magnumBack" />
-        <ClickableImage src={mongoose} alt="mongoose" />
-        <ClickableImage src={parametricArmorWear} alt="parametricArmorWear" />
-        <ClickableImage src={revolver} alt="revolver" />
-        <ClickableImage src={turretWireframe} alt="turretWireframe" />
-        <ClickableImage src={undersuitHandGreeble} alt="undersuitHandGreeble" />
-        */}
+        <ClickableImage src="/images/bad_face.png" alt="bad_face" />
+        <ClickableImage src="/images/bubble_shield.gif" alt="bubble_shield" />
+        <ClickableImage src="/images/cubes_mess.png" alt="cubes_mess" />
+        <ClickableImage src="/images/dirty_hog.jpeg" alt="dirty_hog" />
+        <ClickableImage src="/images/fire.gif" alt="fire" />
+        <ClickableImage src="/images/fire_dot.gif" alt="fire_dot" />
+        <ClickableImage src="/images/generated_bad_rocks.png" alt="bad_rocks" />
+        <ClickableImage src="/images/generated_nebula.png" alt="nebula" />
+        <ClickableImage src="/images/gold_hog.png" alt="gold_hog" />
+        <ClickableImage src="/images/magnum_back.png" alt="magnum_back" />
+        <ClickableImage src="/images/mongoose.png" alt="mongoose" />
+        <ClickableImage src="/images/parametric_armor_wear.gif" alt="parametric_armor_wear" />
+        <ClickableImage src="/images/revolver.png" alt="revolver" />
+        <ClickableImage src="/images/turret_wireframe.png" alt="turret_wf" />
+        <ClickableImage src="/images/undersuit_hand_greeble.png" alt="undersuit_hand_greeble" />
       </div>
     </Layout>
   );
