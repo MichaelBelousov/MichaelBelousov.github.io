@@ -1,6 +1,5 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import { Link } from 'gatsby';
+import React from 'react';
 import styles from './header.module.scss';
 
 const Header = () => (
@@ -18,8 +17,8 @@ const Header = () => (
     </div>
     <hr/>
   </header>
-)
+);
 
 
-export default Header
+export default Header;
 

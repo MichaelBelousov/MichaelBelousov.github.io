@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from './header';
 import SEO from './seo';
-import './layout.scss';
+import styles from './layout.module.scss';
 
 interface LayoutProps {
   pageTitle: string;
@@ -18,11 +18,11 @@ const Layout = ({ pageTitle, children }: LayoutProps) => {
   `);
 
   return (
-    <>
+    <div className={styles.pageWrapper}>
       <SEO title={pageTitle} />
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
-    </>
+    </div>
   );
 };
 
