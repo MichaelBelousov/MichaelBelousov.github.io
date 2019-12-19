@@ -139,9 +139,9 @@ randpts = [[rand(),rand()] for _ in range(100)]
 
 \begin{tabular}{|c|c|}
 \hline
-Decimal &amp; Binary &amp; 1-Bits \\
+Decimal & Binary & 1-Bits \\
 \hline
-\pyeval{'\n'.join(('&amp;'.join(map(str,d)) for d in data))}
+\pyeval{'\n'.join(('&'.join(map(str,d)) for d in data))}
 % we can extract the above one-liner for reuse in tabular 
 % construction and any horizontally partitioned context
 \hline

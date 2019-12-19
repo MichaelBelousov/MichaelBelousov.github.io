@@ -4,17 +4,17 @@ title: "Super Thin RAII Wrappers for C Types"
 date: "2018-06-17"
 ---
 
-Let's partake in some template indulgence. Suppose we have some C language
-library that we're linking to our amazing C++ project, but it leaves us with
-a few sad C "constructors" and "deleters" surrounding a struct, like any
-non-object-oriented language. Suppose we have a struct: `struct MyCType`,  
-a "constructor" for it: `MyCtype* Create_MyCType()` and a "deleter"
+Let's partake in some template indulgence. Suppose we have some C files
+that we're linking to our amazing C++ project, but it leaves us with
+a few sad C "constructors" and "destructors" surrounding a struct, as a
+language without implicit object constructionr. Suppose we have a struct: `struct MyCType`,  
+a "constructor" for it: `MyCtype* Create_MyCType()` and a "destructor"
 for it too: `Free_MyCType(MyCType*)`.
 
 
 If you don't know what 
 [Resource Acquisition is Initialization](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization)
-is, you should check it out, it's a useful programming idiom, often associated with C++,
+is, you should check it out, it's a useful programming idiom, often associated with C++ (and Rust),
 that you probably already use somewhere.
 So the question is, how can we get ourselves some nice RAII, scope-based destruction 
 for this type with minimal boiler plate? 
@@ -343,9 +343,9 @@ int main()
 ```
 
 
-I'll add a follow up article eventually for analyzing some of the 
+I'll add a follow up article some day for analyzing some of the 
 llvm-ir assembly instructions that the clang compiler can emit to get a good idea 
 at the overhead the wrapper incurs and how to minimize it or potentially eradicate 
-it with optimization
-and inlining. If you find better ways, as I'm sure you will, please inform me!
+it with optimization and inlining. If you find better ways, as I'm sure you will,
+please send me an email.
 
