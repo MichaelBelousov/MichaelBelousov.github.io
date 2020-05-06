@@ -239,7 +239,7 @@ import ReactDOM from "react-dom";
 Instead, we will simply tell typescript using the *declare* keyword, that something exists that
 it can't tell by itself. We won't go any further into typescript, this will shut up the compiler.
 
-```
+```tsx
 declare var React: any;
 declare var ReactDOM: any;
 ```
@@ -352,7 +352,9 @@ class AttributeCounter extends React.Component {
 }
 ```
 
-In original React, this was the only way to use state in a way that would cause components to rerender. It's not bad, but it's
+In original React, this was the only way to use state in a way that would cause components to rerender.
+The point of React, is that components only rerender when their state changes. This old way isn't bad,
+but it's
 a lot of boiler plate, and we aren't using any of the life cycle methods at all yet. This works because our component class gives us
 a new instance of the component each time React needs one, and we store the state on that component until the component is unmounted by
 React and its instance and state variables can be garbage collected.
@@ -414,24 +416,254 @@ Now let's create the same thing using hooks for state.
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
-function C() { return "hello"; }
 
-function B(props) {
-  return (
-    <div> <C/> {props.b && <C/>} </div>
-  );
-}
+const C = () => <>"hello"</>;
 
-class A() {
-  const
-  constructor() {
-    this.state = { a: true };
-    setTimeout(() => this.setState({a: false}), 5000); // in 5 seconds make false
-  }
-  render() {
-    return <B b={this.state.a}/>;
-  }
-}
+const B = props => <div> <C/> {props.b && <C/> </div>;
+
+const A = () => {
+  const [a, setA] = React.useState(true);
+  useEffect(() => {
+    setTimeout(() => setA(false), 5000);
+  }, []);
+  return <B b={a} />;
+};
 
 ReactDOM.render(<A/>, root);
 ```
+
+In this iteration I opted to switch to using arrow functions which are often much nicer (once
+you're used to them), and have other benefits compared to old-school function literals. Regardless,
+you can see a lot of new stuff going on already to do the same thing. Since function components
+are always the render function, there is no "constructor" or other life cycle method which we
+can use to set our timeout in. Instead, we have to learn about the concept of *effects*.
+
+An effect, is a function that React will run after each render, possibly with a list of
+*dependencies*, states that if changed trigger the effect. Probably my favorite thing about
+hooks, is how they can truly turn components into finite state machines with effects.
+You have multiple state properties, and multiple effects that run at each state change, and can
+listen to only when a particular state changes.
+
+In `A` above, our effect says "after each render, if any of the states in this list, `[]`, changed,
+set a timeout that sets the state `a` to `false` in 5000 milliseconds". When you consider that
+`[]` has no states in it and realize it will never change and therefore only happens after the first
+render, you have one of the first React hooks idioms, which I'll call `useDoAfterMount`. Together, it's,
+"after mount, set a timeout to change the state of `a` to `false` in 5000 milliseconds".
+
+As for the `useState` hook, it allows you to allocate one cell of state for the currently rendering
+component in the component tree, with an initial value. This initial value is ignored in future renders.
+We will return to that, but for now, suppose we added some hook state to our `C` components:
+
+```jsx
+import {useState} from "react";
+
+const C = () => {
+  const [count, setCount] = useState(5);
+  useEffect(() => { setInterval(() => setCount(prev=>prev+1), 1000); }, []);
+  return <>{count}</>;
+};
+```
+
+This is a more advanced usage of a react state dispatcher (the `setCount` function returned by
+`useState`). Instead of a new value, you can pass a function that gets the current value and
+creates a new one from it, like how above we increment from the current value which I nickname
+prev (since it's about to become the previous value). Because `setInterval` runs the function
+every second, it will keep going up. If we didn't use a function for the dispatcher call, we
+would do the following, which has a bug:
+
+```jsx
+const C = () => {
+  const [count, setCount] = useState(5);
+  useEffect(() => { setInterval(() => setCount(count+1), 1000); }, []);
+  return <>{count}</>;
+};
+```
+
+This is probably one of the hardest challenges of starting hooks. What's wrong with this code?
+The issue is, when the first render is ran, and the useEffect's function is parsed, the value of
+count is `5`. Since the dependencies never change (the dependency list is empty still), the hook
+isn't re ran. That same function of `setCount(5+1)` is ran every second, effectively not changing
+anything. Alright then, how about then we use that fancy dependency list then?
+
+```jsx
+const C = () => {
+  const [count, setCount] = useState(5);
+  useEffect(() => { setInterval(() => setCount(count+1), 1000); }, [count]);
+  return <>{count}</>;
+};
+```
+
+Alright, so now this... probably won't work. Think about it. On the first render, the function is called,
+and the effect is ran, adding code of `setCount(5+1)` to be called every second. One second passed, the
+state changes (`count` is now 6), and react rerenders, rerunning the function but this time useState
+returns 6 instead of the initial state which it ignores, 5. `count` has now changed, so the effect runs
+again, adding *another* code body to set state this time to `setCount(6+1)` every second. One more
+second passes, and now *both* functions execute in an unpredictable order. Which will occur first and
+which last? Will your the state of `count` be `7` or `6`? It gets worse, because this balloons up and
+a minute later you now have 60 functions running per second, all setting the state to different things.
+Avoiding dependencies on state when you can just transform the current state in the dispatcher's
+argument is key to avoiding asynchronous programming headaches, so use it whenever possible.
+
+With that out of the way, we can take the brief descriptions and formalize what the `useState` hook
+does, and why React actually has something called the [rules of hooks](https://reactjs.org/docs/hooks-rules.html).
+`useState` allocates a singular state reference for the currently rendering component when the
+component is first rendered. On all renders, it then returns the current state. Notice, that the
+`useState` parameters don't include any identifier for identifying which state you want, you don't
+ask for `useState('count', 5)`. This is because React uses the ordered nature of javascript to
+figure out which state you're asking for. Because of using this order, you *cannot use hooks in
+conditional code*. You have to extract it from the conditional code, or strange thing could happen.
+
+```jsx
+const C = props => {
+  const [a, setA] = useState(true);
+  let b, setB, c, setC;
+  if (props.blah) {
+    [b, setB] = useState([]);
+  } else if {
+    [c, setC] = useState({});
+  }
+  return null; // same as empty jsx
+};
+
+const B = props => {
+  return <> <C/> <C/> <>
+};
+```
+
+When `C` renders, React allocates two state cells, but if `props.blah` flips its truth value,
+then `b` and `c` will flip which state they get from React. For these reasons, people usually use
+linters to detect and warn them about using hooks in ways that can cause this strange behavior.
+For the same reasons, you cannot run hooks in loops or other dynamic ways, they need to be run
+at function scope.
+
+<!-- transition? -->
+Now, let's have a final note on the alternative to class instances, and then we can really get to work.
+When `B` renders, how does React know which `a`, `b`, and `c` state references to give to it?
+Unlike the class components where React keeps and maintains an instance, React needs to think a bit
+harder. React remembers the *path* it took to render this component. If we were to run
+`ReactDOM.render(<B/>, root)`, React sees three component instances. It sees something like:
+
+```
+1: 
+  path: /B
+  renderer: B
+2: 
+  path: /B/C:1
+  renderer: C
+
+3: 
+  path: /B/C:2
+  renderer: C
+```
+
+But if you look at our first example of JSX, how can it tell where components are in the render
+function if they are generated dynamically like so?
+
+```jsx
+var people = [{name: 'John', age: 25}, {name: 'Mike', age: 22}];
+ReactDOM.render(
+  <ul>
+    {people.map(person => <li> {person.name} is {person.age} years old </li>)}
+  </ul>,
+  root
+);
+```
+
+You could associate state by the order they come in, but react does one better and requires you to
+pass a special key prop in all list-generated children to tell react which is which, allowing
+your list to be in any order and change in any way. If a component shows up with a different key,
+it will be newly mounted with fresh state, if a component's props change but it has the same key,
+it is identified as the owner of that state and rerenders. It is important that your keys are
+unique, or React will only render one of them.
+
+```jsx
+ReactDOM.render(
+  <ul>
+    {people.map(p => <li key={p.name}> {p.name} is {p.age} years old </li>)}
+  </ul>,
+  root
+);
+```
+
+And with that in-depth explanation of most of reacts internals, we should be set to build our
+RPG point buy system for real, let's return to our original concept with some tweaks:
+
+```tsx
+declare var React: any;
+declare var ReactDOM: any;
+
+class AttributeCounter extends React.Component {
+  constructor() {
+    this.state = { value: 10 };
+  }
+  render() {
+    return (
+      <span>
+        {this.props.name}: {this.state.value}
+        <button>+</button>
+        <button>-</button> 
+      </span>
+    );
+  }
+}
+
+function PointBuy(props) {
+  return (
+    <AttributeCounter name={"Strength"} />
+    <AttributeCounter name={"Charisma"} />
+    <AttributeCounter name={"Wisdom"} />
+  );
+}
+
+ReactDOM.render(
+  <PointBuy/>,
+  document.getElementById('root')
+);
+```
+
+Let's start by *lifting* the state out of the children into the parent, so that the parent
+can impose concurrent constraints.
+
+```tsx
+declare var React: any;
+declare var ReactDOM: any;
+// extrace useState function from react
+const { useState } = React;
+
+class AttributeCounter extends React.Component {
+  render() {
+    return (
+      <span>
+        {this.props.name}: {this.props.value}
+        <button onClick={this.props.onInc>+</button>
+        <button onClick={this.props.onDec>-</button>
+        <button>-</button> 
+      </span>
+    );
+  }
+}
+
+function PointBuy(props) {
+  const [str, setStr] = useState(10);
+  const [cha, setCha] = useState(10);
+  const [wis, setWis] = useState(10);
+  return (
+    <AttributeCounter name={"Strength"} value={str}
+      onInc={()=>setStr(p=>p+1)} onDec={()=>setStr(p=>p-1)}
+    />
+    <AttributeCounter name={"Charisma"} value={cha}
+      onInc={()=>setCha(p=>p+1)} onDec={()=>setCha(p=>p-1)}
+    />
+    <AttributeCounter name={"Wisdom"} value={wis}
+      onInc={()=>setWis(p=>p+1)} onDec={()=>setWis(p=>p-1)}
+    />
+  );
+}
+
+ReactDOM.render(
+  <PointBuy/>,
+  document.getElementById('root')
+);
+```
+
+And if you get this far... well you're going to have to do the rest now!
