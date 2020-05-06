@@ -8,18 +8,18 @@ So you want to join the [React](https://reactjs.org) world, but when you look on
 you either see some buzz about hooks, or a bunch of tutorials using React with big
 classes and method overrides. Most of all you probably see something that isn't technically
 real Javascript, JSX.
-
 There's an open secret about modern web development. It's complicated. Really complicated.
-A-transpiles-to-B-transpiles-to-C-transpiles-to-Javascript complicated. Maybe this isn't that
+A-transpiles-to-B-transpiles-to-C-transpiles-to-Javascript complicated (more on the word
+*transpile* later. Maybe this isn't that
 secret, but lots of web developers either ignore it or pretend it's easy after learning
 50 distinct technologies to make their website. This article will try to take the magic out,
-and demonstrate that at the end of the tunnel there is a light.
+and hopefully show that there is a light at the  end of the tunnel.
 
-JSX is a very small one of those many technologies, a syntax extension for JavaScript that allows you to declare
-HTML\* constructs in code instead of manually manufacturing them. Even more specifically, JSX
-is only really syntactic sugar used by the react ecosystem for constructing "components", a
-parametric chunk of HTML.
-
+JSX is a very small one of those many technologies, a syntax extension for JavaScript that allows
+you to declare HTML element trees in code instead of manually manufacturing them. Even
+more specifically, JSX
+is really syntactic sugar used by the react ecosystem for constructing "components", a
+reusable chunk of HTML.
 Take for instance the following vanilla JavaScript script running in a simple webpage.
 If you want to test it, you can run `python3 -m http.server` in a folder
 containing the two files, then you can see it at localhost:8000 in the browser.
@@ -38,7 +38,7 @@ for (var i = 0; i < people.length; i++) {
 }
 
 // If you've seen modern JavaScript, you'll notice there are
-// some no-nos aboce, there are better ways to do things now
+// some no-nos above, there are better ways to do things now
 ```
 
 ```html
@@ -56,6 +56,8 @@ JSX gives us a much more declarative way to do this:
 
 ```jsx
 var people = [{name: 'John', age: 25}, {name: 'Mike', age: 22}];
+// once you know react, you'll know there's something else you need when generating
+// a dynamic list of children...
 ReactDOM.render(
   <ul>
     {people.map(person => <li> {person.name} is {person.age} years old </li>)}
@@ -65,16 +67,18 @@ ReactDOM.render(
 ```
 
 But there is one significant difference, JSX is only used in the react ecosystem,
-where DOM elements aren't actually used directly. That's why we need to tell React to run its own
+where DOM elements aren't actually built directly by consumers. That's why we need to tell React to run its own
 render method given the JSX expression. JSX isn't equivalent to calling the DOM's element construction
-API/functions, even though someone could write a JSX transpiler that did that, it's never seen wide usage.
-The output of the above JSX produces the following:
+API/functions. Even though someone could write a JSX transpiler that did that, it's never seen
+wide adoption, probably due to the prevalence of React (You should probably look into
+[Svelte](https://svelte.dev/) if you're interested in something like that).
+If we take what had above and see what the JSX transpiles to, we get the following:
 
 ```js
 React.createElement('ui', null, 
-  // the ... "spread" syntax used allows us to generate an arbitrary list of arguments
-  // arguments 3 and beyond to the "React.createElement" call are the react children, which
-  // can be strings to be an html text node
+  // the ... "spread" syntax used allows us to generate an arbitrary list of arguments.
+  // parameter #3 and beyond to the "React.createElement" function are the children of the element,
+  // and can be strings to be an html text node, or another complex element
   ...people.map(p => React.createElement('li',  null, 
     `${p.name} is ${p.age} years old`
   ))
@@ -86,8 +90,58 @@ using a *virtual DOM* or *VDOM*) that it can later efficiently update the real D
 to experiment with more JSX to regular JavaScript conversions, [Babel](https://babeljs.io), the world's de facto JavaScript
 transpiler has a [playground for JSX compilation](https://babeljs.io/repl/#?browsers=defaults%2C%20not%20ie%2011%2C%20not%20ie_mob%2011&build=&builtIns=false&spec=false&loose=false&code_lz=GYVwdgxgLglg9mABACwKYBt1wBQEpEDeAUIogE6pQhlIA8AJjAG4B8AEhlogO5xnr0AhLQD0jVgG4iAXyJA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=react&prettier=false&targets=&version=7.9.6&externalPlugins=).
 
-The other main thing React allows, with JSX making it syntactically convenient, is user-defined "components", they look like normal
-HTML elements being used in JSX, but they have custom logic in what attributes (*props* in React parlance) you can pass them, what
+For your reference, I'll leave here a terse demonstration of all JSX features and differences from HTML.
+
+```jsx
+//// dynamic children
+const selfClosingTag = <div />; // all tags can be self closing
+const dynamicContent = <span> {[selfClosingTag, selfClosingTag]} </span>; 
+const lists = <span> {[selfClosingTag, selfClosingTag]} </span>; 
+const emptyContent = <span> {} </span>; 
+const objects = <span> {"string object"} {5} </span>; 
+// this will throw an error, plain objects are not valid react elements
+//const emptyContent = <span> {{}} {new Date()} </span>; 
+const emptyContent = <span> {[<a href="/link"/>, 5, "hello!"]} </span>; 
+
+const optionalContent = <span> {isLoading && <Loader/>} </span>;  // clever short-circuiting hacks
+// this will throw an error, lower case components CANNOT be user-defined, they're "intrinsic components", defined by HTML
+//const loader = <myloader />; // won't compile!
+const stringProp = <MyLoader myCustomStringProp="string" />; // prop is to attribute as component is to element in React
+// any object can be passed as a prop by using {} delimiters instead of quotes
+const booleanProp = <MyLoader myCustomStringProp />; //this is sugar for myCustomStringProp={true}
+const numberProp = <MyLoader myProp={5} />;
+const anyObjectProp = <MyLoader myProp={{an: "object"}} />; // prop is to attribute as component is to element in React
+// you can spread props
+const examplePropObj = {prop1: "value", prop2: 3};
+const spreadProps = <MyLoader {...examplePropObj} {...{hello: "world"}} />; // just like spreading objects
+
+
+//// html differences
+// use "className" instead of "class"
+<MyComponent className="my-css-class" />
+// listeners on intrinsic elements take real callbacks and are camel-cased
+<MyComponent onMouseEnter={mouseevent => console.log(mouseevent.target)} />
+// inline styles are camel-cased and objects instead of inline css
+<MyComponent style={{
+  marginBottom: "56px",
+  marginTop: 0,
+}} />
+// A react "fragment" generates HTML without needing a parent tag, effectively
+// injecting the HTML chunk into the parent element, good for wrapping multiple conditional children
+<div> {test && <>{"hello!"} {5}</>} </div> // if test is true, yields <div>hello! 5</div>
+// You cannot use XML/HTML comments
+//<> <!-- not valid jsx --> </>
+// and you can't always use JS comments which sucks...
+// <div>
+//   // this isn't valid JSX either
+// </div>
+// usually you can use this if you need a comment:
+<div> {/* my valid comment */} </div>
+```
+
+The other main thing React allows, with JSX making it syntactically convenient, is user-defined
+"components", they look like normal HTML elements being used in JSX, but they have custom
+logic in what attributes (*props* in React parlance) you can pass them, what
 HTML they generate with those attributes, and they can have their own internal state. For example:
 
 ```jsx
@@ -114,14 +168,14 @@ To *transpile* is like to compile, but instead of transforming a higher level so
 it is more indicative of transforming into a similar language. JSX to Javascript, is often called transpilation, probably
 because it's done often by Babel which is usually used for real transpilation of converting some JavaScript code into other
 JavaScript code using more well-supported features that most browsers will have implemented. As mentioned before, Babel
-is the world's most popular JavaScript transpiler. The most popular way to use react is with a tool called [create-react-app](https://github.com/facebook/create-react-app).
+is the world's most popular JavaScript transpiler. The most popular way to use React is with a tool called [create-react-app](https://github.com/facebook/create-react-app).
 
 But CRA installs about 1500 packages as of today, and uses a *bundler*, webpack, that manages a transpiler toolchain and hides
 the nitty-gritty real stuff from you. You should work without webpack at least once, but I do recommend using webpack for heavy
-and production products, where you can get optimization and hot-reloading during development.
+products and definitely anything in production, so you can get optimization and hot-reloading during development.
 
-Another tool that is thankfully less magical and we will make use of here, is TypeScript. We won't focus on TypeScript itself, but it will
-let us look at the nitty gritty while still developing React comfortably. If you haven't already, now is the time to install Node.js,
+Another tool that is thankfully less magical and we will make use of here, is TypeScript. We won't focus on TypeScript much itself, but it will
+let us look at the nitty gritty while still developing React comfortably. If you haven't already, now is the time to install [Node.js](https://nodejs.org),
 I recommending using a Node installation management program like [nvm](https://github.com/nvm-sh/nvm), or if you're on windows,
 [nvm-windows](https://github.com/coreybutler/nvm-windows), to install it. Use it to install a capable version of Node like the following:
 
@@ -138,9 +192,9 @@ directory/project) using `npm`.
 npm install --global typescript
 ```
 
-Now you should be able to run `tsc -h`, to see some of the options. TypeScript's job for us is not just to compile TypeScript to JavaScript, but more importantly to
+Now you should be able to run `tsc -h`, to see some of the options. TypeScript's job for us is not just to compile typescript to JavaScript, but more importantly to
 transpile our JSX to React, since it supports JSX in `.tsx` files. For this article, our goal will be to create a point-buy system
-for an RPG character. We'll use React with and without hooks, see the difference, and emply some basic css to make it stylish.
+for an RPG character UI. We'll use React with and without hooks, see the difference, and employ some basic css to make it stylish.
 
 ## modules
 
@@ -148,10 +202,14 @@ We will make our React and ReactDOM libraries globals variables in the browser b
 [UMD](https://github.com/umdjs/umd) packaged version of React, hosted by
 some friendly denizens of the internet [jsdelivr](https://www.jsdelivr.com/) which are a Content Delivery Network or CDN, so they host common
 files like packaged React builds for us. There are a lot of module formats for JS, but UMD uses a global variable in the browser which makes it
-the easiest for us to use consume without a bundler like webpack to process it for us.
+the easiest for us to consume without a bundler like webpack to process it for us.
 You can use jsdelivr's search bar to find React, but here's [a link](https://www.jsdelivr.com/package/npm/react?path=umd)
-directly to their page on provided UMD packages of React. Go ahead and hit the copy clipboard icon and copy the HTML vesion and load
-that script in out HTML.  It will already be set to the latest stable version which should be fine.
+directly to their page on provided UMD packages of React. Go ahead and hit the copy clipboard icon and
+copy the HTML vesion and load that script in out HTML. It will already be set to the latest stable
+version which should be fine. You also need the latest version of `react-dom` which you can find
+using the jsDelivr search bar or [here](https://www.jsdelivr.com/package/npm/react-dom?path=umd).
+Your script should look like this, note that both react dependencies are loaded before our site's
+own script.
 
 ```html
 <!DOCTYPE html>
@@ -166,7 +224,6 @@ that script in out HTML.  It will already be set to the latest stable version wh
   <script src="https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.development.js"></script>
   <script src="/index.js"></script>
 </html>
-
 ```
 
 TypeScript is only designed to really work with packages, so it won't understand yet that we're
@@ -179,8 +236,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 ```
 
-Instead, we will simply tell typescript using the *declare* keyword, that something exists that it can't tell
-by itself. We won't go any further into typescript, this will shut up the compiler.
+Instead, we will simply tell typescript using the *declare* keyword, that something exists that
+it can't tell by itself. We won't go any further into typescript, this will shut up the compiler.
 
 ```
 declare var React: any;
@@ -188,9 +245,10 @@ declare var ReactDOM: any;
 ```
 
 This tells typescript that it should expect the names React and ReactDOM were declared using the "var"
-keyword somewhere before the code the compiler is processing, and it tells the compiler to not care about their
-type by giving them the type, `any`. We lose valuable typechecking, but you it makes things less complicated to start,
-we'll still get valuable type checking for our own stuff, but not when we use the React and ReactDOM names.
+keyword somewhere before the code the compiler is processing, and it tells the compiler to not care
+about their type by giving them the type, `any`. We lose valuable typechecking, but it makes
+things less complicated to start; we'll still get valuable type checking for our own stuff, but
+not when we use the React and ReactDOM names.
 
 Let's get our new `index.tsx` file off the ground:
 
@@ -230,26 +288,28 @@ ReactDOM.render(
 Now run `tsc` with the `--jsx` setting set to "react" (it can also not transpile it or target react for iOS). Run it:
 
 ```bash
-tsc --jsx react index.tsx
+tsc --jsx react  index.tsx
 ```
 
 Typescript will create the index.js file for you or yell at you if you made a mistake. You can open it and see some neat tricks, including the converted JSX, 
 as well as transpilation of other not-well supported javascript features like the class is compiled to a function with a "prototype" property attached to it.
-You can read up on prototype based inheritance and JavaScript's object/class model elsewhere, since that's not in scope here. Either way, you should now
-be able to run a server, like the Python simple http server mentioned earlier, open index.html and see React render out 3 values and 3 "+" buttons, and 3 "-" buttons.
+You can read up on prototype based inheritance and JavaScript's object/class model
+[elsewhere](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain),
+since that's not in scope here. Either way, you should now
+be able to run a server, like the Python simple http server mentioned earlier, navigate to `index.html` and see React render out 3 values and 3 "+" buttons, and 3 "-" buttons.
 With React working, we can talk about state, and what that "useState" function does, and how we're going to use state differently in that class component.
 
-## hooks, class components, and modules
+## hooks, class components, and state
 
-React 16.8 introduced the concept of "hooks". React already had what they call "functional components", which is where a function takes an object of props as an argument,
+React 16.8 introduced the concept of *hooks*. React already had what they call *functional components*, which is where a function takes an object of props as an argument,
 and returns a JSX fragment. Hooks allow you to "hook" into React's render logic specific to the currently rendering component. This can be used to identify each component
-in the rendered component tree, which means functional components which normally only have access to props can now store their own state in a way unique to the component.
+in the rendered component tree, which means functional components which normally only have access to props can now store their own state in a way unique to the component instance.
 With that, you can ditch the use of classes entirely, but we'll come back to this after we learn how to use state the old way in React anyway.
 
 You'll notice we used a class in our `index.tsx` already. This is the old way of creating stateful components that can rerender themselves. You simply inherit (extend)
-the official React.Component class, and override its lifecycle methods, in this case just render. In these objects, state is a singular property of a component instance,
-but you can't set it the same way as you normally do in JavaScript. To set state, you need to do it in a way that React knows, so you use the inherited function, `setState`,
-which takes an object containing all of the changes state values. Let's make that "+" button increment the `value` property of the state.
+the official React.Component class, and override its lifecycle methods, in this case just the "render" method. In these objects, state is an object property of a component instance,
+but you can't set it the same way as you normally do in JavaScript. To set state, you need to do it in a way that React knows, so you use the inherited method, `setState`,
+which takes an object containing all of the changed state values. Let's make that "+" button increment the `value` property of the state.
 
 ```tsx
 class AttributeCounter extends React.Component {
@@ -297,13 +357,15 @@ a lot of boiler plate, and we aren't using any of the life cycle methods at all 
 a new instance of the component each time React needs one, and we store the state on that component until the component is unmounted by
 React and its instance and state variables can be garbage collected.
 When we call `ReactDOM.render`, we give it our React element to render, created by the implicit React.createElement which we're using JSX
-to hide. When the react element to be rendered is a class, an instance is initialized, rendered, and mounted
-(React jargon for its resulting render HTML is added to the DOM and React keeping track of it).
+to hide. When the react element to be rendered is a class, an instance is initialized, rendered,
+and mounted (*mounted* is React jargon for its resulting render HTML is added to the DOM and
+React is keeping track of it).
 
 If you pass a function to `React.createElement`, React can't create an instance, so it just runs the function with the props object as an argument
-from the parent. A functional component used like `<MyFunction a={5} b={"hello"} c />` would be interpreted by React as `MyFunction({a: 5, b:"hello", c: true})'`. Then
-whatever JSX-fragment/React-element that functional component returns is rendered with its components in turn, or raw HTML elements which can be known in JSX
-as "intrinsic elements". The point is, there is no state this way, just the props passed by the parent.
+from the parent. So two different instances of a functional component use the same function, and have
+no state. A functional component used like `<MyFunction a={5} b={"hello"} c />` would be interpreted by React as `MyFunction({a: 5, b:"hello", c: true})'`. Then
+whatever JSX-fragment/React-element that functional component returns is rendered with its components in turn, and any intrinsic elements or strings marked as literal return.
+The point is, there is no state this way, just the props passed by the parent.
 
 But we can have state in functional components, when React pays attention to the render order in the tree. Before we start using state in
 our functional component using hooks, lets look at where that state is stored, so we can better understand some of the restrictions hooks will
@@ -312,6 +374,8 @@ impose.
 Suppose we have the following React app:
 
 ```jsx
+import React from "react";
+import ReactDOM from "react-dom";
 
 function C() { return "hello"; }
 
@@ -336,7 +400,38 @@ ReactDOM.render(<A/>, root);
 
 So the App is an `A` component, when A is rendered, it tells React to render one child `B` with a prop of `b` as `true` which is
 derived from its state of `a`. `B` renders two `C` components, because its `b` component as passed to it was true, and the `&&` expression evaluated
-via short-circuiting to a `B` element`.
+via short-circuiting to a `B` element.
 
+<div style="text-align:center">
+  <img style="width:600px" alt="YOU CAN'T SEE THIS IMAGE" src="/images/component-tree.svg" />
+</div>
 
+You can see that the `C` function component was called twice, each time for a unique child of `B`.
+When React traverse the render tree, after the state update, and sees that the second `C` is gone, it
+will unmount it, which means React no longer listens for updates to that component's props or state.
+Now let's create the same thing using hooks for state.
 
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+function C() { return "hello"; }
+
+function B(props) {
+  return (
+    <div> <C/> {props.b && <C/>} </div>
+  );
+}
+
+class A() {
+  const
+  constructor() {
+    this.state = { a: true };
+    setTimeout(() => this.setState({a: false}), 5000); // in 5 seconds make false
+  }
+  render() {
+    return <B b={this.state.a}/>;
+  }
+}
+
+ReactDOM.render(<A/>, root);
+```
