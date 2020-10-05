@@ -8,7 +8,7 @@ I needed to do a top-down draft, a design of something I would be 3D-modeling la
 my 2D drawing toolkit, Krita. I bumped the resolution to
 5000x5000 pixels, and had to think deeply about it.
 
-The lack of dynamic resolution in such raster based D image manipulation programs is saddening. Especially
+The lack of dynamic resolution in such raster based image manipulation programs is saddening. Especially
 in my drafting process. It's inconvenient to have to worry about blurry details when zooming in too far, or slow stroke
 rendering/committing when zooming out too much. So, since I already use Blender for practically everything else and
 was enjoying the quality of life improvements in Blender 2.8 recently, I decided to check out its new 2D (Grease Pencil) tools for kicks.
