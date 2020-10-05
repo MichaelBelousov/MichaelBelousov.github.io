@@ -1,9 +1,15 @@
+const path = require("path")
+const { createFilePath } = require("gatsby-source-filesystem")
 
-const path = require('path');
+const imageInlineSizeLimit = 4 * 1024
 
-const imageInlineSizeLimit = 4 * 1024;
-
-exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) => {
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
   actions.setWebpackConfig({
     module: {
       rules: [
@@ -17,25 +23,25 @@ exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) =>
             // A missing `test` is equivalent to a match.
             {
               test: /\.bmp$/,
-              loader: require.resolve('url-loader'),
+              loader: require.resolve("url-loader"),
               options: {
                 limit: imageInlineSizeLimit,
-                name: 'static/media/[name].[hash:8].[ext]',
+                name: "static/media/[name].[hash:8].[ext]",
               },
             },
             {
               test: /\.(gif|png|jpe?g|svg)$/i,
               use: [
-                require.resolve('file-loader'),
-                require.resolve('image-webpack-loader'),
-              ]
+                require.resolve("file-loader"),
+                require.resolve("image-webpack-loader"),
+              ],
             },
             // markdown loading chain
             {
               test: /\.md$/,
               use: [
-                require.resolve('html-loader'),
-                require.resolve('markdown-loader'),
+                require.resolve("html-loader"),
+                require.resolve("markdown-loader"),
               ],
             },
           ],
@@ -43,8 +49,41 @@ exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) =>
       ],
     },
     resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules']
-    }
-  });
-};
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+    },
+  })
+}
 
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  if (node.internal.type === "MarkdownRemark") {
+    const { createNodeField } = actions
+    const slug = createFilePath({ node, getNode, basePath: "blog" })
+    createNodeField({ node, name: "slug", value: slug })
+  }
+}
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+  const result = await graphql(`
+    query {
+      allMarkdownRemark {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `)
+  result.data.allMarkdownRemark.edges.forEach(({ node }) =>
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve("./src/components/BlogPage.tsx"),
+      context: {
+        slug: node.fields.slug,
+      },
+    })
+  )
+}

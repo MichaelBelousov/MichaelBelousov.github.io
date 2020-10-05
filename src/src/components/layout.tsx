@@ -1,21 +1,27 @@
-import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
 
-import Header from './header';
-import SEO from './seo';
-import styles from './layout.module.scss';
+import Header from "./header"
+import SEO from "./seo"
+import styles from "./layout.module.scss"
 
 interface LayoutProps {
-  pageTitle: string;
-  children?: React.ReactNode;
+  pageTitle: string
 }
 
-const Layout = ({ pageTitle, children }: LayoutProps) => {
+const Layout = ({
+  pageTitle,
+  children,
+}: React.PropsWithChildren<LayoutProps>) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
-      site { siteMetadata { title } }
+      site {
+        siteMetadata {
+          title
+        }
+      }
     }
-  `);
+  `)
 
   return (
     <div className={styles.pageWrapper}>
@@ -23,7 +29,6 @@ const Layout = ({ pageTitle, children }: LayoutProps) => {
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
     </div>
-  );
-};
-
+  )
+}
 export default Layout
