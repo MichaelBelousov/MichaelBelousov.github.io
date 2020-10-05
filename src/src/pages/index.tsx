@@ -1,76 +1,68 @@
-import React from 'react';
-import Layout from '../components/layout';
+import React from 'react'
+import Layout from '../components/layout'
 
 const Homepage = () => {
   return (
     <Layout pageTitle="Home">
       <p> Hi, I'm Michael Belousov. I'm a programmer and digital artist. </p>
       <p>
-        Some software components/stacks that I've used in an advanced capacity are listed below.
-        I've used other stuff that may not warrant mention (except to lampoon), such as PHP.
+        Here is a non-exhaustive list of software that I've used in an advanced
+        capacity.
       </p>
       <ul>
         {[
-          'C++, C', 
-          'Python', 
-          'Bash', 
-          'TypeScript, JavaScript, Node.js', 
-          'git', 
-          'Blender', 
-          'Linux/GNU', 
-          'Elm', 
-          'React.js', 
-          'Vue.js', 
-          'HTML5, css, sass, SVG', 
-          'webpack, yarn, npm, lerna, ...etc',
-          'PostgreSQL, mongodb', 
+          'C++, C',
+          'Python',
+          'Bash',
+          'TypeScript, JavaScript, Node.js',
+          'git',
+          'Blender',
+          'GNU/Linux',
+          'Elm',
+          'React.js',
+          'Vue.js',
+          'HTML5, CSS, Sass, SVG',
+          'webpack, yarn, npm, lerna, pnpm, eslint, babel ...etc',
+          'PostgreSQL, MongoDB',
           'Java',
-          'Lisp',
           'LaTeX',
           'Gitlab',
           'Azure, ADO, Azure storage, Octopus',
-          'GNU make',
           'lex/flex/reflex, yacc/Bison',
           'LLVM',
-          '.NET, C#',
-        ].map(s => <li key={s}>{s}</li>)}
+          '.NET, C#, dotnet-core',
+        ].map(s => (
+          <li key={s}>{s}</li>
+        ))}
       </ul>
 
-      <p>
-      Things I'm looking to use on a next project include:
-      </p>
+      <p>Things I'm looking to use on a next project include:</p>
       <ul>
-        {[
-          'Go', 
-          'Rust', 
-          'Haskell', 
-          'Clojure', 
-        ].map(s => <li key={s}>{s}</li>)}
+        {['Go', 'Rust', 'Haskell', 'Clojure'].map(s => (
+          <li key={s}>{s}</li>
+        ))}
       </ul>
 
-      <p>
-      Some projects I might be working on:
-      </p>
+      <p>Some projects I am working on:</p>
       <ul>
-        {[
-          ['Sizr', 'refactoring refactored, using a uniquely human-oriented AST query DSL' +
-          ' for declaring terse source transforms'
-          ], 
-          ['Fluster', 'a programming language, with fun features like recasing imports and a' +
-            ' focus on reuse, not concerned with runtimes and using a C-style virtual machine model'
-          ],
-          ['Untitled', 'unquestionably correct code formatting with a DSL and spring physics'], 
-          ['Engem', 'realtime graphics stuff'],
-        ].map(([title, desc]) => <li key={title}><strong>{title}</strong> {desc}</li>)}
+        {[['Sizr', 'regex but for programming languages']].map(
+          ([title, desc]) => (
+            <li key={title}>
+              <strong>{title}</strong> {desc}
+            </li>
+          )
+        )}
       </ul>
 
       <p>
-      I'm interested in lots of things and if you think you have one of them, feel free
-      to contact me via email.
+        I'm interested in lots of things and if you think you have one of them,
+        feel free to{' '}
+        <a href="mailto:mikemikeb@protonmail.com">contact me via email</a>. Also
+        checkout <a href="https://github.com/MichaelBelousov">my GitHub</a> to
+        see some projects I am working on or have worked on.
       </p>
     </Layout>
-  );
-};
+  )
+}
 
-export default Homepage;
-
+export default Homepage
