@@ -4,10 +4,24 @@ title: "Super Thin RAII Wrappers for C Types"
 date: "2018-06-17"
 ---
 
-Let's partake in some template indulgence. Suppose we have some C files
+#### *Editor's Note:*
+This article abuses some C++/C interop concepts.
+In reality, you should use the original C API in any C++ project
+using a C dependency without official, well-supported, sane, C++ bindings,
+since that will prevent cluttering the conceptual context of the API.
+Regardless, we can still learn a lot for our own C++ and occasionally
+C by looking at this relationship. I definitely went crazy here, but
+it's all in good fun.
+
+
+-----------------------------------------------------
+
+
+Let's partake in some template indulgence 
+. Suppose we have some C files
 that we're linking to our amazing C++ project, but it leaves us with
 a few sad C "constructors" and "destructors" surrounding a struct, as a
-language without implicit object constructionr. Suppose we have a struct: `struct MyCType`,  
+language without implicit object construction. Suppose we have a struct: `struct MyCType`,  
 a "constructor" for it: `MyCtype* Create_MyCType()` and a "destructor"
 for it too: `Free_MyCType(MyCType*)`.
 
