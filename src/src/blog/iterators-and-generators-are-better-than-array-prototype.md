@@ -44,7 +44,7 @@ function* myGenerator() {
 }
 ```
 
-When `myGenerator` called, it returns an iterator which on its next method, runs the underlying coroutine until it yields, which would be
+When `myGenerator` is called, it returns an iterator which on its next method, runs the underlying coroutine until it yields, which would be
 at the `yield` keyword. This way, callers can run their own code in between yielded elements, and even stop asking for more elements.
 With the `Array.prototype.map` function design, you need to allocate the entire array before you can iterate through it. This ability
 to not iterate until we need to, and even stop iteration is the concept of lazy evaluation that will free us from unnecessary allocations.
