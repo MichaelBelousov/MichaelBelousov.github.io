@@ -295,7 +295,7 @@ export default class Lazy<T> implements Iterable<T> {
         })
     }
 
-    public reduce<Result>(callback: (prev: Result, curr: T, index: number) => Result, initial: Result): Result {
+    public reduce<Result>(callback: (prev: Result, curr: T, index: number) => Result, initial?: Result): Result {
         let result = initial
         let i = 0
         for (const curr of this) {
