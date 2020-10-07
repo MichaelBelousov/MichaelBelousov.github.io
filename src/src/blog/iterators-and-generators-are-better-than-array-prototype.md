@@ -19,7 +19,7 @@ Returning to the horror of JavaScript's original design, take for instance the f
 ([1,2,3]
 	.map(x => x*3)
 	.filter(x => x%2 == 0)
-	.map(x => `js:LANG>${x}`)
+	.map(x => `${x}`)
 	.concat([10, 11])
 )
 ```
