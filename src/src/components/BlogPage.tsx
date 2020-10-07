@@ -1,5 +1,4 @@
 import React, { useLayoutEffect } from "react"
-import hljs from "highlight.js"
 import Layout from "./layout"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
@@ -8,11 +7,6 @@ import SEO from "./seo"
 import styles from "./blog.module.scss"
 
 export default function BlogPost(props: any) {
-  useLayoutEffect(() => {
-    hljs.initHighlighting.called = false
-    hljs.initHighlighting()
-  }, [])
-
   const post = props.data.markdownRemark
 
   console.log(post)
