@@ -28,9 +28,9 @@ to Python formatting key syntax.
 If I were to write my LaT<sub>E</sub>X code directly in a Python string,
 and attempt to use formatting keys,
 I would probably spontaneously combust. It looks like this:</p>
-<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token triple-quoted-string string">r"""\begin{{document}}
-\frac{{ {kill} }}{{ {me} }}
-\end{{document}}"""</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>kill<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> me<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span></code></pre></div>
+<div class="gatsby-highlight" data-language="latex"><pre class="language-latex"><code class="language-latex">r"""<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">{document</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token function selector">\frac</span><span class="token punctuation">{</span><span class="token punctuation">{</span> <span class="token punctuation">{</span>kill<span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token punctuation">{</span> <span class="token punctuation">{</span>me<span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">{document</span><span class="token punctuation">}</span><span class="token punctuation">}</span>""".format(kill=5, me=10)</code></pre></div>
 <p>That's almost as crufty as chained ternary expressions in JSX.
 Backslash doubling I can avoid by making it a raw string, but that
 isn't an option in all use cases.
@@ -40,9 +40,9 @@ escaped braces for me, and interpretted the characters '&#x3C;&#x3C;' as '{', an
 keys looked distinct from the LaT<sub>E</sub>X syntax.
 My dumb and ugly LaT<sub>E</sub>X superset templater took about 5 lines of
 Python code to process, and the source looked like:</p>
-<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">\begin<span class="token punctuation">{</span>document<span class="token punctuation">}</span>
-\frac<span class="token punctuation">{</span><span class="token operator">&lt;&lt;</span>numerator<span class="token operator">>></span><span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token operator">&lt;&lt;</span>denominator<span class="token operator">>></span><span class="token punctuation">}</span>
-\end<span class="token punctuation">{</span>document<span class="token punctuation">}</span></code></pre></div>
+<div class="gatsby-highlight" data-language="latex"><pre class="language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">document</span><span class="token punctuation">}</span>
+<span class="token function selector">\frac</span><span class="token punctuation">{</span>&lt;&lt;numerator>><span class="token punctuation">}</span><span class="token punctuation">{</span>&lt;&lt;denominator>><span class="token punctuation">}</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">document</span><span class="token punctuation">}</span></code></pre></div>
 <p>Quite literally, all my template processor had to do was replace all braces with
 escaped double braces, and then replace all
 double angle brackets with a single formatting brace, thus yielding
@@ -70,11 +70,11 @@ Certainly I could do better? So I did something sinful.</p>
 Let's add a <code class="language-latex"><span class="token function selector">\pyeval</span></code> pseudo-command, and a
 <code class="language-text">pyexec</code> pseudo-environment so that we can get something
 like so:</p>
-<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">\begin<span class="token punctuation">{</span>pyexec<span class="token punctuation">}</span>
-name <span class="token operator">=</span> <span class="token string">'John'</span>
-\end<span class="token punctuation">{</span>pyexec<span class="token punctuation">}</span>
+<div class="gatsby-highlight" data-language="latex"><pre class="language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">pyexec</span><span class="token punctuation">}</span>
+name = 'John'
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">pyexec</span><span class="token punctuation">}</span>
 
-Hello I am \pyeval<span class="token punctuation">{</span><span class="token string">' '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">[</span>name<span class="token punctuation">,</span><span class="token string">'Smith'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre></div>
+Hello I am <span class="token function selector">\pyeval</span><span class="token punctuation">{</span>' '.join(<span class="token punctuation">[</span>name,'Smith'<span class="token punctuation">]</span>)<span class="token punctuation">}</span></code></pre></div>
 <p>Originally I implemented (knowing my transgressions) a naive
 regular expression based implementation, but this has many problems</p>
 <ul>
@@ -85,40 +85,40 @@ regular expression based implementation, but this has many problems</p>
 braces. (Regular expressions can't find the valid ending
 brace of a nested expression)
 Checkout the following counter_examples:</p>
-<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">\begin<span class="token punctuation">{</span>pyexec<span class="token punctuation">}</span>
-hate_you <span class="token operator">=</span> <span class="token string">r'\end{pyexec}'</span>  <span class="token comment"># we need to avoid ending if its in a literal</span>
-\end<span class="token punctuation">{</span>pyexec<span class="token punctuation">}</span>
+<div class="gatsby-highlight" data-language="latex"><pre class="language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">pyexec</span><span class="token punctuation">}</span>
+hate_you = r'<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">pyexec</span><span class="token punctuation">}</span>'  # we need to avoid ending if its in a literal
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">pyexec</span><span class="token punctuation">}</span>
 
-\pyeval<span class="token punctuation">{</span>h <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'hello'</span><span class="token punctuation">:</span> <span class="token string">'world'</span><span class="token punctuation">,</span> <span class="token string">'x'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span>  <span class="token comment"># which brace do we end on?</span></code></pre></div>
+<span class="token function selector">\pyeval</span><span class="token punctuation">{</span>h = <span class="token punctuation">{</span>'hello': 'world', 'x': <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span>  # which brace do we end on?</code></pre></div>
 <p>So I couldn't use regular expressions for this, but I still wanted it.
 Because my LaT<sub>E</sub>X document source would look like this:</p>
-<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">\begin<span class="token punctuation">{</span>pyexec<span class="token punctuation">}</span>
-<span class="token keyword">from</span> scipy<span class="token punctuation">.</span>optimize <span class="token keyword">import</span> curve_fit
-<span class="token keyword">from</span> random <span class="token keyword">import</span> random <span class="token keyword">as</span> rand
-<span class="token keyword">from</span> itertools <span class="token keyword">import</span> count<span class="token punctuation">,</span> product <span class="token keyword">as</span> crossproduct
-<span class="token builtin">bin</span> <span class="token operator">=</span> crossproduct<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>repeat<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
-data <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">zip</span><span class="token punctuation">(</span>count<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">bin</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment"># add a count of set bits as a column</span>
-<span class="token keyword">for</span> row <span class="token keyword">in</span> data<span class="token punctuation">:</span>
-d<span class="token punctuation">,</span> b <span class="token operator">=</span> row
-row<span class="token punctuation">.</span>append<span class="token punctuation">(</span>b<span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-randpts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>rand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>rand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-\end<span class="token punctuation">{</span>pyexec<span class="token punctuation">}</span>
+<div class="gatsby-highlight" data-language="latex"><pre class="language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">pyexec</span><span class="token punctuation">}</span>
+from scipy.optimize import curve_fit
+from random import random as rand
+from itertools import count, product as crossproduct
+bin = crossproduct((0,1),repeat=5)
+data = list(zip(count(), bin))
+# add a count of set bits as a column
+for row in data:
+d, b = row
+row.append(b.count(1))
+randpts = <span class="token punctuation">[</span><span class="token punctuation">[</span>rand(),rand()<span class="token punctuation">]</span> for _ in range(100)<span class="token punctuation">]</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">pyexec</span><span class="token punctuation">}</span>
 
-\section<span class="token operator">*</span><span class="token punctuation">{</span>Data Stuff<span class="token punctuation">}</span>
+<span class="token function selector">\section*</span><span class="token punctuation">{</span><span class="token headline class-name">Data Stuff</span><span class="token punctuation">}</span>
 
-\begin<span class="token punctuation">{</span>tabular<span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token operator">|</span>c<span class="token operator">|</span>c<span class="token operator">|</span><span class="token punctuation">}</span>
-\hline
-Decimal <span class="token operator">&amp;</span> Binary <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token operator">-</span>Bits \\
-\hline
-\pyeval<span class="token punctuation">{</span><span class="token string">'\n'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'&amp;'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">,</span>d<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> d <span class="token keyword">in</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-<span class="token operator">%</span> we can extract the above one<span class="token operator">-</span>liner <span class="token keyword">for</span> reuse <span class="token keyword">in</span> tabular 
-<span class="token operator">%</span> construction <span class="token keyword">and</span> <span class="token builtin">any</span> horizontally partitioned context
-\hline
-\end<span class="token punctuation">{</span>tabular<span class="token punctuation">}</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">tabular</span><span class="token punctuation">}</span><span class="token punctuation">{</span>|c|c|<span class="token punctuation">}</span>
+<span class="token function selector">\hline</span>
+Decimal <span class="token punctuation">&amp;</span> Binary <span class="token punctuation">&amp;</span> 1-Bits <span class="token function selector">\\</span>
+<span class="token function selector">\hline</span>
+<span class="token function selector">\pyeval</span><span class="token punctuation">{</span>'<span class="token function selector">\n</span>'.join(('<span class="token punctuation">&amp;</span>'.join(map(str,d)) for d in data))<span class="token punctuation">}</span>
+<span class="token comment">% we can extract the above one-liner for reuse in tabular </span>
+<span class="token comment">% construction and any horizontally partitioned context</span>
+<span class="token function selector">\hline</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">tabular</span><span class="token punctuation">}</span>
 
-<span class="token operator">%</span> use unpack<span class="token operator">+</span><span class="token builtin">zip</span> hack to get separate lists of x then y coords
-Best Fit<span class="token punctuation">:</span> \pyeval<span class="token punctuation">{</span>curve_fit<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">,</span>m<span class="token punctuation">,</span>b<span class="token punctuation">:</span> m<span class="token operator">*</span>x<span class="token operator">+</span>b<span class="token punctuation">,</span> <span class="token builtin">zip</span><span class="token punctuation">(</span><span class="token operator">*</span>randpts<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span> </code></pre></div>
+<span class="token comment">% use unpack+zip hack to get separate lists of x then y coords</span>
+Best Fit: <span class="token function selector">\pyeval</span><span class="token punctuation">{</span>curve_fit(lambda x,m,b: m*x+b, zip(*randpts))<span class="token punctuation">}</span> </code></pre></div>
 <p>Mmmmm... delicious. It looks so much like Python yet so much like LaT<sub>E</sub>X.
 It's both at once, without crippling either one! It's logic embedded in the document
 markup cleanly. So I did go and implement it. Originally I tried using a more
