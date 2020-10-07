@@ -200,13 +200,13 @@ idiom is a real gem in TypeScript, with generators also shining. Hopefully you d
 to use something like this over lowering yourself to mutable `Array.prototype.push`
 in your performance-sensitive hotspots. Although I'm yet to [micro]benchmark the two.
 
-As promised, here's a decently extensive `Lazy` implementation in TypeScript. I actually
-made one simplification and was too lazy (trivial pun intended) to double check that it
-compiles, please [bug me](mailto:mikemikeb@protonmail.com) if it doesn't.
-
-Eventually if I find a good untaken name I'll add more test cases and publish this to [npm](https://www.npmjs.com/).
-If you'd like to do it yourself for me for some reason, please involve me, I'd love to share
-the ownership. Please use away internally however you like.
+As promised, below is a decently extensive `Lazy` implementation in TypeScript.  
+Eventually if I find a good untaken name, stop being lazy (trivial pun intended),
+and write more tests (I have a few), I'll publish this to [npm](https://www.npmjs.com/)
+for quick usage in your projects.
+If you'd like to do it yourself for some reason, please
+[involve me](mailto:mikemikeb@protonmail.com), I'd love to share the ownership.
+Please use anyway you'd like, within reason.
 
 ```ts
 // Typescript@4.0 probably simplifies or allows better alternative typings for
@@ -218,7 +218,7 @@ function isIterable<T>(arg: T | Iterable<T>): arg is Iterable<T> {
 }
 
 /** iterable wrapper for functional programming with lazy composition */
-export default class Lazy<T> implements Iterator<T> {
+export default class Lazy<T> implements Iterable<T> {
     static from<T>(iterable: Iterable<T>) {
         return new Lazy<T>(iterable)
     }
@@ -323,7 +323,7 @@ export default class Lazy<T> implements Iterator<T> {
     }
     
     public empty(): boolean {
-        const item = this.next()
+        const item = this[Symbol.iterator]().next()
         return item.done
     }
 
@@ -347,6 +347,9 @@ export default class Lazy<T> implements Iterator<T> {
         return false
     }
 }
-
 ```
+
+PS: I hate highlight.js's TypeScript support. I should probably throw a PR at them because it's
+constantly broken. Or I'll try Prism which might have static styling support that I could
+take advantage of (via a Gatsby plugin; I use Gatsby to generate my site).
 

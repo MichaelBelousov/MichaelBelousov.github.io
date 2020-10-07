@@ -158,12 +158,13 @@ sins of JavaScript. I think the 'anonymous iterable'
 idiom is a real gem in TypeScript, with generators also shining. Hopefully you decide
 to use something like this over lowering yourself to mutable <code>Array.prototype.push</code>
 in your performance-sensitive hotspots. Although I'm yet to [micro]benchmark the two.</p>
-<p>As promised, here's a decently extensive <code>Lazy</code> implementation in TypeScript. I actually
-made one simplification and was too lazy (trivial pun intended) to double check that it
-compiles, please <a href="mailto:mikemikeb@protonmail.com">bug me</a> if it doesn't.</p>
-<p>Eventually if I find a good untaken name I'll add more test cases and publish this to <a href="https://www.npmjs.com/">npm</a>.
-If you'd like to do it yourself for me for some reason, please involve me, I'd love to share
-the ownership. Please use away internally however you like.</p>
+<p>As promised, below is a decently extensive <code>Lazy</code> implementation in TypeScript.<br>
+Eventually if I find a good untaken name, stop being lazy (trivial pun intended),
+and write more tests (I have a few), I'll publish this to <a href="https://www.npmjs.com/">npm</a>
+for quick usage in your projects.
+If you'd like to do it yourself for some reason, please
+<a href="mailto:mikemikeb@protonmail.com">involve me</a>, I'd love to share the ownership.
+Please use anyway you'd like, within reason.</p>
 <pre><code class="language-ts">// Typescript@4.0 probably simplifies or allows better alternative typings for
 // some of these
 
@@ -173,7 +174,7 @@ function isIterable&#x3C;T>(arg: T | Iterable&#x3C;T>): arg is Iterable&#x3C;T> 
 }
 
 /** iterable wrapper for functional programming with lazy composition */
-export default class Lazy&#x3C;T> implements Iterator&#x3C;T> {
+export default class Lazy&#x3C;T> implements Iterable&#x3C;T> {
     static from&#x3C;T>(iterable: Iterable&#x3C;T>) {
         return new Lazy&#x3C;T>(iterable)
     }
@@ -278,7 +279,7 @@ export default class Lazy&#x3C;T> implements Iterator&#x3C;T> {
     }
     
     public empty(): boolean {
-        const item = this.next()
+        const item = this[Symbol.iterator]().next()
         return item.done
     }
 
@@ -302,4 +303,7 @@ export default class Lazy&#x3C;T> implements Iterator&#x3C;T> {
         return false
     }
 }
-</code></pre></div></div></main></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/iterators-and-generators-are-better-than-array-prototype/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-c3527675040adf5ea2fd.js"],"component---src-components-blog-page-tsx":["/component---src-components-blog-page-tsx-6d04ce94b616cd2c5bd3.js"],"component---src-pages-3-d-tsx":["/component---src-pages-3-d-tsx-2e718283dbc8bc73f3f7.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-581c2129730b4589495d.js"],"component---src-pages-blog-tsx":["/component---src-pages-blog-tsx-93486d463c9297091d6d.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-cd461490bc8b791c6a80.js"],"component---src-pages-work-tsx":["/component---src-pages-work-tsx-c6afbfcff1a7253e790b.js"]};/*]]>*/</script><script src="/webpack-runtime-16a2198acefe0c70b60a.js" async=""></script><script src="/app-c3527675040adf5ea2fd.js" async=""></script><script src="/framework-da8c6e3ed6a1d0c32925.js" async=""></script><script src="/commons-e794e0a14ff585b098df.js" async=""></script><script src="/component---src-components-blog-page-tsx-6d04ce94b616cd2c5bd3.js" async=""></script><script src="/styles-f12963b3798c232a68f6.js" async=""></script></body></html>
+</code></pre>
+<p>PS: I hate highlight.js's TypeScript support. I should probably throw a PR at them because it's
+constantly broken. Or I'll try Prism which might have static styling support that I could
+take advantage of (via a Gatsby plugin; I use Gatsby to generate my site).</p></div></div></main></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/iterators-and-generators-are-better-than-array-prototype/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-c3527675040adf5ea2fd.js"],"component---src-components-blog-page-tsx":["/component---src-components-blog-page-tsx-6d04ce94b616cd2c5bd3.js"],"component---src-pages-3-d-tsx":["/component---src-pages-3-d-tsx-2e718283dbc8bc73f3f7.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-581c2129730b4589495d.js"],"component---src-pages-blog-tsx":["/component---src-pages-blog-tsx-93486d463c9297091d6d.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-cd461490bc8b791c6a80.js"],"component---src-pages-work-tsx":["/component---src-pages-work-tsx-c6afbfcff1a7253e790b.js"]};/*]]>*/</script><script src="/webpack-runtime-16a2198acefe0c70b60a.js" async=""></script><script src="/app-c3527675040adf5ea2fd.js" async=""></script><script src="/framework-da8c6e3ed6a1d0c32925.js" async=""></script><script src="/commons-e794e0a14ff585b098df.js" async=""></script><script src="/component---src-components-blog-page-tsx-6d04ce94b616cd2c5bd3.js" async=""></script><script src="/styles-f12963b3798c232a68f6.js" async=""></script></body></html>
