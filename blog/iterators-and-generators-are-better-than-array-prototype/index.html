@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.2267388ec667be27710a.css">._3d-module--container--3u9YK{display:flex;flex-wrap:wrap}._3d-module--container--3u9YK img{max-height:200px}.work-module--container--31LKz{overflow:hidden}.work-module--pdf--8cbUT{width:100%}@media only screen and (max-width:700px){.header-module--pageWrapper--1ij_0{padding:12px}}@media only screen and (min-width:700px){.header-module--pageWrapper--1ij_0{padding:22px 1in 1in}}.header-module--separate--G80zA{display:flex;align-items:center;justify-content:space-between}.header-module--separate--G80zA .header-module--left--2-ITV{display:flex;flex-direction:row;flex-wrap:wrap;margin-left:-22px;padding:11px}.header-module--separate--G80zA .header-module--left--2-ITV .header-module--navLink--1IuEZ{margin:11px}.header-module--separate--G80zA .header-module--left--2-ITV .header-module--navLink--1IuEZ,.header-module--separate--G80zA .header-module--left--2-ITV .header-module--navLink--1IuEZ:link,.header-module--separate--G80zA .header-module--left--2-ITV .header-module--navLink--1IuEZ:visited{font-size:2rem;color:rgb(var(--body-rgb));text-decoration:initial;font-style:italic;font-weight:700;transition:font-size .1s ease;height:2.5rem;vertical-align:middle}@media only screen and (max-width:700px){.header-module--separate--G80zA .header-module--left--2-ITV .header-module--navLink--1IuEZ,.header-module--separate--G80zA .header-module--left--2-ITV .header-module--navLink--1IuEZ:link,.header-module--separate--G80zA .header-module--left--2-ITV .header-module--navLink--1IuEZ:visited{font-size:1.5rem}}.header-module--separate--G80zA .header-module--left--2-ITV .header-module--navLink--1IuEZ:hover{color:orange;font-size:2.5em}@media only screen and (max-width:700px){.layout-module--pageWrapper--22gEu{padding:12px}}@media only screen and (min-width:700px){.layout-module--pageWrapper--22gEu{padding:22px 1in 1in}}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-color:rgb(var(--background-rgb));color:rgb(var(--body-rgb))}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}a{color:#49a9f9}a:visited{color:#69a9f9}a:active{color:#b9b999}h1{font-size:1.4em;font-weight:700}h1,h3{font-style:italic}h3{font-size:1em;font-weight:400}h1+h3{margin-top:-8px}hr{color:rgba(var(--body-rgb),.3)}.blog-module--container--1pCGB{display:flex;flex-direction:column}@keyframes blog-module--spin--1ZuQ_{0%{transform:scaleX(0)}50%{transform:scaleX(1)}to{transform:scaleX(0)}}.blog-module--loader--27Uha{display:flex;align-items:center;justify-content:center}.blog-module--loader--27Uha .blog-module--inner--3N3oy{border:4px solid rgb(var(--body-rgb));height:26px;width:26px;border-radius:50%;animation-name:blog-module--spin--1ZuQ_;animation-duration:1s;animation-iteration-count:infinite;animation-timing-function:ease-out}.blog-module--post--oYMJm{width:100%}:root{--background-rgb:18,18,24;--body-rgb:239,239,239}.blog-module--blogLink--1dLLs{margin:11px}.blog-module--blogLink--1dLLs,.blog-module--blogLink--1dLLs:link,.blog-module--blogLink--1dLLs:visited{color:rgb(var(--body-rgb));text-decoration:initial;font-weight:700;vertical-align:middle}.blog-module--blogLink--1dLLs:hover{color:orange}</style><meta name="generator" content="Gatsby 2.21.13"/><title data-react-helmet="true">Lazy Javascript Iterables via Generators | Mike Belousov&#x27;s Website</title><link data-react-helmet="true" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/a11y-dark.min.css" integrity="sha256-7L/IK7qUTcgTXtfLAxip5Eo+hnp+pSe5htBCh5pYg6o=" crossorigin="anonymous"/><meta data-react-helmet="true" name="description" content="See title"/><meta data-react-helmet="true" property="og:title" content="Lazy Javascript Iterables via Generators"/><meta data-react-helmet="true" property="og:description" content="See title"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Mike Belousov"/><meta data-react-helmet="true" name="twitter:title" content="Lazy Javascript Iterables via Generators"/><meta data-react-helmet="true" name="twitter:description" content="See title"/><link rel="icon" href="/favicon-32x32.png?v=bdc2871edacbda8dd5a11f8bfaedcd63"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=bdc2871edacbda8dd5a11f8bfaedcd63"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=bdc2871edacbda8dd5a11f8bfaedcd63"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=bdc2871edacbda8dd5a11f8bfaedcd63"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=bdc2871edacbda8dd5a11f8bfaedcd63"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=bdc2871edacbda8dd5a11f8bfaedcd63"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=bdc2871edacbda8dd5a11f8bfaedcd63"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=bdc2871edacbda8dd5a11f8bfaedcd63"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=bdc2871edacbda8dd5a11f8bfaedcd63"/><link as="script" rel="preload" href="/styles-f12963b3798c232a68f6.js"/><link as="script" rel="preload" href="/component---src-components-blog-page-tsx-6d04ce94b616cd2c5bd3.js"/><link as="script" rel="preload" href="/commons-e794e0a14ff585b098df.js"/><link as="script" rel="preload" href="/framework-da8c6e3ed6a1d0c32925.js"/><link as="script" rel="preload" href="/app-c3527675040adf5ea2fd.js"/><link as="script" rel="preload" href="/webpack-runtime-16a2198acefe0c70b60a.js"/><link as="fetch" rel="preload" href="/page-data/blog/iterators-and-generators-are-better-than-array-prototype/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="layout-module--pageWrapper--22gEu"><header><div class="header-module--separate--G80zA"><div class="header-module--left--2-ITV"><a class="header-module--navLink--1IuEZ" href="/">Home</a><a class="header-module--navLink--1IuEZ" href="/work">Work</a><a class="header-module--navLink--1IuEZ" href="/3d">3D</a><a class="header-module--navLink--1IuEZ" href="/blog">Blog</a></div><div><h1>Mike Belousov</h1></div></div><hr/></header><main><div class="blog-module--post--oYMJm"><h1>Lazy Javascript Iterables via Generators</h1><h3>October 06, 2020</h3><div><p>A while back, I was concerned about the wastefulness of JavaScript's
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>Array.prototype.map</code></a>
+and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>Array.prototype.filter</code></a>
+functions, really all of JavaScript's canonical functional sequence programming builtins.
+If you're unaware, these methods always allocate an entire new array. While this is fine in some cases, it enables several
+dumb performance pitfalls, and doesn't allow you to use these functions in performance-sensitive hotpaths of your application.
+Not to mention that these methods only exist on JavaScript's <code>Array</code> type, so you need to convert all iterators (e.g. <code>Map</code>, <code>Set</code>)
+into an array with <code>Array.from</code>, wasting more allocations. Here we'll build an efficient, elegant alternative using lazy evaluated generators,
+and at the end I provide a TypeScript implementation with heaps of fancy functional list operations, all efficient as heck.</p>
+<p>Returning to the horror of JavaScript's original design, take for instance the following example:</p>
+<pre><code class="language-js">([1,2,3]
+    .map(x => x*3)
+    .filter(x => x%2 == 0)
+    .map(x => `${x}`)
+    .concat([10, 11])
+)
+</code></pre>
+<p>Simple enough, right? The result is <code>['6', 10, 11]</code>. But in fact this code will allocate 4 distinct intermediate arrays, and in the worst case
+all of them will be the same size as the source array (if say, the filter didn't filter anything).
+If we were performing this on an array of 10 million records, we'd suddenly have to
+allocate 40 million records, 30 million of which we discard immediately. Perhaps an advanced optimizing JavaScript runtime, like Chromium/V8's
+TurboFan, will JIT-out the problem, but the standard library design is just poor in my opinion. There are lots of cases where your
+code will not have been churned through some optimizer and this bloat isn't hard to design out of the equation in the first place.
+Instead, let's implement our own similar functional list processing API with better performance thanks to lazy evaluation, and we'll do
+so with modern JavaScript generators.</p>
+<p>A generator is a functional coroutine, effectively a function that can <em>yield</em> its ownership over the program execution flow, and
+confusingly also <em>yield</em> individual elements as its iterated over as an iterable. To make one in JavaScript, you use a function statement/expression with
+the <code>*</code> marker.</p>
+<pre><code class="language-js">function* myGenerator() {
+    yield 5
+    yield 2
+}
+</code></pre>
+<p>When <code>myGenerator</code> called, it returns an iterator which on its next method, runs the underlying coroutine until it yields, which would be
+at the <code>yield</code> keyword. This way, callers can run their own code in between yielded elements, and even stop asking for more elements.
+With the <code>Array.prototype.map</code> function design, you need to allocate the entire array before you can iterate through it. This ability
+to not iterate until we need to, and even stop iteration is the concept of lazy evaluation that will free us from unnecessary allocations.</p>
+<p>Let's combine our fancy generator with JavaScript's iterator interface to get an iterable literal:</p>
+<pre><code class="language-js">my_iter = {
+    *[Symbol.iterator]() {
+        yield 1
+        yield* [2,3]
+    }
+}
+</code></pre>
+<p>So we're declaring an object with the hidden <code>Symbol.iterator</code> property to show how to get an iterator of the object, and using the
+object generator property shorthand syntax to make it a generator. For completeness I also added an example of the <code>yield*</code> syntax which
+lets our generator yield from other iteratables. Now we can do something interesting with our generators.</p>
+<pre><code class="language-js">function* map(iterable, mapFunction) {
+    for (const item of iterable) yield mapFunction(item)
+}
+</code></pre>
+<p>And that's basically it to <code>map</code>. We'll make the API more elegant later. We can now do the following:</p>
+<pre><code class="language-js">[...map(map([1,2,3], x => x*3), x => `${x}`)]
+</code></pre>
+<p>You may be missing the trailing function syntax which is the main advantage to having <code>map</code> be a method of <code>Array</code>s, but as I said we'll be
+making it elegant later. If you run this code in your local JavaScript runtime, be it browser or local,
+(I actually originally was inspired to write this code while using <a href="https://bellard.org/quickjs/">quickjs</a> which doesn't optimize this stuff afaik)
+you'll notice that the spread syntax forces the iteration of the lazy iterable into an array, for us to view. When this code is running the spread syntax
+calls next on the outer map iterable. To get the first element, it calls next on the inner map. The inner map
+runs the loop, sets <code>item</code> to <code>1</code>, then runs <code>x => x*3</code> over it, yielding <code>3</code>. The outer map sets its <code>item</code> to <code>3</code> after receiving it as the first element
+from inner map it is wrapping, and runs <code>x => `${x}`</code> yielding <code>'3'</code>. This repeats for all elements until the Array has pushed all 3 elements and is now
+<code>['3', '6', '9']</code>. The point is, the instructions for the <code>map</code> calls are glued together when implemented via coroutine, as if you wrote only one <code>map</code> call
+practically. Now let's make <code>filter</code>.</p>
+<pre><code class="language-js">function* filter(iterable, predicate) {
+    for (const item of iterable)
+        if (predicate(item))
+            yield item
+}
+</code></pre>
+<p>Again, easy. Now let's try to make these two functions as elegant as <code>[1,2,3].map(x => x*4).filter(x => x &#x3C; 10)</code>.
+The best way to do this, is be as close to the original API as possible. Let's take advantage of <code>Array.from</code>, and make our own
+<code>Lazy.from</code> method for all our lazy-evaluation needs. This way, we can have <code>Lazy.prototype.map</code> and <code>Lazy.prototype.filter</code>, and
+most code will just be a <code>Lazy.from(...)</code> away from making no copies.</p>
+<pre><code class="language-js">class Lazy {
+    constructor(iterable) {
+        this.iterable = iterable
+    }
+    static from(iterable) {
+        return new Lazy(iterable)
+    }
+    [Symbol.iterator]() {
+        return this.iterable[Symbol.iterator]()
+    }
+}
+</code></pre>
+<p>Alright, so we can wrap iterables, but how can we map over them? We'll bring back our anonymous iterable to do so:</p>
+<pre><code class="language-js">class Lazy {
+    //...
+    map(mapFunc) {
+        const _this = this
+        return Lazy.from({
+            *[Symbol.iterator]() {
+                for (const t of _this)
+                    yield mapFunc(t)
+            }
+        })
+    }
+}
+</code></pre>
+<p>I like to let the code speak for itself normally but this can be a bit to parse. We return a new <code>Lazy</code> object,
+wrapping a new anonymous iterable mapping over this iterable. Since our <code>Lazy</code> object is an iterable (it implements <code>Symbol.iterator</code>)
+we just need to iterate over it. Unfortunately, in the anonymous object's method <code>this</code> would refer to the new anonymous object,
+not the original <code>Lazy</code> instance, so we create an alias to that <code>this</code> reference, <code>_this</code>, and reference it from our closure.
+This pattern is incredibly powerful, and we'll do filter pretty much the exact same way.</p>
+<pre><code class="language-js">class Lazy {
+    //...
+    filter(predicate) {
+        const _this = this
+        return Lazy.from({
+            *[Symbol.iterator]() {
+                for (const t of _this)
+                    if(predicate(t))
+                        yield t
+            }
+        })
+    }
+}
+</code></pre>
+<p>Now we can expand our horizons and implement other array methods like <code>concat</code>, and <code>forEach</code>.</p>
+<pre><code class="language-js">const isIterable = arg => typeof arg === "object" &#x26;&#x26; Symbol.iterator in arg
+
+class Lazy {
+    concat(...args) {
+        const _this = this
+        return Lazy.from({
+            *[Symbol.iterator]() {
+                yield* _this
+                for (const arg of args)
+                    if (isIterable(arg)) yield* arg
+                    else yield arg
+            }
+        })
+    }
+    forEach(func) {
+        for (const t of this) func(t)
+    }
+}
+</code></pre>
+<p>And to get crazy, we can do some recursion with this technique and implement <code>Array.prototype.flat</code></p>
+<pre><code class="language-js">flat(depth=1) {
+    const _this = this
+    if (depth &#x3C;= 0) return this
+    else return Lazy.from({
+        *[Symbol.iterator]() {
+            for (const item of _this) {
+                if (isIterable(item))
+                    yield* Lazy.from(item).flat(depth - 1)
+                else yield item
+            }
+        }
+    })
+}
+</code></pre>
+<p>The morale of the story is once you get oriented, generators can make
+efficient, readable and effortlessly composable code, effectively reducing the
+sins of JavaScript. I think the 'anonymous iterable'
+idiom is a real gem in TypeScript, with generators also shining. Hopefully you decide
+to use something like this over lowering yourself to mutable <code>Array.prototype.push</code>
+in your performance-sensitive hotspots. Although I'm yet to [micro]benchmark the two.</p>
+<p>As promised, here's a decently extensive <code>Lazy</code> implementation in TypeScript. I actually
+made one simplification and was too lazy (trivial pun intended) to double check that it
+compiles, please <a href="mailto:mikemikeb@protonmail.com">bug me</a> if it doesn't.</p>
+<p>Eventually if I find a good untaken name I'll add more test cases and publish this to <a href="https://www.npmjs.com/">npm</a>.
+If you'd like to do it yourself for me for some reason, please involve me, I'd love to share
+the ownership. Please use away internally however you like.</p>
+<pre><code class="language-ts">// Typescript@4.0 probably simplifies or allows better alternative typings for
+// some of these
+
+/** return whether arg is T or an iterable of T */
+function isIterable&#x3C;T>(arg: T | Iterable&#x3C;T>): arg is Iterable&#x3C;T> {
+    return typeof arg === "object" &#x26;&#x26; Symbol.iterator in arg
+}
+
+/** iterable wrapper for functional programming with lazy composition */
+export default class Lazy&#x3C;T> implements Iterator&#x3C;T> {
+    static from&#x3C;T>(iterable: Iterable&#x3C;T>) {
+        return new Lazy&#x3C;T>(iterable)
+    }
+
+    public constructor(protected iterable: Iterable&#x3C;T>) {}
+
+    [Symbol.iterator](): Iterator&#x3C;T> {
+        return this.iterable[Symbol.iterator]()
+    }
+
+    public filter(predicate: (t: T) => boolean) {
+        const _this = this
+        return Lazy.from({
+            *[Symbol.iterator]() {
+                for (const t of _this)
+                    if (predicate(t))
+                        yield t
+            }
+        })
+    }
+
+    public map&#x3C;U>(transform: (t: T) => U) {
+        const _this = this
+        return Lazy.from&#x3C;U>({
+            *[Symbol.iterator]() {
+                for (const t of _this)
+                    yield transform(t)
+            }
+        })
+    }
+
+    public flat(depth=1) {
+        const _this = this
+        if (depth &#x3C;= 0) return this
+        else return Lazy.from({
+            *[Symbol.iterator]() {
+                for (const item of _this) {
+                    if (isIterable(item))
+                        yield* Lazy.from(item).flat(depth - 1)
+                    else yield item
+                }
+            }
+        })
+    }
+
+    public concat(...args: (Iterable&#x3C;T> | T)[] ): Lazy&#x3C;T> {
+        const _this = this
+        return Lazy.from({
+            *[Symbol.iterator]() {
+                yield* _this
+                for (const arg of args)
+                    if (isIterable(arg)) yield* arg
+                    else yield arg
+            }
+        })
+    }
+
+    public forEach(doSomething: (t: T) => void) {
+        for (const item of this)
+            doSomething(item)
+    }
+
+    public take(n: number): Lazy&#x3C;T> {
+        const _this = this
+        return Lazy.from({
+            *[Symbol.iterator]() {
+                let i = 0
+                for (const item of _this) {
+                    if (!(i &#x3C; n)) break
+                    yield item
+                    i++
+                }
+            }
+        })
+    }
+
+    public reduce&#x3C;Result>(callback: (prev: Result, curr: T, index: number) => Result, initial: Result): Result {
+        let result = initial
+        let i = 0
+        for (const curr of this) {
+            result = callback(result, curr, i)
+            i++
+        }
+        return result
+    }
+
+    public toSet(): Set&#x3C;T> {
+        const result = new Set&#x3C;T>()
+        for (const item of this) 
+            result.add(item)
+        return result
+    }
+
+    public some(predicate: (t: T) => boolean): boolean {
+        for (const item of this)
+            if (predicate(item)) return true
+        return false
+    }
+
+    public every(predicate: (t: T) => boolean): boolean {
+        return !this.some(t => !predicate(t))
+    }
+    
+    public empty(): boolean {
+        const item = this.next()
+        return item.done
+    }
+
+    public sort(...[sortFunc]: Parameters&#x3C;Array&#x3C;T>["sort"]>) {
+        return Lazy.from([...this].sort(sortFunc))
+    }
+
+    public get length() {
+        let i = 0
+        for (const item of this) i++
+        return i
+    }
+
+    public includes(t: T) {
+        for (const item of this) if (item === t) return true
+        return false
+    }
+
+    public find(predicate: (t: T) => boolean) {
+        for (const item of this) if (predicate(item)) return item
+        return false
+    }
+}
+</code></pre></div></div></main></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/iterators-and-generators-are-better-than-array-prototype/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-c3527675040adf5ea2fd.js"],"component---src-components-blog-page-tsx":["/component---src-components-blog-page-tsx-6d04ce94b616cd2c5bd3.js"],"component---src-pages-3-d-tsx":["/component---src-pages-3-d-tsx-2e718283dbc8bc73f3f7.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-581c2129730b4589495d.js"],"component---src-pages-blog-tsx":["/component---src-pages-blog-tsx-93486d463c9297091d6d.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-cd461490bc8b791c6a80.js"],"component---src-pages-work-tsx":["/component---src-pages-work-tsx-c6afbfcff1a7253e790b.js"]};/*]]>*/</script><script src="/webpack-runtime-16a2198acefe0c70b60a.js" async=""></script><script src="/app-c3527675040adf5ea2fd.js" async=""></script><script src="/framework-da8c6e3ed6a1d0c32925.js" async=""></script><script src="/commons-e794e0a14ff585b098df.js" async=""></script><script src="/component---src-components-blog-page-tsx-6d04ce94b616cd2c5bd3.js" async=""></script><script src="/styles-f12963b3798c232a68f6.js" async=""></script></body></html>
