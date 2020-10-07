@@ -21,9 +21,9 @@ Let's partake in some template indulgence
 . Suppose we have some C files
 that we're linking to our amazing C++ project, but it leaves us with
 a few sad C "constructors" and "destructors" surrounding a struct, as a
-language without implicit object construction. Suppose we have a struct: `struct MyCType`,  
-a "constructor" for it: `MyCtype* Create_MyCType()` and a "destructor"
-for it too: `Free_MyCType(MyCType*)`.
+language without implicit object construction. Suppose we have a struct: `cpp:LANG>struct MyCType`,  
+a "constructor" for it: `cpp:LANG>MyCtype* Create_MyCType()` and a "destructor"
+for it too: `cpp:LANG>Free_MyCType(MyCType*)`.
 
 
 If you don't know what 

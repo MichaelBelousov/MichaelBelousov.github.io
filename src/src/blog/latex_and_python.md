@@ -15,7 +15,7 @@ Python+scipy for more intense derivations and data routines. I scratched
 up a utility module for producing LaT<sub>E</sub>X tables and pgfplots graphics
 from various data formats, and used it frequently with minimal
 copy and paste glue (thank you Cygwin's 
-    `/dev/clipboard`).
+    `latex:LANG>/dev/clipboard`).
 
 But larger projects begged for more complete tools; like that assignment
 involving the visualization 
@@ -88,7 +88,7 @@ switching files.
 Certainly I could do better? So I did something sinful.
 
 Fake macros in LaT<sub>E</sub>X will make this all look way more T<sub>E</sub>X-savvy. 
-Let's add a `\pyeval` pseudo-command, and a 
+Let's add a `latex:LANG>\pyeval` pseudo-command, and a 
 `pyexec` pseudo-environment so that we can get something 
 like so:
 
@@ -164,7 +164,7 @@ my README. This is PyLaT<sub>E</sub>X, and I put it on my
 
 At last, I would argue, that we have a tool more extensible than Excel, 
 it's got all of PyPI behind it, with numpy, scipy, and all the packages
-you could want&emdash; embedded in your document.
+you could want&mdash; embedded in your document.
 If you like this approach, maybe you can be just as sinful and throw it into
 Markdown, or change up the scripting language to your preference. So long as you
 don't use php. Even if it's already a templating language.

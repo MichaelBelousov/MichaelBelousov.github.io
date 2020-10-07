@@ -21,7 +21,7 @@ more specifically, JSX
 is really syntactic sugar used by the react ecosystem for constructing "components", a
 reusable chunk of HTML.
 Take for instance the following vanilla JavaScript script running in a simple webpage.
-If you want to test it, you can run `python3 -m http.server` in a folder
+If you want to test it, you can run `sh:LANG>python3 -m http.server` in a folder
 containing the two files, then you can see it at localhost:8000 in the browser.
 
 ```js
@@ -184,16 +184,16 @@ nvm install 12.16.3
 nvm use 12.16.3
 ```
 
-With node installed, comes its package manager, `npm`. We could already install `create-react-app` here, but we're just going to 
-only install typescript, which will give us the typescript compiler program, `tsc`. Install it globally (as opposed to the current
-directory/project) using `npm`.
+With node installed, comes its package manager, `sh:LANG>npm`. We could already install `sh:LANG>create-react-app` here, but we're just going to 
+only install typescript, which will give us the typescript compiler program, `sh:LANG>tsc`. Install it globally (as opposed to the current
+directory/project) using `sh:LANG>npm`.
 
 ```bash
 npm install --global typescript
 ```
 
-Now you should be able to run `tsc -h`, to see some of the options. TypeScript's job for us is not just to compile typescript to JavaScript, but more importantly to
-transpile our JSX to React, since it supports JSX in `.tsx` files. For this article, our goal will be to create a point-buy system
+Now you should be able to run `sh:LANG>tsc -h`, to see some of the options. TypeScript's job for us is not just to compile typescript to JavaScript, but more importantly to
+transpile our JSX to React, since it supports JSX in `sh:LANG>*.tsx` files. For this article, our goal will be to create a point-buy system
 for an RPG character UI. We'll use React with and without hooks, see the difference, and employ some basic css to make it stylish.
 
 ## modules
@@ -206,7 +206,7 @@ the easiest for us to consume without a bundler like webpack to process it for u
 You can use jsdelivr's search bar to find React, but here's [a link](https://www.jsdelivr.com/package/npm/react?path=umd)
 directly to their page on provided UMD packages of React. Go ahead and hit the copy clipboard icon and
 copy the HTML vesion and load that script in out HTML. It will already be set to the latest stable
-version which should be fine. You also need the latest version of `react-dom` which you can find
+version which should be fine. You also need the latest version of `sh:LANG>react-dom` which you can find
 using the jsDelivr search bar or [here](https://www.jsdelivr.com/package/npm/react-dom?path=umd).
 Your script should look like this, note that both react dependencies are loaded before our site's
 own script.
@@ -246,11 +246,11 @@ declare var ReactDOM: any;
 
 This tells typescript that it should expect the names React and ReactDOM were declared using the "var"
 keyword somewhere before the code the compiler is processing, and it tells the compiler to not care
-about their type by giving them the type, `any`. We lose valuable typechecking, but it makes
+about their type by giving them the type, `tsx:LANG>any`. We lose valuable typechecking, but it makes
 things less complicated to start; we'll still get valuable type checking for our own stuff, but
 not when we use the React and ReactDOM names.
 
-Let's get our new `index.tsx` file off the ground:
+Let's get our new `sh:LANG>index.tsx` file off the ground:
 
 ```tsx
 declare var React: any;
@@ -285,7 +285,7 @@ ReactDOM.render(
 );
 ```
 
-Now run `tsc` with the `--jsx` setting set to "react" (it can also not transpile it or target react for iOS). Run it:
+Now run `sh:LANG>tsc` with the `sh:LANG>--jsx` setting set to "react" (it can also not transpile it or target react for iOS). Run it:
 
 ```bash
 tsc --jsx react  index.tsx
@@ -296,7 +296,7 @@ as well as transpilation of other not-well supported javascript features like th
 You can read up on prototype based inheritance and JavaScript's object/class model
 [elsewhere](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain),
 since that's not in scope here. Either way, you should now
-be able to run a server, like the Python simple http server mentioned earlier, navigate to `index.html` and see React render out 3 values and 3 "+" buttons, and 3 "-" buttons.
+be able to run a server, like the Python simple http server mentioned earlier, navigate to `sh:LANG>index.html` and see React render out 3 values and 3 "+" buttons, and 3 "-" buttons.
 With React working, we can talk about state, and what that "useState" function does, and how we're going to use state differently in that class component.
 
 ## hooks, class components, and state
@@ -306,10 +306,10 @@ and returns a JSX fragment. Hooks allow you to "hook" into React's render logic 
 in the rendered component tree, which means functional components which normally only have access to props can now store their own state in a way unique to the component instance.
 With that, you can ditch the use of classes entirely, but we'll come back to this after we learn how to use state the old way in React anyway.
 
-You'll notice we used a class in our `index.tsx` already. This is the old way of creating stateful components that can rerender themselves. You simply inherit (extend)
+You'll notice we used a class in our `sh:LANG>index.tsx` already. This is the old way of creating stateful components that can rerender themselves. You simply inherit (extend)
 the official React.Component class, and override its lifecycle methods, in this case just the "render" method. In these objects, state is an object property of a component instance,
-but you can't set it the same way as you normally do in JavaScript. To set state, you need to do it in a way that React knows, so you use the inherited method, `setState`,
-which takes an object containing all of the changed state values. Let's make that "+" button increment the `value` property of the state.
+but you can't set it the same way as you normally do in JavaScript. To set state, you need to do it in a way that React knows, so you use the inherited method, `tsx:LANG>setState`,
+which takes an object containing all of the changed state values. Let's make that "+" button increment the `tsx:LANG>value` property of the state.
 
 ```tsx
 class AttributeCounter extends React.Component {
@@ -332,7 +332,7 @@ class AttributeCounter extends React.Component {
 
 To do so, we use React's built-in support for setting a listener similiarly to how we would on the DOM, but directly on the component and taking an actual function reference.
 On the DOM you'd have to pass a name to a function in scope to the "onclick" attribute, or manually find the element, probably by setting some id attribute, and use the DOM
-element API to attach and possibly remove the listener. But here we can just use an arrow function inline to run our component instance's `setState` method to increment the value.
+element API to attach and possibly remove the listener. But here we can just use an arrow function inline to run our component instance's `tsx:LANG>setState` method to increment the value.
 Next we decrement for the "-" button:
 
 ```tsx
@@ -358,14 +358,14 @@ but it's
 a lot of boiler plate, and we aren't using any of the life cycle methods at all yet. This works because our component class gives us
 a new instance of the component each time React needs one, and we store the state on that component until the component is unmounted by
 React and its instance and state variables can be garbage collected.
-When we call `ReactDOM.render`, we give it our React element to render, created by the implicit React.createElement which we're using JSX
+When we call `tsx:LANG>ReactDOM.render`, we give it our React element to render, created by the implicit React.createElement which we're using JSX
 to hide. When the react element to be rendered is a class, an instance is initialized, rendered,
 and mounted (*mounted* is React jargon for its resulting render HTML is added to the DOM and
 React is keeping track of it).
 
-If you pass a function to `React.createElement`, React can't create an instance, so it just runs the function with the props object as an argument
+If you pass a function to `tsx:LANG>React.createElement`, React can't create an instance, so it just runs the function with the props object as an argument
 from the parent. So two different instances of a functional component use the same function, and have
-no state. A functional component used like `<MyFunction a={5} b={"hello"} c />` would be interpreted by React as `MyFunction({a: 5, b:"hello", c: true})'`. Then
+no state. A functional component used like `tsx:LANG><MyFunction a={5} b={"hello"} c />` would be interpreted by React as `tsx:LANG>MyFunction({a: 5, b:"hello", c: true})'`. Then
 whatever JSX-fragment/React-element that functional component returns is rendered with its components in turn, and any intrinsic elements or strings marked as literal return.
 The point is, there is no state this way, just the props passed by the parent.
 
@@ -400,16 +400,16 @@ class A() {
 ReactDOM.render(<A/>, root);
 ```
 
-So the App is an `A` component, when A is rendered, it tells React to render one child `B` with a prop of `b` as `true` which is
-derived from its state of `a`. `B` renders two `C` components, because its `b` component as passed to it was true, and the `&&` expression evaluated
-via short-circuiting to a `B` element.
+So the App is an `tsx:LANG>A` component, when A is rendered, it tells React to render one child `tsx:LANG>B` with a prop of `tsx:LANG>b` as `tsx:LANG>true` which is
+derived from its state of `tsx:LANG>a`. `tsx:LANG>B` renders two `tsx:LANG>C` components, because its `tsx:LANG>b` component as passed to it was true, and the `tsx:LANG>&&` expression evaluated
+via short-circuiting to a `tsx:LANG>B` element.
 
 <div style="text-align:center">
   <img style="width:600px" alt="YOU CAN'T SEE THIS IMAGE" src="/images/component-tree.svg" />
 </div>
 
-You can see that the `C` function component was called twice, each time for a unique child of `B`.
-When React traverse the render tree, after the state update, and sees that the second `C` is gone, it
+You can see that the `tsx:LANG>C` function component was called twice, each time for a unique child of `tsx:LANG>B`.
+When React traverse the render tree, after the state update, and sees that the second `tsx:LANG>C` is gone, it
 will unmount it, which means React no longer listens for updates to that component's props or state.
 Now let's create the same thing using hooks for state.
 
@@ -444,15 +444,15 @@ hooks, is how they can truly turn components into finite state machines with eff
 You have multiple state properties, and multiple effects that run at each state change, and can
 listen to only when a particular state changes.
 
-In `A` above, our effect says "after each render, if any of the states in this list, `[]`, changed,
-set a timeout that sets the state `a` to `false` in 5000 milliseconds". When you consider that
+In `tsx:LANG>A` above, our effect says "after each render, if any of the states in this list, `tsx:LANG>[]`, changed,
+set a timeout that sets the state `tsx:LANG>a` to `tsx:LANG>false` in 5000 milliseconds". When you consider that
 `[]` has no states in it and realize it will never change and therefore only happens after the first
-render, you have one of the first React hooks idioms, which I'll call `useDoAfterMount`. Together, it's,
-"after mount, set a timeout to change the state of `a` to `false` in 5000 milliseconds".
+render, you have one of the first React hooks idioms, which I'll call `tsx:LANG>useDoAfterMount`. Together, it's,
+"after mount, set a timeout to change the state of `tsx:LANG>a` to `tsx:LANG>false` in 5000 milliseconds".
 
-As for the `useState` hook, it allows you to allocate one cell of state for the currently rendering
+As for the `tsx:LANG>useState` hook, it allows you to allocate one cell of state for the currently rendering
 component in the component tree, with an initial value. This initial value is ignored in future renders.
-We will return to that, but for now, suppose we added some hook state to our `C` components:
+We will return to that, but for now, suppose we added some hook state to our `tsx:LANG>C` components:
 
 ```jsx
 import {useState} from "react";
@@ -464,10 +464,10 @@ const C = () => {
 };
 ```
 
-This is a more advanced usage of a react state dispatcher (the `setCount` function returned by
-`useState`). Instead of a new value, you can pass a function that gets the current value and
+This is a more advanced usage of a react state dispatcher (the `tsx:LANG>setCount` function returned by
+`tsx:LANG>useState`). Instead of a new value, you can pass a function that gets the current value and
 creates a new one from it, like how above we increment from the current value which I nickname
-prev (since it's about to become the previous value). Because `setInterval` runs the function
+prev (since it's about to become the previous value). Because `tsx:LANG>setInterval` runs the function
 every second, it will keep going up. If we didn't use a function for the dispatcher call, we
 would do the following, which has a bug:
 
@@ -481,8 +481,8 @@ const C = () => {
 
 This is probably one of the hardest challenges of starting hooks. What's wrong with this code?
 The issue is, when the first render is ran, and the useEffect's function is parsed, the value of
-count is `5`. Since the dependencies never change (the dependency list is empty still), the hook
-isn't re ran. That same function of `setCount(5+1)` is ran every second, effectively not changing
+count is `tsx:LANG>5`. Since the dependencies never change (the dependency list is empty still), the hook
+isn't re ran. That same function of `tsx:LANG>setCount(5+1)` is ran every second, effectively not changing
 anything. Alright then, how about then we use that fancy dependency list then?
 
 ```jsx
@@ -494,22 +494,22 @@ const C = () => {
 ```
 
 Alright, so now this... probably won't work. Think about it. On the first render, the function is called,
-and the effect is ran, adding code of `setCount(5+1)` to be called every second. One second passed, the
-state changes (`count` is now 6), and react rerenders, rerunning the function but this time useState
-returns 6 instead of the initial state which it ignores, 5. `count` has now changed, so the effect runs
-again, adding *another* code body to set state this time to `setCount(6+1)` every second. One more
+and the effect is ran, adding code of `tsx:LANG>setCount(5+1)` to be called every second. One second passed, the
+state changes (`tsx:LANG>count` is now 6), and react rerenders, rerunning the function but this time useState
+returns 6 instead of the initial state which it ignores, 5. `tsx:LANG>count` has now changed, so the effect runs
+again, adding *another* code body to set state this time to `tsx:LANG>setCount(6+1)` every second. One more
 second passes, and now *both* functions execute in an unpredictable order. Which will occur first and
-which last? Will your the state of `count` be `7` or `6`? It gets worse, because this balloons up and
+which last? Will your the state of `tsx:LANG>count` be `tsx:LANG>7` or `tsx:LANG>6`? It gets worse, because this balloons up and
 a minute later you now have 60 functions running per second, all setting the state to different things.
 Avoiding dependencies on state when you can just transform the current state in the dispatcher's
 argument is key to avoiding asynchronous programming headaches, so use it whenever possible.
 
-With that out of the way, we can take the brief descriptions and formalize what the `useState` hook
+With that out of the way, we can take the brief descriptions and formalize what the `tsx:LANG>useState` hook
 does, and why React actually has something called the [rules of hooks](https://reactjs.org/docs/hooks-rules.html).
-`useState` allocates a singular state reference for the currently rendering component when the
+`tsx:LANG>useState` allocates a singular state reference for the currently rendering component when the
 component is first rendered. On all renders, it then returns the current state. Notice, that the
-`useState` parameters don't include any identifier for identifying which state you want, you don't
-ask for `useState('count', 5)`. This is because React uses the ordered nature of javascript to
+`tsx:LANG>useState` parameters don't include any identifier for identifying which state you want, you don't
+ask for `tsx:LANG>useState('count', 5)`. This is because React uses the ordered nature of javascript to
 figure out which state you're asking for. Because of using this order, you *cannot use hooks in
 conditional code*. You have to extract it from the conditional code, or strange thing could happen.
 
@@ -530,18 +530,18 @@ const B = props => {
 };
 ```
 
-When `C` renders, React allocates two state cells, but if `props.blah` flips its truth value,
-then `b` and `c` will flip which state they get from React. For these reasons, people usually use
+When `tsx:LANG>C` renders, React allocates two state cells, but if `tsx:LANG>props.blah` flips its truth value,
+then `tsx:LANG>b` and `tsx:LANG>c` will flip which state they get from React. For these reasons, people usually use
 linters to detect and warn them about using hooks in ways that can cause this strange behavior.
 For the same reasons, you cannot run hooks in loops or other dynamic ways, they need to be run
 at function scope.
 
 <!-- transition? -->
 Now, let's have a final note on the alternative to class instances, and then we can really get to work.
-When `B` renders, how does React know which `a`, `b`, and `c` state references to give to it?
+When `tsx:LANG>B` renders, how does React know which `tsx:LANG>a`, `tsx:LANG>b`, and `tsx:LANG>c` state references to give to it?
 Unlike the class components where React keeps and maintains an instance, React needs to think a bit
 harder. React remembers the *path* it took to render this component. If we were to run
-`ReactDOM.render(<B/>, root)`, React sees three component instances. It sees something like:
+`tsx:LANG>ReactDOM.render(<B/>, root)`, React sees three component instances. It sees something like:
 
 ```
 1: 

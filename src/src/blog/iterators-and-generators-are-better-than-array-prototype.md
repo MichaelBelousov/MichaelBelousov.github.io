@@ -4,13 +4,13 @@ date: "2020-10-06"
 ---
 
 A while back, I was concerned about the wastefulness of JavaScript's
-[`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-and [`Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+[`js:LANG>Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+and [`js:LANG>Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 functions, really all of JavaScript's canonical functional sequence programming builtins.
 If you're unaware, these methods always allocate an entire new array. While this is fine in some cases, it enables several
 dumb performance pitfalls, and doesn't allow you to use these functions in performance-sensitive hotpaths of your application.
-Not to mention that these methods only exist on JavaScript's `Array` type, so you need to convert all iterators (e.g. `Map`, `Set`)
-into an array with `Array.from`, wasting more allocations. Here we'll build an efficient, elegant alternative using lazy evaluated generators,
+Not to mention that these methods only exist on JavaScript's `js:LANG>Array` type, so you need to convert all iterators (e.g. `js:LANG>Map`, `js:LANG>Set`)
+into an array with `js:LANG>Array.from`, wasting more allocations. Here we'll build an efficient, elegant alternative using lazy evaluated generators,
 and at the end I provide a TypeScript implementation with heaps of fancy functional list operations, all efficient as heck.
 
 Returning to the horror of JavaScript's original design, take for instance the following example:
@@ -19,12 +19,12 @@ Returning to the horror of JavaScript's original design, take for instance the f
 ([1,2,3]
 	.map(x => x*3)
 	.filter(x => x%2 == 0)
-	.map(x => `${x}`)
+	.map(x => `js:LANG>${x}`)
 	.concat([10, 11])
 )
 ```
 
-Simple enough, right? The result is `['6', 10, 11]`. But in fact this code will allocate 4 distinct intermediate arrays, and in the worst case
+Simple enough, right? The result is `js:LANG>['6', 10, 11]`. But in fact this code will allocate 4 distinct intermediate arrays, and in the worst case
 all of them will be the same size as the source array (if say, the filter didn't filter anything).
 If we were performing this on an array of 10 million records, we'd suddenly have to
 allocate 40 million records, 30 million of which we discard immediately. Perhaps an advanced optimizing JavaScript runtime, like Chromium/V8's
@@ -35,7 +35,7 @@ so with modern JavaScript generators.
 
 A generator is a functional coroutine, effectively a function that can _yield_ its ownership over the program execution flow, and
 confusingly also _yield_ individual elements as its iterated over as an iterable. To make one in JavaScript, you use a function statement/expression with
-the `*` marker.
+the `js:LANG>*` marker.
 
 ```js
 function* myGenerator() {
@@ -44,9 +44,9 @@ function* myGenerator() {
 }
 ```
 
-When `myGenerator` is called, it returns an iterator which on its next method, runs the underlying coroutine until it yields, which would be
-at the `yield` keyword. This way, callers can run their own code in between yielded elements, and even stop asking for more elements.
-With the `Array.prototype.map` function design, you need to allocate the entire array before you can iterate through it. This ability
+When `js:LANG>myGenerator` is called, it returns an iterator which on its next method, runs the underlying coroutine until it yields, which would be
+at the `js:LANG>yield` keyword. This way, callers can run their own code in between yielded elements, and even stop asking for more elements.
+With the `js:LANG>Array.prototype.map` function design, you need to allocate the entire array before you can iterate through it. This ability
 to not iterate until we need to, and even stop iteration is the concept of lazy evaluation that will free us from unnecessary allocations.
 
 Let's combine our fancy generator with JavaScript's iterator interface to get an iterable literal:
@@ -60,8 +60,8 @@ my_iter = {
 }
 ```
 
-So we're declaring an object with the hidden `Symbol.iterator` property to show how to get an iterator of the object, and using the
-object generator property shorthand syntax to make it a generator. For completeness I also added an example of the `yield*` syntax which
+So we're declaring an object with the hidden `js:LANG>Symbol.iterator` property to show how to get an iterator of the object, and using the
+object generator property shorthand syntax to make it a generator. For completeness I also added an example of the `js:LANG>yield*` syntax which
 lets our generator yield from other iteratables. Now we can do something interesting with our generators.
 
 ```js
@@ -70,21 +70,21 @@ function* map(iterable, mapFunction) {
 }
 ```
 
-And that's basically it to `map`. We'll make the API more elegant later. We can now do the following:
+And that's basically it to `js:LANG>map`. We'll make the API more elegant later. We can now do the following:
 
 ```js
-[...map(map([1,2,3], x => x*3), x => `${x}`)]
+[...map(map([1,2,3], x => x*3), x => `js:LANG>${x}`)]
 ```
 
-You may be missing the trailing function syntax which is the main advantage to having `map` be a method of `Array`s, but as I said we'll be
+You may be missing the trailing function syntax which is the main advantage to having `js:LANG>map` be a method of `js:LANG>Array`s, but as I said we'll be
 making it elegant later. If you run this code in your local JavaScript runtime, be it browser or local, 
 (I actually originally was inspired to write this code while using [quickjs](https://bellard.org/quickjs/) which doesn't optimize this stuff afaik)
 you'll notice that the spread syntax forces the iteration of the lazy iterable into an array, for us to view. When this code is running the spread syntax
 calls next on the outer map iterable. To get the first element, it calls next on the inner map. The inner map
-runs the loop, sets `item` to `1`, then runs `x => x*3` over it, yielding `3`. The outer map sets its `item` to `3` after receiving it as the first element
-from inner map it is wrapping, and runs ``x => `${x}` `` yielding `'3'`. This repeats for all elements until the Array has pushed all 3 elements and is now
-`['3', '6', '9']`. The point is, the instructions for the `map` calls are glued together when implemented via coroutine, as if you wrote only one `map` call
-practically. Now let's make `filter`.
+runs the loop, sets `js:LANG>item` to `js:LANG>1`, then runs `js:LANG>x => x*3` over it, yielding `js:LANG>3`. The outer map sets its `js:LANG>item` to `js:LANG>3` after receiving it as the first element
+from inner map it is wrapping, and runs `js:LANG>`x => `js:LANG>${x}` `js:LANG>` yielding `js:LANG>'3'`. This repeats for all elements until the Array has pushed all 3 elements and is now
+`['3', '6', '9']`js:LANG>. The point is, the instructions for the `map`js:LANG> calls are glued together when implemented via coroutine, as if you wrote only one `map` call
+practically. Now let's make `js:LANG>filter`.
 
 ```js
 function* filter(iterable, predicate) {
@@ -94,10 +94,10 @@ function* filter(iterable, predicate) {
 }
 ```
 
-Again, easy. Now let's try to make these two functions as elegant as `[1,2,3].map(x => x*4).filter(x => x < 10)`.
-The best way to do this, is be as close to the original API as possible. Let's take advantage of `Array.from`, and make our own
-`Lazy.from` method for all our lazy-evaluation needs. This way, we can have `Lazy.prototype.map` and `Lazy.prototype.filter`, and
-most code will just be a `Lazy.from(...)` away from making no copies.
+Again, easy. Now let's try to make these two functions as elegant as `js:LANG>[1,2,3].map(x => x*4).filter(x => x < 10)`.
+The best way to do this, is be as close to the original API as possible. Let's take advantage of `js:LANG>Array.from`, and make our own
+`Lazy.from`js:LANG> method for all our lazy-evaluation needs. This way, we can have `Lazy.prototype.map`js:LANG> and `Lazy.prototype.filter`, and
+most code will just be a `js:LANG>Lazy.from(...)` away from making no copies.
 
 ```js
 class Lazy {
@@ -130,10 +130,10 @@ class Lazy {
 }
 ```
 
-I like to let the code speak for itself normally but this can be a bit to parse. We return a new `Lazy` object,
-wrapping a new anonymous iterable mapping over this iterable. Since our `Lazy` object is an iterable (it implements `Symbol.iterator`)
-we just need to iterate over it. Unfortunately, in the anonymous object's method `this` would refer to the new anonymous object,
-not the original `Lazy` instance, so we create an alias to that `this` reference, `_this`, and reference it from our closure.
+I like to let the code speak for itself normally but this can be a bit to parse. We return a new `js:LANG>Lazy` object,
+wrapping a new anonymous iterable mapping over this iterable. Since our `js:LANG>Lazy` object is an iterable (it implements `js:LANG>Symbol.iterator`)
+we just need to iterate over it. Unfortunately, in the anonymous object's method `js:LANG>this` would refer to the new anonymous object,
+not the original `js:LANG>Lazy` instance, so we create an alias to that `js:LANG>this` reference, `js:LANG>_this`, and reference it from our closure.
 This pattern is incredibly powerful, and we'll do filter pretty much the exact same way.
 
 ```js
@@ -152,7 +152,7 @@ class Lazy {
 }
 ```
 
-Now we can expand our horizons and implement other array methods like `concat`, and `forEach`.
+Now we can expand our horizons and implement other array methods like `js:LANG>concat`, and `js:LANG>forEach`.
 
 ```js
 const isIterable = arg => typeof arg === "object" && Symbol.iterator in arg
@@ -175,7 +175,7 @@ class Lazy {
 }
 ```
 
-And to get crazy, we can do some recursion with this technique and implement `Array.prototype.flat`
+And to get crazy, we can do some recursion with this technique and implement `js:LANG>Array.prototype.flat`
 
 ```js
 flat(depth=1) {
@@ -197,10 +197,10 @@ The morale of the story is once you get oriented, generators can make
 efficient, readable and effortlessly composable code, effectively reducing the
 sins of JavaScript. I think the 'anonymous iterable'
 idiom is a real gem in TypeScript, with generators also shining. Hopefully you decide
-to use something like this over lowering yourself to mutable `Array.prototype.push`
+to use something like this over lowering yourself to mutable `js:LANG>Array.prototype.push`
 in your performance-sensitive hotspots. Although I'm yet to [micro]benchmark the two.
 
-As promised, below is a decently extensive `Lazy` implementation in TypeScript.  
+As promised, below is a decently extensive `js:LANG>Lazy` implementation in TypeScript.  
 Eventually if I find a good untaken name, stop being lazy (trivial pun intended),
 and write more tests (I have a few), I'll publish this to [npm](https://www.npmjs.com/)
 for quick usage in your projects.
