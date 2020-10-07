@@ -73,7 +73,7 @@ function* map(iterable, mapFunction) {
 And that's basically it to `js:LANG>map`. We'll make the API more elegant later. We can now do the following:
 
 ```js
-[...map(map([1,2,3], x => x*3), x => `js:LANG>${x}`)]
+[...map(map([1,2,3], x => x*3), x => `${x}`)]
 ```
 
 You may be missing the trailing function syntax which is the main advantage to having `js:LANG>map` be a method of `js:LANG>Array`s, but as I said we'll be
@@ -82,8 +82,8 @@ making it elegant later. If you run this code in your local JavaScript runtime, 
 you'll notice that the spread syntax forces the iteration of the lazy iterable into an array, for us to view. When this code is running the spread syntax
 calls next on the outer map iterable. To get the first element, it calls next on the inner map. The inner map
 runs the loop, sets `js:LANG>item` to `js:LANG>1`, then runs `js:LANG>x => x*3` over it, yielding `js:LANG>3`. The outer map sets its `js:LANG>item` to `js:LANG>3` after receiving it as the first element
-from inner map it is wrapping, and runs `js:LANG>`x => `js:LANG>${x}` `js:LANG>` yielding `js:LANG>'3'`. This repeats for all elements until the Array has pushed all 3 elements and is now
-`['3', '6', '9']`js:LANG>. The point is, the instructions for the `map`js:LANG> calls are glued together when implemented via coroutine, as if you wrote only one `map` call
+from inner map it is wrapping, and runs ``js:LANG>x => `${x}` `` yielding `js:LANG>'3'`. This repeats for all elements until the Array has pushed all 3 elements and is now
+`js:LANG>['3', '6', '9']`. The point is, the instructions for the `js:LANG>map` calls are glued together when implemented via coroutine, as if you wrote only one `js:LANG>map` call
 practically. Now let's make `js:LANG>filter`.
 
 ```js
@@ -96,7 +96,7 @@ function* filter(iterable, predicate) {
 
 Again, easy. Now let's try to make these two functions as elegant as `js:LANG>[1,2,3].map(x => x*4).filter(x => x < 10)`.
 The best way to do this, is be as close to the original API as possible. Let's take advantage of `js:LANG>Array.from`, and make our own
-`Lazy.from`js:LANG> method for all our lazy-evaluation needs. This way, we can have `Lazy.prototype.map`js:LANG> and `Lazy.prototype.filter`, and
+`js:LANG>Lazy.from` method for all our lazy-evaluation needs. This way, we can have `js:LANG>Lazy.prototype.map` and `js:LANG>Lazy.prototype.filter`, and
 most code will just be a `js:LANG>Lazy.from(...)` away from making no copies.
 
 ```js

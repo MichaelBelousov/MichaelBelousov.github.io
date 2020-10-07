@@ -37,7 +37,7 @@ If I were to write my LaT<sub>E</sub>X code directly in a Python string,
 and attempt to use formatting keys,
 I would probably spontaneously combust. It looks like this:
 
-```python
+```latex
 r"""\begin{{document}}
 \frac{{ {kill} }}{{ {me} }}
 \end{{document}}""".format(kill=5, me=10)
@@ -53,7 +53,7 @@ keys looked distinct from the LaT<sub>E</sub>X syntax.
 My dumb and ugly LaT<sub>E</sub>X superset templater took about 5 lines of 
 Python code to process, and the source looked like:
 
-```python
+```latex
 \begin{document}
 \frac{<<numerator>>}{<<denominator>>}
 \end{document}
@@ -92,7 +92,7 @@ Let's add a `latex:LANG>\pyeval` pseudo-command, and a
 `pyexec` pseudo-environment so that we can get something 
 like so:
 
-```python
+```latex
 \begin{pyexec}
 name = 'John'
 \end{pyexec}
@@ -110,7 +110,7 @@ braces. (Regular expressions can't find the valid ending
     brace of a nested expression)
 Checkout the following counter_examples:
 
-```python
+```latex
 \begin{pyexec}
 hate_you = r'\end{pyexec}'  # we need to avoid ending if its in a literal
 \end{pyexec}
@@ -121,7 +121,7 @@ hate_you = r'\end{pyexec}'  # we need to avoid ending if its in a literal
 So I couldn't use regular expressions for this, but I still wanted it.
 Because my LaT<sub>E</sub>X document source would look like this:
 
-```python
+```latex
 \begin{pyexec}
 from scipy.optimize import curve_fit
 from random import random as rand
