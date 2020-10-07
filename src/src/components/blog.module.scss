@@ -29,5 +29,12 @@
 }
 
 .post {
-  width: 100%;
+  @media only screen {
+    @media (min-width: 700px) {
+      padding: 0 1in;
+      * {
+        max-width: 100%;
+      }
+    }
+  }
 }
