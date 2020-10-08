@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `Mike Belousov's Website`,
-    description: `See title`,
+    description: `Mike Belousov's Website`,
     author: `Mike Belousov`,
+    siteUrl: `https://mikemikeb.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -55,5 +56,8 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`
+    }
   ],
 }

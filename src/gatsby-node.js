@@ -49,9 +49,10 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 }
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
   if (node.internal.type === 'MarkdownRemark') {
-    const { createNodeField } = actions
-    // XXX: hack since basePath doesn't seem to be working when generating the names
+    // XXX: hackily concat to '/blog' since basePath doesn't seem to be working when
+    // generating the names
     const slug = createFilePath({ node, getNode, basePath: `blog` })
     createNodeField({ node, name: 'slug', value: `/blog${slug}` })
   }
