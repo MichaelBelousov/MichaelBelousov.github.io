@@ -9,8 +9,6 @@ import styles from "./blog.module.scss"
 export default function BlogPost(props: any) {
   const post = props.data.markdownRemark
 
-  console.log(post)
-
   return (
     <Layout pageTitle={post.frontmatter.title}>
       <Helmet>
@@ -36,7 +34,7 @@ export const query = graphql`
       frontmatter {
         title
         path
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMMM D, YYYY")
       }
     }
   }
