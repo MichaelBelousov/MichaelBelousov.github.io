@@ -348,8 +348,3 @@ export default class Lazy<T> implements Iterable<T> {
     }
 }
 ```
-
-PS: I hate highlight.js's TypeScript support. I should probably throw a PR at them because it's
-constantly broken. Or I'll try Prism which might have static styling support that I could
-take advantage of (via a Gatsby plugin; I use Gatsby to generate my site).
-
