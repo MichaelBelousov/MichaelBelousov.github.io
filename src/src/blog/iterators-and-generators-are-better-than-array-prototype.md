@@ -11,7 +11,9 @@ If you're unaware, these methods always allocate an entire new array. While this
 dumb performance pitfalls, and doesn't allow you to use these functions in performance-sensitive hotpaths of your application.
 Not to mention that these methods only exist on JavaScript's `js:LANG>Array` type, so you need to convert all iterators (e.g. `js:LANG>Map`, `js:LANG>Set`)
 into an array with `js:LANG>Array.from`, wasting more allocations. Here we'll build an efficient, elegant alternative using lazy evaluated generators,
-and at the end I provide a TypeScript implementation with heaps of fancy functional list operations, all efficient as heck.
+and at the end I provide a TypeScript implementation with heaps of fancy functional list operations, all efficient as heck. Plus, I eventually got around
+to publishing it on npm as [`lazy-from`](https://www.npmjs.com/package/lazy-from) so you can use it and its 0 dependencies in your project with just
+`sh:LANG>npm install lazy-from`.
 
 Returning to the horror of JavaScript's original design, take for instance the following example:
 
@@ -200,13 +202,10 @@ idiom is a real gem in TypeScript, with generators also shining. Hopefully you d
 to use something like this over lowering yourself to mutable `js:LANG>Array.prototype.push`
 in your performance-sensitive hotspots. Although I'm yet to [micro]benchmark the two.
 
-As promised, below is a decently extensive `js:LANG>Lazy` implementation in TypeScript.  
-Eventually if I find a good untaken name, stop being lazy (trivial pun intended),
-and write more tests (I have a few), I'll publish this to [npm](https://www.npmjs.com/)
-for quick usage in your projects.
-If you'd like to do it yourself for some reason, please
-[involve me](mailto:mikemikeb@protonmail.com), I'd love to share the ownership.
-Please use anyway you'd like, within reason.
+As promised, below is a decently extensive `js:LANG>Lazy` implementation in TypeScript.
+As stated before, I [published it to npm](https://www.npmjs.com/package/lazy-from),
+although it could use [a great deal of work](https://github.com/MichaelBelousov/lazy-from/issues).
+You can `sh:LANG>npm install lazy-from` it or copy and paste into your TypeScript project.
 
 ```ts
 // Typescript@4.0 probably simplifies or allows better alternative typings for
