@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mike Belousov's Website]]></title><description><![CDATA[Mike Belousov's Website]]></description><link>https://mikemikeb.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 08 Oct 2020 21:19:40 GMT</lastBuildDate><item><title><![CDATA[Lazy Javascript Iterables via Generators]]></title><description><![CDATA[A while back, I was concerned about the wastefulness of JavaScript's
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mike Belousov's Website]]></title><description><![CDATA[Mike Belousov's Website]]></description><link>https://mikemikeb.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 24 Oct 2020 20:11:46 GMT</lastBuildDate><item><title><![CDATA[Lazy Javascript Iterables via Generators]]></title><description><![CDATA[A while back, I was concerned about the wastefulness of JavaScript's
 
 and 
 functions, really all of JavaScript's canonical functional…]]></description><link>https://mikemikeb.com/blog/iterators-and-generators-are-better-than-array-prototype/</link><guid isPermaLink="false">https://mikemikeb.com/blog/iterators-and-generators-are-better-than-array-prototype/</guid><pubDate>Tue, 06 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;A while back, I was concerned about the wastefulness of JavaScript&apos;s
@@ -9,7 +9,9 @@ If you&apos;re unaware, these methods always allocate an entire new array. While
 dumb performance pitfalls, and doesn&apos;t allow you to use these functions in performance-sensitive hotpaths of your application.
 Not to mention that these methods only exist on JavaScript&apos;s &lt;code class=&quot;language-js&quot;&gt;Array&lt;/code&gt; type, so you need to convert all iterators (e.g. &lt;code class=&quot;language-js&quot;&gt;Map&lt;/code&gt;, &lt;code class=&quot;language-js&quot;&gt;Set&lt;/code&gt;)
 into an array with &lt;code class=&quot;language-js&quot;&gt;Array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;from&lt;/code&gt;, wasting more allocations. Here we&apos;ll build an efficient, elegant alternative using lazy evaluated generators,
-and at the end I provide a TypeScript implementation with heaps of fancy functional list operations, all efficient as heck.&lt;/p&gt;
+and at the end I provide a TypeScript implementation with heaps of fancy functional list operations, all efficient as heck. Plus, I eventually got around
+to publishing it on npm as &lt;a href=&quot;https://www.npmjs.com/package/lazy-from&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;lazy-from&lt;/code&gt;&lt;/a&gt; so you can use it and its 0 dependencies in your project with just
+&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; lazy-from&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Returning to the horror of JavaScript&apos;s original design, take for instance the following example:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 	&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; x&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
@@ -150,13 +152,10 @@ sins of JavaScript. I think the &apos;anonymous iterable&apos;
 idiom is a real gem in TypeScript, with generators also shining. Hopefully you decide
 to use something like this over lowering yourself to mutable &lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;push&lt;/code&gt;
 in your performance-sensitive hotspots. Although I&apos;m yet to [micro]benchmark the two.&lt;/p&gt;
-&lt;p&gt;As promised, below is a decently extensive &lt;code class=&quot;language-js&quot;&gt;Lazy&lt;/code&gt; implementation in TypeScript.&lt;br&gt;
-Eventually if I find a good untaken name, stop being lazy (trivial pun intended),
-and write more tests (I have a few), I&apos;ll publish this to &lt;a href=&quot;https://www.npmjs.com/&quot;&gt;npm&lt;/a&gt;
-for quick usage in your projects.
-If you&apos;d like to do it yourself for some reason, please
-&lt;a href=&quot;mailto:mikemikeb@protonmail.com&quot;&gt;involve me&lt;/a&gt;, I&apos;d love to share the ownership.
-Please use anyway you&apos;d like, within reason.&lt;/p&gt;
+&lt;p&gt;As promised, below is a decently extensive &lt;code class=&quot;language-js&quot;&gt;Lazy&lt;/code&gt; implementation in TypeScript.
+As stated before, I &lt;a href=&quot;https://www.npmjs.com/package/lazy-from&quot;&gt;published it to npm&lt;/a&gt;,
+although it could use &lt;a href=&quot;https://github.com/MichaelBelousov/lazy-from/issues&quot;&gt;a great deal of work&lt;/a&gt;.
+You can &lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; lazy-from&lt;/code&gt; it or copy and paste into your TypeScript project.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Typescript@4.0 probably simplifies or allows better alternative typings for&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;// some of these&lt;/span&gt;
 
