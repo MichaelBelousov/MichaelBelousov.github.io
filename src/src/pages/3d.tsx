@@ -71,6 +71,8 @@ const ThreeD = () => {
       </p>
 
       <div className={styles.container}>
+        <ClickableImage src="/images/hand-magic-orb.png" alt="hand-magic-orb" />
+        <ClickableImage src="/images/revolver.png" alt="revolver" />
         <ClickableImage src="/images/bad_face.png" alt="bad_face" />
         <ClickableImage src="/images/cubes_mess.png" alt="cubes_mess" />
         <ClickableImage src="/images/dirty_hog.jpeg" alt="dirty_hog" />
@@ -79,7 +81,6 @@ const ThreeD = () => {
         <ClickableImage src="/images/gold_hog.png" alt="gold_hog" />
         <ClickableImage src="/images/magnum_back.png" alt="magnum_back" />
         <ClickableImage src="/images/mongoose.png" alt="mongoose" />
-        <ClickableImage src="/images/revolver.png" alt="revolver" />
         <ClickableImage src="/images/turret_wireframe.png" alt="turret_wf" />
         <ClickableImage
           src="/images/undersuit_hand_greeble.png"
