@@ -1,0 +1,142 @@
+<div class="mikpanel blog">
+    <h3 style="margin:1pt;">On Centralization</h3>
+    <h5 style="margin:1pt;">April 22, 2018</h5>
+
+    <p>
+    The cloud era is an era of consumer convenience. As sprawling, seemingly
+    omnipotent, tech companies take on the mantle of our keepers, consumer technology
+    becomes only a window to services running in the cloud. The cloud is becoming
+    prevalent, an industry mainstay and perhaps soon structural monopoly.
+    So prevalent in fact, that the entire tech industry is moving towards the
+    mobile-first (or desktop-never) paradigm. the technological limits of the 
+    client are hardly a concern when the technology isn't in the client. For years,
+    the industry struggled with barely-equipped clients outdated hardware,
+    and recalcitrant hardware. And now, finally, we are able to decouple the
+    server from client, implementation from interface, to the purest degree.
+    Soon, supercomputers tied to our desire will be a tap away and we consumers
+    won't need to think, so much as worry, about storage, memory, performance, 
+    maintenance, reliability, etc, etc, or any of the other problems that come 
+    with realtime systems. Instead it will all be done for us, a silicon pampering.
+    </p>
+
+    <p>
+    You should be worried.
+    </p>
+
+    <p>
+    I have maybe 4 opening paragraphs written for this post, I promise to finish it
+    later. I have more thoughts on the subject now, and I think it's more delicate 
+    and needs to be more thoroughly
+    dissected. I'll get it done eventually, but for now, understand please that
+    I don't shun cloud computing, in fact I think it's a highly valuable tool including
+    at the consumer level. But I
+    want the reader to bear in mind that we're giving away all of our power here,
+    edging on subservience. Even now, as companies are being blamed for users they
+    cannot help, and then controlling content that an open medium would [should] have
+    no control over, we can see the manifestation of the bloat that started years ago.
+    This article will hopefully tackle the Facebook/Cambridge-Analytica incident and
+    why it shouldn't be a surprise to the cognizant internet user, and what the
+    realization should reveal to those who were previously unaware. Or at least my 
+    personal thoughts on the subject.
+    </p>
+
+    <!--
+    <p>
+    There's no such thing as a free lunch. And Facebook,
+    Google, Microsoft, Amazon, and Apple (more on this later), 
+    have been serving us a decent cafeteria lunch for over a decade. The issue is,
+    cloud computing is convenient. And it makes sense. For lots of things,
+    but not for everything. In fact, it's downright dangerous, as we are about to
+    embark on entrusting all of our computing and information to the great
+    tech conglomerates. The problem lies not in technology, and not in politics, 
+    but in principle.
+    </p>
+
+    <p>
+    We'll come back to that. But first, we must answer the question of what the 
+    internet even <i>is</i>.
+    Well, the internet is a <i>medium</i>. Like water or air, perhaps more specifically
+    a mall, spefically the space in the mall, or even a town with stores and roads. 
+    It's a mechanism through which we can move, communicate,
+    share, exchange, own, etc. Once this becomes clear, a number of ramifications are
+    made apparent. 
+    ...
+    </p>
+
+    <p>
+    As technology becomes a founding pillar of modern society, we are, astonishingly,
+    handing the keys to the reigning lords. The worst thing we can do in this
+    reality complicated by politics, unbridled certainty, and agendas, is give away
+    our freedom out of mere convenience. 
+    </p>
+
+    <p>
+    A new technological pandemic has been silently surfacing for the last
+    two decades. Its effect has been subtle, but it's consequences were immediate 
+    since, yet only now are they beginning to leak into conspicuity.
+    </p>
+    <p>
+    With the great Cambridge Analytica media belly-flop, the American nation
+    saw, and misinterpretted its first glimpse of the tumor that has manifested.
+    The reception was not unexpected, in fact it is rather lamentably precedented.
+    Facebook, and chiefly the mediocre Mark Zuckerberg are to blame
+    for the escape of millions of web citizens' <i>information</i>, an oblivious
+    misnomer. 
+    </p>
+    <p>
+    Google, another principal player in what inevitably boils down to the data
+    game, has been a tad smarter with their grasp. And still, Google <i>is</i>
+    YouTube, one of the most influential media networks in modern history.
+    In Google, Facebook, Amazon, Apple, Microsoft, etc, lie some of the greatest
+    raw power in History, and we, the people, have been giving it to them gladly
+    for the last twenty years. All of a sudden, they are imposing rules, a 
+    privilege they rightfully own, on what many perceived as free interchange.
+    But it isn't free, it shouldn't be, and it doesn't need to be. Because
+    something more important is free.
+    </p>
+    <p>
+    Facebook having given away our information is not baffling whatsoever. It is
+    nearly an implication of the system of which we have been happily conforming
+    to neatly.  What is, and should be dumbfounding is that we have allowed
+    the utter dominance of centralization at all.
+    </p>
+    <p>
+    To ascribe the responsiblity of the Cambridge Analytica scandal to Facebook is
+    not an error per se, as a misplacement of thought. The error lies in us giving
+    our information freely to a glorified advertisement firm. Skepticism is key to 
+    optimism, but now our society is now accelerating towards technological subservience.
+    </p>
+
+    <p>
+    The reason the public has trodden the path of centralization is purely availability,
+    which is itself rooted in the simplicity of centralization in the software industry.
+    The issue, however, is that centralization is an <i>intra-net</i> principle.
+    Deeply nested within the internet itself, is the reality that our digital world is
+    an <i>inter-net</i>, and the only thing that could possibly change that would
+    be the complete monopolization and the simple autocratization of the internet.
+    I hope we can agree that is an unfavorable end.
+    As the natural state of the system is between (inter) users, and not amongst (intra)
+    users, the only stable solution is that each user should be capable of
+    yielding their own services. When Google yields them for us, we waive our right
+    to the internet.
+    </p>
+    <p>
+    Humans have a deep need, a primordial predisposition, to shape the bizarre tumult before
+    us into a neat stream. That is doubtlessly a correct, and even accurate response, 
+    but care must be taken to note the instances of pure chaos. This preposensity has
+    led us to assign blame across the internet to the deliverers.
+    Unrealistic expectations for simple algorithms. And we keep shooting the messengers.
+    </p>
+    <p>
+    Now, as the sickness is making its rounds, we need to bring availability to the
+    peer-to-peer service model. We need to build a content-serving network
+    to rival YouTube and Facebook. An application and system that is consumer-friendly,
+    and consumer-hosted. Redundant, distributed, flexible, and free of the middle man. 
+    A true anarchy that should satisfy the libertarian mind. A pure framework, where
+    responsiblity can't be directly assigned to any third-party, where the consumer
+    is alone, but the consumers are united, and even if the implementers regretted
+    themselves (I have a feeling they wouldn't), it would be figuratively in perpetual
+    motion, an unstoppable force. 
+    </p>
+    -->
+</div>
