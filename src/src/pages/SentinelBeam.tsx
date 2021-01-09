@@ -1,7 +1,6 @@
 import React from "react"
 import styles from "./3d.module.scss"
 import Layout from "../components/layout"
-import "@google/model-viewer";
 
 /*
 declare module JSX {
@@ -20,17 +19,29 @@ declare module JSX {
 }
 */
 
-
-const SentinelBeam = () => {
-  return <model-viewer
-    src="/models/sentinel_beam.glb"
-    shadow-intensity="5.4"
-    shadow-softness="0.52"
-    style={{width: "100vw", height: "100vh"}}
-    camera-controls
-  />
-    //environment-image="aircraft_workshop_01_1k.hdr"
-    //skybox-image="aircraft_workshop_01_1k.hdr"
+function Viewer() {
+  return (
+    <model-viewer
+      src="/models/sentinel_beam.glb"
+      shadow-intensity="5.4"
+      shadow-softness="0.52"
+      style={{width: "100vw", height: "100vh"}}
+      camera-controls
+    />
+  )
 }
 
-export default SentinelBeam
+export default function SentinelBeam() {
+  if (typeof window === 'undefined') return <span>loading...</span>
+  const Component = React.lazy(async () => {
+    // load this module at runtime to workaround gatsby aggressively
+    // trying to pre-render it
+    await import("@google/model-viewer");
+    return {default: Viewer};
+  })
+  return (
+    <React.Suspense fallback={<span>loading...</span>}>
+      <Component />
+    </React.Suspense>
+  )
+}
