@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Michael Belousov",
   "dependencies": {
+    "@google/model-viewer": "^1.3.0",
     "gatsby": "^2.18.4",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-feed": "^2.5.14",

@@ -24,7 +24,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
               },
             },
             {
-              test: /\.(gif|png|jpe?g|svg)$/i,
+              test: /\.(gif|png|jpe?g|svg|gl(b|tf))$/i,
               use: [
                 require.resolve('file-loader'),
                 require.resolve('image-webpack-loader'),
