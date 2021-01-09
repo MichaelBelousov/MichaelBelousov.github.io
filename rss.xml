@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mike Belousov's Website]]></title><description><![CDATA[Mike Belousov's Website]]></description><link>https://mikemikeb.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Nov 2020 04:19:23 GMT</lastBuildDate><item><title><![CDATA[Lazy Javascript Iterables via Generators]]></title><description><![CDATA[A while back, I was concerned about the wastefulness of JavaScript's
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mike Belousov's Website]]></title><description><![CDATA[Mike Belousov's Website]]></description><link>https://mikemikeb.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 09 Jan 2021 21:19:26 GMT</lastBuildDate><item><title><![CDATA[Use Derived Getter Properties]]></title><description><![CDATA[I just started (finally) getting into Rust recently,
+and I miss properties. They're included in C#, Python, and JavaScript, but Rust doesn't…]]></description><link>https://mikemikeb.com/blog/always-user-getters/</link><guid isPermaLink="false">https://mikemikeb.com/blog/always-user-getters/</guid><pubDate>Mon, 26 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I just started (finally) getting into &lt;a href=&quot;https://www.rust-lang.org&quot;&gt;Rust&lt;/a&gt; recently,
+and I miss properties. They&apos;re included in C#, Python, and JavaScript, but Rust doesn&apos;t
+have them. &lt;/p&gt;
+&lt;p&gt;The gripe most developers have with properties is they are often used in two malevolent ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;boilerplate for accessing a regular public field&lt;/li&gt;
+&lt;li&gt;side-effects on field access&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both are bad, but I don&apos;t think they should overshadow a need for properties. There
+are plenty of abused language features out there, that doesn&apos;t necessarily mean
+they don&apos;t have a purpose, no matter what tools are out there.&lt;/p&gt;
+&lt;p&gt;Properties offer a solution to interface designers for the problem of derived state.
+Suppose we&apos;re building a contrived geometry engine, and we need to store line. Here:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;rust&quot;&gt;&lt;pre class=&quot;language-rust&quot;&gt;&lt;code class=&quot;language-rust&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token type-definition class-name&quot;&gt;Line&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  slope&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;f32&lt;/span&gt;
+  y_intercept&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;f32&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you remember a bit of middle school math, you&apos;ll know that there are a few ways to
+represent a line. For instance point-slope form, or point&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Lazy Javascript Iterables via Generators]]></title><description><![CDATA[A while back, I was concerned about the wastefulness of JavaScript's
 
 and 
 functions, really all of JavaScript's canonical functional…]]></description><link>https://mikemikeb.com/blog/iterators-and-generators-are-better-than-array-prototype/</link><guid isPermaLink="false">https://mikemikeb.com/blog/iterators-and-generators-are-better-than-array-prototype/</guid><pubDate>Tue, 06 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;A while back, I was concerned about the wastefulness of JavaScript&apos;s
