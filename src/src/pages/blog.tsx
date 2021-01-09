@@ -16,8 +16,6 @@ export default function(props: any) {
     []
   )
 
-  console.log(Array.from(perYear))
-
   return (
     <Layout pageTitle="Blog">
       {Array.from(perYear.entries(), ([year, edges]) => (
