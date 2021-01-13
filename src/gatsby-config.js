@@ -58,6 +58,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-feed`
-    }
+    },
+    'gatsby-plugin-pnpm'
   ],
 }

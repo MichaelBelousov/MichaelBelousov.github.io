@@ -4,9 +4,13 @@
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
   "author": "Michael Belousov",
+  "//": [
+    "probably ought to move a lot of these deps to dev deps but it's ok for now"
+  ],
   "dependencies": {
     "@google/model-viewer": "^1.3.0",
-    "gatsby": "^2.18.4",
+    "gatsby": "^2.30.1",
+    "gatsby-cli": "^2.17.0",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-feed": "^2.5.14",
     "gatsby-plugin-manifest": "^2.2.30",
@@ -27,6 +31,7 @@
   },
   "devDependencies": {
     "file-loader": "^5.0.2",
+    "gatsby-plugin-pnpm": "^1.2.5",
     "gatsby-plugin-sass": "^2.1.26",
     "gatsby-plugin-typescript": "^2.1.23",
     "gatsby-transformer-remark": "^2.6.42",
