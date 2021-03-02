@@ -1,6 +1,6 @@
-import React from "react"
-import styles from "./3d.module.scss"
-import Layout from "../components/layout"
+import React from 'react'
+import styles from './3d.module.scss'
+import Layout from '../components/layout'
 
 const ClickableImage = (props: React.HTMLProps<HTMLImageElement>) => {
   return (
@@ -27,7 +27,7 @@ const ThreeD = () => {
       </p>
 
       <p>
-        A couple of decades ago, my dad donated $20 to help make{" "}
+        A couple of decades ago, my dad donated $20 to help make{' '}
         <a href="https://blender.org">Blender</a> free and open source. I don't
         exactly remember what I was talking about with art or what, but, he had
         the foresight to show me Blender. I didn't figure it out quickly. I was
@@ -71,6 +71,10 @@ const ThreeD = () => {
       </p>
 
       <div className={styles.container}>
+        <ClickableImage
+          src="/images/male_face_sculpt.png"
+          alt="male face sculpt"
+        />
         <ClickableImage src="/images/hand-magic-orb.png" alt="hand-magic-orb" />
         <ClickableImage src="/images/revolver.png" alt="revolver" />
         <ClickableImage src="/images/bad_face.png" alt="bad_face" />
