@@ -1,11 +1,24 @@
 import React from 'react'
 import styles from './3d.module.scss'
 import Layout from '../components/layout'
+import hand_magic_orb from '../images/hand_magic_orb.png'
+import revolver from '../images/revolver.png'
+import bad_face from '../images/bad_face.png'
+import cubes_mess from '../images/cubes_mess.png'
+import dirty_hog from '../images/dirty_hog.jpeg'
+import bad_rocks from '../images/generated_bad_rocks.png'
+import nebula from '../images/generated_nebula.png'
+import gold_hog from '../images/gold_hog.png'
+import magnum_back from '../images/magnum_back.png'
+import mongoose from '../images/mongoose.png'
+import turret_wf from '../images/turret_wireframe.png'
+import undersuit_hand_greeble from '../images/undersuit_hand_greeble.png'
+import male_face_sculpt from '../images/male_face_sculpt.png'
 
-const ClickableImage = (props: React.HTMLProps<HTMLImageElement>) => {
+const ClickableImage = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
   return (
     <a href={props.src}>
-      <img alt="no alt provided" {...(props as any)} />
+      <img alt="no alt provided" {...props} />
     </a>
   )
 }
@@ -71,23 +84,20 @@ const ThreeD = () => {
       </p>
 
       <div className={styles.container}>
+        <ClickableImage src={male_face_sculpt} alt="male face sculpt" />
+        <ClickableImage src={hand_magic_orb} alt="hand_magic_orb" />
+        <ClickableImage src={revolver} alt="revolver" />
+        <ClickableImage src={bad_face} alt="bad_face" />
+        <ClickableImage src={cubes_mess} alt="cubes_mess" />
+        <ClickableImage src={dirty_hog} alt="dirty_hog" />
+        <ClickableImage src={bad_rocks} alt="generated_bad_rocks" />
+        <ClickableImage src={nebula} alt="generated_nebula" />
+        <ClickableImage src={gold_hog} alt="gold_hog" />
+        <ClickableImage src={magnum_back} alt="magnum_back" />
+        <ClickableImage src={mongoose} alt="mongoose" />
+        <ClickableImage src={turret_wf} alt="turret_wireframe" />
         <ClickableImage
-          src="/images/male_face_sculpt.png"
-          alt="male face sculpt"
-        />
-        <ClickableImage src="/images/hand-magic-orb.png" alt="hand-magic-orb" />
-        <ClickableImage src="/images/revolver.png" alt="revolver" />
-        <ClickableImage src="/images/bad_face.png" alt="bad_face" />
-        <ClickableImage src="/images/cubes_mess.png" alt="cubes_mess" />
-        <ClickableImage src="/images/dirty_hog.jpeg" alt="dirty_hog" />
-        <ClickableImage src="/images/generated_bad_rocks.png" alt="bad_rocks" />
-        <ClickableImage src="/images/generated_nebula.png" alt="nebula" />
-        <ClickableImage src="/images/gold_hog.png" alt="gold_hog" />
-        <ClickableImage src="/images/magnum_back.png" alt="magnum_back" />
-        <ClickableImage src="/images/mongoose.png" alt="mongoose" />
-        <ClickableImage src="/images/turret_wireframe.png" alt="turret_wf" />
-        <ClickableImage
-          src="/images/undersuit_hand_greeble.png"
+          src={undersuit_hand_greeble}
           alt="undersuit_hand_greeble"
         />
       </div>

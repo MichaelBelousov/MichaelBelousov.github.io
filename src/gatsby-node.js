@@ -26,7 +26,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
             {
               test: /\.(gif|png|jpe?g|svg|gl(b|tf))$/i,
               use: [
-                require.resolve('file-loader'),
+                //require.resolve('file-loader'), // not sure why this was here but it was breaking images
                 require.resolve('image-webpack-loader'),
               ],
             },
