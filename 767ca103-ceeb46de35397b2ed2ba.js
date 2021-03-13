@@ -31068,8 +31068,8 @@ var Jx = Math.PI / 32,
       key: _p,
       value: function value(t, e) {
         if (Object(_home_mike_personal_MichaelBelousov_github_io_src_node_modules_pnpm_babel_runtime_7_12_5_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Object(_home_mike_personal_MichaelBelousov_github_io_src_node_modules_pnpm_babel_runtime_7_12_5_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(n.prototype), _p, this).call(this, t, e), this[Fp] || !this[Pp]()) return;
-        var $_n = this[bp].model;
-        $_n.updateAnimation(e / 1e3), this[wp]();
+        var n = this[bp].model;
+        n.updateAnimation(e / 1e3), this[wp]();
       }
     }, {
       key: "updated",
