@@ -38,20 +38,9 @@ const Homepage = () => {
 
       <p>Things I'm looking to use on a next project include:</p>
       <ul>
-        {['Go', 'Rust', 'Haskell', 'Clojure'].map(s => (
+        {['Rust', 'Haskell', 'Clojure', 'Zig'].map(s => (
           <li key={s}>{s}</li>
         ))}
-      </ul>
-
-      <p>Some projects I am working on:</p>
-      <ul>
-        {[['Sizr', 'regex but for programming languages']].map(
-          ([title, desc]) => (
-            <li key={title}>
-              <strong>{title}</strong> {desc}
-            </li>
-          )
-        )}
       </ul>
 
       <p>
