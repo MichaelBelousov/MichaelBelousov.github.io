@@ -3,6 +3,22 @@ title: "Lazy Javascript Iterables via Generators"
 date: "2020-10-06"
 ---
 
+<!-- should make these part of the front-matter and render them differently if possible -->
+### Editor's regrets
+
+There is a more common method in JavaScript of using generators to make powerful custom iterators than I use here. Not sure why,
+but I was attracted to another one which I felt was more explicit somehow, although a bit more verbose and still somewhat
+esoteric. The usual way people do it is:
+
+```js
+const myIterator = (function*(){ yield 5; yield 2; yield* [1,2,3]})();
+```
+
+You'll see I do it without calling the generator explicitly. I have since reverted my preference to the most common
+method to be less clever. Either way, they are interchangeable so consider this method when reading what I do below.
+
+----
+
 A while back, I was concerned about the wastefulness of JavaScript's
 [`js:LANG>Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 and [`js:LANG>Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
