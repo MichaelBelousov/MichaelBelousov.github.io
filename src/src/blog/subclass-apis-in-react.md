@@ -122,7 +122,10 @@ function MyComponent() {
 `js:LANG>current` property, but we've made that impossible by keeping no reference to the ref object itself.
 Now that we have it, we can generalize to create a `js:LANG>useClass` hook that does the work for us.
 
+<div id="the-useclass-hook"></div>
+
 ## [The `useClass` Hook](#the-useclass-hook)
+
 
 Smaller than I thought it would be, really.
 
