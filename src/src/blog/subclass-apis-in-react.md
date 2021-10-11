@@ -130,9 +130,12 @@ Now that we have it, we can generalize to create a `js:LANG>useClass` hook that 
 Smaller than I thought it would be, really.
 
 ```tsx
-function useClass<C, S extends {}>(makeClass: (s: S) => C, state: S) {
-  const stateRef = useRef<S>({} as S).current;
-  Object.assign(stateRef, state);
+function useClass<C extends new (...args: any[]) => any, S extends {}>(
+  makeClass: (s: S) => C,
+  dependencies: S = {} as S
+): C {
+  const stateRef = useRef({} as S).current;
+  Object.assign(stateRef, dependencies);
   return useRef(makeClass(stateRef)).current;
 }
 ```
