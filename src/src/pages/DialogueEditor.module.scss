@@ -1,0 +1,16 @@
+$toolbarHeight: 60px;
+
+.page {
+}
+
+.toolbar {
+  box-sizing: border-box;
+  height: $toolbarHeight;
+  display: flex;
+  padding: 11px 22px 11px 22px;
+  gap: 22px;
+}
+
+.graph {
+  height: calc(100vh - #{$toolbarHeight});
+}
