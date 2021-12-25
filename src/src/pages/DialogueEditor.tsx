@@ -38,7 +38,7 @@ const initial: Elements<{} | DialogueEntryNodeData> = [
 const DialogueEntryNode = (props: NodeProps<DialogueEntryNodeData>) => {
   return (
     <div className={styles.dialogueEntryNode}>
-      <Handle type="target" position="top" isConnectable />
+      <Handle type="target" position="top" className={styles.handle} isConnectable />
       <div>non-label test</div>
       <input
         className="nodrag"
@@ -51,7 +51,7 @@ const DialogueEntryNode = (props: NodeProps<DialogueEntryNodeData>) => {
         &times;
       </button>
       {/* will dynamically add handles potentially... */}
-      <Handle type="source" position="bottom" isConnectable />
+      <Handle type="source" position="bottom" className={styles.handle} isConnectable />
     </div>
   )
 }
@@ -92,7 +92,7 @@ const DialogueEditor = () => {
                 return copy
               }),
             onDelete: () =>
-              setElements(prev => removeElements([{ id: newId }] as any, prev)),
+              setElements(prev => removeElements(prev.filter(e => e.id === newId), prev)),
           },
           position: { x: e.clientX - 0, y: e.clientY - 50 },
         } as Node<DialogueEntryNodeData>)
