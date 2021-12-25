@@ -6,6 +6,8 @@ import ReactFlow, {
   NodeProps,
   Node,
   removeElements,
+  Controls,
+  MiniMap,
 } from 'react-flow-renderer'
 import styles from './DialogueEditor.module.scss'
 import { downloadFile, uploadFile } from '../utils/localFileManip'
@@ -40,9 +42,9 @@ const DialogueEntryNode = (props: NodeProps<DialogueEntryNodeData>) => {
       <div>non-label test</div>
       <input
         className="nodrag"
-        onChange={e =>
+        onChange={e => {
           props.data.onChange({ ...props.data, text: e.currentTarget.value })
-        }
+        }}
         defaultValue={props.data.text}
       />
       <button onClick={props.data.onDelete} className={styles.deleteButton}>
@@ -90,7 +92,7 @@ const DialogueEditor = () => {
                 return copy
               }),
             onDelete: () =>
-              setElements(prev => prev.filter(e => e.id !== newId)),
+              setElements(prev => removeElements([{ id: newId }] as any, prev)),
           },
           position: { x: e.clientX - 0, y: e.clientY - 50 },
         } as Node<DialogueEntryNodeData>)
@@ -104,7 +106,7 @@ const DialogueEditor = () => {
         <button
           onClick={() => {
             downloadFile({
-              fileName: 'blah.json',
+              fileName: 'out.dialogue.json',
               content: JSON.stringify(elements),
             })
           }}
@@ -125,12 +127,17 @@ const DialogueEditor = () => {
         <ReactFlow
           elements={elements}
           onConnect={params => setElements(e => addEdge(params, e))}
-          //onElementsRemove={removeElements}
+          onElementsRemove={toRemove =>
+            setElements(e => removeElements(toRemove, e))
+          }
           deleteKeyCode={46} /*DELETE key*/
           snapToGrid
           snapGrid={[15, 15]}
           nodeTypes={nodeTypes}
-        />
+        >
+          <Controls />
+          <MiniMap />
+        </ReactFlow>
       </div>
     </div>
   )
