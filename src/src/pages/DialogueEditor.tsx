@@ -1,20 +1,30 @@
 import React from 'react'
 import ReactFlow, {
-  removeElements,
   addEdge,
   Elements,
+  Handle,
+  NodeProps,
+  Node,
+  removeElements,
 } from 'react-flow-renderer'
 import styles from './DialogueEditor.module.scss'
 import downloadFile from '../utils/downloadFile'
 
-interface NodeData {
-  // this comes from react flow itself
-  label: React.ReactNode
+interface DialogueEntry {
+  portrait?: string
+  title: string
+  text: string
 }
 
-const initial: Elements<NodeData> = [
+interface DialogueEntryNodeData extends DialogueEntry {
+  /** shallow merges in a patch to the data for that entry */
+  onChange(newData: Partial<DialogueEntry>): void
+  onDelete(): void
+}
+
+const initial: Elements<{} | DialogueEntryNodeData> = [
   {
-    id: 'entry',
+    id: '1',
     type: 'input',
     data: {
       label: 'entry',
@@ -23,8 +33,37 @@ const initial: Elements<NodeData> = [
   },
 ]
 
+const DialogueEntryNode = (props: NodeProps<DialogueEntryNodeData>) => {
+  return (
+    <div className={styles.dialogueEntryNode}>
+      <Handle type="target" position="top" isConnectable />
+      <div>non-label test</div>
+      <input
+        className="nodrag"
+        onChange={e =>
+          props.data.onChange({ ...props.data, text: e.currentTarget.value })
+        }
+        defaultValue={props.data.text}
+      />
+      <button onClick={props.data.onDelete} className={styles.deleteButton}>
+        &times;
+      </button>
+      {/* will dynamically add handles potentially... */}
+      <Handle type="source" position="bottom" isConnectable />
+    </div>
+  )
+}
+
+enum nodeTypeNames {
+  dialogueEntry = 'dialogueEntry',
+}
+
+const nodeTypes = {
+  [nodeTypeNames.dialogueEntry]: DialogueEntryNode,
+} as const
+
 const DialogueEditor = () => {
-  const [elements, setElements] = React.useState<Elements<NodeData>>(initial)
+  const [elements, setElements] = React.useState(initial)
   const onRightClick = React.useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault()
@@ -32,38 +71,29 @@ const DialogueEditor = () => {
       setElements(prev =>
         prev.concat({
           id: newId,
-          //type: 'input',
+          type: nodeTypeNames.dialogueEntry,
           data: {
-            label: (
-              <span>
-                <textarea
-                  onChange={e => {
-                    setElements(elems => {
-                      const copy = elems.slice()
-                      const elemIndex = copy.findIndex(
-                        elem => elem.id === newId
-                      )
-                      const elem = elems[elemIndex]
-                      elems[elemIndex] = {
-                        ...elem,
-                        label: e.currentTarget.value,
-                      }
-                      return copy
-                    })
-                  }}
-                />
-                <button
-                  onClick={() =>
-                    setElements(prev => prev.filter(elem => elem.id !== newId))
-                  }
-                >
-                  DELETE
-                </button>
-              </span>
-            ),
+            title: 'test title',
+            text: 'test text',
+            onChange: (newVal: Partial<DialogueEntryNodeData>) =>
+              setElements(prev => {
+                const copy = prev.slice()
+                const index = copy.findIndex(elem => elem.id === newId)
+                const elem = copy[index]
+                copy[index] = {
+                  ...elem,
+                  data: {
+                    ...elem.data,
+                    ...newVal,
+                  },
+                }
+                return copy
+              }),
+            onDelete: () =>
+              setElements(prev => prev.filter(e => e.id !== newId)),
           },
-          position: { x: e.clientX, y: e.clientY },
-        })
+          position: { x: e.clientX - 0, y: e.clientY - 50 },
+        } as Node<DialogueEntryNodeData>)
       )
     },
     [setElements]
@@ -87,9 +117,11 @@ const DialogueEditor = () => {
         <ReactFlow
           elements={elements}
           onConnect={params => setElements(e => addEdge(params, e))}
+          //onElementsRemove={removeElements}
           deleteKeyCode={46} /*DELETE key*/
           snapToGrid
           snapGrid={[15, 15]}
+          nodeTypes={nodeTypes}
         />
       </div>
     </div>

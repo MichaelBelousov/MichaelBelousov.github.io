@@ -14,3 +14,20 @@ $toolbarHeight: 60px;
 .graph {
   height: calc(100vh - #{$toolbarHeight});
 }
+
+.deleteButton {
+  position: absolute;
+  top: 0;
+  $size: 25px;
+  height: $size;
+  width: $size;
+  left: calc(100% - #{$size});
+  border-radius: 50%;
+}
+
+.dialogueEntryNode {
+  border: solid 1px black;
+  background-color: white;
+  color: black;
+  padding: 22px;
+}
