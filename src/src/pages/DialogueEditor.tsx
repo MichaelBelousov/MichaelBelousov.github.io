@@ -8,7 +8,7 @@ import ReactFlow, {
   removeElements,
 } from 'react-flow-renderer'
 import styles from './DialogueEditor.module.scss'
-import downloadFile from '../utils/downloadFile'
+import { downloadFile, uploadFile } from '../utils/localFileManip'
 
 interface DialogueEntry {
   portrait?: string
@@ -111,7 +111,15 @@ const DialogueEditor = () => {
         >
           Save
         </button>
-        <button>Load</button>
+        <button
+          onClick={async () => {
+            const text = await uploadFile()
+            const json = JSON.parse(text)
+            setElements(json)
+          }}
+        >
+          Load
+        </button>
       </div>
       <div className={styles.graph}>
         <ReactFlow

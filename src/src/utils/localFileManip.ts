@@ -34,4 +34,31 @@ export const downloadFile = async (opts: DownloadFileOpts) => {
   a.remove()
 }
 
+/** prompt the user to upload a file, currenlty only supports text */
+export const uploadFile = async () => {
+  return new Promise<string>((resolve, reject) => {
+    // should probably just keep this available at all times
+    const hiddenTree = document.createElement('div')
+    hiddenTree.style.display = 'none'
+    hiddenTree.innerHTML = `<input type="file" id="temp-upload" />`
+    const input = hiddenTree.children[0] as HTMLInputElement
+    input.onchange = function() {
+      try {
+        const [file] = input.files
+        const blob = file
+        const reader = new FileReader()
+        reader.onloadend = function(ev) {
+          if (ev.target.readyState === FileReader.DONE) {
+            resolve(ev.target.result as string)
+          }
+        }
+        reader.readAsText(blob, 'utf8')
+      } catch (err) {
+        reject(err)
+      }
+    }
+    input.click()
+  })
+}
+
 export default downloadFile
