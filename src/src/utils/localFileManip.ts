@@ -35,30 +35,37 @@ export const downloadFile = async (opts: DownloadFileOpts) => {
 }
 
 /** prompt the user to upload a file, currenlty only supports text */
-export const uploadFile = async () => {
-  return new Promise<string>((resolve, reject) => {
-    // should probably just keep this available at all times
-    const hiddenTree = document.createElement('div')
-    hiddenTree.style.display = 'none'
-    hiddenTree.innerHTML = `<input type="file" id="temp-upload" />`
-    const input = hiddenTree.children[0] as HTMLInputElement
-    input.onchange = function() {
-      try {
-        const [file] = input.files
-        const blob = file
-        const reader = new FileReader()
-        reader.onloadend = function(ev) {
-          if (ev.target.readyState === FileReader.DONE) {
-            resolve(ev.target.result as string)
+export const uploadFile = async (opts: { type: 'text' | 'dataurl' }) => {
+  const result = await new Promise<{ name: string; content: string }>(
+    (resolve, reject) => {
+      // should probably just keep this available at all times
+      const hiddenTree = document.createElement('div')
+      hiddenTree.style.display = 'none'
+      hiddenTree.innerHTML = `<input type="file" id="temp-upload" />`
+      const input = hiddenTree.children[0] as HTMLInputElement
+      input.onchange = function() {
+        try {
+          const [file] = input.files
+          const blob = file
+          const reader = new FileReader()
+          reader.onloadend = function(ev) {
+            if (ev.target.readyState === FileReader.DONE) {
+              resolve({ name: file.name, content: ev.target.result as string })
+            }
           }
+          if (opts.type === 'text') {
+            reader.readAsText(blob, 'utf8')
+          } else {
+            reader.readAsDataURL(blob)
+          }
+        } catch (err) {
+          reject(err)
         }
-        reader.readAsText(blob, 'utf8')
-      } catch (err) {
-        reject(err)
       }
+      input.click()
     }
-    input.click()
-  })
+  )
+  return result
 }
 
 export default downloadFile

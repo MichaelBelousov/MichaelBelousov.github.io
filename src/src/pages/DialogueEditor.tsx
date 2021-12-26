@@ -40,7 +40,21 @@ const initial: Elements<{} | DialogueEntryNodeData> = [
   },
 ]
 
+interface AppState {
+  /** map of portrait file name to its [data]url */
+  portraits: Map<string, string>
+}
+
+const AppCtx = React.createContext<AppState>(
+  new Proxy({} as AppState, {
+    get() {
+      throw Error('cannot consume null context')
+    },
+  })
+)
+
 const DialogueEntryNode = (props: NodeProps<DialogueEntryNodeData>) => {
+  const appCtx = React.useContext(AppCtx)
   return (
     <div className={styles.dialogueEntryNode}>
       <Handle
@@ -49,6 +63,27 @@ const DialogueEntryNode = (props: NodeProps<DialogueEntryNodeData>) => {
         className={styles.handle}
         isConnectable
       />
+      <label>
+        portrait
+        <select
+          onChange={e =>
+            props.data.onChange({ portrait: e.currentTarget.value })
+          }
+        >
+          {[...appCtx.portraits]
+            .map(([imageName]) => (
+              <option value={imageName}>{imageName}</option>
+            ))
+            .concat(<option>none</option>)}
+        </select>
+        {props.data.portrait && (
+          <img
+            className={styles.portraitImg}
+            src={appCtx.portraits.get(props.data.portrait)}
+            alt={props.data.portrait}
+          />
+        )}
+      </label>
       <label>
         title
         <input
@@ -154,6 +189,9 @@ const DialogueEditor = () => {
     },
     [setElements]
   )
+
+  const [portraits, setPortraits] = React.useState(new Map<string, string>())
+
   return (
     <div className={styles.page} onContextMenu={onRightClick}>
       <div className={styles.toolbar}>
@@ -169,36 +207,47 @@ const DialogueEditor = () => {
         </button>
         <button
           onClick={async () => {
-            const text = await uploadFile()
-            const json = JSON.parse(text)
+            const file = await uploadFile({ type: 'text' })
+            const json = JSON.parse(file.content)
             setElements(json)
           }}
         >
           Load
         </button>
-      </div>
-      <div className={styles.graph}>
-        <ReactFlow
-          elements={elements}
-          onConnect={params => setElements(e => addEdge(params, e))}
-          onElementsRemove={toRemove =>
-            setElements(e => removeElements(toRemove, e))
-          }
-          deleteKeyCode={46} /*DELETE key*/
-          snapToGrid
-          snapGrid={[15, 15]}
-          nodeTypes={nodeTypes}
-          edgeTypes={edgeTypes}
-          onElementClick={(_evt, elem) => {
-            if (isEdge(elem)) {
-              setElements(elems => removeElements([elem], elems))
-            }
+        <button
+          onClick={async () => {
+            const file = await uploadFile({ type: 'dataurl' })
+            setPortraits(prev => new Map([...prev, [file.name, file.content]]))
           }}
         >
-          <Controls />
-          <MiniMap />
-        </ReactFlow>
+          Upload Portrait
+        </button>
       </div>
+      {/* TODO: must memoize the context value */}
+      <AppCtx.Provider value={{ portraits }}>
+        <div className={styles.graph}>
+          <ReactFlow
+            elements={elements}
+            onConnect={params => setElements(e => addEdge(params, e))}
+            onElementsRemove={toRemove =>
+              setElements(e => removeElements(toRemove, e))
+            }
+            deleteKeyCode={46} /*DELETE key*/
+            snapToGrid
+            snapGrid={[15, 15]}
+            nodeTypes={nodeTypes}
+            edgeTypes={edgeTypes}
+            onElementClick={(_evt, elem) => {
+              if (isEdge(elem)) {
+                setElements(elems => removeElements([elem], elems))
+              }
+            }}
+          >
+            <Controls />
+            <MiniMap />
+          </ReactFlow>
+        </div>
+      </AppCtx.Provider>
     </div>
   )
 }
