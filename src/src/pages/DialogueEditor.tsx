@@ -8,6 +8,11 @@ import ReactFlow, {
   removeElements,
   Controls,
   MiniMap,
+  isEdge,
+  EdgeProps,
+  getBezierPath,
+  getMarkerEnd,
+  getSmoothStepPath,
 } from 'react-flow-renderer'
 import styles from './DialogueEditor.module.scss'
 import { downloadFile, uploadFile } from '../utils/localFileManip'
@@ -38,20 +43,42 @@ const initial: Elements<{} | DialogueEntryNodeData> = [
 const DialogueEntryNode = (props: NodeProps<DialogueEntryNodeData>) => {
   return (
     <div className={styles.dialogueEntryNode}>
-      <Handle type="target" position="top" className={styles.handle} isConnectable />
-      <div>non-label test</div>
-      <input
-        className="nodrag"
-        onChange={e => {
-          props.data.onChange({ ...props.data, text: e.currentTarget.value })
-        }}
-        defaultValue={props.data.text}
+      <Handle
+        type="target"
+        position="top"
+        className={styles.handle}
+        isConnectable
       />
+      <label>
+        title
+        <input
+          className="nodrag"
+          onChange={e =>
+            props.data.onChange({ ...props.data, title: e.currentTarget.value })
+          }
+          defaultValue={props.data.title}
+        />
+      </label>
+      <label>
+        text
+        <textarea
+          className="nodrag"
+          onChange={e =>
+            props.data.onChange({ ...props.data, text: e.currentTarget.value })
+          }
+          defaultValue={props.data.text}
+        />
+      </label>
       <button onClick={props.data.onDelete} className={styles.deleteButton}>
         &times;
       </button>
       {/* will dynamically add handles potentially... */}
-      <Handle type="source" position="bottom" className={styles.handle} isConnectable />
+      <Handle
+        type="source"
+        position="bottom"
+        className={styles.handle}
+        isConnectable
+      />
     </div>
   )
 }
@@ -61,7 +88,29 @@ enum nodeTypeNames {
 }
 
 const nodeTypes = {
+  // TODO: could just make this the "default" node
   [nodeTypeNames.dialogueEntry]: DialogueEntryNode,
+} as const
+
+const CustomDefaultEdge = (props: EdgeProps) => {
+  const edgePath = getSmoothStepPath(props)
+  const markerEnd = getMarkerEnd(props.arrowHeadType, props.markerEndId)
+  return (
+    <>
+      <path
+        id={props.id}
+        style={{ ...props.style, strokeWidth: 3 }}
+        className="react-flow__edge-path"
+        d={edgePath}
+        markerEnd={markerEnd}
+      />
+    </>
+  )
+}
+
+const edgeTypes = {
+  // TODO: could just make this the "default" node
+  default: CustomDefaultEdge,
 } as const
 
 const DialogueEditor = () => {
@@ -92,7 +141,12 @@ const DialogueEditor = () => {
                 return copy
               }),
             onDelete: () =>
-              setElements(prev => removeElements(prev.filter(e => e.id === newId), prev)),
+              setElements(prev =>
+                removeElements(
+                  prev.filter(e => e.id === newId),
+                  prev
+                )
+              ),
           },
           position: { x: e.clientX - 0, y: e.clientY - 50 },
         } as Node<DialogueEntryNodeData>)
@@ -134,6 +188,12 @@ const DialogueEditor = () => {
           snapToGrid
           snapGrid={[15, 15]}
           nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          onElementClick={(_evt, elem) => {
+            if (isEdge(elem)) {
+              setElements(elems => removeElements([elem], elems))
+            }
+          }}
         >
           <Controls />
           <MiniMap />
