@@ -16,6 +16,8 @@ const Homepage = () => {
           'Bash',
           'TypeScript, JavaScript, Node.js',
           'git',
+          'Zig',
+          'Rust',
           'Blender',
           'GNU/Linux',
           'Elm',
@@ -38,7 +40,7 @@ const Homepage = () => {
 
       <p>Things I'm looking to use on a next project include:</p>
       <ul>
-        {['Rust', 'Haskell', 'Clojure', 'Zig'].map(s => (
+        {['Haskell', 'Clojure'].map(s => (
           <li key={s}>{s}</li>
         ))}
       </ul>
