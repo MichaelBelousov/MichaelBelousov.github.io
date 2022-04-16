@@ -96,10 +96,6 @@ const ThreeD = () => {
         <ClickableImage src={magnum_back} alt="magnum_back" />
         <ClickableImage src={mongoose} alt="mongoose" />
         <ClickableImage src={turret_wf} alt="turret_wireframe" />
-        <ClickableImage
-          src={undersuit_hand_greeble}
-          alt="undersuit_hand_greeble"
-        />
       </div>
     </Layout>
   )
