@@ -33,6 +33,55 @@ const Work = () => {
             <a href="http://github.com/MichaelBelousov/resume">here</a>.
           </p>
         </iframe>
+        <p>
+          Here is a non-exhaustive list of tools that I am an
+          advanced user of.
+        </p>
+        <ul>
+          {[
+            'C++',
+            'C',
+            'Python',
+            'Bash',
+            'TypeScript+JavaScript',
+            'Node.js',
+            'Electron',
+            'git',
+            'Rust',
+            'Blender',
+            'GNU/Linux',
+            'React.js',
+            'Vue.js',
+            'Gatsby',
+            'HTML5, CSS, Sass, SVG',
+            'Webpack',
+            'Eslint',
+            'elm-lang',
+            'PostgreSQL',
+            'MySQL',
+            'SQLite',
+            'MongoDB',
+            'Java',
+            'LaTeX',
+            'Gitlab',
+            'Azure',
+            'lex/flex/reflex, yacc/Bison',
+            'LLVM',
+            '.NET, C#',
+            'Zig',
+            'Godot',
+            'Unreal Engine',
+          ].map(s => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
+
+        <p>Tools I'd like to spend more time with:</p>
+        <ul>
+          {['Haskell', 'Clojure', 'Svelte', 'Tauri'].map(s => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
       </div>
     </Layout>
   )

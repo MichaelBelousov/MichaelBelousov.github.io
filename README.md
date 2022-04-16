@@ -1,5 +1,5 @@
 #### Michael Belousov's Website
 
-This is Mike's website. The only technical "goals" here are:
-- SPA style custom routing
-- client-side logic, git hooks write records that the client uses to find blogs
+This is Mike's website. It's a gatsby site that I generate around itself.
+The actual source for the site is in the `src` directory, which has another `src` subdirectory for the TypeScript+React
+source of the pages.

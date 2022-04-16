@@ -1,56 +1,21 @@
 import React from 'react'
 import Layout from '../components/layout'
+import vladOnMyShouldersPath from '../images/vlad-on-my-shoulders.jpg'
 
 const Homepage = () => {
   return (
     <Layout pageTitle="Home">
-      <p> Hi, I'm Michael Belousov. I'm a programmer and digital artist. </p>
       <p>
-        Here is a non-exhaustive list of software that I've used in an advanced
-        capacity.
+        Hi, I'm Michael Belousov. I'm a programmer and digital artist. I love
+        programming and digital art and how they mix.
       </p>
-      <ul>
-        {[
-          'C++, C',
-          'Python',
-          'Bash',
-          'TypeScript, JavaScript, Node.js',
-          'git',
-          'Zig',
-          'Rust',
-          'Blender',
-          'GNU/Linux',
-          'Elm',
-          'React.js',
-          'Vue.js',
-          'HTML5, CSS, Sass, SVG',
-          'webpack, yarn, npm, lerna, pnpm, eslint, babel ...etc',
-          'PostgreSQL, MongoDB',
-          'Java',
-          'LaTeX',
-          'Gitlab',
-          'Azure, ADO, Azure storage, Octopus',
-          'lex/flex/reflex, yacc/Bison',
-          'LLVM',
-          '.NET, C#, dotnet-core',
-        ].map(s => (
-          <li key={s}>{s}</li>
-        ))}
-      </ul>
-
-      <p>Things I'm looking to use on a next project include:</p>
-      <ul>
-        {['Haskell', 'Clojure'].map(s => (
-          <li key={s}>{s}</li>
-        ))}
-      </ul>
-
+      <p>I have a beautiful son, Vlad, and wife, Anastasia.</p>
+      <img src={vladOnMyShouldersPath} style={{ maxWidth: 400 }}></img>
       <p>
         I'm interested in lots of things and if you think you have one of them,
-        feel free to{' '}
-        <a href="mailto:mikemikeb@protonmail.com">contact me via email</a>. Also
-        checkout <a href="https://github.com/MichaelBelousov">my GitHub</a> to
-        see some projects I am working on or have worked on.
+        feel free to contact me as <em>mikemikeb</em> at <em>protonmail.com</em>{' '}
+        Also checkout <a href="https://github.com/MichaelBelousov">my GitHub</a>{' '}
+        for most of my personal experiments and tinkerings.
       </p>
     </Layout>
   )
