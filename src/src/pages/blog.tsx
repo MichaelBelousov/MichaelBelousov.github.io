@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
-import styles from './blog.module.scss'
+import * as styles from './blog.module.scss'
 
 export default function(props: any) {
   const perYear = React.useMemo(

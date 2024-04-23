@@ -4,7 +4,7 @@ import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import SEO from "./seo"
 
-import styles from "./blog.module.scss"
+import * as styles from "./blog.module.scss"
 
 export default function BlogPost(props: any) {
   const post = props.data.markdownRemark

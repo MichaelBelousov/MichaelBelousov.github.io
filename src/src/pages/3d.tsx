@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './3d.module.scss'
+import * as styles from './3d.module.scss'
 import Layout from '../components/layout'
 import hand_magic_orb from '../images/hand_magic_orb.png'
 import revolver from '../images/revolver.png'

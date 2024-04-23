@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./3d.module.scss"
+import * as styles from "./3d.module.scss"
 import Layout from "../components/layout"
 
 /*

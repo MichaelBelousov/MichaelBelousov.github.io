@@ -14,7 +14,7 @@ import ReactFlow, {
   getMarkerEnd,
   getSmoothStepPath,
 } from 'react-flow-renderer'
-import styles from './DialogueEditor.module.scss'
+import * as styles from './DialogueEditor.module.scss'
 import { downloadFile, uploadFile } from '../utils/localFileManip'
 
 interface DialogueEntry {

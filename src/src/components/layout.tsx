@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import SEO from "./seo"
-import styles from "./layout.module.scss"
+import * as styles from "./layout.module.scss"
 
 interface LayoutProps {
   pageTitle: string
