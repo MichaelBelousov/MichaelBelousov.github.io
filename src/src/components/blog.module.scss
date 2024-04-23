@@ -29,12 +29,18 @@
 }
 
 .post {
-  @media only screen {
-    @media (min-width: 700px) {
-      padding: 0 1in;
-      * {
-        max-width: 100%;
-      }
-    }
-  }
+}
+
+.compactBlogListing {
+  line-height: 1.1em;
+}
+
+.compactBlogListing > h3 {
+  margin-top: 11px;
+  margin-bottom: 4px;
+}
+
+.compactBlogListing > ul {
+  margin-top: 0;
+  margin-bottom: 0;
 }

@@ -17,3 +17,23 @@
     color: orange;
   }
 }
+
+.blogsSidebar {
+  position: fixed;
+  width: 15rem;
+  z-index: 1;
+  top: 0.8in;
+  right: 0;
+  overflow-x: hidden;
+  margin-top: 22px;
+  margin-right: 6px;
+  font-size: 0.8rem;
+}
+
+@media only screen {
+  @media (max-width: 15in) {
+    .blogsSidebar {
+      display: none;
+    }
+  }
+}

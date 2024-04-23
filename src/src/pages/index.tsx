@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
 import vladOnMyShouldersPath from '../images/vlad-on-my-shoulders.jpg'
+import * as sharedStyles from "../shared.module.scss"
 
 const Homepage = () => {
   return (
@@ -9,22 +10,27 @@ const Homepage = () => {
         Hi, I'm Michael (Mike) Belousov. I'm a programmer and occasional digital artist.
       </p>
       <p>
-        I have a mostly broad (and often deep) amateur-ish knowledge of computer systems and especially enjoy
+        I have a broad (and often deep) amateur-ish knowledge of computer systems and especially enjoy
         low-level programming, language design, and recently structured fuzz testing.
       </p>
-      <img src={vladOnMyShouldersPath} style={{ maxWidth: 400 }}></img>
 
-      <p>FAQs</p>
+      <h2>Frequently Asked Questions</h2>
       <ol>
         <li>
           <strong>
             What IDE do you use?
           </strong>
 
-          tmux + bash + lunarvim (neovim)
-          
-          When forced to use windows I use msys2 to get something similar but these days
-          I have success developing some windows-only projects using wine and Zig's bundled Clang.
+          <div>
+            <p>
+              tmux + bash + <a href="https://www.lunarvim.org/">lunarvim</a>.
+            </p>
+            
+            <p>
+              When forced to use windows I use <a href="https://www.msys2.org/">msys2</a> to get something similar but these days
+              I have success developing some windows-only projects using wine and Zig's bundled Clang.
+            </p>
+          </div>
         </li>
       </ol>
 

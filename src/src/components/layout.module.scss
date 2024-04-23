@@ -6,7 +6,7 @@
       padding: 12px;
     }
     @media (min-width: 700px) {
-      padding: 1in;
+      padding: calc((100% - 8.5in)/2);
       padding-top: 22px;
     }
   }

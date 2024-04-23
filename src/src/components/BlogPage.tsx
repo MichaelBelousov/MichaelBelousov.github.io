@@ -1,10 +1,11 @@
-import React, { useLayoutEffect } from "react"
+import React from "react"
 import Layout from "./layout"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import SEO from "./seo"
 
-import * as styles from "./blog.module.scss"
+import * as styles from "../components/blog.module.scss"
+import * as navStyles from "../pages/blog.module.scss"
 
 export default function BlogPost(props: any) {
   const post = props.data.markdownRemark
@@ -21,6 +22,26 @@ export default function BlogPost(props: any) {
     [],
   )
 
+  const sidebar = (
+    <nav className={navStyles.blogsSidebar}>
+      <h2>Other posts</h2>
+      {Array.from(perYear.entries(), ([year, edges]) => (
+        <div key={year} className={styles.compactBlogListing}>
+          <h3><strong>{year}</strong></h3>
+          <div>
+            {edges.map((node, key) => (
+              <div key={key}>
+                <a href={node.fields.slug} className={navStyles.blogLink} style={{ margin: 0 }}>
+                  {node.frontmatter.title}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </nav>
+  )
+
   return (
     <Layout pageTitle={post.frontmatter.title}>
       <Helmet>
@@ -31,22 +52,7 @@ export default function BlogPost(props: any) {
           crossOrigin="anonymous"
         />
       </Helmet>
-      <div>
-        {Array.from(perYear.entries(), ([year, edges]) => (
-          <div key={year}>
-            {year}
-            <ul>
-              {edges.map((node, key) => (
-                <li key={key}>
-                  <a href={node.fields.slug} className={styles.blogLink}>
-                    <strong>{node.frontmatter.title}</strong>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+      {sidebar}
       <div className={styles.post}>
         <h1>{post.frontmatter.title}</h1>
         <h3>{post.frontmatter.date}</h3>
@@ -87,28 +93,3 @@ export const query = graphql`
     }
   }
 `
-
-/*
-export const pageQuery = graphql`
-  {
-    allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
-      limit: 100
-    ) {
-      edges {
-        node {
-          html
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            path
-            title
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  }
-`
-*/

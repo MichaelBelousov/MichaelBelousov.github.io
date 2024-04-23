@@ -1,24 +1,29 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import * as styles from './header.module.scss';
+import * as sharedStyles from '../shared.module.scss';
+import GithubLogo from "../images/github-mark-white.inline.svg";
+
+console.log(GithubLogo);
 
 const Header = () => (
   <header>
-    <div className={styles.separate}>
-      <div className={styles.left}>
+    <div className={sharedStyles.center}>
+      <nav className={styles.topnav}>
+        Mike Belousov
         <Link className={styles.navLink} to="/">Home</Link>
         <Link className={styles.navLink} to="/work">Resume</Link>
         <Link className={styles.navLink} to="/3d">Art</Link>
         <Link className={styles.navLink} to="/blog">Blog</Link>
-      </div>
-      <div className={styles.right}>
-        <h1>Mike Belousov</h1>
-      </div>
+        <a href="https://github.com/MichaelBelousov" className={sharedStyles.center}>
+          <GithubLogo className={styles.navLink} style={{ width: 20, height: 20, marginTop: 4 }} viewBox="0 0 100 100" />
+        </a>
+      </nav>
     </div>
     <hr/>
+    <br/>
   </header>
 );
-
 
 export default Header;
 
