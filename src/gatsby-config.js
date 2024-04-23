@@ -1,3 +1,5 @@
+/** @type {import("gatsby").GatsbyConfig} */
+
 module.exports = {
   siteMetadata: {
     title: `Mike Belousov's Website`,
@@ -19,7 +21,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
+        name: `Mike Belousov's website`,
         short_name: `mikemikeb.com`,
         start_url: `/`,
         background_color: `#663399`,
@@ -56,8 +58,49 @@ module.exports = {
         ],
       },
     },
+    // incomplete copy of the following:
+    // https://www.npmjs.com/package/gatsby-plugin-feed
+    // which shows how to generate an RSS feed from our blog data
     {
-      resolve: `gatsby-plugin-feed`
+      resolve: `gatsby-plugin-feed`,
+      /** @type {import("gatsby-plugin-feed").IPluginOptions} */
+      options: {
+        feeds: [
+          {
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  nodes {
+                    excerpt
+                    html
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                      date
+                    }
+                  }
+                }
+              }
+            `,
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.nodes.map(node => ({
+                ...node.frontmatter,
+                description: node.excerpt,
+                date: node.frontmatter.date,
+                url: site.siteMetadata.siteUrl + node.fields.slug,
+                guid: site.siteMetadata.siteUrl + node.fields.slug,
+                custom_elements: [{ "content:encoded": node.html }],
+              }));
+            },
+            output: "/rss.xml",
+            title: "Mike Belousov's blog",
+          }
+        ],
+      },
     },
     'gatsby-plugin-pnpm'
   ],
