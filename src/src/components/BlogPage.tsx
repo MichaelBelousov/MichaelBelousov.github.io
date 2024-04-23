@@ -4,6 +4,7 @@ import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import SEO from "./seo"
 
+// FIXME: merge these
 import * as styles from "../components/blog.module.scss"
 import * as navStyles from "../pages/blog.module.scss"
 
