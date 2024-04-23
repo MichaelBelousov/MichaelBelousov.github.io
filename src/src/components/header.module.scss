@@ -36,6 +36,9 @@ hr {
   display: flex;
   gap: 11px;
   align-items: center;
+  overflow-x: scroll;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .navLink {
@@ -56,6 +59,13 @@ hr {
       fill: orange;
     }
     transform: scale(1.1);
+  }
+
+  @media only screen {
+    @media (max-width: 700px) {
+    }
+    @media (min-width: 700px) {
+    }
   }
 }
 
