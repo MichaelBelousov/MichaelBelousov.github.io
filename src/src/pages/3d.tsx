@@ -3,7 +3,7 @@ import * as styles from './3d.module.scss'
 import Layout from '../components/layout'
 import hand_magic_orb from '../images/hand_magic_orb.png'
 import revolver from '../images/revolver.png'
-import bad_face from '../images/bad_face.png'
+import kai_face from '../images/kai_face.png'
 import cubes_mess from '../images/cubes_mess.png'
 import dirty_hog from '../images/dirty_hog.jpeg'
 import bad_rocks from '../images/generated_bad_rocks.png'
@@ -39,7 +39,7 @@ const ThreeD = () => {
         <ClickableImage src={male_face_sculpt} alt="male face sculpt" />
         <ClickableImage src={hand_magic_orb} alt="hand_magic_orb" />
         <ClickableImage src={revolver} alt="revolver" />
-        <ClickableImage src={bad_face} alt="bad_face" />
+        <ClickableImage src={kai_face} alt="bad_face" />
         <ClickableImage
           src="/images/the_eye.png"
           alt="procedurally generated eye"
