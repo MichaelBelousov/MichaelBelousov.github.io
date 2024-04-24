@@ -28,9 +28,10 @@ const ThreeD = () => {
     <Layout pageTitle="3D">
       <p>
         Here's a small collection of digital works I've made, most just visual
-        brainstorms, many procedurally generated, some sculpts. They are mostly
-        made with Blender, but I also use Unreal Engine, Substance, Krita, GIMP,
-        Godot, and more. The Warthog (yellow vehicle) and Magnum (pistol) had
+        brainstorms, some procedurally generated, some sculpted or drawn.
+        They are mostly made with Blender, but I also use Unreal Engine,
+        Krita, GIMP, Godot, scripts, and other minor tools.
+        The yellow vehicle and black handled pistol had
         contributing authors.
       </p>
 
@@ -53,6 +54,10 @@ const ThreeD = () => {
         <ClickableImage src={mongoose} alt="mongoose" />
         <ClickableImage src={turret_wf} alt="turret_wireframe" />
       </div>
+
+      <p>
+        If you can tell, I, uh, liked Halo when I was in high school.
+      </p>
     </Layout>
   )
 }
