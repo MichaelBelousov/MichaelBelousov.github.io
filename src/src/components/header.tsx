@@ -4,8 +4,6 @@ import * as styles from './header.module.scss';
 import * as sharedStyles from '../shared.module.scss';
 import GithubLogo from "../images/github-mark-white.inline.svg";
 
-console.log(GithubLogo);
-
 const Header = () => (
   <header>
     <div className={sharedStyles.center}>
