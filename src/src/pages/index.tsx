@@ -35,7 +35,7 @@ const Homepage = () => {
       </ul>
       */}
 
-      <h2>Incomplete projects I could use some help with</h2>
+      <h2>Incomplete side projects (if you want me/yourself to continue one, reach out)</h2>
       <ul>
         <li><a href="https://github.com/MichaelBelousov/sizr-format/tree/master/tree-stitcher">AST transforms in Lisp by embedding tree-sitter's Lisp-ish query DSL</a>
           <aside>

@@ -6,8 +6,6 @@ date: "2022-04-12"
 I use too much bash. I've written down some of the more outrageous or useful ones. I think it'll make a good part 1 to
 an ongoing series.
 
-Note: I use `g` as an alias for git and sometimes.
-
 #### List extensions of non-text files in a git repository
 
 ```sh

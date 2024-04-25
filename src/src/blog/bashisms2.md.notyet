@@ -1,0 +1,14 @@
+
+```bash
+diff --color -u \
+    <(find /var/folders/rr/k5l7kyn55s77_pxm54r2t2940000gp/T/update-repo1/out/mac/itwin-studio-e2e-update-test.app -type f
+        | cut -d/ -f11-
+        | sort
+        | xargs -S 1024 -I{} sha256sum /var/folders/rr/k5l7kyn55s77_pxm54r2t2940000gp/T/update-repo1/out/mac/itwin-studio-e2e-update-test.app/{}
+        | cut -d/ -f 1,12-)
+    <(find /Volumes/itwin-studio-e2e-update-test\ 1.0.17/itwin-studio-e2e-update-test.app -type f
+        | cut -d/ -f5-
+        | sort
+        | xargs -S 1024 -I{} sha256sum /Volumes/itwin-studio-e2e-update-test\ 1.0.17/itwin-studio-e2e-update-test.app/{}
+        | cut -d/ -f1,6- )
+```
