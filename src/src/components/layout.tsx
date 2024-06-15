@@ -28,6 +28,9 @@ const Layout = ({
       <SEO title={pageTitle} />
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
+      <footer>
+        <a href="/rss.xml">>subscribe to my rss feed</a>
+      </footer>
     </div>
   )
 }
