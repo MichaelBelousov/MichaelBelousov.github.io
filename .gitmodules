@@ -1,0 +1,3 @@
+[submodule "src/src/blog/zig_error_payloads/libs/zbench"]
+	path = src/src/blog/zig_error_payloads/libs/zbench
+	url = https://github.com/hendriknielaender/zBench
