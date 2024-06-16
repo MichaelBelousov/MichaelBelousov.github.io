@@ -1,4 +1,3 @@
-warning: Encountered error: FileNotFound, falling back to default ABI and dynamic linker.
 const std = @import("std");
 
 // Although this function looks imperative, note that its job is to
@@ -16,6 +15,10 @@ pub fn build(b: *std.Build) void {
     // set a preferred release mode, allowing the user to decide how to optimize.
     const optimize = b.standardOptimizeOption(.{});
 
+    const zbench = b.addModule("zbench", .{
+        .root_source_file = b.path("libs/zbench/zbench.zig"),
+    });
+
     const exe = b.addExecutable(.{
         .name = "zig_error_payloads",
         .root_source_file = b.path("src/main.zig"),
@@ -23,9 +26,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    exe.addAnonymousModule("zbench", .{
-        .source_file = .{ .path = "libs/zbench/zbench.zig" },
-    });
+    exe.addModule("zbench", zbench);
 
     b.installArtifact(exe);
 
