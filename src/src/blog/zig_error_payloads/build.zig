@@ -15,9 +15,10 @@ pub fn build(b: *std.Build) void {
     // set a preferred release mode, allowing the user to decide how to optimize.
     const optimize = b.standardOptimizeOption(.{});
 
-    const zbench = b.addModule("zbench", .{
-        .root_source_file = b.path("libs/zbench/zbench.zig"),
-    });
+    //const zbench = b.anonymousDependency("libs/zbench", @import("libs/zbench/build.zig"), .{
+    //.target = target,
+    //.optimize = optimize,
+    //});
 
     const exe = b.addExecutable(.{
         .name = "zig_error_payloads",
@@ -26,7 +27,10 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    exe.addModule("zbench", zbench);
+    //exe.addModule("zbench", zbench.module("zbench"));
+    exe.root_module.addAnonymousImport("zbench", .{
+        .root_source_file = b.path("libs/zbench/zbench.zig"),
+    });
 
     b.installArtifact(exe);
 
@@ -50,6 +54,10 @@ pub fn build(b: *std.Build) void {
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
+    });
+
+    exe_unit_tests.root_module.addAnonymousImport("zbench", .{
+        .root_source_file = b.path("libs/zbench/zbench.zig"),
     });
 
     const run_exe_unit_tests = b.addRunArtifact(exe_unit_tests);
