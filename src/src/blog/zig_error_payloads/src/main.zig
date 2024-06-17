@@ -2,33 +2,22 @@ const std = @import("std");
 const zbench = @import("zbench");
 
 fn benchmarkDiagnosticPattern(allocator: std.mem.Allocator) void {
-    return 1 + 10;
+    _ = allocator;
 }
 
 fn benchmarkErrorUnionPayload(allocator: std.mem.Allocator) void {
-    return 1 * 10;
+    _ = allocator;
 }
 
 test "bench test" {
+    std.debug.print("1\n", .{});
     var bench = zbench.Benchmark.init(std.testing.allocator, .{});
     defer bench.deinit();
     try bench.add("Error union payload", benchmarkErrorUnionPayload, .{});
     try bench.add("Diagnostic pattern", benchmarkDiagnosticPattern, .{});
+    std.debug.print("2\n", .{});
     try bench.run(std.io.getStdOut().writer());
+    std.debug.print("3\n", .{});
 }
 
-pub fn main() !void {
-    // Prints to stderr (it's a shortcut based on `std.io.getStdErr()`)
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-
-    // stdout is for the actual output of your application, for example if you
-    // are implementing gzip, then only the compressed bytes should be sent to
-    // stdout, not any debugging messages.
-    const stdout_file = std.io.getStdOut().writer();
-    var bw = std.io.bufferedWriter(stdout_file);
-    const stdout = bw.writer();
-
-    try stdout.print("Run `zig build test` to run the tests.\n", .{});
-
-    try bw.flush(); // don't forget to flush!
-}
+pub fn main() !void {}
