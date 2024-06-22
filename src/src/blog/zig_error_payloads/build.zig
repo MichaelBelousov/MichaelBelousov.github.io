@@ -4,6 +4,8 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
+    b.verbose_llvm_ir = "./test.llvm";
+
     const exe = b.addExecutable(.{
         .name = "zig_error_payloads",
         .root_source_file = b.path("src/main.zig"),

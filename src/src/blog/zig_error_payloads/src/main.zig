@@ -70,22 +70,24 @@ fn useParseJsonRes(alloc: std.mem.Allocator) ?Diagnostic {
     return null;
 }
 
-fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) std.ArrayList([]const u8) {
-    const result = std.ArrayList([]const u8).init(alloc);
-    errdefer result.deinit();
+noinline fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) !u32 {
+    const result = 1;
 
-    const json = try parseJson(alloc, "[]", diagnostic);
+    const input = std.posix.getenv("TEST_INPUT") orelse @panic("set TEST_INPUT in env");
+
+    const json = try parseJson(alloc, input, diagnostic);
     _ = json;
 
     return result;
 }
 
-fn errdeferParseJsonRes(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
-    var ok = std.ArrayList([]const u8).init(alloc);
-    var result: Result(std.ArrayList([]const u8), Diagnostic) = .{ .ok = ok };
-    defer if (result == .err) ok.deinit();
+noinline fn errdeferParseJsonRes(alloc: std.mem.Allocator) Result(u32, Diagnostic) {
+    var result: Result(u32, Diagnostic) = .{ .ok = 0 };
+    //defer if (result == .err) ok.deinit();
 
-    const json = switch (parseJsonRes(alloc, "[]")) {
+    const input = std.posix.getenv("TEST_INPUT") orelse @panic("set TEST_INPUT in env");
+
+    const json = switch (parseJsonRes(alloc, input)) {
         .ok => |o| o,
         .err => |e| {
             result = .{ .err = e };
@@ -98,20 +100,39 @@ fn errdeferParseJsonRes(alloc: std.mem.Allocator) Result(std.ArrayList([]const u
     return result;
 }
 
-fn benchmarkDiagnosticPattern(allocator: std.mem.Allocator) void {
-    _ = allocator;
+noinline fn benchmarkDiagnosticPattern(allocator: std.mem.Allocator) void {
+    var diagnostic = Diagnostic{};
+    _ = errdeferParseJson(allocator, &diagnostic) catch return;
 }
 
-fn benchmarkErrorUnionPayload(allocator: std.mem.Allocator) void {
-    _ = allocator;
+noinline fn benchmarkErrorUnionPayload(allocator: std.mem.Allocator) void {
+    _ = errdeferParseJsonRes(allocator);
 }
 
-test "bench test" {
-    var bench = zbench.Benchmark.init(std.testing.allocator, .{});
+fn benchmarkImpl(alloc: std.mem.Allocator) !void {
+    // FIXME: probably not a good allocator for benchmark? (but should be ignored)
+    var bench = zbench.Benchmark.init(alloc, .{
+        .time_budget_ns = 1e9,
+    });
     defer bench.deinit();
     try bench.add("Error union payload", benchmarkErrorUnionPayload, .{});
     try bench.add("Diagnostic pattern", benchmarkDiagnosticPattern, .{});
     try bench.run(std.io.getStdOut().writer());
 }
 
-pub fn main() !void {}
+test "bench test" {
+    try benchmarkImpl(std.testing.allocator);
+}
+
+pub fn main() !void {
+    // apparently zbench uses a lot of memory?
+    // var buffer: [8192]u8 = undefined;
+    // var fba = std.heap.FixedBufferAllocator.init(&buffer);
+    // const alloc = fba.allocator();
+
+    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+    defer arena.deinit();
+    const alloc = arena.allocator();
+
+    try benchmarkImpl(alloc);
+}
