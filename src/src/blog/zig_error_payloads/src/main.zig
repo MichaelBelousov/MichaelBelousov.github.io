@@ -70,10 +70,10 @@ fn useParseJsonRes(alloc: std.mem.Allocator) ?Diagnostic {
     return null;
 }
 
+var input: []const u8 = "";
+
 noinline fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) !u32 {
     const result = 1;
-
-    const input = std.posix.getenv("TEST_INPUT") orelse @panic("set TEST_INPUT in env");
 
     const json = try parseJson(alloc, input, diagnostic);
     _ = json;
@@ -84,8 +84,6 @@ noinline fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic
 noinline fn errdeferParseJsonRes(alloc: std.mem.Allocator) Result(u32, Diagnostic) {
     var result: Result(u32, Diagnostic) = .{ .ok = 0 };
     //defer if (result == .err) ok.deinit();
-
-    const input = std.posix.getenv("TEST_INPUT") orelse @panic("set TEST_INPUT in env");
 
     const json = switch (parseJsonRes(alloc, input)) {
         .ok => |o| o,
@@ -125,6 +123,8 @@ test "bench test" {
 }
 
 pub fn main() !void {
+    input = std.posix.getenv("TEST_INPUT") orelse @panic("set TEST_INPUT in env");
+
     // apparently zbench uses a lot of memory?
     // var buffer: [8192]u8 = undefined;
     // var fba = std.heap.FixedBufferAllocator.init(&buffer);
