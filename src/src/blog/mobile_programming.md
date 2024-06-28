@@ -19,7 +19,7 @@ I have everything I need on my Android phone.
 A C/C++ compiler, zig, rust, gdb, node.js, python, bash, vim, tmux, etc.
 
 All thanks to [Termux](https://termux.dev/en/).
-My eyes may not always agree (especially when I use a termux split),
+My eyes may not always agree (especially when I use a tmux split),
 but I find it a very convenient setup.
 I've even written several blog posts or chunks of them from there (this one included).
 
