@@ -189,10 +189,10 @@ So this isn't as interesting as I would have hoped.
 I created a [micro benchmark](https://github.com/MichaelBelousov/MichaelBelousov.github.io/tree/master/src/src/blog/zig_error_payloads) with [zbench](https://github.com/hendriknielaender/zBench) and ran it on:
 
 - my OnePlus 9 Pro with 4 1.8GHz Arm Cortex-A55 cores and 4 2.4GHz Arm Cortex-A78 cores, using termux. I assume it used the performance cores but did not really check, and couldn't activate the phone's "high-performance gaming mode" in termux.
-- my Digital Ocean droplet with 1 virtual CPU using ubuntu 22.04.04 ... I don't trust this one either.
-- my wife's 16 inch 2021 Apple Macbook Pro with an Apple Silicon M1 Max chip. This is more like it.
+- my Digital Ocean droplet with 1 virtual x84_64 "generic intel" CPU using ubuntu 22.04.04 ... I don't trust this one at all of course.
+- my wife's 16 inch 2021 Apple Macbook Pro with an Apple Silicon M1 Max chip. This is more what we want.
 
-But on all tested machines, there was basically no statisically significant difference between the two patterns.
+But on all tested machines, there was basically no reproducible difference between the two cases.
 
 I was hoping that the compiler would have a more difficult time optimizing the
 diagnostic pattern which requires mutating memory via a pointer parameter,
@@ -201,6 +201,13 @@ as opposed to just returning more data. But in my benchmark, I see no evidence o
 It is a microbenchmark after all, but let's see if we can figure out why.
 
 ### Cache behavior
+
+I ran cachegrind on each benchmark case to get some clues.
+Unfortunately valgrind on termux reported that it can't handle some atomic
+ARM instruction it encountered when zbench uses zig's standard library's
+Progress API. So I only ran cachegrind on the above listed x86_64 CPU.
+Since we're just recording cache behavior,
+the nondetermistic performance of the virtual CPU shouldn't matter.
 
 Here is a cachegrind run on the diagnostic pattern case
 
@@ -242,6 +249,6 @@ Here is cachegrind on the error union payload case
 ==5754== LL miss rate:          0.0% (        0.0%     +        0.0%  )
 ```
 
-Now these are both _disturbingly_ similar. Let's take a closer look.
+Now those are _disturbingly_ similar. Let's take an even closer look.
 
-And here is the assembly:
+Here is the assembly extracted with `objdump`.
