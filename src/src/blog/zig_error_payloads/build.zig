@@ -1,10 +1,9 @@
+warning: Encountered error: FileNotFound, falling back to default ABI and dynamic linker.
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
-
-    b.verbose_llvm_ir = "./test.llvm";
 
     const exe = b.addExecutable(.{
         .name = "zig_error_payloads",
