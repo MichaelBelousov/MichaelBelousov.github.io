@@ -5,7 +5,7 @@ date: "2024-06-16"
 ---
 
 I have a confession to make. I really like [zig](https://ziglang.com).
-It has a lot of promise anyway. 
+It has a lot of promise anyway.
 
 But one thing can be a bit weird to some at first,
 especially if you're used to returning monadic error types
@@ -100,7 +100,7 @@ fn useParseJsonRes(alloc: std.mem.Allocator) ?Diagnostic {
 }
 ```
 
-### `zig:LANG>errdefer` 
+### `zig:LANG>errdefer`
 
 `zig:LANG>errdefer` is worse, but there is hope.
 
@@ -184,3 +184,64 @@ I don't see it as worth the complexity after chasing it for a bit.
 
 ### Bonus: benchmark
 
+So this isn't as interesting as I would have hoped.
+
+I created a [micro benchmark](https://github.com/MichaelBelousov/MichaelBelousov.github.io/tree/master/src/src/blog/zig_error_payloads) with [zbench](https://github.com/hendriknielaender/zBench) and ran it on:
+
+- my OnePlus 9 Pro with 4 1.8GHz Arm Cortex-A55 cores and 4 2.4GHz Arm Cortex-A78 cores, using termux. I assume it used the performance cores but did not really check, and couldn't activate the phone's "high-performance gaming mode" in termux.
+- my Digital Ocean droplet with 1 virtual CPU using ubuntu 22.04.04 ... I don't trust this one either.
+- my wife's 16 inch 2021 Apple Macbook Pro with an Apple Silicon M1 Max chip. This is more like it.
+
+But on all tested machines, there was basically no statisically significant difference between the two patterns.
+
+I was hoping that the compiler would have a more difficult time optimizing the
+diagnostic pattern which requires mutating memory via a pointer parameter,
+as opposed to just returning more data. But in my benchmark, I see no evidence of that.
+
+It is a microbenchmark after all, but let's see if we can figure out why.
+
+### Cache behavior
+
+Here is a cachegrind run on the diagnostic pattern case
+
+```cachegrind
+==5734== I   refs:      487,311,629                                            [3/269]
+==5734== I1  misses:            337
+==5734== LLi misses:            337
+==5734== I1  miss rate:        0.00%
+==5734== LLi miss rate:        0.00%
+==5734==
+==5734== D   refs:      227,403,102  (150,872,723 rd   + 76,530,379 wr)
+==5734== D1  misses:        300,352  (    283,874 rd   +     16,478 wr)
+==5734== LLd misses:         16,505  (         80 rd   +     16,425 wr)
+==5734== D1  miss rate:         0.1% (        0.2%     +        0.0%  )
+==5734== LLd miss rate:         0.0% (        0.0%     +        0.0%  )
+==5734==
+==5734== LL refs:           300,689  (    284,211 rd   +     16,478 wr)
+==5734== LL misses:          16,842  (        417 rd   +     16,425 wr)
+==5734== LL miss rate:          0.0% (        0.0%     +        0.0%  )
+```
+
+Here is cachegrind on the error union payload case
+
+```cachegrind
+==5754== I   refs:      473,999,217                                            [2/299]
+==5754== I1  misses:            338
+==5754== LLi misses:            338
+==5754== I1  miss rate:        0.00%
+==5754== LLi miss rate:        0.00%
+==5754==
+==5754== D   refs:      224,948,590  (147,385,221 rd   + 77,563,369 wr)
+==5754== D1  misses:        281,152  (    264,674 rd   +     16,478 wr)
+==5754== LLd misses:         16,505  (         80 rd   +     16,425 wr)
+==5754== D1  miss rate:         0.1% (        0.2%     +        0.0%  )
+==5754== LLd miss rate:         0.0% (        0.0%     +        0.0%  )
+==5754==
+==5754== LL refs:           281,490  (    265,012 rd   +     16,478 wr)
+==5754== LL misses:          16,843  (        418 rd   +     16,425 wr)
+==5754== LL miss rate:          0.0% (        0.0%     +        0.0%  )
+```
+
+Now these are both _disturbingly_ similar. Let's take a closer look.
+
+And here is the assembly:
