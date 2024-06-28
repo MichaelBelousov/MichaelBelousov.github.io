@@ -108,13 +108,21 @@ noinline fn benchmarkErrorUnionPayload(allocator: std.mem.Allocator) void {
 }
 
 fn benchmarkImpl(alloc: std.mem.Allocator) !void {
+    const force_one_test = std.posix.getenv("FORCE_ONE");
+
     // FIXME: probably not a good allocator for benchmark? (but should be ignored)
     var bench = zbench.Benchmark.init(alloc, .{
         .time_budget_ns = 1e9,
     });
     defer bench.deinit();
-    try bench.add("Error union payload", benchmarkErrorUnionPayload, .{});
-    try bench.add("Diagnostic pattern", benchmarkDiagnosticPattern, .{});
+    if (force_one_test == null or std.mem.eql(u8, force_one_test.?, "union-payload")) {
+        try bench.add("Error union payload", benchmarkErrorUnionPayload, .{});
+    } else if (force_one_test == null or std.mem.eql(u8, force_one_test.?, "diagnostic")) {
+        try bench.add("Diagnostic pattern", benchmarkDiagnosticPattern, .{});
+    } else {
+        @panic("FORCE_ONE must be unset or 'union-payload' or 'diagnostic'");
+    }
+
     try bench.run(std.io.getStdOut().writer());
 }
 
