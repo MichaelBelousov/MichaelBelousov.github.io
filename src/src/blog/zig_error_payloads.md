@@ -1,6 +1,6 @@
 ---
 path: "/blog/zig-error-payloads"
-title: "Error payloads in zig today"
+title: "The diagnostic pattern vs. error payloads in Zig"
 date: "2024-06-16"
 ---
 
@@ -85,10 +85,9 @@ test "res invalid" {
 }
 ```
 
-So idiomatic try becomes the slightly more cumbersome
+Admittedly, idiomatic `zig:LANG>try` and `zig:LANG>catch` become slightly more cumbersome.
 
 ```zig
-// diagnostic parameter must be propagated up the call chain
 fn useParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) void {
   const json = try parseJson(alloc, "[]", diagnostic);
 }
@@ -101,12 +100,14 @@ fn useParseJsonRes(alloc: std.mem.Allocator) ?Diagnostic {
 }
 ```
 
+### `zig:LANG>errdefer` 
+
 `zig:LANG>errdefer` is worse, but there is hope.
-Remember that errdefer is important because when returning an error,
-you may have allocated something for the caller to free, but now they
-receive only an error and can't free it.
-`zig:LANG>errdefer` is necessary in that case to prevent leaking such resources
-when returning an error.
+
+Remember that `zig:LANG>errdefer` is important in cases such as when you
+allocated to return to the caller to own, but now they
+receive only the error and you need to destroy the incomplete object
+to not leak it.
 
 ```zig
 fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) std.ArrayList([]const u8) {
@@ -114,6 +115,8 @@ fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) std.Arr
   errdefer result.deinit();
 
   const json = try parseJson(alloc, "[]", diagnostic);
+  // use json to build the result
+  //...
 
   return result;
 }
@@ -140,9 +143,44 @@ fn errdeferParseJsonRes(alloc: std.mem.Allocator) Result(std.ArrayList([]const u
 our `zig:LANG>errdefer` replacement, (`zig:LANG>defer if (result == .err) ...`)
 takes effect.
 
-Sounds risky. As the code base changes, someone could totally forget that
-unenforced requirement and return an error directly, leaving `Result`
+That's risky. As the code base changes, someone could totally forget that
+unenforced contract and return an error directly, leaving `Result`
 in a valid state.
 
-Perhaps the boilerplate for avoiding the error diagnostic pattern is starting to ad up?
+Also that's a lot of boilerplate. Maybe the diagnostic pattern isn't so bad?
+
+### The future for `zig:LANG>errdefer`'ing hand-rolled error unions
+
+In the future, we may get a [compiler builtin to access the return value directly](https://github.com/ziglang/zig/issues/2765).
+This may have the side-effect of allowing us to access our returned value during a `zig:LANG>defer` statement, eliminating the need to manually make sure we're always returning the correct variable.
+
+We would end up with the much nicer:
+
+```zig
+fn errdeferFutureParseJsonRes(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
+  var result = std.ArrayList([]const u8).init(alloc);
+  defer if (@return() == .err) result.deinit();
+
+  const json = switch (parseJsonRes(alloc, "[]")) {
+    .ok => |o| o,
+    .err => |e| return .{.err = e },
+  };
+
+  return result;
+}
+```
+
+I would say that's pretty reasonable.
+
+### Why error payloads?
+
+Well, now that we've thoroughly compared the code for both options, which wins?
+It looks like the diagnostic pattern is surprisingly simple,
+low on boilerplate, and integrates well with the language today.
+
+The result pattern could fit well if the language underwent some changes but
+I don't see it as worth the complexity after chasing it for a bit.
+...
+
+### Bonus: benchmark
 
