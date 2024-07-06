@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{uREp:function(e,n,t){"use strict";function s(){return React.createElement("model-viewer",{src:"/models/sentinel_beam.glb","shadow-intensity":"5.4","shadow-softness":"0.52",style:{width:"100vw",height:"100vh"},"camera-controls":!0})}t.r(n),t.d(n,"default",(function(){return s}))}}]);
-//# sourceMappingURL=component---src-pages-sentinel-beam-model-tsx-d7aa9dda540f8fa6e51e.js.map
