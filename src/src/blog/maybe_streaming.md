@@ -11,4 +11,5 @@ My internet bandwidth is sporadic while traveling so I don't think I can do
 it stably yet, but I'd like to try a few times. My mic will also suck until I
 get back.
 
-So if you wanna see some Zig programming, feel free to sit in.
+So if you wanna see some Zig programming, feel free to sit in at
+[twitch.tv/mikebelousov](https://twitch.tv/mikebelousov).
