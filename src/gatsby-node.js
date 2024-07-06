@@ -32,7 +32,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
             },
             // markdown loading chain
             {
-              test: /\.md$/,
+              // TODO: exclude entire zbench directory
+              test: /.*blog\/[^\/]+\.md$/,
               use: [
                 require.resolve('html-loader'),
                 require.resolve('markdown-loader'),
