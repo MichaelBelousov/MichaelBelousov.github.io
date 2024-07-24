@@ -52,7 +52,6 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           # Automatically inject pathPrefix in your Gatsby configuration file.
-          #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: gatsby
       - name: Restore cache
@@ -72,7 +71,7 @@ jobs:
         run: pnpm run build
       - name: Copy non-gatsby content
         run: |
-          cp ../godot-json-dialogue* ../bubble* public
+          cp -r ../godot-json-dialogue* ../bubble* public
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
