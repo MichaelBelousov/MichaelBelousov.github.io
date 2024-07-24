@@ -1,6 +1,6 @@
 ---
 path: "/blog/kindle-lock-in"
-title: "Kindle isn't extensible software"
+title: "Kindle isn't extensible software (duh)"
 date: "2024-07-24"
 ---
 
