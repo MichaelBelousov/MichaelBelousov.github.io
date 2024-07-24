@@ -69,9 +69,6 @@ jobs:
         env:
           PREFIX_PATHS: 'true'
         run: pnpm run build
-      - name: Copy non-gatsby content
-        run: |
-          cp -r ../godot-json-dialogue* ../bubble* public
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

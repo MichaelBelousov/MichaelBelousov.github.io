@@ -58,6 +58,8 @@ typings/
 .cache/
 public/*
 !public/images
+!public/bubble-beats
+!public/godot-json-dialogue-schema-checker.html
 
 # Mac files
 .DS_Store
