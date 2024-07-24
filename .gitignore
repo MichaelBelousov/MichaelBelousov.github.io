@@ -25,10 +25,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# I'm ignoring lock files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
 # other package manager files
 pnpm-debug.log
