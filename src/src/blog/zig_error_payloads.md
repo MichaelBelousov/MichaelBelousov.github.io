@@ -7,22 +7,23 @@ date: "2024-07-24"
 I have a confession to make. I really like [zig](https://ziglang.com).
 
 But one thing can be a bit weird to some at first,
-especially if you've gotten used to returning monadic error types
+especially if you've gotten used to returning error union types
 (like Rust's `rust:LANG>Result`) for error handling.
 
 The problem is zig already has the very similar [error unions](https://ziglang.org/documentation/master/#Error-Union-Type).
 They just don't carry payloads, only an error code without context.
 
 Some people ask if you could, and then realize you shouldn't.
-Unfortunately I all too often try to see if I could.
+Unfortunately I tend to see if I could.
 So I tried to roll my own result union. Zig has unions after all, how hard could it be?
 
-TL;DR: I realize the diagnostic pattern is nice now.
+TL;DR: I love zig's diagnostic pattern now.
 
 ### Errors require context
 
 Suppose for example, that you're trying to model parse errors. Maybe you're writing a JSON parser.
-Then you probably want to provide some context with your error, like at which position a comma token
+Then you probably want to provide some context with any parsing errors,
+like at which position a comma token
 was missing.
 
 The prevailing idiom today, the [*diagnostic pattern*](/FIXME), suggests
@@ -46,8 +47,12 @@ test "invalid" {
 }
 ```
 
-So, can we do this without adding a parameter? Do we want to?
-We could use zig's language support for tagged unions to
+Some people don't like it because the disconnectedness of the parameter to the
+return value makes it easy to forget to populate the diagnostics or even forget
+to add error context to APIs at all, like the zig standard library has [historically](/FIXME) done (insofar as zig's youth can have a history).
+
+So, can we get error context without adding a parameter? Do we want to?
+We could "just" use zig's language support for tagged unions to
 make our own union with one (or more) error states, and return that.
 
 But then you miss out on using zig's builtin `zig:LANG>try`,
@@ -100,7 +105,7 @@ fn useParseJsonUnion(alloc: std.mem.Allocator) Result(void, Diagnostic) {
 
 ### `zig:LANG>errdefer`
 
-`zig:LANG>errdefer` is worse, but could get better in the future.
+`zig:LANG>errdefer` is worse, but might get better in the future.
 
 Remember that `zig:LANG>errdefer` is important in cases such as when you
 allocated something to return to the caller to own, but now they
@@ -118,7 +123,7 @@ fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) std.Arr
 
 fn errdeferParseJsonUnion(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
   var ok = std.ArrayList([]const u8).init(alloc);
-  var result = Result(std.ArrayList([]const u8), Diagnostic) = .{.ok = ok};
+  var result = Result(std.ArrayList([]const u8), Diagnostic) = .{.err = .{}};
   defer if (result == .err) ok.deinit();
 
   const json = switch (parseJsonUnion(alloc, "[]")) {
@@ -129,6 +134,7 @@ fn errdeferParseJsonUnion(alloc: std.mem.Allocator) Result(std.ArrayList([]const
     },
   };
 
+  result = Result(std.ArrayList([]const u8), Diagnostic) = .{.ok = ok};
   return result;
 }
 ```
@@ -140,7 +146,7 @@ takes effect.
 
 That's risky. As the code base changes, someone could totally forget that
 unenforced contract and return an error directly, leaving `Result`
-in a valid state.
+in an accidentally valid state.
 
 Also that's a lot of boilerplate. Maybe the diagnostic pattern isn't so bad?
 
@@ -161,89 +167,50 @@ fn errdeferFutureParseJsonUnion(alloc: std.mem.Allocator) Result(std.ArrayList([
     .err => |e| return .{.err = e },
   };
 
-  return result;
+  return Result(std.ArrayList([]const u8, Diagnostic){.ok = result};
 }
 ```
 
-I would say that's pretty reasonable.
+I would say that's pretty reasonable all of a sudden.
 
-### Why error payloads?
+### Which is better?
 
 Well, now that we've thoroughly compared the code for both options, which wins?
+
 It looks like the diagnostic pattern is surprisingly simple,
 low on boilerplate, and integrates well with the language today.
+But the `zig:LANG>Result` type always requires full initialization in the
+error case which makes it less prone to forgetting to set the error.
+Assuming you use the result correctly for the defer case at all...
+
+One hidden bonus is that the diagnostic pattern
+fits well with exported functions. `zig:LANG>extern` unions can't be trivially
+tagged so returning them in a C API takes some effort.
+But just slap an `zig:LANG>extern` on the Diagnostic struct and you
+can pretty straight-forwardly export any functions we wrote already using the
+diagnostic pattern.
+
+I felt this recently when I moved [a project](/FIXME) I'm working on from
+my hand-rolled results to the diagnostic pattern, and the C API got much simpler.
 
 The result pattern could fit well if the language underwent some changes but
-I don't see it as worth the complexity after chasing it for a bit.
-...
+I don't see it as worth the complexity after staring at it for a bit.
 
-### Bonus: benchmark
+### Benchmark?
 
 So this isn't as interesting as I would have hoped.
 
-I created a [micro benchmark](https://github.com/MichaelBelousov/MichaelBelousov.github.io/tree/master/src/src/blog/zig_error_payloads) with [zbench](https://github.com/hendriknielaender/zBench) and ran it on:
+I created a [micro benchmark](https://github.com/MichaelBelousov/MichaelBelousov.github.io/tree/master/src/src/blog/zig_error_payloads) with [zbench](https://github.com/hendriknielaender/zBench)
+and ran it on a few devices I have access to, although only the ARM hardware was non-virtual.
 
-- my OnePlus 9 Pro with 4 1.8GHz Arm Cortex-A55 cores and 4 2.4GHz Arm Cortex-A78 cores, using termux. I assume it used the performance cores but did not really check, and couldn't activate the phone's "high-performance gaming mode" in termux.
-- my Digital Ocean droplet with 1 virtual x84_64 "generic intel" CPU using ubuntu 22.04.04 ... I don't trust this one at all of course.
-- my wife's 16 inch 2021 Apple Macbook Pro with an Apple Silicon M1 Max chip. This is more what we want.
-
-But on all tested machines, there was basically no reproducible difference between the two cases.
+There was no reproducible difference in performance between the two cases.
 
 I was hoping that the compiler would have a more difficult time optimizing the
-diagnostic pattern which requires mutating memory via a pointer parameter,
-as opposed to just returning more data. But in my benchmark, I see no evidence of that.
+diagnostic pattern, and I disabled inlining
+the tested function boundary (which is not entirely accurate), but they really
+had roughly the exact same performance. Feel free to run the benchmark yourself
+and point me in the right direction.
 
-It is a microbenchmark after all, but let's see if we can figure out why.
+But, I don't think it's worth expending any more effort for myself.
+I am very happy with the Diagnostic pattern now.
 
-### Cache behavior
-
-I ran cachegrind on each benchmark case to get some clues.
-Unfortunately valgrind on termux reported that it can't handle some atomic
-ARM instruction it encountered when zbench uses zig's standard library's
-Progress API. So I only ran cachegrind on the above listed x86_64 CPU.
-Since we're just recording cache behavior,
-the nondetermistic performance of the virtual CPU shouldn't matter.
-
-Here is a cachegrind run on the diagnostic pattern case
-
-```cachegrind
-==5734== I   refs:      487,311,629                                            [3/269]
-==5734== I1  misses:            337
-==5734== LLi misses:            337
-==5734== I1  miss rate:        0.00%
-==5734== LLi miss rate:        0.00%
-==5734==
-==5734== D   refs:      227,403,102  (150,872,723 rd   + 76,530,379 wr)
-==5734== D1  misses:        300,352  (    283,874 rd   +     16,478 wr)
-==5734== LLd misses:         16,505  (         80 rd   +     16,425 wr)
-==5734== D1  miss rate:         0.1% (        0.2%     +        0.0%  )
-==5734== LLd miss rate:         0.0% (        0.0%     +        0.0%  )
-==5734==
-==5734== LL refs:           300,689  (    284,211 rd   +     16,478 wr)
-==5734== LL misses:          16,842  (        417 rd   +     16,425 wr)
-==5734== LL miss rate:          0.0% (        0.0%     +        0.0%  )
-```
-
-Here is cachegrind on the error union payload case
-
-```cachegrind
-==5754== I   refs:      473,999,217                                            [2/299]
-==5754== I1  misses:            338
-==5754== LLi misses:            338
-==5754== I1  miss rate:        0.00%
-==5754== LLi miss rate:        0.00%
-==5754==
-==5754== D   refs:      224,948,590  (147,385,221 rd   + 77,563,369 wr)
-==5754== D1  misses:        281,152  (    264,674 rd   +     16,478 wr)
-==5754== LLd misses:         16,505  (         80 rd   +     16,425 wr)
-==5754== D1  miss rate:         0.1% (        0.2%     +        0.0%  )
-==5754== LLd miss rate:         0.0% (        0.0%     +        0.0%  )
-==5754==
-==5754== LL refs:           281,490  (    265,012 rd   +     16,478 wr)
-==5754== LL misses:          16,843  (        418 rd   +     16,425 wr)
-==5754== LL miss rate:          0.0% (        0.0%     +        0.0%  )
-```
-
-Now those are _disturbingly_ similar. Let's take an even closer look.
-
-Here is the assembly extracted with `objdump`.
