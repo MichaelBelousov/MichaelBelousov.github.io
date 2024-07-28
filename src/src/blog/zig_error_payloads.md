@@ -1,11 +1,11 @@
 ---
 path: "/blog/zig-error-payloads"
 title: "How I learned to love Zig's diagnostic pattern"
-date: "2024-07-24"
+date: "2024-07-28"
 ---
 
 I have a confession to make. I really like [zig](https://ziglang.com).
-I've been playing with it for a couple years now, and I'm finally going to
+I've been playing with it for a couple years-ish now, and I'm finally going to
 release one of my projects that uses it.
 
 But one thing was weird to me at first,

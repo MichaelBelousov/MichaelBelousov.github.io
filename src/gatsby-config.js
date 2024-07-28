@@ -79,7 +79,10 @@ module.exports = {
               {
                 allMarkdownRemark(
                   sort: { frontmatter: { date: DESC } },
-                  filter: { frontmatter: { date: { ne: null } } },
+                  filter: { frontmatter: {
+                    date: { ne: null }
+                    title: { ne: "How I learned to love Zig's diagnostic pattern" }
+                  } }
                 ) {
                   nodes {
                     excerpt
