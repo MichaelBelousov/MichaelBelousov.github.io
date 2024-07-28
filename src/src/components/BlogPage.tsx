@@ -44,15 +44,7 @@ export default function BlogPost(props: any) {
   )
 
   return (
-    <Layout pageTitle={post.frontmatter.title}>
-      <Helmet>
-        <link
-          rel="stylesheet"
-          // FIXME: move to gatsby layer
-          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/paraiso-dark.min.css"
-          crossOrigin="anonymous"
-        />
-      </Helmet>
+    <Layout pageTitle={post.frontmatter.title} pageDesc={post.excerpt}>
       {sidebar}
       <div className={styles.post}>
         <h1>{post.frontmatter.title}</h1>
@@ -93,6 +85,7 @@ export const query = graphql`
           fields {
             slug
           }
+          excerpt
         }
       }
     }

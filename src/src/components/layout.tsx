@@ -7,10 +7,12 @@ import * as styles from "./layout.module.scss"
 
 interface LayoutProps {
   pageTitle: string
+  pageDesc?: string
 }
 
 const Layout = ({
   pageTitle,
+  pageDesc,
   children,
 }: React.PropsWithChildren<LayoutProps>) => {
   const data = useStaticQuery(graphql`
@@ -25,7 +27,7 @@ const Layout = ({
 
   return (
     <div className={styles.pageWrapper}>
-      <SEO title={pageTitle} />
+      <SEO title={pageTitle} description={pageDesc} />
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
       <footer style={{ display: 'flex', justifyContent: 'center' }}>
