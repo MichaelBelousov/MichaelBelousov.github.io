@@ -1,21 +1,20 @@
 ---
 path: "/blog/zig-error-payloads"
-title: "The diagnostic pattern vs. error payloads in Zig"
+title: "How I leaarned to love Zig's diagnostic pattern"
 date: "2024-07-24"
 ---
 
 I have a confession to make. I really like [zig](https://ziglang.com).
-It has a lot of potential anyway.
 
 But one thing can be a bit weird to some at first,
-especially if you're used to returning monadic error types
+especially if you've gotten used to returning monadic error types
 (like Rust's `rust:LANG>Result`) for error handling.
 
 The problem is zig already has the very similar [error unions](https://ziglang.org/documentation/master/#Error-Union-Type).
 They just don't carry payloads, only an error code without context.
 
 Some people ask if you could, and then realize you shouldn't.
-Unfortunately I am not that person.
+Unfortunately I all too often try to see if I could.
 So I tried to roll my own result union. Zig has unions after all, how hard could it be?
 
 TL;DR: I realize the diagnostic pattern is nice now.
