@@ -13,7 +13,7 @@ export default function(props: any) {
         prev.get(key).push(node)
         return prev
       }, new Map<string, string[]>()),
-    []
+    [props.data.allMarkdownRemark.edges],
   )
 
   return (
@@ -39,7 +39,8 @@ export default function(props: any) {
 export const pageQuery = graphql`
   {
     allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
+      sort: { frontmatter: { date: DESC } },
+      filter: { frontmatter: { date: { ne: null } } },
       limit: 100
     ) {
       edges {
