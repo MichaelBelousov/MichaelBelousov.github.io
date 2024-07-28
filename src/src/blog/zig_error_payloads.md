@@ -21,7 +21,7 @@ So I tried to roll my own result union. Zig has unions after all, how hard could
 
 TL;DR: I now love zig's alternative to error unions, the diagnostic pattern.
 
-### Errors require context
+## Errors require context
 
 Suppose for example, that you're trying to model parse errors. Maybe you're writing a JSON parser.
 Then you probably want to provide some context with any parsing errors,
@@ -105,7 +105,7 @@ fn useParseJsonUnion(alloc: std.mem.Allocator) Result(void, Diagnostic) {
 }
 ```
 
-### `zig:LANG>errdefer`
+## `zig:LANG>errdefer`
 
 `zig:LANG>errdefer` is worse, but might get better in the future.
 
@@ -152,7 +152,7 @@ in an accidentally valid state and causing a leak.
 
 Also that's a lot of boilerplate. Maybe the diagnostic pattern isn't so bad?
 
-### The future for `zig:LANG>errdefer`'ing hand-rolled error unions
+## The future for `zig:LANG>errdefer`'ing hand-rolled error unions
 
 In the future, we may get a [language builtin to access the return value directly](https://github.com/ziglang/zig/issues/2765).
 This may have the side-effect of allowing us to access our returned value during a `zig:LANG>defer` statement, eliminating the need to manually make sure we're always returning the correct variable.
@@ -175,7 +175,7 @@ fn errdeferFutureParseJsonUnion(alloc: std.mem.Allocator) Result(std.ArrayList([
 
 I would say that's pretty reasonable all of a sudden.
 
-### Which is better?
+## Which is better?
 
 Well, now that we've thoroughly compared the code for both options, which wins?
 
@@ -198,7 +198,7 @@ my hand-rolled results to the diagnostic pattern, and the C API got much simpler
 The result pattern could fit well if the language underwent some changes but
 I don't see it as worth the complexity after trying both. 
 
-### Benchmark?
+## Benchmark?
 
 So this isn't as interesting as I would have hoped.
 
