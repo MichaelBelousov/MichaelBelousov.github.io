@@ -1,11 +1,11 @@
 ---
 path: "/blog/zig-error-payloads"
 title: "The diagnostic pattern vs. error payloads in Zig"
-date: "2024-06-16"
+date: "2024-07-24"
 ---
 
 I have a confession to make. I really like [zig](https://ziglang.com).
-It has a lot of promise anyway.
+It has a lot of potential anyway.
 
 But one thing can be a bit weird to some at first,
 especially if you're used to returning monadic error types
@@ -14,28 +14,23 @@ especially if you're used to returning monadic error types
 The problem is zig already has the very similar [error unions](https://ziglang.org/documentation/master/#Error-Union-Type).
 They just don't carry payloads, only an error code without context.
 
-So I wanted to see what's possible in zig today for writing good error handling,
-compare what exists, and how it feels and performs in the language.
+Some people ask if you could, and then realize you shouldn't.
+Unfortunately I am not that person.
+So I tried to roll my own result union. Zig has unions after all, how hard could it be?
+
+TL;DR: I realize the diagnostic pattern is nice now.
 
 ### Errors require context
 
-If you're using them to model parse errors (suppose you're writing a JSON parser),
-then you probably want to provide some context with your error (e.g. at which position a comma token was missing).
+Suppose for example, that you're trying to model parse errors. Maybe you're writing a JSON parser.
+Then you probably want to provide some context with your error, like at which position a comma token
+was missing.
 
 The prevailing idiom today, the [*diagnostic pattern*](/FIXME), suggests
 your error-returning function should take an additional parameter which is an
 (often optional) pointer to a struct to fill with error context. It looks like this:
 
 ```zig
-struct Diagnostic {
-  position: usize = 0,
-}
-
-const std = @import("std").testing;
-
-fn parseJson(alloc: std.mem.Allocator, json_src: []const u8, ?*Diagnostic) !JsonValue {
-  //...
-}
 
 test "valid" {
     var diagnostic: Diagnostic = .{};
@@ -52,14 +47,18 @@ test "invalid" {
 }
 ```
 
-So can we get closer to e.g. Rust? Do we want to?
-We could of course just use zig's language support for tagged unions to
-make our own union with one (or more) error states, and return that,
+So, can we do this without adding a parameter? Do we want to?
+We could use zig's language support for tagged unions to
+make our own union with one (or more) error states, and return that.
 
 But then you miss out on using zig's builtin `zig:LANG>try`,
 `zig:LANG>catch`, and `zig:LANG>errdefer` to handle errors.
+Unlike rust's `rust:LANG>?` operator which can be extended to user-defined types.
 
-In practice I think lacking `zig:LANG>try`/`zig:LANG>catch` turns out to not be the worst. More on `zig:LANG>errdefer` later
+In practice I think lacking `zig:LANG>try`/`zig:LANG>catch` turns out to not be the worst,
+but, more on `zig:LANG>errdefer` later.
+
+Here we go:
 
 ```zig
 pub fn Result(comptime R: type, comptime E: type) type {
@@ -69,64 +68,61 @@ pub fn Result(comptime R: type, comptime E: type) type {
     };
 }
 
-fn parseJsonRes(alloc: std.mem.Allocator, json_src: []const u8) Result(JsonValue, Diagnostic) {
+fn parseJsonUnion(alloc: std.mem.Allocator, json_src: []const u8) Result(JsonValue, Diagnostic) {
   //...
 }
 
 test "res valid" {
-    const result = parseJsonRes(std.testing.allocator, "[1, 2]");
+    const result = parseJsonUnion(std.testing.allocator, "[1, 2]");
     try std.testing.expect(result == .ok);
 }
 
 test "res invalid" {
-    const result = parseJsonRes(std.testing.allocator, "[invalid]");
+    const result = parseJsonUnion(std.testing.allocator, "[invalid]");
     try std.testing.expect(result == .err);
     try std.testing.expectEqual(result.err.position, 1);
 }
 ```
 
-Admittedly, idiomatic `zig:LANG>try` and `zig:LANG>catch` become slightly more cumbersome.
+So, idiomatic `zig:LANG>try` and `zig:LANG>catch` become more cumbersome.
 
 ```zig
 fn useParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) void {
   const json = try parseJson(alloc, "[]", diagnostic);
 }
 
-fn useParseJsonRes(alloc: std.mem.Allocator) ?Diagnostic {
+fn useParseJsonUnion(alloc: std.mem.Allocator) Result(void, Diagnostic) {
   // you can also use a switch for no extra variable but imo its ugly
-  const result = parseJsonRes(alloc, "[invalid]");
-  const json = if (result == .ok) result.ok else return result.err;
-  return null;
+  const result = parseJsonUnion(alloc, "invalid_json");
+  const json = if (result == .ok) result.ok else return result;
+  return Result(void, Diagnostic){.ok={}};
 }
 ```
 
 ### `zig:LANG>errdefer`
 
-`zig:LANG>errdefer` is worse, but there is hope.
+`zig:LANG>errdefer` is worse, but could get better in the future.
 
 Remember that `zig:LANG>errdefer` is important in cases such as when you
-allocated to return to the caller to own, but now they
-receive only the error and you need to destroy the incomplete object
+allocated something to return to the caller to own, but now they
+receive only the error and you need to destroy your partial result
 to not leak it.
 
 ```zig
 fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) std.ArrayList([]const u8) {
   const result = std.ArrayList([]const u8).init(alloc);
   errdefer result.deinit();
-
   const json = try parseJson(alloc, "[]", diagnostic);
-  // use json to build the result
-  //...
-
+  // ...use json to build the result somehow
   return result;
 }
 
-fn errdeferParseJsonRes(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
+fn errdeferParseJsonUnion(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
   var ok = std.ArrayList([]const u8).init(alloc);
   var result = Result(std.ArrayList([]const u8), Diagnostic) = .{.ok = ok};
   defer if (result == .err) ok.deinit();
 
-  const json = switch (parseJsonRes(alloc, "[]")) {
+  const json = switch (parseJsonUnion(alloc, "[]")) {
     .ok => |o| o,
     .err => |e| {
       result = .{.err = e },
@@ -157,11 +153,11 @@ This may have the side-effect of allowing us to access our returned value during
 We would end up with the much nicer:
 
 ```zig
-fn errdeferFutureParseJsonRes(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
+fn errdeferFutureParseJsonUnion(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
   var result = std.ArrayList([]const u8).init(alloc);
   defer if (@return() == .err) result.deinit();
 
-  const json = switch (parseJsonRes(alloc, "[]")) {
+  const json = switch (parseJsonUnion(alloc, "[]")) {
     .ok => |o| o,
     .err => |e| return .{.err = e },
   };
