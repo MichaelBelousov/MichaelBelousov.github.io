@@ -5,14 +5,14 @@ date: "2024-07-28"
 ---
 
 I have a confession to make. I really like [zig](https://ziglang.com).
-I've been playing with it for a couple years-ish now, and I'm finally going to
-release one of my projects that uses it.
+I've been playing with it for a couple-ish years now, and I'm finally going to
+a project of my mine that uses it.
 
 But one thing was weird to me at first,
-especially since I'd gotten used to returning error union types
-(like Rust's `rust:LANG>Result`) for error handling.
+especially as I'd gotten used to error handling with returning error union types
+(like Rust's [`rust:LANG>Result`](https://doc.rust-lang.org/std/result/).
 
-The problem is zig already has the very similar [error unions](https://ziglang.org/documentation/master/#Error-Union-Type).
+The problem is zig already has very similar [error unions](https://ziglang.org/documentation/master/#Error-Union-Type).
 They just don't carry payloads, only an error code without any context.
 
 Some people ask if you could, and then realize you shouldn't.
@@ -24,9 +24,8 @@ TL;DR: I now love zig's alternative to error unions, the diagnostic pattern.
 ## Errors require context
 
 Suppose for example, that you're trying to model parse errors. Maybe you're writing a JSON parser.
-Then you probably want to provide some context with any parsing errors,
-like at which position a comma token
-was missing.
+When you encounter an error, like bad JSON, you probably want to provide some context,
+like at which position a comma token was missing.
 
 The prevailing idiom today, the [*diagnostic pattern*](/FIXME), suggests
 your error-returning function should take an additional parameter which is a
@@ -34,13 +33,13 @@ your error-returning function should take an additional parameter which is a
 
 ```zig
 
-test "valid" {
+test "good json for normal zig errors" {
     var diagnostic: Diagnostic = .{};
     const result = parseJson(std.testing.allocator, "[1, 2]", &diagnostic);
-    _ = result catch return error.TestUnexpectedResult;
+    _ = try result;
 }
 
-test "invalid" {
+test "bad json for normal zig errors" {
     var diagnostic: Diagnostic = .{};
     const result = parseJson(std.testing.allocator, "[1, 2, invalid]", &diagnostic);
     // we must check there was an error before we can use the diagnostic
@@ -50,8 +49,9 @@ test "invalid" {
 ```
 
 Some people don't like it because the disconnectedness of the parameter to the
-return value makes it easy to forget to populate the diagnostics or even forget
-to add error context to APIs at all, like the zig standard library has [historically](/FIXME) done (insofar as zig's youth can have a history).
+return value makes it easier to forget to populate the diagnostics or even forget
+to use the pattern at all, like the zig standard library has [historically](https://github.com/ziglang/zig/issues/2647#issuecomment-1308214275) done
+(if zig is old enough to have a "history").
 
 So, can we get error context without adding a parameter? Do we want to?
 We could "just" use zig's language support for tagged unions to
@@ -59,7 +59,8 @@ make our own union with one (or more) error states, and return that.
 
 But then you miss out on using zig's builtin `zig:LANG>try`,
 `zig:LANG>catch`, and `zig:LANG>errdefer` to handle errors.
-Unlike rust's `rust:LANG>?` operator which can be extended to user-defined types.
+Meanwhile in Rust you can extend the `rust:LANG>?` operator to do ergonomic
+error handling with user-defined types.
 
 In practice I think lacking `zig:LANG>try`/`zig:LANG>catch` turns out to not be the worst,
 but, more on `zig:LANG>errdefer` later.
@@ -74,17 +75,17 @@ pub fn Result(comptime R: type, comptime E: type) type {
     };
 }
 
-fn parseJsonUnion(alloc: std.mem.Allocator, json_src: []const u8) Result(JsonValue, Diagnostic) {
+fn parseJsonResult(alloc: std.mem.Allocator, json_src: []const u8) Result(JsonValue, Diagnostic) {
   //...
 }
 
-test "res valid" {
-    const result = parseJsonUnion(std.testing.allocator, "[1, 2]");
+test "good json for our result type" {
+    const result = parseJsonResult(std.testing.allocator, "[1, 2]");
     try std.testing.expect(result == .ok);
 }
 
-test "res invalid" {
-    const result = parseJsonUnion(std.testing.allocator, "[invalid]");
+test "bad json for custom result type" {
+    const result = parseJsonResult(std.testing.allocator, "[invalid]");
     try std.testing.expect(result == .err);
     try std.testing.expectEqual(result.err.position, 1);
 }
@@ -97,9 +98,9 @@ fn useParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) void {
   const json = try parseJson(alloc, "[]", diagnostic);
 }
 
-fn useParseJsonUnion(alloc: std.mem.Allocator) Result(void, Diagnostic) {
+fn useParseJsonResult(alloc: std.mem.Allocator) Result(void, Diagnostic) {
   // you can also use a switch for no extra variable but imo its ugly
-  const result = parseJsonUnion(alloc, "invalid_json");
+  const result = parseJsonResult(alloc, "invalid_json");
   const json = if (result == .ok) result.ok else return result;
   return Result(void, Diagnostic){.ok={}};
 }
@@ -123,12 +124,12 @@ fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) std.Arr
   return result;
 }
 
-fn errdeferParseJsonUnion(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
+fn errdeferParseJsonResult(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
   var ok = std.ArrayList([]const u8).init(alloc);
   var result = Result(std.ArrayList([]const u8), Diagnostic) = .{.err = .{}};
   defer if (result == .err) ok.deinit();
 
-  const json = switch (parseJsonUnion(alloc, "[]")) {
+  const json = switch (parseJsonResult(alloc, "[]")) {
     .ok => |o| o,
     .err => |e| {
       result = .{.err = e },
@@ -160,11 +161,11 @@ This may have the side-effect of allowing us to access our returned value during
 We would end up with the much nicer:
 
 ```zig
-fn errdeferFutureParseJsonUnion(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
+fn errdeferFutureParseJsonResult(alloc: std.mem.Allocator) Result(std.ArrayList([]const u8), Diagnostic) {
   var result = std.ArrayList([]const u8).init(alloc);
   defer if (@return() == .err) result.deinit();
 
-  const json = switch (parseJsonUnion(alloc, "[]")) {
+  const json = switch (parseJsonResult(alloc, "[]")) {
     .ok => |o| o,
     .err => |e| return .{.err = e },
   };
