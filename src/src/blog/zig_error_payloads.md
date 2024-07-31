@@ -5,38 +5,38 @@ date: "2024-07-28"
 ---
 
 I have a confession to make. I really like [zig](https://ziglang.com).
-I've been playing with it for a couple-ish years now, and I'm finally going to
-a project of my mine that uses it.
+I've been playing with it for a couple-ish years now, and I'm finally very close
+publshing at least one project of mine that uses it.
 
-But one thing was weird to me at first,
-especially as I'd gotten used to error handling with returning error union types
+One thing was weird to me at first though,
+especially as I'd gotten used to error handling by returning union types
 (like Rust's [`rust:LANG>Result`](https://doc.rust-lang.org/std/result/).
+Zig's [error unions](https://ziglang.org/documentation/master/#Error-Union-Type) don't carry
+payloads, only an error code without any error context.
 
-The problem is zig already has very similar [error unions](https://ziglang.org/documentation/master/#Error-Union-Type).
-They just don't carry payloads, only an error code without any context.
+So I tried to roll my own error union. Zig has tagged unions (like enums in rust)
+after all, how hard could it be?
 
-Some people ask if you could, and then realize you shouldn't.
-Unfortunately I tend to ask and then check if I could.
-So I tried to roll my own result union. Zig has unions after all, how hard could it be?
+TL;DR: I now see the wisdom in zig's alternative to error union payloads, the *diagnostic pattern*.
 
-TL;DR: I now love zig's alternative to error unions, the diagnostic pattern.
+## The [*diagnostic pattern*](https://github.com/ziglang/zig/issues/2647#issuecomment-589829306)
 
-## Errors require context
+The prevailing idiom today, the [*diagnostic pattern*](https://github.com/ziglang/zig/issues/2647#issuecomment-589829306),
+suggests your error-returning function should take an additional parameter which is a
+(maybe optional) pointer to a struct to fill with the error's context.
 
-Suppose for example, that you're trying to model parse errors. Maybe you're writing a JSON parser.
-When you encounter an error, like bad JSON, you probably want to provide some context,
-like at which position a comma token was missing.
+Suppose we're writing a JSON parser, we probably want to store the position we were at when
+we encountered an error. We would handle errors from such a parser like this:
 
-The prevailing idiom today, the [*diagnostic pattern*](/FIXME), suggests
-your error-returning function should take an additional parameter which is a
-(maybe optional) pointer to a struct to fill with error context. It looks like this:
 
 ```zig
+const Diagnostic = struct {
+    position: usize = 0,
+};
 
 test "good json for normal zig errors" {
     var diagnostic: Diagnostic = .{};
-    const result = parseJson(std.testing.allocator, "[1, 2]", &diagnostic);
-    _ = try result;
+    _ = try parseJson(std.testing.allocator, "[1, 2]", &diagnostic);
 }
 
 test "bad json for normal zig errors" {
@@ -49,9 +49,10 @@ test "bad json for normal zig errors" {
 ```
 
 Some people don't like it because the disconnectedness of the parameter to the
-return value makes it easier to forget to populate the diagnostics or even forget
-to use the pattern at all, like the zig standard library has [historically](https://github.com/ziglang/zig/issues/2647#issuecomment-1308214275) done
-(if zig is old enough to have a "history").
+return value makes it easy to forget to use the pattern at all, or just forget to populate
+the diagnostics, like the zig standard library has
+[historically](https://github.com/ziglang/zig/issues/2647#issuecomment-1308214275) done
+(if zig is old/stable enough to have a "history").
 
 So, can we get error context without adding a parameter? Do we want to?
 We could "just" use zig's language support for tagged unions to
@@ -193,27 +194,10 @@ But just slap an `zig:LANG>extern` on the Diagnostic struct and you
 can pretty straight-forwardly export any functions we wrote already using the
 diagnostic pattern.
 
-I felt this recently when I moved [a project](/FIXME) I'm working on from
-my hand-rolled results to the diagnostic pattern, and the C API got much simpler.
+I felt this recently when I moved a project I'm working on from
+my hand-rolled results to the diagnostic pattern, and the exported C API got much simpler.
 
 The result pattern could fit well if the language underwent some changes but
 I don't see it as worth the complexity after trying both. 
 
-## Benchmark?
-
-So this isn't as interesting as I would have hoped.
-
-I created a [micro benchmark](https://github.com/MichaelBelousov/MichaelBelousov.github.io/tree/master/src/src/blog/zig_error_payloads) with [zbench](https://github.com/hendriknielaender/zBench)
-and ran it on a few devices I have access to, although only the ARM hardware was non-virtual.
-
-There was no reproducible difference in performance between the two cases.
-
-I was hoping that the compiler would have a more difficult time optimizing the
-diagnostic pattern, and I disabled inlining
-the tested function boundary (which is not entirely accurate), but they really
-had roughly the exact same performance. Feel free to run the benchmark yourself
-and point me in the right direction.
-
-But, I don't think it's worth expending any more effort for myself.
-I am very happy with the Diagnostic pattern now.
-
+I am much happier with the diagnostic pattern now.
