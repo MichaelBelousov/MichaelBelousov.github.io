@@ -1,7 +1,7 @@
 ---
 path: "/blog/zig-error-payloads"
 title: "How I learned to love Zig's diagnostic pattern"
-date: "2024-07-28"
+date: "2024-08-03"
 ---
 
 I have a confession to make. I really like [zig](https://ziglang.com).
@@ -171,7 +171,7 @@ fn errdeferFutureParseJsonResult(alloc: std.mem.Allocator) Result(std.ArrayList(
     .err => |e| return .{.err = e },
   };
 
-  return Result(std.ArrayList([]const u8, Diagnostic){.ok = result};
+  return Result(std.ArrayList([]const u8), Diagnostic){.ok = result};
 }
 ```
 
@@ -187,9 +187,9 @@ The main advantage of the `zig:LANG>Result` type is it always requires full init
 error case which makes it less prone to forgetting to set the error.
 Which will be great until you forget to mutate the variable referenced in the `zig:LANG>defer`... (until we have `@return()` anyway)
 
-Another advantage of the diagnostic pattern is that it
-fits well with exported functions. `zig:LANG>extern` unions can't be trivially
-tagged so returning them in a C API takes some effort.
+Another advantage of the diagnostic pattern that is not immediately apparent
+is that it fits well with exported functions.
+`zig:LANG>extern` unions can't be automatically tagged so returning them in a C API takes some effort.
 But just slap an `zig:LANG>extern` on the Diagnostic struct and you
 can pretty straight-forwardly export any functions we wrote already using the
 diagnostic pattern.
