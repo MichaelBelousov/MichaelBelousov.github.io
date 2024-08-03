@@ -6,7 +6,7 @@ date: "2024-08-03"
 
 I have a confession to make. I really like [zig](https://ziglang.com).
 I've been playing with it for a couple-ish years now, and I'm finally very close
-publshing at least one project of mine that uses it.
+to publshing at least one project of mine that uses it.
 
 One thing was weird to me at first though,
 especially as I'd gotten used to error handling by returning union types
