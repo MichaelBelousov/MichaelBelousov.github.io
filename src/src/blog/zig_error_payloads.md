@@ -1,29 +1,29 @@
 ---
 path: "/blog/zig-error-payloads"
 title: "How I learned to love Zig's diagnostic pattern"
-date: "2024-07-28"
+date: "2024-08-03"
 ---
 
 I have a confession to make. I really like [zig](https://ziglang.com).
 I've been playing with it for a couple-ish years now, and I'm finally very close
-publshing at least one project of mine that uses it.
+to publishing at least one project of mine that uses it.
 
-One thing was weird to me at first though,
-especially as I'd gotten used to error handling by returning union types
-(like Rust's [`rust:LANG>Result`](https://doc.rust-lang.org/std/result/).
-Zig's [error unions](https://ziglang.org/documentation/master/#Error-Union-Type) don't carry
-payloads, only an error code without any error context.
+One thing was weird to me at first though
+&mdash; I'd gotten used to error handling by returning union types
+(like [`rust:LANG>Result`](https://doc.rust-lang.org/std/result/) in Rust).
+But zig's [error unions](https://ziglang.org/documentation/master/#Error-Union-Type) don't carry
+payloads. Only an error code without any error context.
 
-So I tried to roll my own error union. Zig has tagged unions (like enums in rust)
+So I tried to roll my own error union. Zig has tagged unions (like enums in Rust)
 after all, how hard could it be?
 
 TL;DR: I now see the wisdom in zig's alternative to error union payloads, the *diagnostic pattern*.
 
 ## The [*diagnostic pattern*](https://github.com/ziglang/zig/issues/2647#issuecomment-589829306)
 
-The prevailing idiom today, the [*diagnostic pattern*](https://github.com/ziglang/zig/issues/2647#issuecomment-589829306),
+The recommended idiom today, the diagnostic pattern,
 suggests your error-returning function should take an additional parameter which is a
-(maybe optional) pointer to a struct to fill with the error's context.
+pointer to a struct to fill with the error's context.
 
 Suppose we're writing a JSON parser, we probably want to store the position we were at when
 we encountered an error. We would handle errors from such a parser like this:
@@ -50,8 +50,9 @@ test "bad json for normal zig errors" {
 
 Some people don't like it because the disconnectedness of the parameter to the
 return value makes it easy to forget to use the pattern at all, or just forget to populate
-the diagnostics, like the zig standard library has
-[historically](https://github.com/ziglang/zig/issues/2647#issuecomment-1308214275) done
+the diagnostics. The zig standard library has
+[historically](https://github.com/ziglang/zig/issues/2647#issuecomment-1308214275) forgotten
+to return error context, potentially because of this
 (if zig is old/stable enough to have a "history").
 
 So, can we get error context without adding a parameter? Do we want to?
@@ -60,10 +61,10 @@ make our own union with one (or more) error states, and return that.
 
 But then you miss out on using zig's builtin `zig:LANG>try`,
 `zig:LANG>catch`, and `zig:LANG>errdefer` to handle errors.
-Meanwhile in Rust you can extend the `rust:LANG>?` operator to do ergonomic
-error handling with user-defined types.
+In languages with more hidden control flow, for example Rust, you can extend the `rust:LANG>?`
+operator to do ergonomic error handling with user-defined types.
 
-In practice I think lacking `zig:LANG>try`/`zig:LANG>catch` turns out to not be the worst,
+In practice I think lacking `zig:LANG>try`/`zig:LANG>catch` turns out to be liveable,
 but, more on `zig:LANG>errdefer` later.
 
 Here we go:
@@ -113,8 +114,8 @@ fn useParseJsonResult(alloc: std.mem.Allocator) Result(void, Diagnostic) {
 
 Remember that `zig:LANG>errdefer` is important in cases such as when you
 allocated something to return to the caller to own, but now they
-receive only the error and you need to destroy your partial result
-to not leak it.
+receive only the error and you need to destroy your partial successful result
+to not leak resources.
 
 ```zig
 fn errdeferParseJson(alloc: std.mem.Allocator, diagnostic: ?*Diagnostic) std.ArrayList([]const u8) {
@@ -184,8 +185,7 @@ Well, now that we've thoroughly compared the code for both options, which wins?
 It looks to me like the diagnostic pattern is surprisingly simple,
 low on boilerplate, and integrates well with the language today.
 The main advantage of the `zig:LANG>Result` type is it always requires full initialization in the
-error case which makes it less prone to forgetting to set the error.
-Which will be great until you forget to mutate the variable referenced in the `zig:LANG>defer`... (until we have `@return()` anyway)
+error case which makes it less prone to forgetting to set the error context.
 
 Another advantage of the diagnostic pattern is that it
 fits well with exported functions. `zig:LANG>extern` unions can't be trivially
@@ -196,6 +196,8 @@ diagnostic pattern.
 
 I felt this recently when I moved a project I'm working on from
 my hand-rolled results to the diagnostic pattern, and the exported C API got much simpler.
+Especially with zig and its strong C interop, I find myself exporting a crafted C API often
+so I find this useful.
 
 The result pattern could fit well if the language underwent some changes but
 I don't see it as worth the complexity after trying both. 
