@@ -42,7 +42,6 @@ export const pageQuery = graphql`
       sort: { frontmatter: { date: DESC } },
       filter: { frontmatter: {
         date: { ne: null }
-        title: { ne: "How I learned to love Zig's diagnostic pattern" }
       } },
       limit: 100
     ) {
