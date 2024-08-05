@@ -18,7 +18,14 @@ const Work = () => {
   return (
     <Layout pageTitle="Work">
       <div className={styles.container}>
-        <h3>Michael Belousov's Resume:</h3>
+        <h2>Michael Belousov's Resume:</h2>
+        <p>
+          If the embed isn't loading, you can reload the page or <a
+            href="http://github.com/MichaelBelousov/resume/raw/master/resume.pdf"
+          >
+           download it directly
+          </a>.
+        </p>
         <iframe
           title="mike's resume pdf"
           className={styles.pdf}
@@ -27,10 +34,9 @@ const Work = () => {
           style={{ height }}
         >
           <p>
-            {' '}
             You can't see it apparently. My resume as a PDF should be at my
             github page,
-            <a href="http://github.com/MichaelBelousov/resume">here</a>.
+            <a href="https://github.com/MichaelBelousov/Resume/blob/master/resume.pdf">here</a>.
           </p>
         </iframe>
         <p>
