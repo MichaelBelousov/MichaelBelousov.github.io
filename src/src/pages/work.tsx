@@ -6,6 +6,8 @@ import Layout from '../components/layout'
 
 const calcHeight = (windowHeight: number) => {}
 
+const resumeUrl = "https://github.com/MichaelBelousov/resume/raw/master/MichaelBelousov_resume.pdf";
+
 const Work = () => {
   const [height, setHeight] = useState(/*window.innerHeight*/ '7in')
 
@@ -21,8 +23,9 @@ const Work = () => {
         <h2>Michael Belousov's Resume:</h2>
         <p>
           If the embed isn't loading, you can reload the page or <a
-            href="https://github.com/MichaelBelousov/resume/raw/master/resume.pdf"
-            download="MichaelBelousov_resume.pdf"
+            href={resumeUrl}
+            // NOTE: doesn't seem to work
+            //download="MichaelBelousov_resume.pdf"
           >
            download it directly
           </a>.
@@ -30,14 +33,14 @@ const Work = () => {
         <iframe
           title="mike's resume pdf"
           className={styles.pdf}
-          src="https://docs.google.com/gview?url=http://github.com/MichaelBelousov/resume/raw/master/resume.pdf&embedded=true"
+          src={`https://docs.google.com/gview?url=${resumeUrl}&embedded=true`}
           //frameborder="0"
           style={{ height }}
         >
           <p>
             You can't see it apparently. My resume as a PDF should be at my
             github page,
-            <a href="https://github.com/MichaelBelousov/Resume/blob/master/resume.pdf">here</a>.
+            <a href="https://github.com/MichaelBelousov/Resume/blob/master/MichaelBelousov_resume.pdf">here</a>.
           </p>
         </iframe>
         <p>
