@@ -21,7 +21,7 @@ const Work = () => {
         <h2>Michael Belousov's Resume:</h2>
         <p>
           If the embed isn't loading, you can reload the page or <a
-            href="http://github.com/MichaelBelousov/resume/raw/master/resume.pdf"
+            href="https://github.com/MichaelBelousov/resume/raw/master/resume.pdf"
           >
            download it directly
           </a>.
