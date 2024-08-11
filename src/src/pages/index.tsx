@@ -14,12 +14,16 @@ const Homepage = () => {
 
       <br />
 
-      <h2>Minor projects</h2>
+      <h2>Projects of varying sizes</h2>
       <ul>
-        <li><a href="https://www.npmjs.com/package/lazy-from"><code>lazy-from</code>: zip and other lazy iterators in JavaScript</a>
+        <li>
+          <a href="https://alternis.io">alternis.io</a>: cross platform dialogue writing middleware in zig and editor
         </li>
-        <li><a href="https://mikemikeb.com/convex-hull-visualization">Visualization of Melkman algorithm for finding convex hull of a polygon</a></li>
-        <li><a href="https://github.com/MichaelBelousov/pylatexc">A way to run python code in LaT<sub>E</sub>X documents</a></li>
+        <li>
+          <a href="https://www.npmjs.com/package/lazy-from"><code>lazy-from</code></a>: zip and other lazy iterators in JavaScript
+        </li>
+        <li><a href="https://mikemikeb.com/convex-hull-visualization">Melkman algorithm visualization</a> for finding convex hull of a polygon</li>
+        <li><a href="https://github.com/MichaelBelousov/pylatexc">PyLaT<sub>E</sub>Xc</a>: A way to run python code in LaT<sub>E</sub>X documents</li>
         <li>a lot of stuff on <a href="https://github.com/MichaelBelousov">my Github</a></li>
       </ul>
 
