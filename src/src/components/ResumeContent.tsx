@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import "./ResumeContent.css"
 
 const SmallCaps = (props: React.HTMLProps<HTMLSpanElement>) => (
   <span style={{fontVariant:"small-caps"}}>{props.children}</span>
@@ -6,15 +7,12 @@ const SmallCaps = (props: React.HTMLProps<HTMLSpanElement>) => (
 
 export const ResumeContent = (props: {}) => {
   return (
-    <div>
+    <div className="resume-content">
       <h1> Michael Belousov </h1>
-      <ul style={{listStyle: "none"}}>
-        <li> <strong><a href="https://mikemikeb.com">https://mikemikeb.com</a></strong> </li>
-        <li> <strong>+1 (203) 502-9425</strong> </li>
-        <li> <strong><a href="mailto:me@mikemikeb.com">me@mikemikeb.com</a></strong> </li>
-        <li> <strong><a href="FIXME">LinkedIn</a></strong> </li>
-      </ul>
-
+      <strong><a href="https://mikemikeb.com">https://mikemikeb.com</a></strong> <br/>
+      <strong>+1 (203) 502-9425</strong> <br/>
+      <strong><a href="mailto:me@mikemikeb.com">me@mikemikeb.com</a></strong> <br/>
+      <strong><a href="FIXME">LinkedIn</a></strong>
       <hr />
 
       <section>
@@ -37,7 +35,7 @@ export const ResumeContent = (props: {}) => {
             <li> Led development and mentored contributors of the Transformation core API for the iTwin platform, a TypeScript Node.js API with native C++ addon components </li>
             <li> Contributed to multiple customer facing full-stack applications with Node.js, React, ASP.NET C#, C++, MongoDb, and SQLite </li>
             <li> Produced a webinar promoting the product I led development of on our platform, and blogged about out platform publicly, see the <strong>Technical Writing</strong> section below </li>
-            <li> Introduced fuzzing, sanitizers, clang static analysis, and other tooling to native buildology </li>
+            <li> Introduced fuzzing (catching dozens of buffer overflows), sanitizers, clang static analysis, and other tooling to native buildology </li>
           </ul>
         </div>
 
