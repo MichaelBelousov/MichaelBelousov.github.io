@@ -1,9 +1,14 @@
-<html>
-  <body>
+import React from "react";
 
+const SmallCaps = (props: React.HTMLProps<HTMLSpanElement>) => (
+  <span style={{fontVariant:"small-caps"}}>{props.children}</span>
+);
+
+export const ResumeContent = (props: {}) => {
+  return (
     <div>
       <h1> Michael Belousov </h1>
-      <ul style="list-style:none">
+      <ul style={{listStyle: "none"}}>
         <li> <strong><a href="https://mikemikeb.com">https://mikemikeb.com</a></strong> </li>
         <li> <strong>+1 (203) 502-9425</strong> </li>
         <li> <strong><a href="mailto:me@mikemikeb.com">me@mikemikeb.com</a></strong> </li>
@@ -18,7 +23,7 @@
         <div>
           <h4>
             <strong>
-              <span style="font-variant:small-caps;">Bentley Systems</span>, <em>Software Engineer II</em>
+              <SmallCaps>Bentley Systems</SmallCaps>, <em>Software Engineer II</em>
             </strong>
             (May 2018&mdash;Resigned May 2024) <br/>
           </h4>
@@ -31,7 +36,7 @@
             </li>
             <li> Led development and mentored contributors of the Transformation core API for the iTwin platform, a TypeScript Node.js API with native C++ addon components </li>
             <li> Contributed to multiple customer facing full-stack applications with Node.js, React, ASP.NET C#, C++, MongoDb, and SQLite </li>
-            <li> Produced a webinar promoting the product I led development of on our platform, and blogged about out platform publicly, see the \textbf{Technical Writing} section below </li>
+            <li> Produced a webinar promoting the product I led development of on our platform, and blogged about out platform publicly, see the <strong>Technical Writing</strong> section below </li>
             <li> Introduced fuzzing, sanitizers, clang static analysis, and other tooling to native buildology </li>
           </ul>
         </div>
@@ -39,7 +44,7 @@
         <div>
           <h4>
             <strong>
-              <span style="font-variant:small-caps;">ITS</span>, <em>Security Team Developer</em>
+              <SmallCaps>ITS</SmallCaps>, <em>Security Team Developer</em>
             </strong>
             (December 2016&mdash;May 2019) <br/>
           </h4>
@@ -55,7 +60,7 @@
         <div>
           <h4>
             <strong>
-              <span style="font-variant:small-caps;">UCONN Speech and Hearing research</span>, <em>Technical contractor</em>
+              <SmallCaps>UCONN Speech and Hearing research</SmallCaps>, <em>Technical contractor</em>
             </strong>
             (March 2017&mdash;July 2018) <br/>
           </h4>
@@ -67,12 +72,13 @@
             <li>
               Built (solo) a TkInter Python app for top-down visual playback of participant sessions and naigation data export to Excel
             </li>
+          </ul>
         </div>
       </section>
 
       <section>
         <h2> Education </h2>
-        <span style="font-variant:small-caps;">University of Connecticut</span>, Storrs, CT <br/>
+        <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
         <em>Bachelor of Science</em>, Computer Science and Engineering. Completed May 2019 <br/>
       </section>
 
@@ -113,7 +119,7 @@
         <h2> Notable projects </h2>
         <ul>
           <li><a href="https://alternis.io">alternis.io</a> embeddable dialogue middleware (in <a href="ziglang.com">zig</a>) and visual flow-based dialogue editor app</li>
-          <!-- FIXME -->
+          {/*FIXME*/}
         </ul>
       </section>
 
@@ -123,11 +129,10 @@
           <li> <code><a href="https://github.com/okonet/lint-staged">lint-staged</a></code> msys2/cygwin platform support </li>
           <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint</a></code> bug in async-return FIXME lint rule </li>
           <li> <code><a href="https://github.com/godotengine/godot">Godot game engine</a></code> bug in initial C# object marshalling </li>
-            <li> <code><a href="https://github.com/onivim/oni2/pull/2630">onivim2</a></code> vim-like text editor written in OCaml/Reason </li>
+          <li> <code><a href="https://github.com/onivim/oni2/pull/2630">onivim2</a></code> vim-like text editor written in OCaml/Reason </li>
         </ul>
       </section>
 
     </div>
-
-  </body>
-</html>
+  );
+};
