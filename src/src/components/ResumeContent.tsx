@@ -12,7 +12,7 @@ export const ResumeContent = (props: {
     <div className="resume-content">
       <h1> Michael Belousov </h1>
       <strong><a href="https://mikemikeb.com">https://mikemikeb.com</a></strong> <br/>
-      <strong><a href="tel:+1 (203) 502-9425">+1 (203) 502-9425</a></strong> <br/>
+      <strong><a href="tel:+12035029425">+1 (203) 502-9425</a></strong> <br/>
       <strong><a href="mailto:me@mikemikeb.com">me@mikemikeb.com</a></strong> <br/>
       <strong><a href="FIXME">LinkedIn</a></strong>
       <hr />
@@ -20,7 +20,7 @@ export const ResumeContent = (props: {
       <section>
         <h2> Experience </h2>
 
-        <div>
+        <div className={"resume-dont-indent"}>
           <h4>
             <strong>
               <SmallCaps>Bentley Systems</SmallCaps>, <em>Software Engineer II</em>
@@ -30,24 +30,25 @@ export const ResumeContent = (props: {
           </h4>
 
           <ul>
-            <li>Led architecture and design for our next-generation desktop application framework, mentoring all team members and helped manage day-to-day development</li>
+            <li>Led architecture and design for our next-generation internal cloud-forward desktop application framework, mentoring all team members and helped manage day-to-day development</li>
             <li> Led development and mentored contributors of the Transformation core API for the iTwin platform, a TypeScript Node.js API with native C++ addon components </li>
             <li>
-              Developed and deployed end-to-end the iTwin platform Unreal Engine integration,
-              an Electron application bridging iTwin Node.js APIs to Unreal via the Datasmith C++ SDK with an auto-update system.
+              Developed and deployed the iTwin platform Unreal Engine integration,
+              an Electron application bridging iTwin Node.js APIs to Unreal via the Datasmith C++ SDK with an auto-update system
             </li>
             <li>
               {/* FIXME: verify */}
               Produced webinar on platform integration with our highest viewership by 17%,
               wrote marketing webpages, <a href="/FIXME">tutorials</a>,
-              and <a href="/FIXME">blog posts</a>.
+              and <a href="/FIXME">blog posts</a>
             </li>
-            <li> Contributed to multiple customer facing full-stack applications with Node.js, C++, React, ASP.NET C#, MongoDb, and SQLite </li>
+            <li> Contributed to multiple customer facing full-stack applications with Node.js, C++, React, ASP.NET C#, MongoDb, and Cloud SQLite </li>
+            <li> Maintained dozens of CI/CD pipelines across Github Actions and Azure Pipelines </li>
             <li> Introduced fuzzing (catching dozens of buffer overflows), sanitizers, clang static analysis, and other tooling to native buildology </li>
           </ul>
         </div>
 
-        <div>
+        <div className={"resume-dont-indent"}>
           <h4>
             <strong>
               <SmallCaps>ITS</SmallCaps>, <em>Security Team Developer</em>
@@ -57,14 +58,14 @@ export const ResumeContent = (props: {
           </h4>
           <ul>
             <li>
-              Wrote <a href="https://github.com/MichaelBelousov/L2VisTools">an SVG network diagramming toolset</a> that used SNMP,
+              Wrote <a href="https://github.com/MichaelBelousov/L2-Vis-Tools">an SVG network diagramming toolset</a> that uses SNMP,
               CDP scanning, and a CISCO router CLI parser
             </li>
-            <li> Migrated a PHP-Python2 XMLRPC+jQuery web stack into bilingual Python3+Vue.js</li>
+            <li> Migrated a PHP-Python2 XMLRPC+jQuery web stack to Python3+Vue.js</li>
           </ul>
         </div>
 
-        <div>
+        <div className={"resume-dont-indent"}>
           <h4>
             <strong>
               <SmallCaps>UCONN Speech and Hearing research</SmallCaps>, <em>Technical Contractor</em>
@@ -74,11 +75,11 @@ export const ResumeContent = (props: {
           </h4>
           <ul>
             <li>
-              Built (solo) an interactive simulation in Unreal Engine 4
+              Built (solo) a car driving simulation in Unreal Engine 4
               for tracking navigation patterns, for neurological research
             </li>
             <li>
-              Built (solo) a TkInter Python app for top-down visual playback of participant sessions and naigation data export to Excel
+              Built (solo) a TkInter Python app for top-down visual playback of participant sessions and navigation data export
             </li>
           </ul>
         </div>
@@ -87,43 +88,41 @@ export const ResumeContent = (props: {
       <section>
         <h2> Education </h2>
         <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
-        <em>Bachelor of Science</em>, Computer Science and Engineering. Completed May 2019 <br/>
+        <em>Bachelor of Science</em>, Computer Science and Engineering. Completed May 2019 with GPA of 3.6 <br/>
       </section>
 
       <section>
         <h2> Technical Skills </h2>
-          {(props.customSkills || <>
-            Zig, C++/C, TypeScript, Python, GNU/Linux,
-            <br/>
-            Git, React, Node.js, Rust, OpenGL/GLSL,
-            <br/>
-            GitHub Actions, Azure Pipelines, Azure Cloud,
-            <br/>
-            .NET, C#, HTML5/CSS, SQLite, Postgres, MongoDb,
-            <br/>
-            Web Assembly, PHP, Godot, Unreal Engine, Docker,
-            <br/>
-            Rust, Electron, Lisp+Scheme, Java,
-            <br/>
-            Valgrind, ASan, libfuzzer, libAFL, rr, gdb
-            <br/>
-            Word processing, PowerPoint, Excel, LaT<sub>E</sub>X
-          </>)}
+          <div>
+            {(props.customSkills || <>
+              Zig, C++/C, TypeScript, Python, GNU/Linux,
+              <br/>
+              Git, React, Node.js, Rust, OpenGL/GLSL,
+              <br/>
+              GitHub Actions, Azure Pipelines, Azure Cloud,
+              <br/>
+              .NET, C#, HTML5/CSS, SQLite, Postgres, MongoDb,
+              <br/>
+              Web Assembly, PHP, Godot, Unreal Engine, Docker,
+              <br/>
+              Rust, Electron, Lisp+Scheme, Java,
+              <br/>
+              Valgrind, ASan, libfuzzer, libAFL, rr, gdb
+              <br/>
+              Word processing, PowerPoint, Excel, LaT<sub>E</sub>X
+            </>)}
+          </div>
       </section>
 
       <section>
         <h2> Technical Writing </h2>
         <ul>
           <li><a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">introducing @bentley/imodel-react-hooks</a></li>
-          <li><a href="https://web.archive.org/web/20220926063257/https://developer.bentley.com/tutorials/itwin-unreal-controlling-your-imodel/">iTwin Platform Unreal integration tutorials</a>
-            (why this integration was deprecated!)</li>
-
-        <li><a href="https://medium.com/itwinjs/evolve-your-itwin-with-unreal-45206afe19f4">Evolve your iTwin with Unreal</a></li>
-            <li><a href="https://www.youtube.com/watch?v=IV0eBECws1k&t=130s">Bringing your iTwin into Unreal</a> (webinar video)</li>
+          <li><a href="https://web.archive.org/web/20220926063257/https://developer.bentley.com/tutorials/itwin-unreal-controlling-your-imodel/">iTwin Platform Unreal integration tutorials</a></li>
+          <li><a href="https://medium.com/itwinjs/evolve-your-itwin-with-unreal-45206afe19f4">Evolve your iTwin with Unreal</a></li>
+          <li><a href="https://www.youtube.com/watch?v=IV0eBECws1k&t=130s">Bringing your iTwin into Unreal</a> (webinar video)</li>
         </ul>
       </section>
-
-
 
       <section>
         <h2> Notable projects </h2>

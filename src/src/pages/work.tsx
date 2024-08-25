@@ -4,19 +4,37 @@ import { ResumeContent } from '../components/ResumeContent'
 import * as styles from './work.module.scss'
 import * as sharedStyles from '../shared.module.scss'
 
+
+// people keep recommending I change my skills to a certain resume, and honestly,
+// my list of skills is too long to put in the resume, so, yes, I do tune my
+// list of presented skills on the resume, I have a lot more but I won't show them
+// to save space
+const defaultSkills = [
+  "Zig, C++/C, TypeScript, Python, GNU/Linux,",
+  "Git, React, Node.js, Rust, OpenGL/GLSL,",
+  "GitHub Actions, Azure Pipelines, Azure Cloud,",
+  ".NET, C#, HTML5/CSS, SQLite, Postgres, MongoDb,",
+  "Web Assembly, PHP, Godot, Unreal Engine, Docker,",
+  "Rust, Electron, Lisp+Scheme, Java,",
+  "Valgrind, ASan, libfuzzer, libAFL, rr, gdb",
+  "Word processing, PowerPoint, Excel, LaTEX",
+].join("\n");
+
 const Work = () => {
   // TODO: useSyncExternalStore
   const customizeSkills = React.useMemo(() => window.location.hash.includes("customize_skills"), []);
   // TODO: keep in sync with resume content
-  const [customSkills, setCustomSkills] = React.useState<string>(
-    "");
+  const [customSkills, setCustomSkills] = React.useState(defaultSkills);
 
   return (
     <Layout pageTitle="Work">
       {/* controls hidden while printing */}
-      <div>
+      <div className={styles.workPageControl}>
         <div className={sharedStyles.center}>
-          <button>print me</button>
+          {/* NOTE: unfortunately there is no standard way to disable corner info for
+             resumes when printing in browsers, so I just upload a PDF on change for
+             PDF users */}
+          <a href="/public/MichaelBelousov_resume.pdf" download="MichaelBelousov_resume.pdf">Download printable PDF</a>
           {customizeSkills && (
             <label>
               Custom Skills:

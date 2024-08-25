@@ -39,6 +39,12 @@
   margin: 1em 0;
 }
 
+/*
+.resume-content section > :not(:first-child, ul, .resume-dont-indent) {
+  margin-left: 2em;
+}
+*/
+
 
 @page {
   margin: 0.5in;
