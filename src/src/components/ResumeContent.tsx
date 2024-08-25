@@ -10,11 +10,19 @@ export const ResumeContent = (props: {
 }) => {
   return (
     <div className="resume-content">
-      <h1> Michael Belousov </h1>
-      <strong><a href="https://mikemikeb.com">https://mikemikeb.com</a></strong> <br/>
-      <strong><a href="tel:+12035029425">+1 (203) 502-9425</a></strong> <br/>
-      <strong><a href="mailto:me@mikemikeb.com">me@mikemikeb.com</a></strong> <br/>
-      <strong><a href="FIXME">LinkedIn</a></strong>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <h1> Michael Belousov </h1>
+          <strong><a href="tel:+12035029425">+1 (203) 502-9425</a></strong> <br/>
+          <strong><a href="mailto:me@mikemikeb.com">me@mikemikeb.com</a></strong> <br/>
+          <strong><a href="https://mikemikeb.com">https://mikemikeb.com</a></strong> <br/>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          <h1>&nbsp;</h1>
+          <strong><a href="https://www.linkedin.com/in/michael-belousov-745ab8238/">LinkedIn</a></strong> <br/>
+          <strong><a href="https://github.com/MichaelBelousov">GitHub</a></strong>
+        </div>
+      </div>
       <hr />
 
       <section>
@@ -30,7 +38,7 @@ export const ResumeContent = (props: {
           </h4>
 
           <ul>
-            <li>Led architecture and design for our next-generation internal cloud-forward desktop application framework, mentoring all team members and helped manage day-to-day development</li>
+            <li>Led architecture and design for our next-generation Electron-based desktop app framework, mentoring all team members and helped manage day-to-day development</li>
             <li> Led development and mentored contributors of the Transformation core API for the iTwin platform, a TypeScript Node.js API with native C++ addon components </li>
             <li>
               Developed and deployed the iTwin platform Unreal Engine integration,
@@ -88,7 +96,7 @@ export const ResumeContent = (props: {
       <section>
         <h2> Education </h2>
         <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
-        <em>Bachelor of Science</em>, Computer Science and Engineering. Completed May 2019 with GPA of 3.6 <br/>
+        <em>Bachelor of Science</em>, Computer Science and Engineering. Completed May 2019
       </section>
 
       <section>
@@ -135,10 +143,14 @@ export const ResumeContent = (props: {
       <section>
         <h2> Notable open source contributions </h2>
         <ul>
-          <li> <code><a href="https://github.com/okonet/lint-staged">lint-staged</a></code> msys2/cygwin platform support </li>
-          <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint</a></code> bug in async-return FIXME lint rule </li>
-          <li> <code><a href="https://github.com/godotengine/godot">Godot game engine</a></code> bug in initial C# object marshalling </li>
-          <li> <code><a href="https://github.com/onivim/oni2/pull/2630">onivim2</a></code> vim-like text editor written in OCaml/Reason </li>
+          <li> <code><a href="https://github.com/okonet/lint-staged">lint-staged</a></code>
+            msys2/cygwin platform support </li>
+          <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint</a></code>
+            bug in async-return FIXME lint rule </li>
+          <li> <code><a href="https://github.com/godotengine/godot">Godot game engine</a></code>
+            bug in initial C# object marshalling </li>
+          <li> <code><a href="https://github.com/onivim/oni2/pull/2630">onivim2</a></code>
+            command palette autocomplete bug fix vim-like editor in OCaml/Reason </li>
         </ul>
       </section>
 

@@ -16,8 +16,8 @@ const defaultSkills = [
   ".NET, C#, HTML5/CSS, SQLite, Postgres, MongoDb,",
   "Web Assembly, PHP, Godot, Unreal Engine, Docker,",
   "Rust, Electron, Lisp+Scheme, Java,",
-  "Valgrind, ASan, libfuzzer, libAFL, rr, gdb",
-  "Word processing, PowerPoint, Excel, LaTEX",
+  "Valgrind, ASan, libfuzzer, libAFL, rr, gdb,",
+  "PowerPoint, Word, matplotlib",
 ].join("\n");
 
 const Work = () => {
