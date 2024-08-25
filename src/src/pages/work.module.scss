@@ -1,0 +1,7 @@
+@media print {
+  header,
+  footer,
+  .workPageControl {
+    display: none !important;
+  }
+}

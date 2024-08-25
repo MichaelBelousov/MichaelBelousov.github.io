@@ -5,12 +5,14 @@ const SmallCaps = (props: React.HTMLProps<HTMLSpanElement>) => (
   <span style={{fontVariant:"small-caps"}}>{props.children}</span>
 );
 
-export const ResumeContent = (props: {}) => {
+export const ResumeContent = (props: {
+  customSkills?: string
+}) => {
   return (
     <div className="resume-content">
       <h1> Michael Belousov </h1>
       <strong><a href="https://mikemikeb.com">https://mikemikeb.com</a></strong> <br/>
-      <strong>+1 (203) 502-9425</strong> <br/>
+      <strong><a href="tel:+1 (203) 502-9425">+1 (203) 502-9425</a></strong> <br/>
       <strong><a href="mailto:me@mikemikeb.com">me@mikemikeb.com</a></strong> <br/>
       <strong><a href="FIXME">LinkedIn</a></strong>
       <hr />
@@ -23,18 +25,24 @@ export const ResumeContent = (props: {}) => {
             <strong>
               <SmallCaps>Bentley Systems</SmallCaps>, <em>Software Engineer II</em>
             </strong>
+            &nbsp;
             (May 2018&mdash;Resigned May 2024) <br/>
           </h4>
 
           <ul>
             <li>Led architecture and design for our next-generation desktop application framework, mentoring all team members and helped manage day-to-day development</li>
-            <li>
-              Led (solo) development and deployment of the iTwin platform Unreal Engine integration:
-              an Electron application bridging Datasmith C++ SDK to iTwin Node.js APIs, wrote marketing webpages, tutorials, blogs, and update service
-            </li>
             <li> Led development and mentored contributors of the Transformation core API for the iTwin platform, a TypeScript Node.js API with native C++ addon components </li>
-            <li> Contributed to multiple customer facing full-stack applications with Node.js, React, ASP.NET C#, C++, MongoDb, and SQLite </li>
-            <li> Produced a webinar promoting the product I led development of on our platform, and blogged about out platform publicly, see the <strong>Technical Writing</strong> section below </li>
+            <li>
+              Developed and deployed end-to-end the iTwin platform Unreal Engine integration,
+              an Electron application bridging iTwin Node.js APIs to Unreal via the Datasmith C++ SDK with an auto-update system.
+            </li>
+            <li>
+              {/* FIXME: verify */}
+              Produced webinar on platform integration with our highest viewership by 17%,
+              wrote marketing webpages, <a href="/FIXME">tutorials</a>,
+              and <a href="/FIXME">blog posts</a>.
+            </li>
+            <li> Contributed to multiple customer facing full-stack applications with Node.js, C++, React, ASP.NET C#, MongoDb, and SQLite </li>
             <li> Introduced fuzzing (catching dozens of buffer overflows), sanitizers, clang static analysis, and other tooling to native buildology </li>
           </ul>
         </div>
@@ -44,6 +52,7 @@ export const ResumeContent = (props: {}) => {
             <strong>
               <SmallCaps>ITS</SmallCaps>, <em>Security Team Developer</em>
             </strong>
+            &nbsp;
             (December 2016&mdash;May 2019) <br/>
           </h4>
           <ul>
@@ -58,8 +67,9 @@ export const ResumeContent = (props: {}) => {
         <div>
           <h4>
             <strong>
-              <SmallCaps>UCONN Speech and Hearing research</SmallCaps>, <em>Technical contractor</em>
+              <SmallCaps>UCONN Speech and Hearing research</SmallCaps>, <em>Technical Contractor</em>
             </strong>
+            &nbsp;
             (March 2017&mdash;July 2018) <br/>
           </h4>
           <ul>
@@ -82,21 +92,23 @@ export const ResumeContent = (props: {}) => {
 
       <section>
         <h2> Technical Skills </h2>
-          Zig, C++/C, TypeScript, Python, GNU/Linux,
-          <br/>
-          Git, React, Node.js, Rust, OpenGL/GLSL,
-          <br/>
-          GitHub Actions, Azure Pipelines, Azure Cloud,
-          <br/>
-          .NET, C#, HTML5/CSS, SQLite, Postgres, MongoDb,
-          <br/>
-          Web Assembly, PHP, Godot, Unreal Engine, Docker,
-          <br/>
-          Rust, Electron, Lisp+Scheme, Java,
-          <br/>
-          Valgrind, ASan, libfuzzer, libAFL, rr, gdb
-          <br/>
-          Word processing, PowerPoint, Excel, LaT<sub>E</sub>X
+          {(props.customSkills || <>
+            Zig, C++/C, TypeScript, Python, GNU/Linux,
+            <br/>
+            Git, React, Node.js, Rust, OpenGL/GLSL,
+            <br/>
+            GitHub Actions, Azure Pipelines, Azure Cloud,
+            <br/>
+            .NET, C#, HTML5/CSS, SQLite, Postgres, MongoDb,
+            <br/>
+            Web Assembly, PHP, Godot, Unreal Engine, Docker,
+            <br/>
+            Rust, Electron, Lisp+Scheme, Java,
+            <br/>
+            Valgrind, ASan, libfuzzer, libAFL, rr, gdb
+            <br/>
+            Word processing, PowerPoint, Excel, LaT<sub>E</sub>X
+          </>)}
       </section>
 
       <section>
@@ -116,7 +128,7 @@ export const ResumeContent = (props: {}) => {
       <section>
         <h2> Notable projects </h2>
         <ul>
-          <li><a href="https://alternis.io">alternis.io</a> embeddable dialogue middleware (in <a href="ziglang.com">zig</a>) and visual flow-based dialogue editor app</li>
+          <li><a href="https://alternis.io">alternis.io</a> embeddable dialogue middleware (in zig) and visual flow-based dialogue editor app</li>
           {/*FIXME*/}
         </ul>
       </section>

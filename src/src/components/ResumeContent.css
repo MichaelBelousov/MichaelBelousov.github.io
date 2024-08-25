@@ -1,10 +1,50 @@
 
-/*
 @media print {
+  html, body, :root {
+    font-size: 12pt;
+  }
 
+  * {
+    color: black !important;
+    background-color: transparent !important;
+  }
 }
-*/
 
-.resume-content * {
+.resume-content {
   font-family: sans-serif;
+}
+
+.resume-content h1 {
+  margin-bottom: 0.2em;
+  margin: 0.3em 0;
+  font-style: normal;
+}
+
+.resume-content h2 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.resume-content h4 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.resume-content ul {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.resume-content hr {
+  margin: 1em 0;
+}
+
+
+@page {
+  margin: 0.5in;
+
+  @top-right { content: "" }
+  @top-left { content: "" }
+  @bottom-left { content: "" }
+  @bottom-right { content: "" }
 }
