@@ -2100,7 +2100,7 @@ function TrialPromptModal({
           })]
         }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx("img", {
           id: "trial-prompt-illustration",
-          src: "/images/svg/trial-prompt-illustration.svg",
+          src: "/unreal-docs-site/static/images/svg/trial-prompt-illustration.svg",
           alt: "trial-prompt-image"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(itwinui_v1__WEBPACK_IMPORTED_MODULE_0__.ModalButtonBar, {
@@ -2586,7 +2586,7 @@ function AppDetailsV2Update() {
       children: "The new Application Management experience is now available. Use the toggle in the upper right corner of the page to move between the old and new pages."
     }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx((next_image__WEBPACK_IMPORTED_MODULE_1___default()), {
       id: "app-details-v2-image",
-      src: "/images/app-details-v2-update.png",
+      src: "/unreal-docs-site/static/images/app-details-v2-update.png",
       alt: "Application Management update" // Original image size is 1151x815
       ,
       width: 1151,

@@ -7041,7 +7041,7 @@ function MDXContent(_ref) {
     "id": "scenario-1--a-single-session-with-no-gaps-in-requests"
   }, "Scenario 1 \u2013 A single session with no gaps in requests"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-1-a-single-session-with-no-gaps-in-requests.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-1-a-single-session-with-no-gaps-in-requests.png",
     alt: "The diagram showing scenario of a single session with no gaps in requests"
   }), (0,react_.mdx)("h4", {
     "id": "result"
@@ -7051,7 +7051,7 @@ function MDXContent(_ref) {
     "id": "scenario-2--a-single-session-with-a-short-gap-in-requests"
   }, "Scenario 2 \u2013 A single session with a short gap in requests"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-2-a-single-session-with-a-short-gap-in-requests.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-2-a-single-session-with-a-short-gap-in-requests.png",
     alt: "The diagram showing scenario of a single session with a short gap in requests"
   }), (0,react_.mdx)("h4", {
     "id": "result-1"
@@ -7061,7 +7061,7 @@ function MDXContent(_ref) {
     "id": "scenario-3--multiple-sessions-with-a-long-break"
   }, "Scenario 3 \u2013 Multiple sessions with a long break"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-3-multiple-sessions-with-a-long-break.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-3-multiple-sessions-with-a-long-break.png",
     alt: "The diagram showing scenario of multiple sessions with a long break"
   }), (0,react_.mdx)("h4", {
     "id": "result-2"
@@ -7071,7 +7071,7 @@ function MDXContent(_ref) {
     "id": "scenario-4--viewing-different-imodels-simultaneously"
   }, "Scenario 4 \u2013 Viewing different iModels simultaneously"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-4-viewing-different-imodels-simultaneously.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-4-viewing-different-imodels-simultaneously.png",
     alt: "The diagram showing scenario of viewing different iModels simultaneously"
   }), (0,react_.mdx)("h4", {
     "id": "result-3"
@@ -7081,7 +7081,7 @@ function MDXContent(_ref) {
     "id": "scenario-5--viewing-the-same-imodel-in-different-browser-tabs"
   }, "Scenario 5 \u2013 Viewing the same iModel in different browser tabs"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-5-viewing-the-same-imodel-in-different-browser-tabs.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-5-viewing-the-same-imodel-in-different-browser-tabs.png",
     alt: "The diagram showing scenario of viewing the same iModel in different browser tabs"
   }), (0,react_.mdx)("h4", {
     "id": "result-4"
@@ -8449,7 +8449,7 @@ function MDXContent(_ref) {
     "id": "1-photos"
   }, "1) Photos"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-photos.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-photos.jpg",
     "alt": "ContextScene photos"
   })), (0,react_.mdx)("p", null, "To refer to some of the photos in a directory and not all of them, a ContextScene adds one entry per photo. Each photo has a unique id which is used to refer to the given photo in other parts of the ContextScene file. See the examples below."), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -8485,7 +8485,7 @@ function MDXContent(_ref) {
     "id": "2-photos-with-positions"
   }, "2) Photos with positions"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orientedphotos1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orientedphotos1.jpg",
     "alt": "ContextScene photos with positions"
   })), (0,react_.mdx)("p", null, "It is sometimes required to indicate where the photos are taken from (for 3D search) or even in which direction and with which exact camera (for 2D to 3D mapping). Position and orientation are stored using ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -8505,7 +8505,7 @@ function MDXContent(_ref) {
     "id": "3-photos-with-orientations"
   }, "3) Photos with orientations"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orientedphotos2.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orientedphotos2.jpg",
     "alt": "ContextScene photos with orientations"
   })), (0,react_.mdx)("p", null, "In this case, the directions in which the photos are taken are provided, using a matrix. The camera parameters are also given using a device entry. Jobs relying on 2D+3D reasoning usually involve such advanced ContextScenes (drones, mobile mapping, etc.). Check the ", (0,react_.mdx)("a", {
     parentName: "p",
@@ -8522,7 +8522,7 @@ function MDXContent(_ref) {
     "id": "4-orthophoto"
   }, "4) Orthophoto"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-ortho.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-ortho.jpg",
     "alt": "ContextScene orthophoto"
   })), (0,react_.mdx)("p", null, "An orthophoto, or a map, is an aerial photograph that has been geometrically corrected or \u201Cortho-rectified\u201D such that the scale of the photograph is uniform and utilized in the same manner as a map. It is usually split into tiles, each of them having a 2D location in a given SRS. Introducing a specific type of device, an ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -8550,7 +8550,7 @@ function MDXContent(_ref) {
     "id": "5-orthophoto-with-height"
   }, "5) Orthophoto with height"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orthodsm.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orthodsm.jpg",
     "alt": "ContextScene orthophoto with DSM"
   })), (0,react_.mdx)("p", null, "Some orthophotos, often called ortho DSM, provide not only the color of the map at a given position, but also its height. This ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -8568,7 +8568,7 @@ function MDXContent(_ref) {
     "id": "6-meshes"
   }, "6) Meshes"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-mesh.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-mesh.jpg",
     "alt": "ContextScene mesh"
   })), (0,react_.mdx)("p", null, "Meshes are given in a ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
@@ -8596,7 +8596,7 @@ function MDXContent(_ref) {
     "id": "7-point-clouds"
   }, "7) Point Clouds"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-pointcloud.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-pointcloud.jpg",
     "alt": "ContextScene point cloud"
   })), (0,react_.mdx)("p", null, "Similarly, point clouds are given in a ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
@@ -8693,7 +8693,7 @@ function MDXContent(_ref) {
     "id": "2d-objects"
   }, "2D objects"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o2d.jpg",
     "alt": "ContextScene 2D objects"
   })), (0,react_.mdx)("p", null, "Objects are detected in photos as boxes aligned with the axis. In this case, the Annotations section of the ContextScene consists of the set of labels (names and ids), followed by detected boxes (coordinates and label) in every photo. Coordinates are relative to the photo size between 0 and 1. A confidence for the detected object might be provided between 0 and 1. Note that the objects have an UUID which is specific to the photo in which it has been detected: two objects cannot have the same UUID. Here is a small example:"), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -8707,7 +8707,7 @@ function MDXContent(_ref) {
     "id": "2d-segmentation"
   }, "2D segmentation"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d1.jpg",
     "alt": "ContextScene photo segmentation"
   })), (0,react_.mdx)("p", null, "To store one label per pixel, what is often called ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -8723,7 +8723,7 @@ function MDXContent(_ref) {
     "id": "2d-segmentation-in-orthophotos"
   }, "2D segmentation in orthophotos"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d2.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d2.jpg",
     "alt": "ContextScene orthophoto segmentation"
   })), (0,react_.mdx)("p", null, "The same type of segmentation applies to orthophoto:"), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -8737,7 +8737,7 @@ function MDXContent(_ref) {
     "id": "3d-objects"
   }, "3D objects"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o3d.jpg",
     "alt": "ContextScene 3D objects"
   })), (0,react_.mdx)("p", null, "3D objects are described as 3D boxes. These boxes are given by a range in every direction. An optional rotation might be specified if aligning the box with the axis is too restrictive. It is given as a 3x3 matrix and corresponds to a rotation centered at the center of the box: point ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -8757,7 +8757,7 @@ function MDXContent(_ref) {
     "id": "3d-segmentation"
   }, "3D segmentation"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s3d.jpg",
     "alt": "ContextScene point cloud segmentation"
   })), (0,react_.mdx)("p", null, "To store one label per point in a point cloud, what is often called ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -8773,7 +8773,7 @@ function MDXContent(_ref) {
     "id": "2d-lines"
   }, "2D lines"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l2d.jpg",
     "alt": "ContextScene 2D lines"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -8793,7 +8793,7 @@ function MDXContent(_ref) {
     "id": "3d-lines"
   }, "3D lines"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l3d.jpg",
     "alt": "ContextScene 3D lines"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -8813,7 +8813,7 @@ function MDXContent(_ref) {
     "id": "2d-polygons"
   }, "2D polygons"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-polygons.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-polygons.jpg",
     "alt": "ContextScene 2D polygons"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of 2D ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -8835,7 +8835,7 @@ function MDXContent(_ref) {
     parentName: "li"
   }, "Positions"), ":")), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-positions.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-positions.jpg",
     "alt": "ContextScene 3D locations"
   })), (0,react_.mdx)("p", null, "When the spatial extension of objects is useless but only their location is of interest, some Reality Analysis jobs export these positions in ESRI SHP files. This is not yet persisted in a ContextScene. A workaround so far is to the center point of their 3D boxes."), (0,react_.mdx)("ul", null, (0,react_.mdx)("li", {
     parentName: "ul"
@@ -8847,7 +8847,7 @@ function MDXContent(_ref) {
     parentName: "li"
   }, "Tags"), ":")), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-tags.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-tags.jpg",
     "alt": "ContextScene tags"
   })), (0,react_.mdx)("p", null, "in some cases, no position at all is required, but just a list of labels. For instance: \u201Cthis image contains people and cars\u201D. This case is not available yet and will be added."));
 }
@@ -8995,7 +8995,7 @@ function MDXContent(_ref) {
     "id": "1-photos"
   }, "1) Photos"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-photos.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-photos.jpg",
     "alt": "ContextScene photos"
   })), (0,react_.mdx)("p", null, "To refer to some of the photos in a directory and not all of them, a ContextScene adds one entry per photo. Each photo has a unique id which is used to refer to the given photo in other parts of the ContextScene file. See the examples below."), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -9031,7 +9031,7 @@ function MDXContent(_ref) {
     "id": "2-photos-with-positions"
   }, "2) Photos with positions"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orientedphotos1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orientedphotos1.jpg",
     "alt": "ContextScene photos with positions"
   })), (0,react_.mdx)("p", null, "It is sometimes required to indicate where the photos are taken from (for 3D search) or even in which direction and with which exact camera (for 2D to 3D mapping). Position and orientation are stored using ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -9051,7 +9051,7 @@ function MDXContent(_ref) {
     "id": "3-photos-with-orientations"
   }, "3) Photos with orientations"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orientedphotos2.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orientedphotos2.jpg",
     "alt": "ContextScene photos with orientations"
   })), (0,react_.mdx)("p", null, "In this case, the directions in which the photos are taken are provided, using a matrix. The camera parameters are also given using a device entry. Jobs relying on 2D+3D reasoning usually involve such advanced ContextScenes (drones, mobile mapping, etc.). Check the ", (0,react_.mdx)("a", {
     parentName: "p",
@@ -9068,7 +9068,7 @@ function MDXContent(_ref) {
     "id": "4-orthophoto"
   }, "4) Orthophoto"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-ortho.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-ortho.jpg",
     "alt": "ContextScene orthophoto"
   })), (0,react_.mdx)("p", null, "An orthophoto, or a map, is an aerial photograph that has been geometrically corrected or \u201Cortho-rectified\u201D such that the scale of the photograph is uniform and utilized in the same manner as a map. It is usually split into tiles, each of them having a 2D location in a given SRS. Introducing a specific type of device, an ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -9096,7 +9096,7 @@ function MDXContent(_ref) {
     "id": "5-orthophoto-with-height"
   }, "5) Orthophoto with height"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orthodsm.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orthodsm.jpg",
     "alt": "ContextScene orthophoto with DSM"
   })), (0,react_.mdx)("p", null, "Some orthophotos, often called ortho DSM, provide not only the color of the map at a given position, but also its height. This ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -9114,7 +9114,7 @@ function MDXContent(_ref) {
     "id": "6-meshes"
   }, "6) Meshes"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-mesh.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-mesh.jpg",
     "alt": "ContextScene mesh"
   })), (0,react_.mdx)("p", null, "Meshes are given in a ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
@@ -9142,7 +9142,7 @@ function MDXContent(_ref) {
     "id": "7-point-clouds"
   }, "7) Point Clouds"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-pointcloud.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-pointcloud.jpg",
     "alt": "ContextScene point cloud"
   })), (0,react_.mdx)("p", null, "Similarly, point clouds are given in a ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
@@ -9195,7 +9195,7 @@ function MDXContent(_ref) {
     "id": "2d-objects"
   }, "2D objects"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o2d.jpg",
     "alt": "ContextScene 2D objects"
   })), (0,react_.mdx)("p", null, "Objects are detected in photos as boxes aligned with the axis. In this case, the Annotations section of the ContextScene consists of the set of labels (names and ids), followed by detected boxes (coordinates and label) in every photo. Coordinates are relative to the photo size between 0 and 1. A confidence for the detected object might be provided between 0 and 1. Note that the objects have an id which is specific to the photo it which has been detected in: two objects having the same id are not supposed to correspond to the same real object seen in two different images. Here is a small example:"), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -9209,7 +9209,7 @@ function MDXContent(_ref) {
     "id": "2d-segmentation"
   }, "2D segmentation"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d1.jpg",
     "alt": "ContextScene photo segmentation"
   })), (0,react_.mdx)("p", null, "To store one label per pixel, what is often called ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -9225,7 +9225,7 @@ function MDXContent(_ref) {
     "id": "2d-segmentation-in-orthophotos"
   }, "2D segmentation in orthophotos"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d2.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d2.jpg",
     "alt": "ContextScene orthophoto segmentation"
   })), (0,react_.mdx)("p", null, "The same type of segmentation applies to orthophoto:"), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -9239,7 +9239,7 @@ function MDXContent(_ref) {
     "id": "3d-objects"
   }, "3D objects"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o3d.jpg",
     "alt": "ContextScene 3D objects"
   })), (0,react_.mdx)("p", null, "3D objects are described as 3D boxes. These boxes are given by a range in every direction. An optional rotation might be specified if aligning the box with the axis is too restrictive. It is given as a 3x3 matrix and corresponds to a rotation centered at the center of the box: point ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -9255,7 +9255,7 @@ function MDXContent(_ref) {
     "id": "3d-segmentation"
   }, "3D segmentation"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s3d.jpg",
     "alt": "ContextScene point cloud segmentation"
   })), (0,react_.mdx)("p", null, "To store one label per point in a point cloud, what is often called ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -9271,7 +9271,7 @@ function MDXContent(_ref) {
     "id": "2d-lines"
   }, "2D lines"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l2d.jpg",
     "alt": "ContextScene 2D lines"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -9291,7 +9291,7 @@ function MDXContent(_ref) {
     "id": "3d-lines"
   }, "3D lines"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l3d.jpg",
     "alt": "ContextScene 3D lines"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -9311,7 +9311,7 @@ function MDXContent(_ref) {
     "id": "2d-polygons"
   }, "2D polygons"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-polygons.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-polygons.jpg",
     "alt": "ContextScene 2D polygons"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of 2D ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -9333,7 +9333,7 @@ function MDXContent(_ref) {
     parentName: "li"
   }, "Positions"), ":")), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-positions.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-positions.jpg",
     "alt": "ContextScene 3D locations"
   })), (0,react_.mdx)("p", null, "When the spatial extension of objects is useless but only their location is of interest, some Reality Analysis jobs export these positions in ESRI SHP files. This is not yet persisted in a ContextScene. A workaround so far is to the center point of their 3D boxes."), (0,react_.mdx)("ul", null, (0,react_.mdx)("li", {
     parentName: "ul"
@@ -9341,7 +9341,7 @@ function MDXContent(_ref) {
     parentName: "li"
   }, "Tags"), ":")), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-tags.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-tags.jpg",
     "alt": "ContextScene tags"
   })), (0,react_.mdx)("p", null, "in some cases, no position at all is required, but just a list of labels. For instance: \u201Cthis image contains people and cars\u201D. This case is not available yet and will be added."));
 }
@@ -9466,7 +9466,7 @@ function MDXContent(_ref) {
     "id": "objects2d"
   }, "Objects2D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o2d.jpg",
     "alt": "ContextScene 2D objects"
   })), (0,react_.mdx)("p", null, "The following analysis are available:"), (0,react_.mdx)("table", null, (0,react_.mdx)("thead", {
     parentName: "table"
@@ -9572,7 +9572,7 @@ function MDXContent(_ref) {
     "id": "segmentation2d"
   }, "Segmentation2D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d1.jpg",
     "alt": "ContextScene 2D segmentation"
   })), (0,react_.mdx)("p", null, "The following analysis are available:"), (0,react_.mdx)("table", null, (0,react_.mdx)("thead", {
     parentName: "table"
@@ -9822,7 +9822,7 @@ function MDXContent(_ref) {
     "id": "objects3d"
   }, "Objects3D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o3d.jpg",
     "alt": "ContextScene 3D objects"
   })), (0,react_.mdx)("p", null, "This job detects 3D objects from 2D objects detected in oriented photos. An optional collection of point clouds or meshes might help estimating 3D objects. The following analyses are available:"), (0,react_.mdx)("table", null, (0,react_.mdx)("thead", {
     parentName: "table"
@@ -10113,7 +10113,7 @@ function MDXContent(_ref) {
     "id": "segmentation3d"
   }, "Segmentation3D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s3d.jpg",
     "alt": "ContextScene 3D segmentation"
   })), (0,react_.mdx)("p", null, "The main purpose of this job is to classify each point of a point cloud. Many variant are available:"), (0,react_.mdx)("ul", null, (0,react_.mdx)("li", {
     parentName: "ul"
@@ -10566,7 +10566,7 @@ function MDXContent(_ref) {
     "id": "lines3d"
   }, "Lines3D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l3d.jpg",
     "alt": "ContextScene 3D lines"
   })), (0,react_.mdx)("p", null, "The main purpose of this job if to detect 3D lines in a segmented point cloud. Many variants are available:"), (0,react_.mdx)("ul", null, (0,react_.mdx)("li", {
     parentName: "ul"
@@ -11056,7 +11056,7 @@ function MDXContent(_ref) {
     "id": "changedetection"
   }, "ChangeDetection"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-cd.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-cd.jpg",
     "alt": "ContextScene change detection"
   })), (0,react_.mdx)("p", null, "This job detects changes between two collections of point clouds or meshes3D. It uses distance or changes of color between the two collections. The output is a set of 3D objects capturing the regions with changes. This jobs does not use Machine Learning yet."), (0,react_.mdx)("p", null, "The following analysis are available:"), (0,react_.mdx)("table", null, (0,react_.mdx)("thead", {
     parentName: "table"
@@ -19190,7 +19190,7 @@ function adding_decorators_and_markers_MDXContent(_ref) {
   }), (0,react_.mdx)(adding_decorators_and_markers_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "45",
-    summaryImageSrc: "/images/adding-decorators-and-markers.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/adding-decorators-and-markers.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -19266,7 +19266,7 @@ function adding_decorators_and_markers_MDXContent(_ref) {
     style: {
       "width": "100%"
     },
-    src: "/images/tutorials/adding-decorators-and-markers/project_extents.png",
+    src: "/unreal-docs-site/static/images/tutorials/adding-decorators-and-markers/project_extents.png",
     alt: "3d iModel of a red brick house over a green background with a white bounding box illustrating the model's limits."
   }), (0,react_.mdx)("figcaption", {
     style: {
@@ -19321,7 +19321,7 @@ function adding_decorators_and_markers_MDXContent(_ref) {
     parentName: "p",
     "href": "https://www.itwinjs.org/sandboxes/RaphaelMelancon/Simple%20Marker%20Sample%20App"
   }, "Simple Marker Sample App"), " community sandbox to see what your application will look like at the end of this tutorial."), (0,react_.mdx)("p", null, "Let\u2019s get started!"), (0,react_.mdx)(WebMLoop, {
-    src: "/images/tutorials/adding-decorators-and-markers/sample-app-green-bg.webm",
+    src: "/unreal-docs-site/static/images/tutorials/adding-decorators-and-markers/sample-app-green-bg.webm",
     alt: "Screen recording of the Viewer app being used.",
     style: {
       "display": "block",
@@ -19696,10 +19696,10 @@ function adding_decorators_and_markers_MDXContent(_ref) {
   }, "HTML-compatible"), " image file in the app\u2019s ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, "public"), " directory."), (0,react_.mdx)("p", null, "You can ", (0,react_.mdx)("a", {
-    href: "/images/tutorials/adding-decorators-and-markers/magnifying-glass.svg",
+    href: "/unreal-docs-site/static/images/tutorials/adding-decorators-and-markers/magnifying-glass.svg",
     download: true
   }, "download"), " this image,"), (0,react_.mdx)("img", {
-    src: "/images/tutorials/adding-decorators-and-markers/magnifying-glass.svg",
+    src: "/unreal-docs-site/static/images/tutorials/adding-decorators-and-markers/magnifying-glass.svg",
     alt: "Cartoony magnifying glass icon.",
     style: {
       "display": "block",
@@ -19752,7 +19752,7 @@ function adding_decorators_and_markers_MDXContent(_ref) {
     "href": "https://localhost:3000"
   }, "https://localhost:3000"), " in your browser."), (0,react_.mdx)(WebMLoop, {
     autoplay: "true",
-    src: "/images/tutorials/adding-decorators-and-markers/sample-app-black-bg.webm",
+    src: "/unreal-docs-site/static/images/tutorials/adding-decorators-and-markers/sample-app-black-bg.webm",
     alt: "Screen recording of the Viewer app being used.",
     style: {
       "display": "block",
@@ -19925,7 +19925,7 @@ function adding_showcase_widgets_to_your_itwin_viewer_MDXContent(_ref) {
   }), (0,react_.mdx)(adding_showcase_widgets_to_your_itwin_viewer_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "30",
-    summaryImageSrc: "/images/adding-showcase-widgets-to-your-itwin-viewer-sample.gif",
+    summaryImageSrc: "/unreal-docs-site/static/images/adding-showcase-widgets-to-your-itwin-viewer-sample.gif",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -20070,11 +20070,11 @@ function adding_showcase_widgets_to_your_itwin_viewer_MDXContent(_ref) {
     mdxType: "TutorialSection"
   }, (0,react_.mdx)("p", null, "For this tutorial, these files will be placed directly in our src directory so your file structure should look similar to this:"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/sample_viewer_port_to_itwin_viewer.png",
+    "src": "/unreal-docs-site/static/images/sample_viewer_port_to_itwin_viewer.png",
     "alt": "ViewAttributesStructure"
   })), (0,react_.mdx)("p", null, "Running our iTwin Viewer, notice the same fully functional widget from the sample showcase in your iTwin Viewer."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/view_attributes_ported_results.png",
+    "src": "/unreal-docs-site/static/images/view_attributes_ported_results.png",
     "alt": "ViewAttributesResults"
   })), (0,react_.mdx)("p", null, "Feel free to customize these widgets to your liking.")), (0,react_.mdx)(adding_showcase_widgets_to_your_itwin_viewer_TutorialSection, {
     mdxType: "TutorialSection"
@@ -20129,19 +20129,19 @@ function adding_showcase_widgets_to_your_itwin_viewer_MDXContent(_ref) {
     mdxType: "TileList"
   }, (0,react_.mdx)(adding_showcase_widgets_to_your_itwin_viewer_Tile, {
     name: "Start building a Viewer App",
-    thumbnail: "/images/retail-tutorial-sample-small.png",
+    thumbnail: "/unreal-docs-site/static/images/retail-tutorial-sample-small.png",
     description: "This quick start is intended to help you get started with using iTwin Platform visualization components. By the end of this walk-through, you will be able to build and run a web application for viewing an infrastructure digital twin (iTwin).",
     href: "/tutorials/web-application-quick-start/",
     mdxType: "Tile"
   }), (0,react_.mdx)(adding_showcase_widgets_to_your_itwin_viewer_Tile, {
     name: "Customizing the iTwin Viewer - \"The Basics\"",
-    thumbnail: "/images/itwin-viewer-hello-world-sample-small.png",
+    thumbnail: "/unreal-docs-site/static/images/itwin-viewer-hello-world-sample-small.png",
     description: "This tutorial will take you through the first steps of customizing your iTwin Web Viewer. First you will learn how to add a new user interface component. Later you will customize that component to change the background color of your viewer.",
     href: "/tutorials/itwin-viewer-hello-world",
     mdxType: "Tile"
   }), (0,react_.mdx)(adding_showcase_widgets_to_your_itwin_viewer_Tile, {
     name: "Adding view decorations to your iTwin Viewer",
-    thumbnail: "/images/adding-decorators-and-markers.png",
+    thumbnail: "/unreal-docs-site/static/images/adding-decorators-and-markers.png",
     description: "This tutorial guides you through customizing your iTwin Viewer application by displaying application-specific graphics, called View Decorations.",
     href: "/tutorials/adding-decorators-and-markers/",
     mdxType: "Tile"
@@ -21971,7 +21971,7 @@ function authorize_webapp_MDXContent(_ref) {
     parentName: "li"
   }, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/tutorials/authorize-webapp/user-signin-consent.png",
+    "src": "/unreal-docs-site/static/images/tutorials/authorize-webapp/user-signin-consent.png",
     "alt": "User interface for facing Bentley authorization server"
   })), (0,react_.mdx)("p", {
     parentName: "li"
@@ -22329,7 +22329,7 @@ function changed_elements_api_MDXContent(_ref) {
   }), (0,react_.mdx)(changed_elements_api_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "45",
-    summaryImageSrc: "/images/changed-elements-header.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/changed-elements-header.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -23930,7 +23930,7 @@ function combine_physical_models_v2_transformation_MDXContent(_ref) {
   }), (0,react_.mdx)(combine_physical_models_v2_transformation_Introduction, {
     skillLevel: "Intermediate",
     durationInMinutes: "20",
-    summaryImageSrc: "/images/Metro_Station.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/Metro_Station.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -24372,7 +24372,7 @@ function contextcapture_api_better_calibration_MDXContent(_ref) {
   }), (0,react_.mdx)(contextcapture_api_better_calibration_Introduction, {
     skillLevel: "Expert",
     durationInMinutes: "10",
-    summaryImageSrc: "/images/cccs-calibration-header.jpg",
+    summaryImageSrc: "/unreal-docs-site/static/images/cccs-calibration-header.jpg",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -24462,13 +24462,13 @@ function contextcapture_api_better_calibration_MDXContent(_ref) {
   }, (0,react_.mdx)(contextcapture_api_better_calibration_Tile, {
     name: "Using cache in Reality Modeling",
     description: "This tutorial focuses on using cache for faster processing in Reality Modeling",
-    thumbnail: "/images/cccs-cache-thumb.png",
+    thumbnail: "/unreal-docs-site/static/images/cccs-cache-thumb.png",
     href: "/tutorials/contextcapture-api-how-to-use-cache",
     mdxType: "Tile"
   }), (0,react_.mdx)(contextcapture_api_better_calibration_Tile, {
     name: "Better production in Reality Modeling",
     description: "Learn how to specify production settings in Reality Modeling",
-    thumbnail: "/images/cccs-production-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/cccs-production-thumb.jpg",
     href: "/tutorials/contextcapture-api-better-production",
     mdxType: "Tile"
   })), (0,react_.mdx)("h2", {
@@ -24583,7 +24583,7 @@ function contextcapture_api_better_production_MDXContent(_ref) {
   }), (0,react_.mdx)(contextcapture_api_better_production_Introduction, {
     skillLevel: "Expert",
     durationInMinutes: "10",
-    summaryImageSrc: "/images/cccs-production-header.jpg",
+    summaryImageSrc: "/unreal-docs-site/static/images/cccs-production-header.jpg",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -25070,13 +25070,13 @@ function contextcapture_api_better_production_MDXContent(_ref) {
   }, (0,react_.mdx)(contextcapture_api_better_production_Tile, {
     name: "Using cache in Reality Modeling",
     description: "This tutorial focuses on using cache for faster processing in Reality Modeling",
-    thumbnail: "/images/cccs-cache-thumb.png",
+    thumbnail: "/unreal-docs-site/static/images/cccs-cache-thumb.png",
     href: "/tutorials/contextcapture-api-how-to-use-cache",
     mdxType: "Tile"
   }), (0,react_.mdx)(contextcapture_api_better_production_Tile, {
     name: "Better calibration in Reality Modeling",
     description: "Learn how to specify calibration settings in Reality Modeling, and download the result of a calibration",
-    thumbnail: "/images/cccs-calibration-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/cccs-calibration-thumb.jpg",
     href: "/tutorials/contextcapture-api-better-calibration",
     mdxType: "Tile"
   })), (0,react_.mdx)("h2", {
@@ -25236,7 +25236,7 @@ function contextcapture_api_how_to_use_cache_MDXContent(_ref) {
   }), (0,react_.mdx)(contextcapture_api_how_to_use_cache_Introduction, {
     skillLevel: "Advanced",
     durationInMinutes: "15",
-    summaryImageSrc: "/images/cccs-cache-header.jpg",
+    summaryImageSrc: "/unreal-docs-site/static/images/cccs-cache-header.jpg",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -25445,13 +25445,13 @@ function contextcapture_api_how_to_use_cache_MDXContent(_ref) {
   }, (0,react_.mdx)(contextcapture_api_how_to_use_cache_Tile, {
     name: "Better calibration in Reality Modeling",
     description: "Learn how to specify calibration settings in Reality Modeling, and download the result of a calibration",
-    thumbnail: "/images/cccs-calibration-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/cccs-calibration-thumb.jpg",
     href: "/tutorials/contextcapture-api-better-calibration",
     mdxType: "Tile"
   }), (0,react_.mdx)(contextcapture_api_how_to_use_cache_Tile, {
     name: "Better production in Reality Modeling",
     description: "Learn how to specify production settings in Reality Modeling",
-    thumbnail: "/images/cccs-production-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/cccs-production-thumb.jpg",
     href: "/tutorials/contextcapture-api-better-production",
     mdxType: "Tile"
   })), (0,react_.mdx)("h2", {
@@ -25582,7 +25582,7 @@ function contextcapture_api_quick_start_MDXContent(_ref) {
   }), (0,react_.mdx)(contextcapture_api_quick_start_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "30",
-    summaryImageSrc: "/images/cccs-quick-start-header.jpg",
+    summaryImageSrc: "/unreal-docs-site/static/images/cccs-quick-start-header.jpg",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -26012,19 +26012,19 @@ function contextcapture_api_quick_start_MDXContent(_ref) {
   }, (0,react_.mdx)(contextcapture_api_quick_start_Tile, {
     name: "Using cache in Reality Modeling",
     description: "This tutorial focuses on using cache for faster processing in Reality Modeling",
-    thumbnail: "/images/cccs-cache-thumb.png",
+    thumbnail: "/unreal-docs-site/static/images/cccs-cache-thumb.png",
     href: "/tutorials/contextcapture-api-how-to-use-cache",
     mdxType: "Tile"
   }), (0,react_.mdx)(contextcapture_api_quick_start_Tile, {
     name: "Better calibration in Reality Modeling",
     description: "Learn how to specify calibration settings in Reality Modeling, and download the result of a calibration",
-    thumbnail: "/images/cccs-calibration-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/cccs-calibration-thumb.jpg",
     href: "/tutorials/contextcapture-api-better-calibration",
     mdxType: "Tile"
   }), (0,react_.mdx)(contextcapture_api_quick_start_Tile, {
     name: "Better production in Reality Modeling",
     description: "Learn how to specify production settings in Reality Modeling",
-    thumbnail: "/images/cccs-production-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/cccs-production-thumb.jpg",
     href: "/tutorials/contextcapture-api-better-production",
     mdxType: "Tile"
   })), (0,react_.mdx)("h2", {
@@ -27220,7 +27220,7 @@ function create_and_merge_forked_imodel_MDXContent(_ref) {
     "id": "understanding-imodel-forking-and-merging"
   }, "Understanding iModel Forking and Merging"), (0,react_.mdx)("p", null, "First we should understand how forking and merging workflow works."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/fork-and-merge-explanation.png",
+    "src": "/unreal-docs-site/static/images/fork-and-merge-explanation.png",
     "alt": "Diagram iliustrating fork and merge "
   })), (0,react_.mdx)("p", null, "As you can see in the diagram, this workflow involves 2 iModels. The first iModel is the main one and is treated as the source of truth. The second iModel is\nthe forked iModel. This is a separate iModel, which is a duplicate of the first iModel."), (0,react_.mdx)("p", null, "The workflow starts by connecting this duplicate iModel to the main iModel. This is achieved by CreateFork transformation."), (0,react_.mdx)("p", null, "Once iModels are connected, you can work with the forked iModel and modify it as needed."), (0,react_.mdx)("p", null, "Once all changes are ready, you can transfer those changes to the main iModel by using MergeFork transformation."), (0,react_.mdx)("p", null, "After all of this, the main iModel has all the changes which were made in the forked iModel, but it doesn\u2019t have intermediate changesets, which might not be approved or\nshouldn\u2019t be in the main iModel.")), (0,react_.mdx)(create_and_merge_forked_imodel_TutorialSection, {
     actions: [(0,react_.mdx)(create_and_merge_forked_imodel_CreateSampleAppButton, {
@@ -27758,19 +27758,19 @@ function create_and_merge_forked_imodel_MDXContent(_ref) {
     mdxType: "TileList"
   }, (0,react_.mdx)(create_and_merge_forked_imodel_Tile, {
     name: "Synchronize a file from iTwin Storage",
-    thumbnail: "/images/synchronizationThumbnail.png",
+    thumbnail: "/unreal-docs-site/static/images/synchronizationThumbnail.png",
     description: "Walk-through how to synchronize a file from iTwin Storage to an iModel using Synchronization API.",
     href: "/tutorials/synchronization-storage-tutorial/",
     mdxType: "Tile"
   }), (0,react_.mdx)(create_and_merge_forked_imodel_Tile, {
     name: "Synchronize a file from Azure Blob Storage",
-    thumbnail: "/images/synchronizationThumbnail.png",
+    thumbnail: "/unreal-docs-site/static/images/synchronizationThumbnail.png",
     description: "Walk-through how to synchronize a file from Azure Blob Storage to an iModel using Synchronization API.",
     href: "/tutorials/synchronization-blob-tutorial/",
     mdxType: "Tile"
   }), (0,react_.mdx)(create_and_merge_forked_imodel_Tile, {
     name: "Unmap an Azure Blob Storage file from an iModel",
-    thumbnail: "/images/synchronizationThumbnail.png",
+    thumbnail: "/unreal-docs-site/static/images/synchronizationThumbnail.png",
     description: "Walk-through how to unmap an Azure Blob Storage file from an iModel using Synchronization API.",
     href: "/tutorials/synchronization-storage-tutorial/",
     mdxType: "Tile"
@@ -31400,7 +31400,7 @@ function create_test_imodel_sample_MDXContent(_ref) {
     "id": "metrostation-sample"
   }, "Metrostation Sample"), (0,react_.mdx)("p", null, "A metrostation located in Philadelphia. Contains platform, rails, and subway cars."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/metrostation.png",
+    "src": "/unreal-docs-site/static/images/metrostation.png",
     "alt": "stadium"
   }))), (0,react_.mdx)(create_test_imodel_sample_TutorialSection, {
     subSection: true,
@@ -31409,7 +31409,7 @@ function create_test_imodel_sample_MDXContent(_ref) {
     "id": "stadium"
   }, "Stadium"), (0,react_.mdx)("p", null, "Soccer stadium in Singapore. Features landscape details and a metro station. This is the largest sample iModel."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/stadium.png",
+    "src": "/unreal-docs-site/static/images/stadium.png",
     "alt": "stadium"
   }))), (0,react_.mdx)(create_test_imodel_sample_TutorialSection, {
     subSection: true,
@@ -31418,7 +31418,7 @@ function create_test_imodel_sample_MDXContent(_ref) {
     "id": "retail-building-sample"
   }, "Retail Building Sample"), (0,react_.mdx)("p", null, "Cafe and apartments."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/retail-building-sample.png",
+    "src": "/unreal-docs-site/static/images/retail-building-sample.png",
     "alt": "retail-building-sample"
   }))), (0,react_.mdx)(create_test_imodel_sample_TutorialSection, {
     subSection: true,
@@ -31427,7 +31427,7 @@ function create_test_imodel_sample_MDXContent(_ref) {
     "id": "bay-town-process-plant"
   }, "Bay Town Process Plant"), (0,react_.mdx)("p", null, "Simple processing plant. This is the smallest sample iModel."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/bay-town-process-plant.png",
+    "src": "/unreal-docs-site/static/images/bay-town-process-plant.png",
     "alt": "bay-town-process-plant"
   }))), (0,react_.mdx)(create_test_imodel_sample_TutorialSection, {
     subSection: true,
@@ -31436,7 +31436,7 @@ function create_test_imodel_sample_MDXContent(_ref) {
     "id": "house-sample"
   }, "House Sample"), (0,react_.mdx)("p", null, "Features several 2D drawings and sheets."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/house-sample.png",
+    "src": "/unreal-docs-site/static/images/house-sample.png",
     "alt": "house-sample"
   }))));
 }
@@ -33660,7 +33660,7 @@ function filter_by_view_definition_transformation_MDXContent(_ref) {
   }), (0,react_.mdx)(filter_by_view_definition_transformation_Introduction, {
     skillLevel: "Intermediate",
     durationInMinutes: "20",
-    summaryImageSrc: "/images/stadium.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/stadium.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -34372,7 +34372,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }), (0,react_.mdx)(itwin_unreal_controlling_your_imodel_Introduction, {
     skillLevel: "Advanced",
     durationInMinutes: "30",
-    summaryImageSrc: "/images/unreal-ui-featured.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/unreal-ui-featured.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -34428,12 +34428,12 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "Actor > Tags"), " section and press the plus button to add a new tag, give it a value of \u201CExampleDatasmithScene1\u201D."), (0,react_.mdx)("p", null, "If you selected the ", (0,react_.mdx)("em", {
     parentName: "p"
   }, "combine meshes"), " option while exporting, you will have an actor named ScheduleActor as a child of your datasmith scene actor,\nSelect it and give it a new tag with a value of \u201CExampleScheduleActor1\u201D. It is not necessary to have done a combined-mesh export,\nhowever this tutorial will assume you have and write the code to synchronize the exported level sequence with the ScheduleActor\ndriving animations in the combined mesh."), (0,react_.mdx)(TitledImage, {
-    src: "/images/unreal-ui-actor-tags.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-actor-tags.png",
     alt: "setting actor tags in the details panel",
     className: "sample-img-l",
     mdxType: "TitledImage"
   }), (0,react_.mdx)("p", null, "If you have not done so already, in the Content Browser, in the folder where you chose to import your datasmith content, go into the animations subfolder\nand drag-and-drop the ScheduleAnimation asset into the level to add the actor to the scene."), (0,react_.mdx)(TitledImage, {
-    src: "/images/unreal-export-anim-drag-drop.png",
+    src: "/unreal-docs-site/static/images/unreal-export-anim-drag-drop.png",
     alt: "drag-and-drop-level-sequence",
     mdxType: "TitledImage"
   }), (0,react_.mdx)("p", null, "Make sure the new level sequence actor is selected, and in the ", (0,react_.mdx)("strong", {
@@ -34449,7 +34449,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "Loop"), " option to ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Loop Indefinitely"), "."), (0,react_.mdx)(TitledImage, {
-    src: "/images/unreal-ui-set-autoplay.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-set-autoplay.png",
     alt: "set auto play",
     className: "sample-img-l",
     mdxType: "TitledImage"
@@ -34477,7 +34477,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
     type: "informational",
     mdxType: "Alert"
   }, "The names used in this tutorial are arbitrary. You can use any name as long as you connect the classes correctly."), (0,react_.mdx)(TitledImage, {
-    src: "/images/unreal-ui-createwidgetblueprint.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-createwidgetblueprint.png",
     alt: "create a widget blueprint by using the add/import button in the Content Browser",
     className: "sample-img-m",
     mdxType: "TitledImage"
@@ -34522,7 +34522,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "ExampleTimelineWidget"), ".\nThe resulting node graph for the ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, "Begin Play"), " event should look as follows."), (0,react_.mdx)(LinkingImage, {
-    src: "/images/unreal-ui-hud-beginplay.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-hud-beginplay.png",
     alt: "screenshot of blueprint code for ExampleHUD class",
     href: "https://blueprintue.com/blueprint/k0_44j0-/",
     tooltip: "Click to interact or copy nodes at blueprintue.com",
@@ -34549,7 +34549,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "Scene"), ". Store the ExampleHUD instance in a new variable, ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, "PlayerHUD"), "."), (0,react_.mdx)(LinkingImage, {
-    src: "/images/unreal-ui-playercontroller-beginplay.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-playercontroller-beginplay.png",
     alt: "screenshot of player controller's beginplay",
     href: "https://blueprintue.com/blueprint/02yoz_1_/",
     tooltip: "Click to interact or copy nodes at blueprintue.com",
@@ -34563,7 +34563,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "See the", ' ', (0,react_.mdx)("a", {
     href: "https://docs.unrealengine.com/InteractiveExperiences/Input/"
   }, "Unreal Engine input management documentation"), ' ', "for better ways of managing input. Using a direct keyboard event is done for simplicity and there are more robust ways of reacting to input."), (0,react_.mdx)(LinkingImage, {
-    src: "/images/unreal-ui-playercontroller-onspacebar.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-playercontroller-onspacebar.png",
     alt: "screenshot of player controller's spacebar event implementation",
     href: "https://blueprintue.com/blueprint/wdbxp-au/",
     tooltip: "Click to interact or copy nodes at blueprintue.com",
@@ -34584,7 +34584,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "ExampleGameModeBase"), ".\nThen expand the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Selected GameMode"), " options by clicking the arrow to the left of the label, and set the HUD and PlayerController classes to the ones you created."), (0,react_.mdx)(TitledImage, {
-    src: "/images/unreal-ui-gamemode-override.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-gamemode-override.png",
     alt: "screenshot of gamemode override settings",
     mdxType: "TitledImage"
   }), (0,react_.mdx)(itwin_unreal_controlling_your_imodel_Alert, {
@@ -34603,7 +34603,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "Slider"), " control into the widget designer viewport. Make sure it is selected, and use the scale handles to scale it across the bottom\nedge of the viewport to use as our scrubber. Additionally, place a ", (0,react_.mdx)("em", {
     parentName: "p"
   }, "Text"), " control at each the left and right end of the slider, and one more above the middle\nof the slider. You will show your iTwin\u2019s schedule start, end, and current time of the animation in these text controls, updating the current time every tick."), (0,react_.mdx)(itwin_unreal_controlling_your_imodel_WebMLoop, {
-    src: "/images/unreal-ui-widget-building.webm",
+    src: "/unreal-docs-site/static/images/unreal-ui-widget-building.webm",
     mdxType: "WebMLoop"
   }), (0,react_.mdx)("p", null, "In the ", (0,react_.mdx)("strong", {
     parentName: "p"
@@ -34612,7 +34612,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "Details"), " panel make sure the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Is Variable"), " checkbox is checked so you can reference your controls in the event graph."), (0,react_.mdx)(TitledImage, {
-    src: "/images/unreal-ui-isvariable.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-isvariable.png",
     alt: "the location of the Is Variable checkbox in the interface",
     className: "sample-img-xl",
     mdxType: "TitledImage"
@@ -34634,7 +34634,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, (0,react_.mdx)("code", null, "GetSeparatedExportSceneData")), ' ', "can be called with your Datasmith Scene Actor to receive the", ' ', (0,react_.mdx)("code", null, "ScheduleStartDateTime"), ", ", (0,react_.mdx)("code", null, "ScheduleEndDateTime"), ", and", ' ', (0,react_.mdx)("code", null, "ScheduleTicksPerSecond"), "."), (0,react_.mdx)("p", null, "Then add a custom event to the event graph by right-clicking in the graph and search\nfor ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Add Custom Event"), " in the context menu. Name this event \"Set Correct Level\nSequence End\", and invoke the event after the variables are initialized in the Construct\nevent that you have been building up."), (0,react_.mdx)(LinkingImage, {
-    src: "/images/unreal-ui-timelinewidget-beginplay.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-timelinewidget-beginplay.png",
     alt: "screenshot of timeline widget's construct event",
     href: "https://blueprintue.com/blueprint/1fqeenu4/",
     tooltip: "Click to interact or copy nodes at blueprintue.com",
@@ -34646,7 +34646,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, (0,react_.mdx)("inlineCode", {
     parentName: "a"
   }, "GetScheduleDateTimeFromActiveSequence")), "\nto get the current date given the level sequence actor. Then, after having set the text, calculate the proportion of the animation played and update Scrubber\u2019s value to match, so that it moves along\nwith the animation every tick."), (0,react_.mdx)(LinkingImage, {
-    src: "/images/unreal-ui-timelinewidget-tick.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-timelinewidget-tick.png",
     alt: "screenshot of timeline widget's tick event",
     href: "https://blueprintue.com/blueprint/m5zhmaz-/",
     tooltip: "Click to interact or copy nodes at blueprintue.com",
@@ -34659,7 +34659,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "AnimationTicksPerSecondScale"), " variable to find how many 24FPS frames occur during the equivalent game time, which\ncan then be used to set the level sequence end frame from. In this example int64 is used in order to have the same resolution as DateTime which is internally a single int64.\nAdditionally, some constants from Unreal\u2019s native ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, "ETimespan"), " enumeration are reproduced to calculate the amount of ticks from the amount of seconds using only available blueprint nodes."), (0,react_.mdx)(LinkingImage, {
-    src: "/images/unreal-ui-setcorrectlevelsequenceend.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-setcorrectlevelsequenceend.png",
     alt: "screenshot of player timeline widget's custom event 'set correct level sequence end'",
     href: "https://blueprintue.com/blueprint/aug9_doq/",
     tooltip: "Click to interact or copy nodes at blueprintue.com",
@@ -34686,7 +34686,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "On Mouse Capture End"), ",\nand ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "On Value Changed"), " buttons to add those events. Each time you press one of the buttons, you will be taken to where the event was added in the graph, go back to the\ndesigner each time until all three events have been added."), (0,react_.mdx)(TitledImage, {
-    src: "/images/unreal-ui-widget-add-callbacks.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-widget-add-callbacks.png",
     alt: "the green plus buttons that let you add callbacks for scrubber controls to the event graph",
     className: "sample-img-xl",
     mdxType: "TitledImage"
@@ -34703,7 +34703,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "AnimationIsPlaying"), " to true, and calling the ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, "Play"), " function on the level sequence."), (0,react_.mdx)(LinkingImage, {
-    src: "/images/unreal-ui-timelinewidget-onmouse.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-timelinewidget-onmouse.png",
     alt: "the implementation of On Mouse Capture events for the ExampleTimelineWidget for playback control",
     href: "https://blueprintue.com/blueprint/vt_82mpw/",
     tooltip: "Click to interact or copy nodes at blueprintue.com",
@@ -34716,7 +34716,7 @@ function itwin_unreal_controlling_your_imodel_MDXContent(_ref) {
   }, "AnimationTime"), ", and you must calculate the proportional time in the level sequence and call its ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, "SetPlaybackPosition"), " function. The necessary math for\ntransforming from the value between 0 and 1 to the level sequence seconds and schedule date time can be seen in the following blueprint code."), (0,react_.mdx)(LinkingImage, {
-    src: "/images/unreal-ui-timelinewidget-onvaluechanged.png",
+    src: "/unreal-docs-site/static/images/unreal-ui-timelinewidget-onvaluechanged.png",
     alt: "the implementation of On Value Changed for the ExampleTimelineWidget",
     href: "https://blueprintue.com/blueprint/brwbb3iz/",
     tooltip: "Click to interact or copy nodes at blueprintue.com",
@@ -34858,7 +34858,7 @@ function itwin_unreal_dataprep_MDXContent(_ref) {
   }), (0,react_.mdx)(itwin_unreal_dataprep_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "10",
-    summaryImageSrc: "/images/unreal-export-dataprep-cover.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/unreal-export-dataprep-cover.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -34918,7 +34918,7 @@ function itwin_unreal_dataprep_MDXContent(_ref) {
   }, "Dataprep"), " asset category, then the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Dataprep Asset"), " type."), (0,react_.mdx)(itwin_unreal_dataprep_WebMLoop, {
-    src: "/images/unreal-export-create-dataprep-asset.webm",
+    src: "/unreal-docs-site/static/images/unreal-export-create-dataprep-asset.webm",
     mdxType: "WebMLoop"
   }), (0,react_.mdx)("p", null, "Double-click the new asset in the content browser to open it in the ", (0,react_.mdx)("strong", {
     parentName: "p"
@@ -34927,18 +34927,18 @@ function itwin_unreal_dataprep_MDXContent(_ref) {
   }, "Inputs"), " section, press the plus button, then browse for the ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, ".udatasmith"), " file created during your export.\nThis adds your Datasmith content to the Recipe editor."), (0,react_.mdx)(itwin_unreal_dataprep_WebMLoop, {
-    src: "/images/unreal-export-dataprep-add-import-provider.webm",
+    src: "/unreal-docs-site/static/images/unreal-export-dataprep-add-import-provider.webm",
     mdxType: "WebMLoop"
   }), (0,react_.mdx)("p", null, "When the import is complete, select any actor in the viewport.\nIn the Property Pane on the right side, scroll down to ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Asset User Data > Datasmith User Data"), " to inspect fields that are available to match\non, as well as compare those values on different objects."), (0,react_.mdx)(itwin_unreal_dataprep_TitledImage, {
-    src: "/images/unreal-export-dataprep-metadata-view.png",
+    src: "/unreal-docs-site/static/images/unreal-export-dataprep-metadata-view.png",
     alt: "inspect metadata properties in the dataprep editor",
     mdxType: "TitledImage"
   }), (0,react_.mdx)("p", null, "It may be helpful to read the text in read-only entries using the tooltips. To do so, hover over them, or even\nright-click to be able to copy the text. For clarity, the above image has a few sample labels annotated."), (0,react_.mdx)("p", null, "Alternatively, inspect your element properties in the iTwin Exporter for Datasmith in the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Properties"), " tab.\nBe aware that names here will not be the same as names in the metadata in Unreal.\nTo avoid name collisions and because Datasmith has specific rules for metadata entry names, we have added prefixes to the names in Unreal.\nBecause of this, it is recommended to find the entry name in Unreal once you have the metadata you intend to match on."), (0,react_.mdx)(itwin_unreal_dataprep_TitledImage, {
-    src: "/images/unreal-export-app-property-tab.png",
+    src: "/unreal-docs-site/static/images/unreal-export-app-property-tab.png",
     alt: "inspect metadata properties in the itwin exporter for Datasmith app",
     className: "sample-img-xl",
     mdxType: "TitledImage"
@@ -34957,7 +34957,7 @@ function itwin_unreal_dataprep_MDXContent(_ref) {
   }, "Exact Match"), ". Then, add a ", (0,react_.mdx)("em", {
     parentName: "p"
   }, "Set Material"), " operator and choose from any material in your\nproject."), (0,react_.mdx)(itwin_unreal_dataprep_WebMLoop, {
-    src: "/images/unreal-export-dataprep-set-mat.webm",
+    src: "/unreal-docs-site/static/images/unreal-export-dataprep-set-mat.webm",
     mdxType: "WebMLoop"
   }), (0,react_.mdx)(itwin_unreal_dataprep_Alert, {
     type: "informational",
@@ -34967,7 +34967,7 @@ function itwin_unreal_dataprep_MDXContent(_ref) {
   }, "Github Discussions"), ' ', "page."), (0,react_.mdx)("p", null, "When you are satisifed with your changes to the Dataprep recipe, press the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Execute"), " button to run the operator graph and\nmake your material substitution visible in the viewport."), (0,react_.mdx)(itwin_unreal_dataprep_TitledImage, {
-    src: "/images/unreal-export-dataprep-exec-button.png",
+    src: "/unreal-docs-site/static/images/unreal-export-dataprep-exec-button.png",
     alt: "The execute button in the dataprep editor",
     mdxType: "TitledImage"
   })), (0,react_.mdx)(itwin_unreal_dataprep_TutorialSection, {
@@ -34991,7 +34991,7 @@ function itwin_unreal_dataprep_MDXContent(_ref) {
   }, "Add Row"), " button to add a material substitution which consists of a search string, search match type, and the target material.\nUnreal also supports loading table rows from CSV and JSON data from the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Details Pane"), " in the data table editor."), (0,react_.mdx)(itwin_unreal_dataprep_WebMLoop, {
-    src: "/images/unreal-export-mat-sub-table.webm",
+    src: "/unreal-docs-site/static/images/unreal-export-mat-sub-table.webm",
     controls: "",
     mdxType: "WebMLoop"
   }), (0,react_.mdx)("p", null, "This concludes our demonstration of using iTwin metadata in Dataprep.\nDataprep has many more operators for common processes like simplifying, decimating, and merging geometry, or populating surfaces with high-quality assets\nsuch as animated foliage assets. You can also create your own Dataprep operators with Unreal\u2019s Blueprints.\nThe full Dataprep documentation from Unreal can be found ", (0,react_.mdx)("a", {
@@ -35111,7 +35111,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }), (0,react_.mdx)(itwin_unreal_export_combined_meshes_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "20",
-    summaryImageSrc: "/images/unreal-export-app-fullscreen-wide.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/unreal-export-app-fullscreen-wide.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -35164,7 +35164,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, "C++ Game Development"), " and ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, ".NET desktop development"), " workloads for Visual Studio, and have recently updated Visual Studio."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-vs-workloads.png",
+    src: "/unreal-docs-site/static/images/unreal-export-vs-workloads.png",
     alt: "visual studio required workloads",
     mdxType: "TitledImage"
   })), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
@@ -35182,7 +35182,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, "Project Select Screen"), "."), (0,react_.mdx)("p", null, "Upon entering either of the select screens, the search box in the top-right is focused, so you can immediately type to filter\nby name and find your iModel or project if you have several."), (0,react_.mdx)("p", null, "To see not only your most recent project\u2019s models, click the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "See all your projects"), " option in the project dropdown"), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-see-all-projects.png",
+    src: "/unreal-docs-site/static/images/unreal-export-see-all-projects.png",
     alt: "see all projects button placement",
     mdxType: "TitledImage"
   })), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
@@ -35192,7 +35192,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, "2. Export your iModel as a combined-mesh"), (0,react_.mdx)("p", null, "Once you\u2019ve selected your project and found your iModel, you can perform an export immediately by clicking the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Export Button"), "."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-imodel-tile-quick-export.png",
+    src: "/unreal-docs-site/static/images/unreal-export-imodel-tile-quick-export.png",
     alt: "quick 'export' button on the tile",
     mdxType: "TitledImage"
   }), (0,react_.mdx)("p", null, "This will bring up the ", (0,react_.mdx)("strong", {
@@ -35202,7 +35202,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, "Combine All Meshes Toggle"), ", and then\npress the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Confirm Export Button"), " at the bottom of the dialog."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-advanced-dialog-combined.png",
+    src: "/unreal-docs-site/static/images/unreal-export-advanced-dialog-combined.png",
     alt: "the advanced export dialog as it appears after using the quick export button",
     mdxType: "TitledImage"
   })), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
@@ -35211,7 +35211,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
     parentName: "p"
   }, "View Button"), "\nto enter the viewer, and can run a combined-mesh export with the left-most button in the top-left horizontal toolbar."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/unreal-export-in-viewer-combined-export-button.png",
+    "src": "/unreal-docs-site/static/images/unreal-export-in-viewer-combined-export-button.png",
     "alt": "in-viewer button"
   }))), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
     subSection: true,
@@ -35226,7 +35226,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
     parentName: "p"
   }, "myIModelName_Assets"), ",\nin your chosen export location. You should be able to find them in your file browser."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/unreal-export-result-files-windows.png",
+    "src": "/unreal-docs-site/static/images/unreal-export-result-files-windows.png",
     "alt": "Resulting Datasmith Files"
   }))), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
     mdxType: "TutorialSection"
@@ -35239,7 +35239,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, "See all my projects"), " option to navigate back to the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Project Select Screen"), "."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-nav-home.png",
+    src: "/unreal-docs-site/static/images/unreal-export-nav-home.png",
     alt: "navigate home button placement",
     mdxType: "TitledImage"
   })), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
@@ -35251,7 +35251,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, ".uproject"), " file belonging\nto your Unreal project you created. Just choose that ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, ".uproject"), " file and the plugin will be installed to that project."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-install-plugin-button.png",
+    src: "/unreal-docs-site/static/images/unreal-export-install-plugin-button.png",
     alt: "install plugin button placement",
     mdxType: "TitledImage"
   }), (0,react_.mdx)("p", null, "Make sure to close and reopen the Unreal project if it is open. Upon opening the project for the first time since the installation,\nit may prompt to rebuild the plugin. This is normal, and you should just allow it and wait for it to finish.\nIt may also say that it was designed for a different engine version, but you can ignore this and tell it to continue building,\nthe plugin has been tested in Unreal Engine versions 4.26.0 through 5.0.1 as of writing.\nIf the rebuild fails, make sure you\u2019ve met all of the ", (0,react_.mdx)("a", {
@@ -35259,7 +35259,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
     "href": "#prerequisites"
   }, "Prerequisites"), "."), (0,react_.mdx)("img", {
     alt: "rebuild prompt",
-    src: "/images/unreal-export-rebuild-prompt.png",
+    src: "/unreal-docs-site/static/images/unreal-export-rebuild-prompt.png",
     class: "sample-img-m"
   })), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
     mdxType: "TutorialSection"
@@ -35268,7 +35268,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, "4. Import your iModel"), (0,react_.mdx)("p", null, "In the Unreal Engine editor, use the Datasmith import button to open a file system dialog and select your ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, ".udatasmith"), " file\nto import it into the scene."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-editor-import-button.png",
+    src: "/unreal-docs-site/static/images/unreal-export-editor-import-button.png",
     alt: "unreal editor's datasmith import button placement",
     mdxType: "TitledImage"
   }), (0,react_.mdx)("p", null, "Choose a folder to place the content imported from Datasmith into in your content browser, then change any other import settings you need,\nsuch as disabling lightmap UV generation if you will only be using dynamic lights to light your scene in Unreal.\nThen just wait for the import process to finish.")), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
@@ -35282,7 +35282,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, "Sequencer Overview"), "\nfor more information on level sequences."), (0,react_.mdx)("p", null, "Open the ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, "Animations"), " subfolder in the folder where you chose to import. The folder will only exist if you have transformation animations. You can drag and drop\nthe animation asset into the viewport to add it to the scene."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-anim-drag-drop.png",
+    src: "/unreal-docs-site/static/images/unreal-export-anim-drag-drop.png",
     alt: "drag-and-drop-level-sequence",
     mdxType: "TitledImage"
   })), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
@@ -35295,7 +35295,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
     "href": "/unreal/integration/blueprint-api-reference#AScheduledActor"
   }, "ScheduledActor"), " in your combined-mesh scene that controls the non-transformation animations."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/unreal-export-set-autoplay.png",
+    "src": "/unreal-docs-site/static/images/unreal-export-set-autoplay.png",
     "alt": "auto play"
   }))), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
     mdxType: "TutorialSection"
@@ -35304,14 +35304,14 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, "5. Use a realistic material"), (0,react_.mdx)("p", null, "Unreal\u2019s starter content comes with a few high-fidelity materials that we can use to test realistic materials on our iModel.\nFor a simple start to applying materials, open ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, "StarterContent/Materials"), " in the content browser and drag and drop materials\nonto your static meshes."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-start-materials.png",
+    src: "/unreal-docs-site/static/images/unreal-export-start-materials.png",
     alt: "starter content materials from unreal engine",
     mdxType: "TitledImage"
   })), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
     mdxType: "TutorialSection"
   }, (0,react_.mdx)("p", null, "We dragged and dropped some glass, concrete, metal, grass, wood, and cobblestone into our scene to see some high-fidelity materials."), (0,react_.mdx)("p", null, "Our sample scene would particularly have benefited from filtering out the tree and grass models and replacing them with more realistic or\nanimated ones, but that is something to explore in your Unreal project."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/unreal-export-high-quality-materials.png",
+    "src": "/unreal-docs-site/static/images/unreal-export-high-quality-materials.png",
     "alt": "scene after drag and drop"
   }))), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
     subSection: true,
@@ -35319,7 +35319,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
   }, (0,react_.mdx)("h3", {
     "id": "51-opt-in-to-visibility-animation"
   }, "5.1. Opt-in to visibility animation"), (0,react_.mdx)("p", null, "Materials must opt-in to visibility animation if using the combined-mesh export. You can edit materials attached to your\nmesh by double clicking the material in the material slots of your static mesh actor\u2019s properties."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-material-slots.png",
+    src: "/unreal-docs-site/static/images/unreal-export-material-slots.png",
     alt: "material slots of combined mesh",
     mdxType: "TitledImage"
   })), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TutorialSection, {
@@ -35329,7 +35329,7 @@ function itwin_unreal_export_combined_meshes_MDXContent(_ref) {
     parentName: "p",
     "href": "https://docs.unrealengine.com/RenderingAndGraphics/Materials/MaterialProperties/BlendModes/"
   }, "Material Blend Modes"), "."), (0,react_.mdx)(itwin_unreal_export_combined_meshes_TitledImage, {
-    src: "/images/unreal-export-set-material-blend-mode.png",
+    src: "/unreal-docs-site/static/images/unreal-export-set-material-blend-mode.png",
     alt: "material editor blend mode dropdown",
     mdxType: "TitledImage"
   }), (0,react_.mdx)("p", null, "Finally, right click in open space to the left of the result node and use the search to place a ", (0,react_.mdx)("inlineCode", {
@@ -35480,7 +35480,7 @@ function itwin_unreal_export_filtering_MDXContent(_ref) {
   }), (0,react_.mdx)(itwin_unreal_export_filtering_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "5",
-    summaryImageSrc: "/images/unreal-export-filtering-tutorial-featured-wide.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/unreal-export-filtering-tutorial-featured-wide.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -35518,7 +35518,7 @@ function itwin_unreal_export_filtering_MDXContent(_ref) {
   }, "1. View your iModel"), (0,react_.mdx)("p", null, "Open the iTwin Exporter for Datasmith, sign in, and select your project and iModel. Click the ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "View"), " to open the iModel\nand to use the interactive filtering tools."), (0,react_.mdx)(itwin_unreal_export_filtering_TitledImage, {
-    src: "/images/unreal-export-model-view-button.png",
+    src: "/unreal-docs-site/static/images/unreal-export-model-view-button.png",
     alt: "See all projects button placement",
     className: "sample-img-default",
     mdxType: "TitledImage"
@@ -35535,14 +35535,14 @@ function itwin_unreal_export_filtering_MDXContent(_ref) {
   }, "Categories"), ", or ", (0,react_.mdx)("strong", {
     parentName: "p"
   }, "Spatial Containment"), ". Below,\nwe hide one model with all of its contained elements."), (0,react_.mdx)(itwin_unreal_export_filtering_WebMLoop, {
-    src: "/images/unreal-export-tree-view-hide.webm",
+    src: "/unreal-docs-site/static/images/unreal-export-tree-view-hide.webm",
     mdxType: "WebMLoop"
   })), (0,react_.mdx)(itwin_unreal_export_filtering_TutorialSection, {
     mdxType: "TutorialSection"
   }, (0,react_.mdx)("h2", {
     "id": "3-hide-by-viewport-selection"
   }, "3. Hide by viewport selection"), (0,react_.mdx)("p", null, "You may also visually select and hide models and elements. With the default selection tool active,\nleft-click elements to select them, hold control to add to your selection.\nThen use the visibility tools in the top left side to hide your selection among other operations."), (0,react_.mdx)(itwin_unreal_export_filtering_WebMLoop, {
-    src: "/images/unreal-export-viewport-hide.webm",
+    src: "/unreal-docs-site/static/images/unreal-export-viewport-hide.webm",
     mdxType: "WebMLoop"
   }), (0,react_.mdx)("p", null, "Make sure to change your selection scope in the bottom-right of the viewport\nif you want to select individual elements, the default is to select top-level assemblies.")), (0,react_.mdx)(itwin_unreal_export_filtering_TutorialSection, {
     mdxType: "TutorialSection"
@@ -35555,7 +35555,7 @@ function itwin_unreal_export_filtering_MDXContent(_ref) {
   }, "Saved View"), " widget. A ", (0,react_.mdx)("em", {
     parentName: "p"
   }, "Saved View"), " enables you to load it again\nfor future exports, or load it as a baseline for visibility changes before exporting."), (0,react_.mdx)(itwin_unreal_export_filtering_TitledImage, {
-    src: "/images/unreal-export-create-saved-view.png",
+    src: "/unreal-docs-site/static/images/unreal-export-create-saved-view.png",
     alt: "Create a saved view",
     className: "sample-img-xl",
     mdxType: "TitledImage"
@@ -35581,7 +35581,7 @@ function itwin_unreal_export_filtering_MDXContent(_ref) {
     parentName: "p",
     "href": "https://www.itwinjs.org/reference/core-backend/viewdefinitions/viewdefinition/"
   }, "View Definitions"), "\nor saved views associated with your iModel."), (0,react_.mdx)(itwin_unreal_export_filtering_WebMLoop, {
-    src: "/images/unreal-export-filtering-export.webm",
+    src: "/unreal-docs-site/static/images/unreal-export-filtering-export.webm",
     mdxType: "WebMLoop"
   }), (0,react_.mdx)("h2", {
     "id": "6-additional-filtering-options"
@@ -35723,7 +35723,7 @@ function itwin_viewer_hello_world_MDXContent(_ref) {
   }), (0,react_.mdx)(itwin_viewer_hello_world_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "30",
-    summaryImageSrc: "/images/itwin-viewer-hello-world-sample.gif",
+    summaryImageSrc: "/unreal-docs-site/static/images/itwin-viewer-hello-world-sample.gif",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -35809,7 +35809,7 @@ function itwin_viewer_hello_world_MDXContent(_ref) {
     "id": "11-result"
   }, "1.1 Result"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/hello_world_above.png",
+    "src": "/unreal-docs-site/static/images/hello_world_above.png",
     "alt": "HelloWorldAbove"
   }))), (0,react_.mdx)(itwin_viewer_hello_world_TutorialSection, {
     actions: [(0,react_.mdx)(itwin_viewer_hello_world_Title, {
@@ -35932,7 +35932,7 @@ function itwin_viewer_hello_world_MDXContent(_ref) {
     parentName: "p"
   }, "Viewer"), " component. It should look like this:"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/hello_world_widget.png",
+    "src": "/unreal-docs-site/static/images/hello_world_widget.png",
     "alt": "HelloWorldWidget"
   }))), (0,react_.mdx)(itwin_viewer_hello_world_TutorialSection, {
     mdxType: "TutorialSection"
@@ -35986,7 +35986,7 @@ function itwin_viewer_hello_world_MDXContent(_ref) {
     parentName: "p"
   }, "ToggleSwitch"), ". It doesn\u2019t do anything interesting yet, but it should look like this:"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/background_color_toggle.png",
+    "src": "/unreal-docs-site/static/images/background_color_toggle.png",
     "alt": "Background Color Toggle"
   }))), (0,react_.mdx)(itwin_viewer_hello_world_TutorialSection, {
     actions: [(0,react_.mdx)(itwin_viewer_hello_world_Title, {
@@ -36054,11 +36054,11 @@ function itwin_viewer_hello_world_MDXContent(_ref) {
     "id": "51-result"
   }, "5.1 Result"), (0,react_.mdx)("p", null, "Result when the toggle is on:"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/background_toggled_blue.png",
+    "src": "/unreal-docs-site/static/images/background_toggled_blue.png",
     "alt": "Background blue"
   })), (0,react_.mdx)("p", null, "Result when the toggle is off:"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/original_background_color.png",
+    "src": "/unreal-docs-site/static/images/original_background_color.png",
     "alt": "Background original"
   }))), (0,react_.mdx)(itwin_viewer_hello_world_ContinueLearningSection, {
     mdxType: "ContinueLearningSection"
@@ -36068,19 +36068,19 @@ function itwin_viewer_hello_world_MDXContent(_ref) {
     mdxType: "TileList"
   }, (0,react_.mdx)(itwin_viewer_hello_world_Tile, {
     name: "Adding showcase widgets to your iTwin Viewer",
-    thumbnail: "/images/view_attributes_ported_results.png",
+    thumbnail: "/unreal-docs-site/static/images/view_attributes_ported_results.png",
     description: "This tutorial will take widgets from the sample showcase and add them into your iTwin Viewer using the `uiProviders` prop.",
     href: "/tutorials/adding-showcase-widgets-to-your-itwin-viewer/",
     mdxType: "Tile"
   }), (0,react_.mdx)(itwin_viewer_hello_world_Tile, {
     name: "Start building a Viewer App",
-    thumbnail: "/images/retail-tutorial-sample-small.png",
+    thumbnail: "/unreal-docs-site/static/images/retail-tutorial-sample-small.png",
     description: "This quick start is intended to help you get started with using iTwin Platform visualization components. By the end of this walk-through, you will be able to build and run a web application for viewing an infrastructure digital twin (iTwin).",
     href: "/tutorials/web-application-quick-start/",
     mdxType: "Tile"
   }), (0,react_.mdx)(itwin_viewer_hello_world_Tile, {
     name: "Adding view decorations to your iTwin Viewer",
-    thumbnail: "/images/adding-decorators-and-markers.png",
+    thumbnail: "/unreal-docs-site/static/images/adding-decorators-and-markers.png",
     description: "This tutorial guides you through customizing your iTwin Viewer application by displaying application-specific graphics, called View Decorations.",
     href: "/tutorials/adding-decorators-and-markers/",
     mdxType: "Tile"
@@ -37843,7 +37843,7 @@ function mobile_sdk_ios_gettingstarted_MDXContent(_ref) {
   }), (0,react_.mdx)(mobile_sdk_ios_gettingstarted_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "30",
-    summaryImageSrc: "/images/tutorials/mobile-sdk-ios-getting-started/banner.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/tutorials/mobile-sdk-ios-getting-started/banner.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -38056,7 +38056,7 @@ function mobile_sdk_ios_gettingstarted_MDXContent(_ref) {
     parentName: "p"
   }, "Snapshot iModels"), " directory contains an iModel that you can use when running your sample."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/tutorials/mobile-sdk-ios-getting-started/file-structure.png",
+    "src": "/unreal-docs-site/static/images/tutorials/mobile-sdk-ios-getting-started/file-structure.png",
     "alt": "file-structure"
   }))), (0,react_.mdx)(mobile_sdk_ios_gettingstarted_TutorialSection, {
     mdxType: "TutorialSection"
@@ -38097,7 +38097,7 @@ function mobile_sdk_ios_gettingstarted_MDXContent(_ref) {
     "id": "42-swift-package-manager"
   }, "4.2 Swift Package Manager"), (0,react_.mdx)("p", null, "Swift Package Manager (SPM) downloads several packages as soon as you open the sample. This should only take a couple of minutes, depending on your network speed. Wait for this to finish, then click the project name in the Project navigator."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/tutorials/mobile-sdk-ios-getting-started/swiftpackages.png",
+    "src": "/unreal-docs-site/static/images/tutorials/mobile-sdk-ios-getting-started/swiftpackages.png",
     "alt": "SPM"
   })), (0,react_.mdx)("blockquote", null, (0,react_.mdx)("p", {
     parentName: "blockquote"
@@ -38120,13 +38120,13 @@ function mobile_sdk_ios_gettingstarted_MDXContent(_ref) {
     parentName: "p"
   }, "<myteam>"), " with your actual team name."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/tutorials/mobile-sdk-ios-getting-started/targetconfig-general.png",
+    "src": "/unreal-docs-site/static/images/tutorials/mobile-sdk-ios-getting-started/targetconfig-general.png",
     "alt": "target-general"
   })), (0,react_.mdx)("p", null, "Next, switch to the ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
   }, "Signing & Capabilities"), " tab and select your development team from the dropdown."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/tutorials/mobile-sdk-ios-getting-started/targetconfig-signing.png",
+    "src": "/unreal-docs-site/static/images/tutorials/mobile-sdk-ios-getting-started/targetconfig-signing.png",
     "alt": "target-signing"
   }))), (0,react_.mdx)(mobile_sdk_ios_gettingstarted_TutorialSection, {
     subSection: true,
@@ -38223,7 +38223,7 @@ function mobile_sdk_ios_gettingstarted_MDXContent(_ref) {
     parentName: "p"
   }, "Snapshot iModels"), " button to open it in the iTwin Sample app."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/tutorials/mobile-sdk-ios-getting-started/building_blocks.png",
+    "src": "/unreal-docs-site/static/images/tutorials/mobile-sdk-ios-getting-started/building_blocks.png",
     "alt": "Building blocks iModel"
   }))), (0,react_.mdx)(mobile_sdk_ios_gettingstarted_TutorialSection, {
     mdxType: "TutorialSection"
@@ -41685,7 +41685,7 @@ function realitydata_api_quick_start_MDXContent(_ref) {
   }), (0,react_.mdx)(realitydata_api_quick_start_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "30",
-    summaryImageSrc: "/images/realitydata-quick-start.jpg",
+    summaryImageSrc: "/unreal-docs-site/static/images/realitydata-quick-start.jpg",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -42137,19 +42137,19 @@ function realitydata_api_quick_start_MDXContent(_ref) {
   }, (0,react_.mdx)(realitydata_api_quick_start_Tile, {
     name: "Get started with Reality Modeling API",
     description: "This tutorial is an introduction to Reality Modeling API, explaining the basic workflows.",
-    thumbnail: "/images/cccs-quick-start-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/cccs-quick-start-thumb.jpg",
     href: "/tutorials/contextcapture-api-quick-start",
     mdxType: "Tile"
   }), (0,react_.mdx)(realitydata_api_quick_start_Tile, {
     name: "Get started with Reality Analysis API",
     description: "This tutorial is an introduction to Reality Analysis API, explaining the basic workflows.",
-    thumbnail: "/images/rda/quick-start-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/rda/quick-start-thumb.jpg",
     href: "/tutorials/realitydataanalysis-api-quick-start",
     mdxType: "Tile"
   }), (0,react_.mdx)(realitydata_api_quick_start_Tile, {
     name: "Reality Data",
     description: "Adding, removing, and modifying the display of reality data. Discovers available realitymodel and attaches the first one to the viewport.",
-    thumbnail: "/images/samples/reality-data-thumbnail.png",
+    thumbnail: "/unreal-docs-site/static/images/samples/reality-data-thumbnail.png",
     href: "https://www.itwinjs.org/sandboxes/iTwinPlatform/Reality%20Data",
     mdxType: "Tile"
   })), (0,react_.mdx)("h2", {
@@ -42327,7 +42327,7 @@ function realitydataanalysis_api_quick_start_MDXContent(_ref) {
   }), (0,react_.mdx)(realitydataanalysis_api_quick_start_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "60",
-    summaryImageSrc: "/images/rda/quick-start-header.jpg",
+    summaryImageSrc: "/unreal-docs-site/static/images/rda/quick-start-header.jpg",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "important-notice"
@@ -42950,7 +42950,7 @@ function realitymanagement_api_quick_start_MDXContent(_ref) {
   }), (0,react_.mdx)(realitymanagement_api_quick_start_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "30",
-    summaryImageSrc: "/images/realitydata-quick-start.jpg",
+    summaryImageSrc: "/unreal-docs-site/static/images/realitydata-quick-start.jpg",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -43404,19 +43404,19 @@ function realitymanagement_api_quick_start_MDXContent(_ref) {
   }, (0,react_.mdx)(realitymanagement_api_quick_start_Tile, {
     name: "Get started with Reality Modeling API",
     description: "This tutorial is an introduction to Reality Modeling API, explaining the basic workflows.",
-    thumbnail: "/images/cccs-quick-start-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/cccs-quick-start-thumb.jpg",
     href: "/tutorials/contextcapture-api-quick-start",
     mdxType: "Tile"
   }), (0,react_.mdx)(realitymanagement_api_quick_start_Tile, {
     name: "Get started with Reality Analysis API",
     description: "This tutorial is an introduction to Reality Analysis API, explaining the basic workflows.",
-    thumbnail: "/images/rda/quick-start-thumb.jpg",
+    thumbnail: "/unreal-docs-site/static/images/rda/quick-start-thumb.jpg",
     href: "/tutorials/realitydataanalysis-api-quick-start",
     mdxType: "Tile"
   }), (0,react_.mdx)(realitymanagement_api_quick_start_Tile, {
     name: "Reality Data",
     description: "Adding, removing, and modifying the display of reality data. Discovers available realitymodel and attaches the first one to the viewport.",
-    thumbnail: "/images/samples/reality-data-thumbnail.png",
+    thumbnail: "/unreal-docs-site/static/images/samples/reality-data-thumbnail.png",
     href: "https://www.itwinjs.org/sandboxes/iTwinPlatform/Reality%20Data",
     mdxType: "Tile"
   })), (0,react_.mdx)("h2", {
@@ -43604,13 +43604,13 @@ function register_and_modify_application_MDXContent(_ref) {
     actions: [(0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "Create Your Account form"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/create-account-form.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/create-account-form.png",
       alt: "Create Your Account",
       className: "sample-img-m"
     }), (0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "Email Address verification"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/verify-email-address.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/verify-email-address.png",
       alt: "Verify Email Address",
       className: "sample-img-m"
     })],
@@ -43656,7 +43656,7 @@ function register_and_modify_application_MDXContent(_ref) {
     actions: [(0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "Sign in page"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/sign-in-page.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/sign-in-page.png",
       alt: "Sign in",
       className: "sample-img-m"
     })],
@@ -43678,7 +43678,7 @@ function register_and_modify_application_MDXContent(_ref) {
     actions: [(0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "Application registration form"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/register-your-application-form.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/register-your-application-form.png",
       alt: "Application registration form",
       className: "sample-img-l"
     })],
@@ -43796,13 +43796,13 @@ function register_and_modify_application_MDXContent(_ref) {
     actions: [(0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "My Apps table"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/my-apps-page.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/my-apps-page.png",
       alt: "My Apps table",
       className: "sample-img-l"
     }), (0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "Application details page"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/app-details-page.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/app-details-page.png",
       alt: "Application details page",
       className: "sample-img-l"
     })],
@@ -43955,13 +43955,13 @@ function register_and_modify_application_MDXContent(_ref) {
     actions: [(0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "API associations card"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/api-associations.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/api-associations.png",
       alt: "API associations card",
       className: "sample-img-m"
     }), (0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "Add APIs dialog"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/add-apis-dialog.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/add-apis-dialog.png",
       alt: "Add APIs dialog",
       className: "sample-img-m"
     })],
@@ -44009,7 +44009,7 @@ function register_and_modify_application_MDXContent(_ref) {
     actions: [(0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "Expanded \"Manage your scopes\""), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/api-scopes-expanded.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/api-scopes-expanded.png",
       alt: "Manage your scopes",
       className: "sample-img-m"
     })],
@@ -44044,7 +44044,7 @@ function register_and_modify_application_MDXContent(_ref) {
   }, "4.3 Managing application Owners"), (0,react_.mdx)("p", null, "You can add users with Bentley account as an owners of your application. This will allow them to see, edit or delete your application.")), (0,react_.mdx)(register_and_modify_application_TutorialSection, {
     subSection: true,
     actions: [(0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/add-owner.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/add-owner.png",
       alt: "Adding owner",
       className: "sample-img-m"
     })],
@@ -44071,7 +44071,7 @@ function register_and_modify_application_MDXContent(_ref) {
   }, "My Apps"), " page.")), (0,react_.mdx)(register_and_modify_application_TutorialSection, {
     subSection: true,
     actions: [(0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/remove-owner.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/remove-owner.png",
       alt: "Remove application owner",
       className: "sample-img-m"
     })],
@@ -44094,19 +44094,19 @@ function register_and_modify_application_MDXContent(_ref) {
     actions: [(0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "Application details with \"Regenerate client secret\" button"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/app-details.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/app-details.png",
       alt: "Application details with \"Regenerate client secret\" button",
       className: "sample-img-m"
     }), (0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "Client Secret regeneration confirmation dialog"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/regenerate-client-secret-confirm-dialog.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/regenerate-client-secret-confirm-dialog.png",
       alt: "Client Secret regeneration confirmation dialog",
       className: "sample-img-m"
     }), (0,react_.mdx)(register_and_modify_application_Title, {
       mdxType: "Title"
     }, "New Client Secret"), (0,react_.mdx)("img", {
-      src: "/images/tutorials/register-and-modify-application/regenerate-client-secret-success-dialog.png",
+      src: "/unreal-docs-site/static/images/tutorials/register-and-modify-application/regenerate-client-secret-success-dialog.png",
       alt: "New Client Secret",
       className: "sample-img-m"
     })],
@@ -45409,7 +45409,7 @@ function stepping_through_an_issue_workflow_MDXContent(_ref) {
     parentName: "p"
   }, "end"), " of B."), (0,react_.mdx)("p", null, "Thus, a workflow can be pictured as a flowchart where states are bubbles and transitions are arrows. Below is a visual representation of the workflow shown in the sample response body."), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/issue-workflow.png",
+    "src": "/unreal-docs-site/static/images/issue-workflow.png",
     "alt": "Visualized Workflow"
   })), (0,react_.mdx)("p", null, "Examine the sample response and note that one of the states in the list of states has a ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
@@ -48982,7 +48982,7 @@ function using_thematic_display_mode_MDXContent(_ref) {
   }), (0,react_.mdx)(using_thematic_display_mode_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: "15",
-    summaryImageSrc: "/images/tutorials/using-thematic-display-mode/using-thematic-display-sample.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/tutorials/using-thematic-display-mode/using-thematic-display-sample.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -49054,14 +49054,14 @@ function using_thematic_display_mode_MDXContent(_ref) {
     "id": "11-before"
   }, "1.1 Before"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/tutorials/using-thematic-display-mode/using-thematic-display-1-sm.png",
+    "src": "/unreal-docs-site/static/images/tutorials/using-thematic-display-mode/using-thematic-display-1-sm.png",
     "alt": "Without thematic display mode",
     "title": "Without thematic display mode"
   })), (0,react_.mdx)("p", null, "The iModel without thematic display."), (0,react_.mdx)("h4", {
     "id": "12-after"
   }, "1.2 After"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/tutorials/using-thematic-display-mode/using-thematic-display-2-sm.png",
+    "src": "/unreal-docs-site/static/images/tutorials/using-thematic-display-mode/using-thematic-display-2-sm.png",
     "alt": "With thematic display mode",
     "title": "With thematic display mode"
   })), (0,react_.mdx)("p", null, "The iModel after thematic display is turned on. It appears mostly one color because the range and color scheme have not been adjusted yet.")), (0,react_.mdx)(using_thematic_display_mode_TutorialSection, {
@@ -49102,7 +49102,7 @@ function using_thematic_display_mode_MDXContent(_ref) {
     "id": "21-result"
   }, "2.1 Result"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/tutorials/using-thematic-display-mode/using-thematic-display-3-sm.png",
+    "src": "/unreal-docs-site/static/images/tutorials/using-thematic-display-mode/using-thematic-display-3-sm.png",
     "alt": "Customized thematic display mode",
     "title": "Customized thematic display mode"
   }))), (0,react_.mdx)(using_thematic_display_mode_ContinueLearningSection, {
@@ -49219,7 +49219,7 @@ function web_application_quick_start_MDXContent(_ref) {
   }), (0,react_.mdx)(web_application_quick_start_Introduction, {
     skillLevel: "Basic",
     durationInMinutes: web_application_quick_start_metadata.tile.durationInMinutes,
-    summaryImageSrc: "/images/retail-tutorial-sample.png",
+    summaryImageSrc: "/unreal-docs-site/static/images/retail-tutorial-sample.png",
     mdxType: "Introduction"
   }, (0,react_.mdx)("h2", {
     "id": "introduction"
@@ -49503,13 +49503,13 @@ function web_application_quick_start_MDXContent(_ref) {
     mdxType: "TileList"
   }, (0,react_.mdx)(web_application_quick_start_Tile, {
     name: "Customizing the iTwin Viewer - \"The Basics\"",
-    thumbnail: "/images/itwin-viewer-hello-world-sample-small.png",
+    thumbnail: "/unreal-docs-site/static/images/itwin-viewer-hello-world-sample-small.png",
     description: "This tutorial will take you through the first steps of customizing your iTwin Web Viewer. First you will learn how to add a new user interface component. Later you will customize that component to change the background color of your viewer.",
     href: "/tutorials/itwin-viewer-hello-world",
     mdxType: "Tile"
   }), (0,react_.mdx)(web_application_quick_start_Tile, {
     name: "Adding showcase widgets to your iTwin Viewer",
-    thumbnail: "/images/view_attributes_ported_results.png",
+    thumbnail: "/unreal-docs-site/static/images/view_attributes_ported_results.png",
     description: "This tutorial will take widgets from the sample showcase and add them into your iTwin Viewer using the `uiProviders` prop.",
     href: "/tutorials/adding-showcase-widgets-to-your-itwin-viewer/",
     mdxType: "Tile"

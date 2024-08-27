@@ -4212,7 +4212,7 @@ function MDXContent(_ref) {
     "id": "scenario-1--a-single-session-with-no-gaps-in-requests"
   }, "Scenario 1 \u2013 A single session with no gaps in requests"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-1-a-single-session-with-no-gaps-in-requests.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-1-a-single-session-with-no-gaps-in-requests.png",
     alt: "The diagram showing scenario of a single session with no gaps in requests"
   }), (0,react_.mdx)("h4", {
     "id": "result"
@@ -4222,7 +4222,7 @@ function MDXContent(_ref) {
     "id": "scenario-2--a-single-session-with-a-short-gap-in-requests"
   }, "Scenario 2 \u2013 A single session with a short gap in requests"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-2-a-single-session-with-a-short-gap-in-requests.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-2-a-single-session-with-a-short-gap-in-requests.png",
     alt: "The diagram showing scenario of a single session with a short gap in requests"
   }), (0,react_.mdx)("h4", {
     "id": "result-1"
@@ -4232,7 +4232,7 @@ function MDXContent(_ref) {
     "id": "scenario-3--multiple-sessions-with-a-long-break"
   }, "Scenario 3 \u2013 Multiple sessions with a long break"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-3-multiple-sessions-with-a-long-break.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-3-multiple-sessions-with-a-long-break.png",
     alt: "The diagram showing scenario of multiple sessions with a long break"
   }), (0,react_.mdx)("h4", {
     "id": "result-2"
@@ -4242,7 +4242,7 @@ function MDXContent(_ref) {
     "id": "scenario-4--viewing-different-imodels-simultaneously"
   }, "Scenario 4 \u2013 Viewing different iModels simultaneously"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-4-viewing-different-imodels-simultaneously.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-4-viewing-different-imodels-simultaneously.png",
     alt: "The diagram showing scenario of viewing different iModels simultaneously"
   }), (0,react_.mdx)("h4", {
     "id": "result-3"
@@ -4252,7 +4252,7 @@ function MDXContent(_ref) {
     "id": "scenario-5--viewing-the-same-imodel-in-different-browser-tabs"
   }, "Scenario 5 \u2013 Viewing the same iModel in different browser tabs"), (0,react_.mdx)("img", {
     className: "documentation-image-medium",
-    src: "/images/visualization-calculating-visualization-session-hours/scenario-5-viewing-the-same-imodel-in-different-browser-tabs.png",
+    src: "/unreal-docs-site/static/images/visualization-calculating-visualization-session-hours/scenario-5-viewing-the-same-imodel-in-different-browser-tabs.png",
     alt: "The diagram showing scenario of viewing the same iModel in different browser tabs"
   }), (0,react_.mdx)("h4", {
     "id": "result-4"
@@ -5626,7 +5626,7 @@ function MDXContent(_ref) {
     "id": "1-photos"
   }, "1) Photos"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-photos.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-photos.jpg",
     "alt": "ContextScene photos"
   })), (0,react_.mdx)("p", null, "To refer to some of the photos in a directory and not all of them, a ContextScene adds one entry per photo. Each photo has a unique id which is used to refer to the given photo in other parts of the ContextScene file. See the examples below."), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -5662,7 +5662,7 @@ function MDXContent(_ref) {
     "id": "2-photos-with-positions"
   }, "2) Photos with positions"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orientedphotos1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orientedphotos1.jpg",
     "alt": "ContextScene photos with positions"
   })), (0,react_.mdx)("p", null, "It is sometimes required to indicate where the photos are taken from (for 3D search) or even in which direction and with which exact camera (for 2D to 3D mapping). Position and orientation are stored using ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -5682,7 +5682,7 @@ function MDXContent(_ref) {
     "id": "3-photos-with-orientations"
   }, "3) Photos with orientations"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orientedphotos2.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orientedphotos2.jpg",
     "alt": "ContextScene photos with orientations"
   })), (0,react_.mdx)("p", null, "In this case, the directions in which the photos are taken are provided, using a matrix. The camera parameters are also given using a device entry. Jobs relying on 2D+3D reasoning usually involve such advanced ContextScenes (drones, mobile mapping, etc.). Check the ", (0,react_.mdx)("a", {
     parentName: "p",
@@ -5699,7 +5699,7 @@ function MDXContent(_ref) {
     "id": "4-orthophoto"
   }, "4) Orthophoto"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-ortho.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-ortho.jpg",
     "alt": "ContextScene orthophoto"
   })), (0,react_.mdx)("p", null, "An orthophoto, or a map, is an aerial photograph that has been geometrically corrected or \u201Cortho-rectified\u201D such that the scale of the photograph is uniform and utilized in the same manner as a map. It is usually split into tiles, each of them having a 2D location in a given SRS. Introducing a specific type of device, an ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -5727,7 +5727,7 @@ function MDXContent(_ref) {
     "id": "5-orthophoto-with-height"
   }, "5) Orthophoto with height"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orthodsm.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orthodsm.jpg",
     "alt": "ContextScene orthophoto with DSM"
   })), (0,react_.mdx)("p", null, "Some orthophotos, often called ortho DSM, provide not only the color of the map at a given position, but also its height. This ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -5745,7 +5745,7 @@ function MDXContent(_ref) {
     "id": "6-meshes"
   }, "6) Meshes"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-mesh.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-mesh.jpg",
     "alt": "ContextScene mesh"
   })), (0,react_.mdx)("p", null, "Meshes are given in a ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
@@ -5773,7 +5773,7 @@ function MDXContent(_ref) {
     "id": "7-point-clouds"
   }, "7) Point Clouds"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-pointcloud.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-pointcloud.jpg",
     "alt": "ContextScene point cloud"
   })), (0,react_.mdx)("p", null, "Similarly, point clouds are given in a ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
@@ -5870,7 +5870,7 @@ function MDXContent(_ref) {
     "id": "2d-objects"
   }, "2D objects"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o2d.jpg",
     "alt": "ContextScene 2D objects"
   })), (0,react_.mdx)("p", null, "Objects are detected in photos as boxes aligned with the axis. In this case, the Annotations section of the ContextScene consists of the set of labels (names and ids), followed by detected boxes (coordinates and label) in every photo. Coordinates are relative to the photo size between 0 and 1. A confidence for the detected object might be provided between 0 and 1. Note that the objects have an UUID which is specific to the photo in which it has been detected: two objects cannot have the same UUID. Here is a small example:"), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -5884,7 +5884,7 @@ function MDXContent(_ref) {
     "id": "2d-segmentation"
   }, "2D segmentation"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d1.jpg",
     "alt": "ContextScene photo segmentation"
   })), (0,react_.mdx)("p", null, "To store one label per pixel, what is often called ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -5900,7 +5900,7 @@ function MDXContent(_ref) {
     "id": "2d-segmentation-in-orthophotos"
   }, "2D segmentation in orthophotos"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d2.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d2.jpg",
     "alt": "ContextScene orthophoto segmentation"
   })), (0,react_.mdx)("p", null, "The same type of segmentation applies to orthophoto:"), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -5914,7 +5914,7 @@ function MDXContent(_ref) {
     "id": "3d-objects"
   }, "3D objects"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o3d.jpg",
     "alt": "ContextScene 3D objects"
   })), (0,react_.mdx)("p", null, "3D objects are described as 3D boxes. These boxes are given by a range in every direction. An optional rotation might be specified if aligning the box with the axis is too restrictive. It is given as a 3x3 matrix and corresponds to a rotation centered at the center of the box: point ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -5934,7 +5934,7 @@ function MDXContent(_ref) {
     "id": "3d-segmentation"
   }, "3D segmentation"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s3d.jpg",
     "alt": "ContextScene point cloud segmentation"
   })), (0,react_.mdx)("p", null, "To store one label per point in a point cloud, what is often called ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -5950,7 +5950,7 @@ function MDXContent(_ref) {
     "id": "2d-lines"
   }, "2D lines"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l2d.jpg",
     "alt": "ContextScene 2D lines"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -5970,7 +5970,7 @@ function MDXContent(_ref) {
     "id": "3d-lines"
   }, "3D lines"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l3d.jpg",
     "alt": "ContextScene 3D lines"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -5990,7 +5990,7 @@ function MDXContent(_ref) {
     "id": "2d-polygons"
   }, "2D polygons"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-polygons.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-polygons.jpg",
     "alt": "ContextScene 2D polygons"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of 2D ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6012,7 +6012,7 @@ function MDXContent(_ref) {
     parentName: "li"
   }, "Positions"), ":")), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-positions.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-positions.jpg",
     "alt": "ContextScene 3D locations"
   })), (0,react_.mdx)("p", null, "When the spatial extension of objects is useless but only their location is of interest, some Reality Analysis jobs export these positions in ESRI SHP files. This is not yet persisted in a ContextScene. A workaround so far is to the center point of their 3D boxes."), (0,react_.mdx)("ul", null, (0,react_.mdx)("li", {
     parentName: "ul"
@@ -6024,7 +6024,7 @@ function MDXContent(_ref) {
     parentName: "li"
   }, "Tags"), ":")), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-tags.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-tags.jpg",
     "alt": "ContextScene tags"
   })), (0,react_.mdx)("p", null, "in some cases, no position at all is required, but just a list of labels. For instance: \u201Cthis image contains people and cars\u201D. This case is not available yet and will be added."));
 }
@@ -6174,7 +6174,7 @@ function MDXContent(_ref) {
     "id": "1-photos"
   }, "1) Photos"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-photos.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-photos.jpg",
     "alt": "ContextScene photos"
   })), (0,react_.mdx)("p", null, "To refer to some of the photos in a directory and not all of them, a ContextScene adds one entry per photo. Each photo has a unique id which is used to refer to the given photo in other parts of the ContextScene file. See the examples below."), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -6210,7 +6210,7 @@ function MDXContent(_ref) {
     "id": "2-photos-with-positions"
   }, "2) Photos with positions"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orientedphotos1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orientedphotos1.jpg",
     "alt": "ContextScene photos with positions"
   })), (0,react_.mdx)("p", null, "It is sometimes required to indicate where the photos are taken from (for 3D search) or even in which direction and with which exact camera (for 2D to 3D mapping). Position and orientation are stored using ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6230,7 +6230,7 @@ function MDXContent(_ref) {
     "id": "3-photos-with-orientations"
   }, "3) Photos with orientations"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orientedphotos2.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orientedphotos2.jpg",
     "alt": "ContextScene photos with orientations"
   })), (0,react_.mdx)("p", null, "In this case, the directions in which the photos are taken are provided, using a matrix. The camera parameters are also given using a device entry. Jobs relying on 2D+3D reasoning usually involve such advanced ContextScenes (drones, mobile mapping, etc.). Check the ", (0,react_.mdx)("a", {
     parentName: "p",
@@ -6247,7 +6247,7 @@ function MDXContent(_ref) {
     "id": "4-orthophoto"
   }, "4) Orthophoto"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-ortho.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-ortho.jpg",
     "alt": "ContextScene orthophoto"
   })), (0,react_.mdx)("p", null, "An orthophoto, or a map, is an aerial photograph that has been geometrically corrected or \u201Cortho-rectified\u201D such that the scale of the photograph is uniform and utilized in the same manner as a map. It is usually split into tiles, each of them having a 2D location in a given SRS. Introducing a specific type of device, an ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6275,7 +6275,7 @@ function MDXContent(_ref) {
     "id": "5-orthophoto-with-height"
   }, "5) Orthophoto with height"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-orthodsm.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-orthodsm.jpg",
     "alt": "ContextScene orthophoto with DSM"
   })), (0,react_.mdx)("p", null, "Some orthophotos, often called ortho DSM, provide not only the color of the map at a given position, but also its height. This ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6293,7 +6293,7 @@ function MDXContent(_ref) {
     "id": "6-meshes"
   }, "6) Meshes"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-mesh.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-mesh.jpg",
     "alt": "ContextScene mesh"
   })), (0,react_.mdx)("p", null, "Meshes are given in a ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
@@ -6321,7 +6321,7 @@ function MDXContent(_ref) {
     "id": "7-point-clouds"
   }, "7) Point Clouds"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-pointcloud.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-pointcloud.jpg",
     "alt": "ContextScene point cloud"
   })), (0,react_.mdx)("p", null, "Similarly, point clouds are given in a ", (0,react_.mdx)("inlineCode", {
     parentName: "p"
@@ -6374,7 +6374,7 @@ function MDXContent(_ref) {
     "id": "2d-objects"
   }, "2D objects"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o2d.jpg",
     "alt": "ContextScene 2D objects"
   })), (0,react_.mdx)("p", null, "Objects are detected in photos as boxes aligned with the axis. In this case, the Annotations section of the ContextScene consists of the set of labels (names and ids), followed by detected boxes (coordinates and label) in every photo. Coordinates are relative to the photo size between 0 and 1. A confidence for the detected object might be provided between 0 and 1. Note that the objects have an id which is specific to the photo it which has been detected in: two objects having the same id are not supposed to correspond to the same real object seen in two different images. Here is a small example:"), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -6388,7 +6388,7 @@ function MDXContent(_ref) {
     "id": "2d-segmentation"
   }, "2D segmentation"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d1.jpg",
     "alt": "ContextScene photo segmentation"
   })), (0,react_.mdx)("p", null, "To store one label per pixel, what is often called ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6404,7 +6404,7 @@ function MDXContent(_ref) {
     "id": "2d-segmentation-in-orthophotos"
   }, "2D segmentation in orthophotos"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d2.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d2.jpg",
     "alt": "ContextScene orthophoto segmentation"
   })), (0,react_.mdx)("p", null, "The same type of segmentation applies to orthophoto:"), (0,react_.mdx)("pre", null, (0,react_.mdx)("code", {
     parentName: "pre",
@@ -6418,7 +6418,7 @@ function MDXContent(_ref) {
     "id": "3d-objects"
   }, "3D objects"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o3d.jpg",
     "alt": "ContextScene 3D objects"
   })), (0,react_.mdx)("p", null, "3D objects are described as 3D boxes. These boxes are given by a range in every direction. An optional rotation might be specified if aligning the box with the axis is too restrictive. It is given as a 3x3 matrix and corresponds to a rotation centered at the center of the box: point ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6434,7 +6434,7 @@ function MDXContent(_ref) {
     "id": "3d-segmentation"
   }, "3D segmentation"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s3d.jpg",
     "alt": "ContextScene point cloud segmentation"
   })), (0,react_.mdx)("p", null, "To store one label per point in a point cloud, what is often called ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6450,7 +6450,7 @@ function MDXContent(_ref) {
     "id": "2d-lines"
   }, "2D lines"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l2d.jpg",
     "alt": "ContextScene 2D lines"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6470,7 +6470,7 @@ function MDXContent(_ref) {
     "id": "3d-lines"
   }, "3D lines"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l3d.jpg",
     "alt": "ContextScene 3D lines"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6490,7 +6490,7 @@ function MDXContent(_ref) {
     "id": "2d-polygons"
   }, "2D polygons"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-polygons.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-polygons.jpg",
     "alt": "ContextScene 2D polygons"
   })), (0,react_.mdx)("p", null, "The following annotations describe a set of 2D ", (0,react_.mdx)("em", {
     parentName: "p"
@@ -6512,7 +6512,7 @@ function MDXContent(_ref) {
     parentName: "li"
   }, "Positions"), ":")), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-positions.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-positions.jpg",
     "alt": "ContextScene 3D locations"
   })), (0,react_.mdx)("p", null, "When the spatial extension of objects is useless but only their location is of interest, some Reality Analysis jobs export these positions in ESRI SHP files. This is not yet persisted in a ContextScene. A workaround so far is to the center point of their 3D boxes."), (0,react_.mdx)("ul", null, (0,react_.mdx)("li", {
     parentName: "ul"
@@ -6520,7 +6520,7 @@ function MDXContent(_ref) {
     parentName: "li"
   }, "Tags"), ":")), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-tags.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-tags.jpg",
     "alt": "ContextScene tags"
   })), (0,react_.mdx)("p", null, "in some cases, no position at all is required, but just a list of labels. For instance: \u201Cthis image contains people and cars\u201D. This case is not available yet and will be added."));
 }
@@ -6647,7 +6647,7 @@ function MDXContent(_ref) {
     "id": "objects2d"
   }, "Objects2D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o2d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o2d.jpg",
     "alt": "ContextScene 2D objects"
   })), (0,react_.mdx)("p", null, "The following analysis are available:"), (0,react_.mdx)("table", null, (0,react_.mdx)("thead", {
     parentName: "table"
@@ -6753,7 +6753,7 @@ function MDXContent(_ref) {
     "id": "segmentation2d"
   }, "Segmentation2D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s2d1.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s2d1.jpg",
     "alt": "ContextScene 2D segmentation"
   })), (0,react_.mdx)("p", null, "The following analysis are available:"), (0,react_.mdx)("table", null, (0,react_.mdx)("thead", {
     parentName: "table"
@@ -7003,7 +7003,7 @@ function MDXContent(_ref) {
     "id": "objects3d"
   }, "Objects3D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-o3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-o3d.jpg",
     "alt": "ContextScene 3D objects"
   })), (0,react_.mdx)("p", null, "This job detects 3D objects from 2D objects detected in oriented photos. An optional collection of point clouds or meshes might help estimating 3D objects. The following analyses are available:"), (0,react_.mdx)("table", null, (0,react_.mdx)("thead", {
     parentName: "table"
@@ -7294,7 +7294,7 @@ function MDXContent(_ref) {
     "id": "segmentation3d"
   }, "Segmentation3D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-s3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-s3d.jpg",
     "alt": "ContextScene 3D segmentation"
   })), (0,react_.mdx)("p", null, "The main purpose of this job is to classify each point of a point cloud. Many variant are available:"), (0,react_.mdx)("ul", null, (0,react_.mdx)("li", {
     parentName: "ul"
@@ -7747,7 +7747,7 @@ function MDXContent(_ref) {
     "id": "lines3d"
   }, "Lines3D"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-l3d.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-l3d.jpg",
     "alt": "ContextScene 3D lines"
   })), (0,react_.mdx)("p", null, "The main purpose of this job if to detect 3D lines in a segmented point cloud. Many variants are available:"), (0,react_.mdx)("ul", null, (0,react_.mdx)("li", {
     parentName: "ul"
@@ -8237,7 +8237,7 @@ function MDXContent(_ref) {
     "id": "changedetection"
   }, "ChangeDetection"), (0,react_.mdx)("p", null, (0,react_.mdx)("img", {
     parentName: "p",
-    "src": "/images/rda/contextscene-cd.jpg",
+    "src": "/unreal-docs-site/static/images/rda/contextscene-cd.jpg",
     "alt": "ContextScene change detection"
   })), (0,react_.mdx)("p", null, "This job detects changes between two collections of point clouds or meshes3D. It uses distance or changes of color between the two collections. The output is a set of 3D objects capturing the regions with changes. This jobs does not use Machine Learning yet."), (0,react_.mdx)("p", null, "The following analysis are available:"), (0,react_.mdx)("table", null, (0,react_.mdx)("thead", {
     parentName: "table"
