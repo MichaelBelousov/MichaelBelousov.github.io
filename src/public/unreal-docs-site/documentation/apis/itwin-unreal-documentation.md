@@ -23,4 +23,4 @@ Download the iTwin Exporter for Datasmith and get started with our
 [step-by-step tutorials](/unreal/integration/tutorials).
 Be sure to check the [documentation](/unreal/integration/overview) for troubleshooting and questions.
 
-<img src="/images/unreal-export-app-fullscreen.png" alt="iTwinViewer" title="iTwin Viewer" style="max-width:100%;max-height:500px;"/>
+<img src="/unreal-docs-site/images/unreal-export-app-fullscreen.png" alt="iTwinViewer" title="iTwin Viewer" style="max-width:100%;max-height:500px;"/>

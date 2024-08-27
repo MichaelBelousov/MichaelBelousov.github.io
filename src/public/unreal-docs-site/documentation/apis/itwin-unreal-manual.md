@@ -125,12 +125,12 @@ Materials need to opt-in to the visibility animation if controlled by the [Sched
 1. In the lower right corner of the **Content Browser**, press **View Options**, and mark the **Show Plugin Content** checkbox.
 
    <img alt='in the bottom right of the Content Browser open View Options and make sure "Show Plugin Content" is checked'
-        src="/images/unreal-export-show-plugin-content.png" style="max-width:100%;max-height:350px">
+        src="/unreal-docs-site/images/unreal-export-show-plugin-content.png" style="max-width:100%;max-height:350px">
 
 1. Open the the offending material in the material editor, set its blend mode to "Masked" (or if it's transparent, keep it).
 
    <img alt="material details Blend Mode"
-        src="/images/unreal-export-set-material-blend-mode.png"
+        src="/unreal-docs-site/images/unreal-export-set-material-blend-mode.png"
         style="max-width:100%;max-height:350px">
 
 1. Add a material function node, set it to use the iTwin Datasmith Importer Plugin's `MF_SynchroVisibilityAnimate` material function,
