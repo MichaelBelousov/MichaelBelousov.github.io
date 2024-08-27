@@ -22,7 +22,7 @@ const defaultSkills = [
 
 const Work = () => {
   // TODO: useSyncExternalStore
-  const customizeSkills = React.useMemo(() => window.location.hash.includes("customize_skills"), []);
+  const customizeSkills = React.useMemo(() => globalThis.window?.location.hash.includes("customize_skills"), []);
   // TODO: keep in sync with resume content
   const [customSkills, setCustomSkills] = React.useState(defaultSkills);
 
