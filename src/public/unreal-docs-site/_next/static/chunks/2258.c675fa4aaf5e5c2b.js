@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[2258],{52258:function(s,e,n){n.r(e),e.default="Manage construction schedules, tasks, and resources.\n"}}]);

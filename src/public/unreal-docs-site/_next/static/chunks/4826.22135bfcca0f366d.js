@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[4826],{94826:function(e,n,s){s.r(n),n.default="Access the Design Element Classification machine learning model.\r\n"}}]);

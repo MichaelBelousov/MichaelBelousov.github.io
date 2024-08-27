@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[1680],{21680:function(e,n,t){t.r(n),n.default="Export engineering design data from iModels to other formats like IFC or LandXML.\n"}}]);
