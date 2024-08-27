@@ -90,12 +90,22 @@ export const ResumeContent = (props: {
       </section>
 
       <section>
+        <h2> Technical Writing </h2>
+        <ul>
+          <li><a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">introducing @bentley/imodel-react-hooks</a></li>
+          <li><a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">iTwin Platform Unreal integration tutorial (archive)</a></li>
+          <li><a href="https://medium.com/itwinjs/evolve-your-itwin-with-unreal-45206afe19f4">Evolve your iTwin with Unreal</a></li>
+          <li><a href="https://www.youtube.com/watch?v=IV0eBECws1k&t=130s">Bringing your iTwin into Unreal</a> (webinar video)</li>
+        </ul>
+      </section>
+
+      <section>
         <h2> Education </h2>
         <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
         <em>Bachelor of Science</em>, Computer Science and Engineering. Completed May 2019
       </section>
 
-      <section>
+      <section className="resume-section-techskills">
         <h2> Technical Skills </h2>
           <div>
             {(props.customSkills || <>
@@ -119,12 +129,12 @@ export const ResumeContent = (props: {
       </section>
 
       <section>
-        <h2> Technical Writing </h2>
+        <h2> Notable open source contributions </h2>
         <ul>
-          <li><a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">introducing @bentley/imodel-react-hooks</a></li>
-          <li><a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">iTwin Platform Unreal integration tutorial (archive)</a></li>
-          <li><a href="https://medium.com/itwinjs/evolve-your-itwin-with-unreal-45206afe19f4">Evolve your iTwin with Unreal</a></li>
-          <li><a href="https://www.youtube.com/watch?v=IV0eBECws1k&t=130s">Bringing your iTwin into Unreal</a> (webinar video)</li>
+          <li> <code><a href="https://github.com/lint-staged/lint-staged/pull/816">lint-staged</a></code> msys2/cygwin platform support </li>
+          <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint/pull/3601">typescript-eslint</a></code> bug in return-await lint rule </li>
+          <li> <code><a href="https://github.com/godotengine/godot/pull/39739">Godot game engine</a></code> bug in initial C# object marshalling </li>
+          <li> <code><a href="https://github.com/onivim/oni2/pull/2630">onivim2</a></code> command palette autocomplete bug in vim-like editor </li>
         </ul>
       </section>
 
@@ -137,16 +147,6 @@ export const ResumeContent = (props: {
         </ul>
       </section>
       */}
-
-      <section>
-        <h2> Notable open source contributions </h2>
-        <ul>
-          <li> <code><a href="https://github.com/lint-staged/lint-staged/pull/816">lint-staged</a></code> msys2/cygwin platform support </li>
-          <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint/pull/3601">typescript-eslint</a></code> bug in return-await lint rule </li>
-          <li> <code><a href="https://github.com/godotengine/godot/pull/39739">Godot game engine</a></code> bug in initial C# object marshalling </li>
-          <li> <code><a href="https://github.com/onivim/oni2/pull/2630">onivim2</a></code> command palette autocomplete bug in vim-like editor </li>
-        </ul>
-      </section>
 
     </div>
   );
