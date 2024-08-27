@@ -39,18 +39,17 @@ export const ResumeContent = (props: {
 
           <ul>
             <li>Led architecture and design for our next-generation Electron-based desktop app framework, mentoring all team members and helped manage day-to-day development</li>
-            <li> Led development and mentored contributors of the Transformation core API for the iTwin platform, a TypeScript Node.js API with native C++ addon components </li>
+            <li> Led development and mentored contributors of transformation API for the iTwin platform, a hybrid TypeScript/Node.js/C++ service </li>
             <li>
               Developed and deployed the iTwin platform Unreal Engine integration,
               an Electron application bridging iTwin Node.js APIs to Unreal via the Datasmith C++ SDK with an auto-update system
             </li>
             <li>
-              {/* FIXME: verify */}
-              Produced webinar on platform integration with our highest viewership by 17%,
-              wrote marketing webpages, <a href="/FIXME">tutorials</a>,
-              and <a href="/FIXME">blog posts</a>
+              Produced webinar of platform integration with platform's highest impressions (&gt;5K) on LinkedIn.
+              Wrote marketing webpages, <a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">tutorials</a>,
+              and <a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">blog posts</a>
             </li>
-            <li> Contributed to multiple customer facing full-stack applications with Node.js, C++, React, ASP.NET C#, MongoDb, and Cloud SQLite </li>
+            <li> Contributed to several customer facing full-stack applications with Node.js, C++, React, .NET, MongoDb, and Cloud SQLite </li>
             <li> Maintained dozens of CI/CD pipelines across Github Actions and Azure Pipelines </li>
             <li> Introduced fuzzing (catching dozens of buffer overflows), sanitizers, clang static analysis, and other tooling to native buildology </li>
           </ul>
@@ -84,10 +83,7 @@ export const ResumeContent = (props: {
           <ul>
             <li>
               Built (solo) a car driving simulation in Unreal Engine 4
-              for tracking navigation patterns, for neurological research
-            </li>
-            <li>
-              Built (solo) a TkInter Python app for top-down visual playback of participant sessions and navigation data export
+              for tracking navigation patterns, for neurological research, with Python/TkInter tooling for replaying patient sessions
             </li>
           </ul>
         </div>
@@ -126,31 +122,29 @@ export const ResumeContent = (props: {
         <h2> Technical Writing </h2>
         <ul>
           <li><a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">introducing @bentley/imodel-react-hooks</a></li>
-          <li><a href="https://web.archive.org/web/20220926063257/https://developer.bentley.com/tutorials/itwin-unreal-controlling-your-imodel/">iTwin Platform Unreal integration tutorials</a></li>
+          <li><a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">iTwin Platform Unreal integration tutorial (archive)</a></li>
           <li><a href="https://medium.com/itwinjs/evolve-your-itwin-with-unreal-45206afe19f4">Evolve your iTwin with Unreal</a></li>
           <li><a href="https://www.youtube.com/watch?v=IV0eBECws1k&t=130s">Bringing your iTwin into Unreal</a> (webinar video)</li>
         </ul>
       </section>
 
+      {/*
+        // FIXME: apparently alternis's HTML5 embedding is broken lol
       <section>
         <h2> Notable projects </h2>
         <ul>
           <li><a href="https://alternis.io">alternis.io</a> embeddable dialogue middleware (in zig) and visual flow-based dialogue editor app</li>
-          {/*FIXME*/}
         </ul>
       </section>
+      */}
 
       <section>
         <h2> Notable open source contributions </h2>
         <ul>
-          <li> <code><a href="https://github.com/okonet/lint-staged">lint-staged</a></code>
-            msys2/cygwin platform support </li>
-          <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint</a></code>
-            bug in async-return FIXME lint rule </li>
-          <li> <code><a href="https://github.com/godotengine/godot">Godot game engine</a></code>
-            bug in initial C# object marshalling </li>
-          <li> <code><a href="https://github.com/onivim/oni2/pull/2630">onivim2</a></code>
-            command palette autocomplete bug fix vim-like editor in OCaml/Reason </li>
+          <li> <code><a href="https://github.com/lint-staged/lint-staged/pull/816">lint-staged</a></code> msys2/cygwin platform support </li>
+          <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint/pull/3601">typescript-eslint</a></code> bug in return-await lint rule </li>
+          <li> <code><a href="https://github.com/godotengine/godot/pull/39739">Godot game engine</a></code> bug in initial C# object marshalling </li>
+          <li> <code><a href="https://github.com/onivim/oni2/pull/2630">onivim2</a></code> command palette autocomplete bug in vim-like editor </li>
         </ul>
       </section>
 
