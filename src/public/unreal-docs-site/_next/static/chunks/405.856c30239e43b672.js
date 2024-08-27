@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[405],{70405:function(e,n,s){s.r(n),n.default="The Webhooks API allows you to subscribe to events happening in iTwin Platform.\n"}}]);

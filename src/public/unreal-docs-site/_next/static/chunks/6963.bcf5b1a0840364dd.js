@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[6963],{66963:function(s,n,e){e.r(n),n.default="# Construction\n\n- Manage construction issues, RFIs, observations, and inspections\n- Manage construction schedules, tasks, and resources\n"}}]);

@@ -60,6 +60,7 @@ public/*
 !public/images
 !public/bubble-beats
 !public/godot-json-dialogue-schema-checker.html
+!public/unreal-docs-site
 
 # Mac files
 .DS_Store

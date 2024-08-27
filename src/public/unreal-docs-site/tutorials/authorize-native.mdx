@@ -1,0 +1,390 @@
+export const metadata = {
+  title: 'Authorize Native Application',
+  tile: {
+    name: 'Authorize Native Application',
+    description: 'This tutorial will show you how to register a Native Application, get an access token with it, and use it.',
+    href: '/tutorials/authorize-native/',
+    durationInMinutes: 10,
+    relatedApiIds: [],
+  },
+};
+
+<Introduction 
+  skillLevel="Basic" 
+  durationInMinutes="10">
+
+## Introduction
+
+In this tutorial you will create a **Native Application**, learn how **authorization code flow** works with
+[**Proof Key for Code Exchange (PKCE)**](https://auth0.com/docs/authorization/flows/authorization-code-flow-with-proof-key-for-code-exchange-pkce),
+and how to get an **access token** with it. In the end we will double check if the token is truly valid by making a request to one of the **iTwin Platform API endpoints**.
+
+</Introduction>
+
+<TutorialSection>
+
+## 1. Register a Native Application
+
+#### What is a Native Application?
+
+A **Native Application** is an application which runs on a native operating system such as Android, Windows, or iOS.
+
+</TutorialSection>
+
+<TutorialSection subSection actions={[<SignInButton />]}>
+
+#### Sign in
+
+To be able to register an application you need to be signed in.
+If you are not already you can do that by clicking the **Sign In** button in the action pane or in the top right corner of the page.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={data => [
+    <CreateNativeAppButton
+      tooltip="Register a basic Native Application for this tutorial"
+      allowedScopes={['users:read']}
+      clientName="Authorize Native"
+    >
+    Register Application
+    </CreateNativeAppButton>,
+    <CodeBlock
+      language="json"
+      code={!data.clientId || !data.redirectUris || !data.scope
+        ? undefined
+        : JSON.stringify({
+          client_id: data.clientId,
+          redirect_uri: data.redirectUris &&  data.redirectUris[0],
+          scope: data.scope,
+        }, undefined, 2)}
+    />
+]}>
+
+#### Register a Native Application
+
+You will need to register an application to use the iTwin Platform APIs.
+You can use the **Register Application** button to automatically create your first Native Application.
+This will allow you to configure [Authorization Code Flow for your Native Application](/apis/overview/authorization/#authorizesinglepageapplicationsspaanddesktopmobileapplicationsnative) and get the correct access token.
+
+Once generated, you will be shown a few lines of code under the button:
+
+- **client_id** - This is the unique identifier for your application. It is displayed on the application details page as **Client ID**.
+- **redirectUris** - Specifies where users are redirected after they have chosen whether or not to authenticate your app. Displayed on the application details page as one of **Redirect URIs**.
+- **scope** - List of accesses granted to the application. Displayed on the application details page as **Scopes**.
+
+> **For future use:** Register and configure your application manually following the instructions in the [Register and modify an Application](/tutorials/register-and-modify-application/) tutorial.
+
+</TutorialSection>
+
+<TutorialSection>
+
+## 2. Get an Access Token
+
+#### What is an access token?
+
+An **Access Token** is a token which contains a string that can be used to make authenticated requests to an API to access protected resources (in this case iTwin Platform APIs).The string has no meaning to the application using it, but represents that the user has authorized the application to access their account.
+The token is bounded by an appropriate lifetime, scopes, and other information that the server may require.
+
+#### 2.1. Authorization Code Flow with Proof Key for Code Exchange (PKCE)
+
+This flow provides a way to authorize with an Authorization Server by redirecting to the authorization server,
+getting a **code** back, and exchanging it for an **access token** in a subsequent call.
+
+You can find more information [here](/apis/overview/authorization/#authorizationcodeflowwithproofkeyforcodeexchangepkce), but it is more technical.
+
+Steps to get an access token using this flow:
+1. Generate **code_verifier** and **code_challenge**,
+1. Navigate to the authorization server,
+1. The authorization server will redirect back to your application (one of the redirect URIs) with **code** query parameter,
+1. The application exchanges **code** for an **access_token** via the Token endpoint.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={(data) => [
+    <Title>Generate Code Verifier and Code Challenge</Title>,
+    <GeneratePkceButton/>,
+    <CodeBlock language="json" code={data.pkce ? JSON.stringify(data.pkce, undefined, 2) : undefined} />
+  ]}
+>
+
+#### 2.1.1. Code Verifier and Code Challenge
+
+PKCE ([RFC 7636](https://datatracker.ietf.org/doc/html/rfc7636#section-4.1)) is an extension to the Authorization Code flow to prevent CSRF and authorization code injection attacks.
+
+**code_verifier** is a random string between 43 and 128 characters. It provides proof that you initiated the redirect to the authorization endpoint.
+
+**code_challenge** is a string that is generated from **code_verifier** and it is passed to the authorization endpoint as a query parameter.
+Pseudo code to generate code challenge:
+```js
+base64urlEncode(SHA256(ASCII(code_verifier)))
+```
+
+Read more about: [ASCII](https://en.wikipedia.org/wiki/ASCII), [SHA256](https://en.bitcoinwiki.org/wiki/SHA-256), [base64urlEncode](https://wiki.tcl-lang.org/page/base64url)
+
+You can generate them by clicking **Generate Code Verifier and Code Challenge**. This is required for the following steps.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={(data) => [
+    <Title>Navigate to the Authorization Server</Title>,
+    <LinkWithUrl
+      url={data.authority + '/connect/authorize' + '?' + new URLSearchParams({
+        client_id: data.clientId ?? 'CLIENT_ID',
+        redirect_uri: data.redirectUris && data.redirectUris[0] || 'http://localhost:3000',
+        scope: data.scopes ? data.scopes + ' offline_access' : 'users:read offline_access',
+        response_type: 'code',
+        code_challenge: data.pkce?.code_challenge ?? 'CODE_CHALLENGE',
+        code_challenge_method: 'S256'
+      }).toString()}
+    />,
+  ]}
+>
+
+#### 2.1.2. Navigate to the Authorization Server
+
+The application should open a browser to allow the user to interact with the authorization server.
+This allows the user to authorize agents authorization server and give consent to allow access to part of his data through your application.
+If you follow the interactive part you can click the **Navigate** button and it will open a popup window that will hit the authorization endpoint with the required query parameters.
+
+The URL will be built in this way:
+
+Authorization endpoint: `https://ims.bentley.com/connect/authorize`
+
+**Native applications** can ask for **offline_access** scope.  This will indicate that you want to receive a **refresh_token** which can be used to generate new **access tokens** **without** user interaction.
+
+With query parameters:
+- **client_id** - This is the unique identifier for your application. Displayed on the application details page as **Client ID** (e.g. `native-example`).
+- **redirect_uri** - Specifies where you want to go back after successful authorization (e.g. `http://localhost:3000/redirect`).
+- **scope** - List of accesses granted to the application. Displayed on the application details page as **Scopes** (e.g. `users:read`).
+- **response_type** - For this flow **code** is the only option and it indicates that you will get code as a query parameter when the user will come back from the authorization server.
+- **code_challenge** - Code challenge that was generated from code **code_verifier**
+- **code_challenge_method** - Code challenge method type which should be **S256**
+
+So in the end it should look something like this: `https://ims.bentley.com/connect/authorize?client_id=CLIENT_ID&redirect_uri=http%3A%2F%2Flocalhost%3A3000&scope=users%3Aread+offline_access&response_type=code&code_challenge=CODE_CHALLENGE&code_challenge_method=S256`
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={(data) => [
+    <Title>{data.code ? 'Code query parameter value' : ''}</Title>,
+    <CodeBlock
+      language="text"
+      code={typeof data.code === 'string' ? data.code : JSON.stringify(data.code, undefined, 2)}
+    />,
+  ]}
+>
+
+#### 2.1.3. Receive the code
+
+The code will be placed inside the redirect URL query parameter (e.g. `http://localhost:3000/redirect`**?code=random-string**).
+The application should take care of **code** query parameter extraction. If you follow the interactive steps the code should appear in the action pane.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={(data) => [
+    <Title>Request to Token endpoint</Title>,
+    <HttpSample
+      method="POST"
+      url={`${data.authority}/connect/token`}
+      headers={{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }}
+      body={new URLSearchParams({
+        client_id: data.clientId ?? 'CLIENT_ID',
+        code_verifier: data.pkce?.code_verifier ?? 'CODE_VERIFIER',
+        grant_type: 'authorization_code',
+        code: data.code ?? 'CODE',
+        redirect_uri: data.redirectUris && data.redirectUris[0] || 'http://localhost:3000'
+      }).toString()}
+      saveResponseTo={"tokenResponse"}
+      canSendRequest={data.code}
+    />
+  ]}
+>
+
+#### 2.1.4. Receive an access token
+
+You need to call the token endpoint with the **Content-Type** header equal to **application/x-www-form-urlencoded**.
+
+Request body (with [URL encoded](https://www.w3schools.com/tags/ref_urlencode.ASP) characters):
+- **client_id**: Identification that is generated when the application is created.  You can find it in the [My Apps](/my-apps) page. If you generated it during this tutorial you can find it in the first step.
+- **grant_type**: **authorization_code** indicates that the application will use a **code** to get an **access_token**.
+- **code_verifier**: It is for verification purposes that the same application that redirected to the authorization server is calling this endpoint.
+- **code**: Code that the application got after the redirect from the authorization server back to the application itself.
+- **redirect_uri**: redirect URI there was code send.
+
+<Alert type="informational">
+  <b>Code is short lived</b>: If your code has expired please Navigate to the authorization server one more time.
+</Alert>
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={(data) => [
+    <Title>Response from the Token endpoint</Title>,
+    <CodeBlock
+      language="json"
+      code={JSON.stringify(
+        data.tokenResponse
+        || {
+            "access_token": "JWT_TOKEN",
+            "refresh_token": "REFRESH_TOKEN",
+            "token_type": "Bearer",
+            "expires_in": 3599
+          }, undefined, 2)
+      }
+    />
+  ]}
+>
+
+#### Response from the Token endpoint
+
+Response contains:
+- **token_type**: **Bearer**. This is part of the Authorization header that is constructed like `Authorize: token_type access_token`.  You can read more [here](https://www.oauth.com/oauth2-servers/differences-between-oauth-1-2/bearer-tokens/).
+- **access_token**: Access token itself (in [JWT](https://jwt.io) format) that will be passed in the **Authorize** header for API calls as **Bearer JWT_TOKEN**.
+- **refresh_token**: Token that allows getting a new **access token** without user interaction.
+- **expires_in**: Lifespan of the access token in seconds.
+
+</TutorialSection>
+
+<TutorialSection>
+
+## 3. Get an Access Token using a Refresh Token
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={data => [
+    <Title>Refresh Token</Title>,
+    <HttpSample
+      method="POST"
+      url={`${data.authority}/connect/token`}
+      headers={{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }}
+      body={new URLSearchParams({
+        client_id: data.clientId ?? 'CLIENT_ID',
+        grant_type: 'refresh_token',
+        refresh_token: data.tokenResponse?.refresh_token ?? "REFRESH_TOKEN"
+      }).toString()}
+      saveResponseTo={"refreshedAccessToken"}
+      canSendRequest={data.tokenResponse}
+    />
+  ]}
+>
+
+#### 3.1. Request to the Token endpoint with a Refresh token
+
+You need to call the token endpoint with **Content-Type** header equal to **application/x-www-form-urlencoded**.
+
+Request body (with [URL encoded](https://www.w3schools.com/tags/ref_urlencode.ASP) characters):
+- **client_id**: Identification that is generated when the application is created. You can find it in the [My Apps](/my-apps) page. If you generated it during this tutorial you can find it in the first step.
+- **grant_type**: **refresh_token** indicates that the application will use **refresh_token** to get **access_token**.
+- **refresh_token**: refresh_token token itself that you got from the last request to the Token endpoint.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={data => [
+    <Title>Response from /users/me endpoint</Title>,
+    <CodeBlock
+      language="json"
+      code={JSON.stringify(data.refreshedAccessToken ?? {
+          "access_token": "JWT_TOKEN",
+          "refresh_token": "REFRESH_TOKEN",
+          "token_type": "Bearer",
+          "expires_in": 3599
+      }, undefined, 4)}
+    />
+  ]}
+>
+
+#### 3.2. Response from the Token endpoint
+
+Response contains:
+- **token_type**: **Bearer**. This is part of the Authorization header that is constructed like `Authorize: token_type access_token`. You can read more [here](https://www.oauth.com/oauth2-servers/differences-between-oauth-1-2/bearer-tokens/).
+- **access_token**: Access token itself (in [JWT](https://jwt.io) format) that will be passed in the **Authorize** header for API calls as **Bearer JWT_TOKEN**.
+- **refresh_token**: Token that allows you to get a new **access token** without user interaction.
+- **expires_in**: Lifespan of the access token in seconds.
+
+</TutorialSection>
+
+<TutorialSection>
+
+## 4. Make the request
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={data => [
+    <Title>Request to /users/me endpoint</Title>,
+    <HttpSample
+      method="GET"
+      url={`${data.baseUrl}/users/me`}
+      headers={{
+        'Authorization': 'Bearer ' + (data.tokenResponse?.access_token ?? 'JWT_TOKEN'),
+        'Accept': 'application/vnd.bentley.itwin-platform.v1+json'
+      }}
+      body={undefined}
+      saveResponseTo={"me"}
+      canSendRequest={data.tokenResponse}
+    />
+  ]}
+>
+
+#### 4.1. Make the request to the /users/me endpoint
+
+This request will show that the newly created **access token** is valid and how to use it.
+The `/users/me` endpoint will retrieve the logged in user's profile information.
+If you follow the interactive part you can click the **Send request** button.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection
+  actions={data => [
+    <Title>Response from /users/me endpoint</Title>,
+    <CodeBlock
+      language="json"
+      code={JSON.stringify(
+        data.me
+        || {
+          "user": {
+            "displayName": "FirstName LastName",
+            "givenName": "FirstName",
+            "surname": "LastName",
+            "email": "FirstName.LastName@domain.com",
+            "alternateEmail": "FirstName.LastName@alternative.com",
+            "city": "CityName",
+            "country": "US",
+            "language": "EN",
+            "createdDateTime": "2021-08-27T10:19:07.2510000Z"
+          }
+        }, undefined, 2)
+      }
+    />
+  ]}
+>
+
+#### 4.2. Response
+
+This request will return user information (name, email, country and etc.).
+
+</TutorialSection>
+
+<ContinueLearningSection>
+
+</ContinueLearningSection>

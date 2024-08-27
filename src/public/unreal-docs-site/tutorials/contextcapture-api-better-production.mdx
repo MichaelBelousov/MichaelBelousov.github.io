@@ -1,0 +1,361 @@
+export const metadata = {
+  title: 'Better production in ContextCapture',
+  tile: {
+    name: 'Better production in ContextCapture',
+    description: 'Learn how to specify production settings in ContextCapture',
+    thumbnail: '/images/cccs-production-thumb.jpg',
+    href: '/tutorials/contextcapture-api-better-production/',
+    durationInMinutes: 10,
+    relatedApiIds: ['contextcapture'],
+  },
+};
+
+<Introduction
+  skillLevel="Expert"
+  durationInMinutes="10"
+  summaryImageSrc="/images/cccs-production-header.jpg"
+>
+
+## Introduction
+
+The goal of this tutorial is to specify production settings to _ContextCapture_, so that your exports are closer to what you'd like.
+
+In this tutorial, we will cover how to send production settings to _ContextCapture_, and go over the different settings and their usage.
+
+</Introduction>
+
+<TutorialSection>
+
+## Prerequisites
+
+This tutorial assumes that you already have:
+
+- Completed the [ContextCapture Quick Start tutorial](/tutorials/contextcapture-api-quick-start).
+
+</TutorialSection>
+
+<TutorialSection
+  actions={[
+    <Title>Example of a production settings file</Title>,
+    <CodeBlock
+      language="json"
+      code={`{
+  "ProductionSettingsExchange":[
+    {
+      "name":"OBJ",
+      "settings":{
+        "TexturedEnabled":false,
+        "DoublePrecision":true
+      }
+    },
+    {
+      "name":"FBX",
+      "settings":""
+    }
+  ]
+}`}
+    />,
+  ]}>
+
+## 1. Specifying production settings
+
+If you want to apply specific settings to the productions - that is outputs like _3MX_, _OBJ_, etc. - you can add a file in the workspace reality data: the file `prod_settings.json` has to be uploaded to `/{jobId}/data/`.
+Note that no check on the uploaded file is performed until the job is actually submitted, and if the parameters are not fitted to the inputs, the job will failed.
+Also, if you provide this file, all the outputs should be present in the file.
+That is, if you requested _OBJ_ and _FBX_, both of these outputs should be present in the file, even if you only want to apply specific settings to the _OBJ_ format, see the example.
+
+</TutorialSection>
+
+<TutorialSection>
+
+## 2. List of existing production settings
+
+You will find here a complete list of the existing options for the existing _ContextCapture_ formats. Properties separated by a `-` mean you have to chose between one of the options.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection={true}
+  actions={[
+    <CodeBlock
+      language="json"
+      code={`{
+  "TexturedEnabled": true-false,
+  "TextureColorSource": "Visible"-"Thermal"-"Resolution",
+  "TextureColorSourceResRangeMin": double,
+  "TextureColorSourceResRangeMax": double,
+  "TextureColorSourceThermalUnit": "Absolute"-"Equalized"-"Celsius"-"Fahrenheit",
+  "TextureColorSourceThermalRangeMin": double,
+  "TextureColorSourceThermalRangeMax": double,
+  "TextureCompressionQuality": 50-75-90-100,
+  "MaximumTextureSize": int,
+  "TextureSharpening": 0-100
+}`}
+    />,
+  ]}
+>
+
+### Texture
+
+These settings can be used for _3MX_, _3SM_, _Cesium 3D Tiles_, _ESRI i3s_, _DGN_, _FBX_, _OBJ_, _POD_, _LAS_, _LODTreeExport_.
+
+They are used to enabled the texturing of a model, select the color source, change the compression of the texture and so on.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection={true}
+  actions={[
+    <CodeBlock
+      language="json"
+      code={`{
+  "TileOverlap": double (in units or meters)
+}`}
+    />,
+  ]}
+>
+
+### Tile overlap
+
+These settings can be used for _3MX_, _3SM_, _Cesium 3D Tiles_, _ESRI i3s_, _DGN_, _FBX_, _OBJ_, _LODTreeExport_.
+
+They are used to determinate the overlap distance between two tiles, in order to avoid gaps.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection={true}
+  actions={[
+    <CodeBlock
+      language="json"
+      code={`{
+  "SRS": string,
+}`}
+    />,
+  ]}
+>
+
+### Spatial Reference System
+
+A spatial reference system describes the coordinates system of the produced output.
+We expect a string Well Known Text definition (e.g. WGS84), "EPSG: " or a PROJ.4 definition.
+
+These settings can be used for _3MX_, _3SM_, _Cesium 3D Tiles_, _ESRI i3s_, _DGN_, _FBX_, _OBJ_, _LAS_, _POD_, _Orthophoto/DSM_, _LODTreeExport_.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection={true}
+  actions={[
+    <CodeBlock
+      language="json"
+      code={`{
+  "SRSOrigin": "15.0;2.3;-25.3"
+}`}
+    />,
+  ]}
+>
+
+### SRS Origin
+
+These settings can be used for _3MX_, _DGN_, _FBX_, _OBJ_.
+
+They describe the origin of the Spatial Reference System.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection={true}
+  actions={[
+    <CodeBlock
+      language="json"
+      code={`{
+  "LODType": "type - see table",
+  "LODSize": 0.707106781186547-1-1.4142135623731-2
+}`}
+    />,
+  ]}
+>
+
+### Level of details
+
+These settings can be used for _3MX_, _3SM_, _Cesium 3D Tiles_, _ESRI i3s_, _DGN_, _FBX_, _OBJ_, _LODTreeExport_.
+
+They describe the type of level of details to be used, and their size.
+
+|   Type Table    | None | Adaptive | Octree | Unary | Quadtree | BingMaps |
+| :-------------: | :--: | :------: | :----: | :---: | :------: | :------: |
+|       3MX       |  ✔️  |    ✔️    |   ❌   |  ❌   |    ❌    |    ❌    |
+|       3SM       |  ❌  |    ✔️    |   ❌   |  ❌   |    ❌    |    ❌    |
+| Cesium 3D Tiles |  ❌  |    ✔️    |   ❌   |  ❌   |    ❌    |    ❌    |
+|    ESRI i3s     |  ❌  |    ✔️    |   ✔️   |  ❌   |    ❌    |    ❌    |
+|       DGN       |  ✔️  |    ✔️    |   ✔️   |  ✔️   |    ✔️    |    ✔️    |
+|       FBX       |  ✔️  |    ✔️    |   ✔️   |  ✔️   |    ✔️    |    ✔️    |
+|       OBJ       |  ✔️  |    ✔️    |   ✔️   |  ✔️   |    ✔️    |    ✔️    |
+|  LODTreeExport  |  ✔️  |    ✔️    |   ✔️   |  ✔️   |    ✔️    |    ✔️    |
+
+</TutorialSection>
+
+<TutorialSection
+  actions={[
+    <Title>3MX settings</Title>,
+    <CodeBlock
+      language="json"
+      code={`{
+  "GenerateWebGLApp": bool,
+  "IncludeProxy3DModel": bool
+}`}
+    />,
+    <Title>Cesium settings</Title>,
+    <CodeBlock
+      language="json"
+      code={`{
+  "GenerateCesiumApp": bool
+}`}
+    />
+]}>
+
+### Generate WebApp
+
+These settings can be used for _3MX_ or _Cesium 3D Tiles_, but they differ in the structure.
+
+They are used to generate a web application that can be hosted on a server for displaying 3D models.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection={true}
+  actions={[
+    <CodeBlock
+      language="json"
+      code={`{
+  "DoublePrecision": bool
+}`}
+    />,
+  ]}
+>
+
+### Double precision
+
+These settings can be used for _OBJ_.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection={true}
+  actions={[
+    <CodeBlock
+      language="json"
+      code={`{
+  "PointSamplingUnit": "pixel"-"meter"-"unit",
+  "PointSamplingDistance": double
+}`}
+    />,
+  ]}
+>
+
+### Point sampling
+
+These settings can be used for _POD_, _LAS_.
+
+PointSamplingUnit is used to describe what unit you want to use for sampling.
+Pixel means _One point every x pixels_ so that the sampling is relative to the resolution of your input.
+Meter or unit means _One point every x unit_ so that the sampling is uniform for the point cloud.
+
+PointSamplingDistance specifies _x_.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection={true}
+  actions={[
+    <CodeBlock
+      language="json"
+      code={`{
+  "CompressionMethod":"None"-"LAZ"
+}`}
+    />,
+  ]}
+>
+
+### LAS Compression
+
+These settings can be used for _LAS_.
+
+Set it to _LAZ_ in order to compress the point cloud.
+
+</TutorialSection>
+
+<TutorialSection
+  subSection={true}
+  actions={[
+    <CodeBlock
+      language="json"
+      code={`{
+  "SamplingDistance": double,
+  "ProjectionMode": "HighestPoint"-"LowestPoint",
+  "MaxImagePartDimension": int,
+  "Orthophoto":{
+    "Enabled": bool,
+    "Format": "GeoTIFF"-"JPEG"-"KML_SuperOverlay",
+    "NoDataValue": "255 255 255",
+    "ColorSource": "Reference3dModelVisible"-"OptimizedComputationVisible"-"Reference3dModelThermal"-"OptimizedComputationThermal",
+    "ImageSharpening": 0-100
+  },
+  "DSM":{
+    "Enabled": bool,
+    "Format": "GeoTIFF"-"XYZ"-"ASC",
+    "NoDataValue": double
+  }
+}`}
+    />,
+  ]}
+>
+
+### Orthophoto/DSM settings
+
+These settings can be used for _Orthophoto/DSM_.
+
+Settings are split between Orthophoto and DSM. You can disable one or the other with the _Enabled_ property.
+
+</TutorialSection>
+
+<ContinueLearningSection>
+
+## Continue learning
+
+Congratulations for completing the _ContextCapture_ production tutorial! You should now be able to specify production settings in order to export more precisely your formats.
+
+To go further and use _ContextCapture_ to its maximum potential, you can check the following tutorials.
+
+<TileList>
+  <Tile
+    name="Using cache in ContextCapture"
+    description="This tutorial focuses on using cache for faster processing in ContextCapture"
+    thumbnail="/images/cccs-cache-thumb.png"
+    href="/tutorials/contextcapture-api-how-to-use-cache"
+  ></Tile>
+  <Tile
+    name="Better calibration in ContextCapture"
+    description="Learn how to specify calibration settings in ContextCapture, and download the result of a calibration"
+    thumbnail="/images/cccs-calibration-thumb.jpg"
+    href="/tutorials/contextcapture-api-better-calibration"
+  ></Tile>
+</TileList>
+
+## More resources that you may like
+
+<TileList>
+  <ResourceTile
+    title="Projects API"
+    href="/apis/projects/"
+    description="Project is necessary for using ContextCapture API. You can check its possibilities."
+  />
+  <ResourceTile
+    title="Reality Data API"
+    href="/apis/realitydata/"
+    description="Reality Data API is necessary for uploading inputs for ContextCapture, and downloading outputs."
+  />
+</TileList>
+
+</ContinueLearningSection>

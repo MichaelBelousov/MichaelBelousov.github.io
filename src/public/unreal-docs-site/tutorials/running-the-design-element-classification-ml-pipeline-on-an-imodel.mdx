@@ -1,0 +1,404 @@
+export const metadata = {
+  title: 'Running the Design Element Classification ML Pipeline on an iModel',
+  tile: {
+    name: 'Running the Design Element Classification ML Pipeline on an iModel',
+    description:
+      'Walk-through how to run your iModel against the Design Element Classification ML Model and and get Results.',
+    href: '/tutorials/running-the-design-element-classification-ml-pipeline-on-an-imodel/',
+    durationInMinutes: 15,
+    relatedApiIds: ['designelementclassification'],
+  },
+};
+
+<Introduction 
+  skillLevel="Basic" 
+  durationInMinutes="15" >
+
+## Introduction
+
+This quick start is intended to help you understand how to create a Design Element Classification
+inference run and how to retrieve its results.
+
+By the end of this walk-through, you will have all the tools you need to take any iModel and
+run it through the classification pipeline. You will gain familiarity with the workflow and all APIs
+involved and be able to integrate the Design Element Classification model into your iTwin-Powered
+applications.
+
+</Introduction>
+
+<TutorialSection>
+
+## Prerequisites
+
+This tutorial assumes that you already have:
+
+- Project created and configured. Instructions on how to create a project can be found
+  [here](/tutorials/create-and-query-projects-guide). You can use an existing Project
+  if you have access to one.
+- iModel created.
+  - Create new iModel [here](/tutorials/create-empty-imodel/).
+  - Or use an existing iModel.
+- iModel Named Version created. Instruction on how to create named version can be found
+  [here](/tutorials/create-named-version/).
+
+Use of the Design Element Classification APIs requires Project level Permissions. For
+these Permissions, you must be an Organization Administrator for the Organization that
+owns a given Project or have `administration_manage_roles` Permission assigned at the
+Project level. If you do not have admin access to the Project or iModel you would like
+to use, contact somebody who is a Project Administrator. As a Project Administrator,
+you can use APIs described in the [Manage Project Team Members](/tutorials/manage-project-team-members-guide/)
+tutorial to create a Role and update it with `"permissions": ["MLRunInference"]`.
+Once this is done and the Role is assigned to you, you can use any iModel inside your
+Project to finish this tutorial.
+
+</TutorialSection>
+
+<TutorialSection actions={[<CreateSampleAppButton scopes={['designelementclassification:read','designelementclassification:modify']} clientName="Design Element Classification client"/>]}>
+
+## 1. Register an Application
+
+You will need to register an application to use the iTwin Platform APIs. You can use the **Register** button to automatically create your first single page application (SPA). This will allow you to configure [Authorization Code Flow for your SPA application](/apis/overview/authorization/#authorizesinglepageapplicationsspaanddesktopmobileapplicationsnative) and get the correct access token.
+
+Once generated, you will be shown a few lines of code under the button.
+
+- **IMJS_AUTH_CLIENT_CLIENT_ID** - this is the unique identifier for your application. Displayed on application details page as **Client ID**.
+- **IMJS_AUTH_CLIENT_REDIRECT_URI** - specifies where users are redirected after they have chosen whether or not to authenticate your app. Displayed on application details page as one of **Redirect URIs**.
+- **IMJS_AUTH_CLIENT_LOGOUT_URI** - specifies where users can be returned to after logging out. Displayed on application details page as one of **Post logout redirect URIs**.
+- **IMJS_AUTH_CLIENT_SCOPES** - list of accesses granted to the application. Displayed on application details page as **Scopes**.
+
+> **Or optionally:** Register and configure your application manually following instructions in [Register and modify an Application](/tutorials/register-and-modify-application/) tutorial.
+> Make sure that your application is associated with **Design Element Classification API** and has `designelementclassification:read designelementclassification:modify` scopes enabled.
+
+</TutorialSection>
+
+<TutorialSection>
+
+## 2. Get a token
+
+To make requests to this APIs a valid user token is required. There are several ways to get one.
+
+### Implement Authorization Code Flow in the application
+
+Follow this [article](/apis/overview/authorization/) to implement the
+Authorization Code workflow in your application.
+
+<Alert type="informational">
+  Here you can use the Client ID generated from previous application
+  registration step.
+</Alert>
+
+### Grab a user token from Api reference "Try it" Section
+
+1. Go to the [API Documentation](/apis/designelementclassification/operations/mcl-model-list/).
+1. Click the "Try it" button.
+1. For Authorization section select "AuthorizationCode".
+1. After the login popup closes, the Authorization header with your user token value should be visible.
+1. Save your user token value to reuse later.
+
+<Alert type="informational">
+  Use user token to replace the 'JWT_TOKEN' placeholder parameter in the next
+  steps.
+</Alert>
+
+</TutorialSection>
+
+<TutorialSection actions={[
+  <Title>Request Syntax</Title>,
+  <CodeBlock language="http" code={`GET https://api.bentley.com/designelementclassification/models HTTP/1.1`} />,
+  <Title>Request Headers</Title>,
+  <CodeBlock language="http" code={`Accept: application/vnd.bentley.itwin-platform.v1+json
+Authorization: Bearer JWT_TOKEN`} />,
+  <Title>Response Headers</Title>,
+  <CodeBlock language="http" code={'Content-Type: application/json'}/>,
+  <Title>Response Body</Title>,
+  <CodeBlock language="json" code={`{
+  "models":[
+    {
+      "version":"2021.07.07.1",
+      "lastModifiedDateTime":"2021-07-20T07:56:20.0428972+00:00"
+    },
+    {
+      "version":"2021.08.08.1",
+      "lastModifiedDateTime":"2021-08-20T07:56:20.0428972+00:00"
+    }
+  ]
+}`}/>
+]}>
+
+## 3. Get available Design Element Classification Model versions
+
+First you need to select an existing model version to use for your inference Run. To get available
+versions, use the [Get Design Element Classification models](/apis/designelementclassification/operations/mcl-model-list/)
+endpoint. Take note of a model version from the API response to use later on the Run Creation step in this tutorial.
+
+<Alert type="informational">
+  Typically one would select the latest model version. But for backwards
+  compatibility you can use an older one.
+</Alert>
+
+</TutorialSection>
+
+<TutorialSection actions={[
+  <Title>Request Syntax</Title>,
+  <CodeBlock language="http" code={`POST https://api.bentley.com/designelementclassification/runs HTTP/1.1`} />,
+  <Title>Request Headers</Title>,
+  <CodeBlock language="http" code={`Accept: application/vnd.bentley.itwin-platform.v1+json
+Authorization: Bearer JWT_TOKEN
+Content-Type: application/json`} />,
+  <Title>Request Body</Title>,
+  <CodeBlock language="json" code={`{
+  "modelVersion":"2021.06.20.1",
+  "iModelId":"466ba62e-2841-4568-89b5-deabf2c6c858",
+  "changeSetId":"096f51524e0ed3f088ea298a6833efd1a2285f88"
+}`}/>,
+  <Title>Response Headers</Title>,
+  <CodeBlock language="http" code={'Content-Type: application/json'}/>,
+  <Title>Response Body</Title>,
+  <CodeBlock language="json" code={`{
+  "run":{
+    "id":"3a3cb94c-86e1-4359-8caf-25aef1c39e0d",
+    "modelVersion":"2021.04.29.4",
+    "status":"InProgress",
+    "lastModifiedDateTime":"2021-07-20T07:56:20.0428972+00:00",
+    "_links":{
+      "imodel":{
+        "href":"https://api.bentley.com/imodels/ea349f77-f670-4e53-912b-2de45ce824ec"
+      },
+      "changeSet":{
+        "href":"https://api.bentley.com/imodels/ea349f77-f670-4e53-912b-2de45ce824ec/changesets/ee1f94bbf53ee6bc4a524e5580c4e9a4fb49c98e"
+      },
+      "project":{
+        "href":"https://api.bentley.com/projects/41d1720b-c84f-492e-8561-05429610eec6"
+      }
+    }
+  }
+}`}/>
+]}>
+
+## 4. Create a new Run
+
+Use the [Create Design Element Classification Run](/apis/designelementclassification/operations/mcl-run-create/)
+API to create and start a new Design Element Classification inference Run for the provided iModel
+and Named Version specified by changeSetId.
+
+Design Element Classification allows for some configuration. Let's quickly go over all parameters:
+
+- **modelVersion** - Design Element Classification Model version retrieved from an earlier step.
+- **iModelId** - iModel to check classifications for.
+- **changeSetId** - Change Set Id of the iModel's Named Version to check classifications for.
+
+<Alert type="informational">
+  Run status might be <b>NotStarted</b> for short period of time while the
+  process kicks off.
+</Alert>
+
+<Alert type="informational">
+  Note the Run ID that is returned when creating a Run will be needed in later
+  steps.
+</Alert>
+
+</TutorialSection>
+
+<TutorialSection actions={[
+  <Title>Request Syntax</Title>,
+  <CodeBlock language="http" code={`GET https://api.bentley.com/designelementclassification/runs/RUN_ID/status HTTP/1.1`} />,
+  <Title>Request Headers</Title>,
+  <CodeBlock language="http" code={`Accept: application/vnd.bentley.itwin-platform.v1+json
+Authorization: Bearer JWT_TOKEN`} />,
+  <Title>Response Headers</Title>,
+  <CodeBlock language="http" code={'Content-Type: application/json'}/>,
+  <Title>Response Body</Title>,
+  <CodeBlock language="json" code={`{
+  "status":"NotStarted"
+}`}/>
+]}>
+
+### Query status
+
+Once a Run is created you will need to wait until the Run is finished. You can use the
+[Get Design Element Classification Run Status](/apis/designelementclassification/operations/mcl-run-status/)
+API to check if Run has run to completion.
+
+- **Completed** - Run has successfully completed. Results are ready to be used.
+- **Canceled** - Run was canceled by user.
+- **Failed** - Run failed to complete.
+- **NotStarted** - Run was created, but has not started yet.
+- **InProgress** - Run was created and has started. Waiting for completion.
+
+</TutorialSection>
+
+<TutorialSection>
+
+## 5. Retrieve Run output
+
+Once a Design Element Classification Run has successfully completed its results can be downloaded.
+
+</TutorialSection>
+
+<TutorialSection actions={[
+  <Title>Request Syntax</Title>,
+  <CodeBlock language="http" code={`GET https://api.bentley.com/designelementclassification/runs/RUN_ID/results HTTP/1.1`} />,
+  <Title>Request Headers</Title>,
+  <CodeBlock language="http" code={`Accept: application/vnd.bentley.itwin-platform.v1+json
+Authorization: Bearer JWT_TOKEN`} />,
+  <Title>Response Headers</Title>,
+  <CodeBlock language="http" code={'Content-Type: application/json'}/>,
+  <Title>Response Body</Title>,
+  <CodeBlock language="json" code={`{
+  "results":[
+    {
+      "name":"misclassifications.json"
+    },
+    {
+      "name":"metadata.json"
+    }
+  ]
+}`}/>
+]}>
+
+### Get All Results
+
+All pipeline Results can be fetched using the [Get Design Element Classification Results](/apis/designelementclassification/operations/mcl-run-result-list/)
+API.
+
+</TutorialSection>
+
+<TutorialSection actions={[
+  <Title>Request Syntax</Title>,
+  <CodeBlock language="http" code={`POST https://api.bentley.com/designelementclassification/runs/RUN_ID/results/misclassifications.json HTTP/1.1`} />,
+  <Title>Request Headers</Title>,
+  <CodeBlock language="http" code={`Accept: application/vnd.bentley.itwin-platform.v1+json
+Authorization: Bearer JWT_TOKEN`} />
+]}>
+
+### Get Result
+
+To get just a specific Result, use the [Get Design Element Classification Result](/apis/designelementclassification/operations/mcl-run-result-get/)
+API. On success, this endpoint will produce a `302 Found` response and redirect your
+request to download the desired file contents.
+
+</TutorialSection>
+
+<TutorialSection actions={[
+  <Title>Request Syntax</Title>,
+  <CodeBlock language="http" code={`GET https://api.bentley.com/designelementclassification/runs?projectId=PROJECT_ID HTTP/1.1`} />,
+  <Title>Request Headers</Title>,
+  <CodeBlock language="http" code={`Accept: application/vnd.bentley.itwin-platform.v1+json
+Authorization: Bearer JWT_TOKEN
+Content-Type: application/json`} />,
+  <Title>Response Headers</Title>,
+  <CodeBlock language="http" code={'Content-Type: application/json'}/>,
+  <Title>Response Body</Title>,
+  <CodeBlock language="json" code={`{
+  "runs":[
+    {
+      "id":"03adc578-927a-4fbd-b7d7-5622e24397f0",
+      "modelVersion":"2021.04.29.4",
+      "status":"Finished",
+      "metadata":{
+        "countOfIssues":0,
+        "countOfProcessed":15,
+        "countOfElements":15
+      },
+      "lastModifiedDateTime":"2021-07-20T07:56:20.0428972+00:00",
+      "_links":{
+        "imodel":{
+          "href":"https://api.bentley.com/imodels/IMODEL_ID"
+        },
+        "changeSet":{
+          "href":"https://api.bentley.com/imodels/IMODEL_ID/changesets/CHANGE_SET_ID"
+        },
+        "project":{
+          "href":"https://api.bentley.com/projects/PROJECT_ID"
+        }
+      }
+    }
+  ]
+}`}/>
+]}>
+
+## 6. Get previous Runs in a Project
+
+All Design Element Classification Runs are associated with a Project. To get a history of all Runs
+you can call the [Get Design Element Classification Runs](/apis/designelementclassification/operations/mcl-run-list/)
+API.
+
+The Run object contains some metadata you might find useful:
+
+- **countOfIssues** - count of misclassified elements in a named version of an iModel found with this Design Element Classification model.
+- **countOfProcessed** - count of elements checked for classifications in iModel.
+- **countOfElements** - total count of elements found in iModel.
+
+</TutorialSection>
+
+<TutorialSection>
+
+## 7. Advanced
+
+We provide some additional APIs that provide a little more control and management over your Classification Runs.
+
+</TutorialSection>
+
+<TutorialSection actions={[
+  <Title>Request Syntax</Title>,
+  <CodeBlock language="http" code={`POST https://api.bentley.com/designelementclassification/runs/RUN_ID/cancel HTTP/1.1`} />,
+  <Title>Request Headers</Title>,
+  <CodeBlock language="http" code={`Accept: application/vnd.bentley.itwin-platform.v1+json
+Authorization: Bearer JWT_TOKEN`} />
+]}>
+
+### Cancel Run
+
+Design Element Classification Runs are complex and can take a long time to complete. Runs can be cancelled using
+the [Cancel Design Element Classification Run](/apis/designelementclassification/operations/mcl-run-cancel/) API
+so you don't have to waste time waiting for Runs to naturally fail or complete when unnecessary.
+
+</TutorialSection>
+
+<TutorialSection actions={[
+  <Title>Request Syntax</Title>,
+  <CodeBlock language="http" code={`DELETE https://api.bentley.com/designelementclassification/runs/RUN_ID HTTP/1.1`} />,
+  <Title>Request Headers</Title>,
+  <CodeBlock language="http" code={`Accept: application/vnd.bentley.itwin-platform.v1+json
+Authorization: Bearer JWT_TOKEN`} />
+]}>
+
+### Delete Run
+
+We strongly recommend deleting canceled Runs. You might also want to clean up a Project of stale or unnecessary
+historical Runs. Use the [Delete Design Element Classification Run](/apis/designelementclassification/operations/mcl-run-delete/)
+API for this.
+
+<Alert type="informational">
+  Only completed Runs can be deleted. Completed Run statuses:{' '}
+  <b>Failed, Canceled, Completed</b>.
+</Alert>
+
+</TutorialSection>
+
+<TutorialSection>
+
+## Conclusion
+
+Congratulations on completing this tutorial, at this point you should have been able to create Design Element Classification run for named version of an iModel, query run status and finally download run results. The result file contains metadata about elements in an iModel like predicted class, confidence, etc. This metadata can help to identify problematic elements and even make suggestions as to what the proper classifications should have been.
+
+</TutorialSection>
+
+<ContinueLearningSection>
+
+## More resources that you may like
+
+<TileList>
+  <ResourceTile
+    title="Design Element Classification"
+    href="/apis/designelementclassification"
+    description="An overview of Design Element Classification APIs and Machine Learning model."
+  />
+  <ResourceTile
+    title="Reporting & Insights"
+    href="/api-groups/reporting-insights"
+    description="An overview and detailed Reporting & Insights API group documentation."
+  />
+</TileList>
+
+</ContinueLearningSection>
