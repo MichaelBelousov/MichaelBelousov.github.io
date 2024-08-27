@@ -34,7 +34,7 @@ const Work = () => {
           {/* NOTE: unfortunately there is no standard way to disable corner info for
              resumes when printing in browsers, so I just upload a PDF on change for
              PDF users */}
-          <a href="/public/MichaelBelousov_resume.pdf" download="MichaelBelousov_resume.pdf">Download printable PDF</a>
+          <a href="/MichaelBelousov_resume.pdf" download="MichaelBelousov_resume.pdf">Download printable PDF</a>
           {customizeSkills && (
             <label>
               Custom Skills:
