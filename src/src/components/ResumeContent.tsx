@@ -93,6 +93,7 @@ export const ResumeContent = (props: {
           <li><a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">iTwin Platform Unreal integration tutorial (archive)</a></li>
           <li><a href="https://medium.com/itwinjs/evolve-your-itwin-with-unreal-45206afe19f4">Evolve your iTwin with Unreal</a></li>
           <li><a href="https://www.youtube.com/watch?v=IV0eBECws1k&t=130s">Bringing your iTwin into Unreal</a> (webinar video)</li>
+          <li><a href="/blog/zig_error_payloads/">How I learned to love Zig's diagnostic pattern</a></li>
         </ul>
       </section>
 
