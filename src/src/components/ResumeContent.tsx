@@ -138,6 +138,14 @@ export const ResumeContent = (props: {
         </ul>
       </section>
 
+      <section>
+        <h2> Awards </h2>
+        <ul>
+          <li>2021 Founder's Award in Product Advancement at Bentley Systems</li>
+          <li>2022 Founder's Award in Product Advancement at Bentley Systems</li>
+        </ul>
+      </section>
+
       {/*
         // FIXME: apparently alternis's HTML5 embedding is broken lol
       <section>
