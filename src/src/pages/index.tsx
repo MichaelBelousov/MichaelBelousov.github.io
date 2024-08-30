@@ -79,16 +79,6 @@ const Homepage = () => {
 
         <li>
           <strong>
-            Tabs or spaces
-          </strong>
-
-          <div>
-            <p>No.</p>
-          </div>
-        </li>
-
-        <li>
-          <strong>
             Emacs or Vim?
           </strong>
 

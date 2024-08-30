@@ -39,11 +39,8 @@ export const ResumeContent = (props: {
 
           <ul>
             <li>Led architecture and design for our next-generation Electron-based desktop app framework, mentoring all team members and helped manage day-to-day development</li>
-            <li> Led development and mentored contributors of transformation API for the iTwin platform, a hybrid TypeScript/Node.js/C++ service </li>
-            <li>
-              Developed and deployed the iTwin platform Unreal Engine integration,
-              an Electron application bridging iTwin Node.js APIs to Unreal via the Datasmith C++ SDK with an auto-update system
-            </li>
+            <li>Led development and mentored contributors of transformation API for the iTwin platform, a hybrid TypeScript/Node.js/C++ service</li>
+            <li>Improved performance of the iTwin Platform public backend system, a cluster of Node.js/C++ services which persist data in a custom object-storage-based virtual file system for SQLite </li>
             <li>
               Produced webinar of platform integration with platform's highest impressions (&gt;5K) on LinkedIn.
               Wrote marketing webpages, <a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">tutorials</a>,
