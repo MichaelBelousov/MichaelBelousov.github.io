@@ -107,21 +107,15 @@ export const ResumeContent = (props: {
         <h2> Technical Skills </h2>
           <div>
             {(props.customSkills || <>
-              Zig, C++/C, TypeScript, Python, GNU/Linux,
+              Zig, C++/C, TypeScript, Python, GNU/Linux, Git, React, Node.js,
               <br/>
-              Git, React, Node.js, Rust, OpenGL/GLSL,
-              <br/>
-              GitHub Actions, Azure Pipelines, Azure Cloud,
+              GitHub Actions, Azure Pipelines, Azure cloud platform,
               <br/>
               .NET, C#, HTML5/CSS, SQLite, Postgres, MongoDb,
               <br/>
               Web Assembly, PHP, Godot, Unreal Engine, Docker,
               <br/>
-              Rust, Electron, Lisp+Scheme, Java,
-              <br/>
-              Valgrind, ASan, libfuzzer, libAFL, rr, gdb
-              <br/>
-              Word processing, PowerPoint, Excel, LaT<sub>E</sub>X
+              Rust, Electron, Lisp+Scheme, Java, Valgrind, ASan, libfuzzer, libAFL, rr, gdb
             </>)}
           </div>
       </section>
