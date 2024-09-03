@@ -65,7 +65,8 @@ export const ResumeContent = (props: {
               Wrote <a href="https://github.com/MichaelBelousov/L2-Vis-Tools">an SVG network diagramming toolset</a> that uses SNMP,
               CDP scanning, and a CISCO router CLI parser
             </li>
-            <li> Migrated a PHP-Python2 XMLRPC+jQuery web stack to Python3+Vue.js</li>
+            <li> Migrated a PHP-Python2-XMLRPC+jQuery web stack to Python3+Vue.js</li>
+            {/* MENTION THIS: <li> managed multiple RHEL linux and PostgreSQL servers </li>*/}
           </ul>
         </div>
 
@@ -111,7 +112,7 @@ export const ResumeContent = (props: {
               <br/>
               GitHub Actions, Azure Pipelines, Azure cloud platform,
               <br/>
-              .NET, C#, HTML5/CSS, SQLite, Postgres, MongoDb,
+              .NET, C#, HTML5/CSS, SQLite, PostgreSQL, MongoDb,
               <br/>
               Web Assembly, PHP, Godot, Unreal Engine, Docker,
               <br/>
