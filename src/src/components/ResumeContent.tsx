@@ -40,10 +40,7 @@ export const ResumeContent = (props: {
           <ul>
             <li>Led architecture and design for our next-generation Electron-based desktop app framework, including designing internal vite and esbuild based frontend tooling for developers</li>
             <li>Led development and mentored contributors of transformation API for the iTwin platform, a hybrid TypeScript/Node.js/C++ service</li>
-            {/*<li>Improved performance of the iTwin Platform public backend system, a cluster of Node.js/C++ services which persist data in a custom object-storage-based virtual file system for SQLite </li>*/}
-            <li> Increased developer productivity by inventing a hook-based react abstraction layer for our vanilla JavaScript open source libraries
-              which eliminated several react state synchronization bugs
-            </li>
+            <li>Improved performance of the iTwin Platform public backend system, a cluster of Node.js/C++ services which persist data in a custom object-storage-based virtual file system for SQLite </li>
             <li>
               Produced webinar of platform integration,
               wrote marketing webpages, <a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">tutorials</a>,
@@ -51,7 +48,7 @@ export const ResumeContent = (props: {
             </li>
             <li> Contributed to several customer facing full-stack applications with Node.js, Apollo, C++, React, .NET, MongoDB, and Cloud SQLite </li>
             <li> Maintained dozens of CI/CD pipelines across Github Actions and Azure Pipelines to manage deployments </li>
-            {/*<li> Introduced fuzzing (catching dozens of buffer overflows), sanitizers, clang static analysis, and other tooling to native buildology </li>*/}
+            <li> Introduced fuzzing (catching dozens of buffer overflows), sanitizers, clang static analysis, and other tooling to native buildology </li>
           </ul>
         </div>
 
@@ -69,6 +66,7 @@ export const ResumeContent = (props: {
               CDP scanning, and a CISCO router CLI parser
             </li>
             <li> Migrated a PHP-Python2 XMLRPC+jQuery web stack to Python3+Vue.js</li>
+            <li>Administered multiple RHEL Linux servers and PostgreSQL databases </li>
           </ul>
         </div>
 
@@ -116,7 +114,7 @@ export const ResumeContent = (props: {
               <br/>
               Git, React, Node.js, Zig, Rust, REST, GraphQL/Apollo,
               <br/>
-              GitHub Actions, Azure Pipelines, SQLite, Postgres, MongoDB,
+              GitHub Actions, Azure Pipelines, SQLite, PostgreSQL, MongoDB,
               <br/>
               Web Assembly, Docker, Kubernetes, Azure cloud platform,
               <br/>
