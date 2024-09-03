@@ -16,7 +16,7 @@ CSS/Sass, Vite, Webpack, MongoDb, Postgres, MySQL, AWS Lambda,
 <br/>
 GraphQL, Apollo, Next.js, Web Assembly, HTML5 security,
 <br/>
-Git, Zig, C++/C, Docker,
+Git, Zig, C++/C, Docker, K8s,
 GitHub Actions, Azure Pipelines, Azure Cloud,
 matplotlib
 `;
@@ -44,7 +44,7 @@ const Work = () => {
           )}
         </div>
       </div>
-      <ResumeContent customSkills={customSkills} />
+      <ResumeContent />
     </Layout>
   )
 }

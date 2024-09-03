@@ -112,21 +112,15 @@ export const ResumeContent = (props: {
             {(props.customSkills ?
               <div dangerouslySetInnerHTML={{ __html: props.customSkills }}/>
             : <>
-              Zig, C++/C, TypeScript, Python, GNU/Linux,
+              TypeScript/JavaScript, Python, GNU/Linux, C#/.NET, HTML5+CSS, C++/C,
               <br/>
-              Git, React, Node.js, Rust, OpenGL/GLSL,
+              Git, React, Node.js, Zig, Rust, REST, GraphQL/Apollo,
               <br/>
-              GitHub Actions, Azure Pipelines, Azure Cloud,
+              GitHub Actions, Azure Pipelines, SQLite, Postgres, MongoDB,
               <br/>
-              .NET, C#, HTML5/CSS, SQLite, Postgres, MongoDB,
+              Web Assembly, Docker, Kubernetes, Azure cloud platform,
               <br/>
-              Web Assembly, PHP, Godot, Unreal Engine, Docker,
-              <br/>
-              Rust, Electron, Lisp+Scheme, Java,
-              <br/>
-              Valgrind, ASan, libfuzzer, libAFL, rr, gdb
-              <br/>
-              Word processing, PowerPoint, Excel, LaT<sub>E</sub>X
+              Electron, Java, Valgrind, ASan, libfuzzer, libAFL, rr, gdb
             </>)}
           </div>
       </section>
