@@ -34,7 +34,7 @@ export const ResumeContent = (props: {
               <SmallCaps>Bentley Systems</SmallCaps>, <em>Software Engineer II</em>
             </strong>
             &nbsp;
-            (May 2018&mdash;Resigned May 2024) <br/>
+            (May 2018&mdash;May 2024, resigned, gap until August) <br/>
           </h4>
 
           <ul>

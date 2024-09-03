@@ -4,28 +4,11 @@ import { ResumeContent } from '../components/ResumeContent'
 import * as styles from './work.module.scss'
 import * as sharedStyles from '../shared.module.scss'
 
-
-// people keep recommending I change my skills to a certain resume, and honestly,
-// my list of skills is too long to put in the resume, so, yes, I do tune my
-// list of presented skills on the resume, I have a lot more but I won't show them
-// to save space
-const defaultSkills = `\
-TypeScript/JavaScript, Python, GNU/Linux, React, Node.js, Vue, Flask,
-<br/>
-CSS/Sass, Vite, Webpack, MongoDb, Postgres, MySQL, AWS Lambda,
-<br/>
-GraphQL, Apollo, Next.js, Web Assembly, HTML5 security,
-<br/>
-Git, Zig, C++/C, Docker,
-GitHub Actions, Azure Pipelines, Azure Cloud,
-matplotlib
-`;
-
 const Work = () => {
   // TODO: useSyncExternalStore
   const customizeSkills = React.useMemo(() => globalThis.window?.location.hash.includes("customize_skills"), []);
   // TODO: keep in sync with resume content
-  const [customSkills, setCustomSkills] = React.useState(defaultSkills);
+  const [customSkills, setCustomSkills] = React.useState("");
 
   return (
     <Layout pageTitle="Work">
@@ -44,7 +27,7 @@ const Work = () => {
           )}
         </div>
       </div>
-      <ResumeContent customSkills={customSkills} />
+      <ResumeContent customSkills={customSkills === "" ? undefined : customSkills} />
     </Layout>
   )
 }
