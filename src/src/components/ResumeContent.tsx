@@ -38,8 +38,8 @@ export const ResumeContent = (props: {
           </h4>
 
           <ul>
-            <li>Led architecture and design for our next-generation Electron-based desktop app framework, including designing internal vite and esbuild based frontend tooling for developers</li>
             <li>Led development and mentored contributors of transformation API for the iTwin platform, a hybrid TypeScript/Node.js/C++ service</li>
+            <li>Led architecture and design for our next-generation Electron-based desktop app framework, including designing internal vite and esbuild based frontend tooling for developers</li>
             <li>Improved performance of the iTwin Platform public backend system, a cluster of Node.js/C++ services which persist data in a custom object-storage-based virtual file system for SQLite </li>
             <li>
               Produced webinar of platform integration,
@@ -62,7 +62,7 @@ export const ResumeContent = (props: {
           </h4>
           <ul>
             <li>
-              Wrote <a href="https://github.com/MichaelBelousov/L2-Vis-Tools">an SVG network diagramming toolset</a> that uses SNMP,
+              Wrote <a href="https://github.com/MichaelBelousov/L2-Vis-Tools">an SVG network diagramming toolset</a> in Python that uses SNMP,
               CDP scanning, and a CISCO router CLI parser
             </li>
             <li> Migrated a PHP-Python2 XMLRPC+jQuery web stack to Python3+Vue.js</li>
