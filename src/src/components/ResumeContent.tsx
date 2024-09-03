@@ -38,17 +38,20 @@ export const ResumeContent = (props: {
           </h4>
 
           <ul>
-            <li>Led architecture and design for our next-generation Electron-based desktop app framework, mentoring all team members and helped manage day-to-day development</li>
+            <li>Led architecture and design for our next-generation Electron-based desktop app framework, including designing internal vite and esbuild based frontend tooling for developers</li>
             <li>Led development and mentored contributors of transformation API for the iTwin platform, a hybrid TypeScript/Node.js/C++ service</li>
-            <li>Improved performance of the iTwin Platform public backend system, a cluster of Node.js/C++ services which persist data in a custom object-storage-based virtual file system for SQLite </li>
+            {/*<li>Improved performance of the iTwin Platform public backend system, a cluster of Node.js/C++ services which persist data in a custom object-storage-based virtual file system for SQLite </li>*/}
+            <li> Increased developer productivity by inventing a hook-based react abstraction layer for our vanilla JavaScript open source libraries
+              which eliminated several react state synchronization bugs
+            </li>
             <li>
-              Produced webinar of platform integration with platform's highest impressions (&gt;5K) on LinkedIn.
-              Wrote marketing webpages, <a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">tutorials</a>,
+              Produced webinar of platform integration,
+              wrote marketing webpages, <a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">tutorials</a>,
               and <a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">blog posts</a>
             </li>
-            <li> Contributed to several customer facing full-stack applications with Node.js, C++, React, .NET, MongoDb, and Cloud SQLite </li>
-            <li> Maintained dozens of CI/CD pipelines across Github Actions and Azure Pipelines </li>
-            <li> Introduced fuzzing (catching dozens of buffer overflows), sanitizers, clang static analysis, and other tooling to native buildology </li>
+            <li> Contributed to several customer facing full-stack applications with Node.js, Apollo, C++, React, .NET, MongoDB, and Cloud SQLite </li>
+            <li> Maintained dozens of CI/CD pipelines across Github Actions and Azure Pipelines to manage deployments </li>
+            {/*<li> Introduced fuzzing (catching dozens of buffer overflows), sanitizers, clang static analysis, and other tooling to native buildology </li>*/}
           </ul>
         </div>
 
@@ -106,14 +109,16 @@ export const ResumeContent = (props: {
       <section className="resume-section-techskills">
         <h2> Technical Skills </h2>
           <div>
-            {(props.customSkills || <>
+            {(props.customSkills ?
+              <div dangerouslySetInnerHTML={{ __html: props.customSkills }}/>
+            : <>
               Zig, C++/C, TypeScript, Python, GNU/Linux,
               <br/>
               Git, React, Node.js, Rust, OpenGL/GLSL,
               <br/>
               GitHub Actions, Azure Pipelines, Azure Cloud,
               <br/>
-              .NET, C#, HTML5/CSS, SQLite, Postgres, MongoDb,
+              .NET, C#, HTML5/CSS, SQLite, Postgres, MongoDB,
               <br/>
               Web Assembly, PHP, Godot, Unreal Engine, Docker,
               <br/>
