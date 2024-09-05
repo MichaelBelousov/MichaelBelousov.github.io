@@ -44,7 +44,7 @@ export const ResumeContent = (props: {
               <br/>
               <Underline>Backend:</Underline> PostgreSQL, MongoDB, SQLite, Linux, Node.js, Azure Service Fabric+Storage, nginx
               <br/>
-              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, SVG, CSS/Sass, Redux, Electron, Web security
+              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, SVG, CSS/Sass, Redux, Electron, Playwright, Web security
               <br/>
               <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, GDB, libAFL, libfuzzer, Valgrind, Docker
             </>)}
