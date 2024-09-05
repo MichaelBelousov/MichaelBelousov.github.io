@@ -42,7 +42,7 @@ export const ResumeContent = (props: {
             {(props.customSkills || <>
               <Underline>Languages:</Underline> TypeScript/JavaScript, C++/C/Zig, Python, SQL, C#, Java, Rust
               <br/>
-              <Underline>Backend:</Underline> PostgreSQL, MongoDB, SQLite, Linux, Node.js, Azure Service Fabric+Storage, nginx
+              <Underline>Backend:</Underline> PostgreSQL, MongoDB, Linux, Node.js, Azure Service Fabric+Storage, nginx, gRPC
               <br/>
               <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, GraphQL, CSS, Redux, Electron, Playwright, Web security
               <br/>
