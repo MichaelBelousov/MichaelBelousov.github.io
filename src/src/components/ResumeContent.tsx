@@ -40,11 +40,11 @@ export const ResumeContent = (props: {
         <h2> Technical Skills </h2>
           <div>
             {(props.customSkills || <>
-              <Underline>Languages:</Underline> TypeScript/JavaScript, C++/C/Zig, Python, C#/.NET, Java, Rust
+              <Underline>Languages:</Underline> TypeScript/JavaScript, C++/C/Zig, Python, SQL, C#, Java, Rust
               <br/>
               <Underline>Backend:</Underline> PostgreSQL, MongoDB, SQLite, Linux, Node.js, Azure Service Fabric+Storage, nginx
               <br/>
-              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, SVG, CSS/Sass, Redux, Electron, Playwright, Web security
+              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, GraphQL, CSS, Redux, Electron, Playwright, Web security
               <br/>
               <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, GDB, libAFL, libfuzzer, Valgrind, Docker
             </>)}
@@ -76,7 +76,7 @@ export const ResumeContent = (props: {
             <li> Built several customer-facing full-stack applications
               with <strong>Node.js</strong>, <strong>C++</strong>, <strong>React</strong>, <strong>ASP.NET</strong>, <strong>MongoDB</strong>, <strong>Azure Service Fabric</strong> and <strong>Cloud-Backed SQLite</strong> </li>
             <li> Maintained dozens of CI/CD pipelines across <strong>Github Actions</strong> and <strong>Azure Pipelines</strong> </li>
-            <li> Introduced fuzzing, sanitizers, and <strong>clang</strong> static analysis to native buildology, patching dozens of severe security holes </li>
+            <li> Introduced fuzzing, sanitizers, and <strong>Clang</strong> static analysis to native buildology, patching dozens of severe security holes </li>
             <li>
               Produced webinar of platform integration with platform's highest impressions (30K) on LinkedIn.
               Wrote marketing webpages, <a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">tutorials</a>,
