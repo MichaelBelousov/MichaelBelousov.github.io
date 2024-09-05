@@ -2,7 +2,17 @@ import React from "react"
 import "./ResumeContent.css"
 
 const SmallCaps = (props: React.HTMLProps<HTMLSpanElement>) => (
-  <span style={{fontVariant:"small-caps"}}>{props.children}</span>
+  <span {...props} style={{fontVariant:"small-caps"}}>{props.children}</span>
+);
+
+const Underline = (props: React.HTMLProps<HTMLSpanElement>) => (
+  <span {...props} style={{textDecoration: "underline"}}>{props.children}</span>
+);
+
+const TwoCols = (props: React.HTMLProps<HTMLDivElement>) => (
+  <div {...props} style={{ display: "flex", justifyContent: "space-between" }}>
+    {props.children}
+  </div>
 );
 
 export const ResumeContent = (props: {
@@ -10,32 +20,54 @@ export const ResumeContent = (props: {
 }) => {
   return (
     <div className="resume-content">
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <TwoCols>
         <div>
           <h1> Michael Belousov </h1>
-          <strong><a href="tel:+12035029425">+1 (203) 502-9425</a></strong> <br/>
+          <strong>Hoboken, NJ</strong><br/>
           <strong><a href="mailto:me@mikemikeb.com">me@mikemikeb.com</a></strong> <br/>
           <strong><a href="https://mikemikeb.com">https://mikemikeb.com</a></strong> <br/>
         </div>
         <div style={{ textAlign: "right" }}>
           <h1>&nbsp;</h1>
+          <strong><a href="tel:+12035029425">+1 (203) 502-9425</a></strong> <br/>
           <strong><a href="https://www.linkedin.com/in/michael-belousov-745ab8238/">LinkedIn</a></strong> <br/>
           <strong><a href="https://github.com/MichaelBelousov">GitHub</a></strong>
         </div>
-      </div>
+      </TwoCols>
       <hr />
 
+      <section className="resume-section-techskills">
+        <h2> Technical Skills </h2>
+          <div>
+            {(props.customSkills || <>
+              <Underline>Languages:</Underline> TypeScript, Python, C++/C/Zig, C#/.NET, Java, Rust
+              <br/>
+              <Underline>Backend:</Underline> PostgreSQL, MongoDB, SQLite, Linux, Node.js, Azure Service Fabric+Storage, nginx
+              <br/>
+              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, SVG, CSS/Sass, Redux, Electron, Web Security
+              <br/>
+              <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, gdb, libAFL, libfuzzer, valgrind, Docker
+            </>)}
+          </div>
+      </section>
+
       <section>
-        <h2> Experience </h2>
+        <h2> Professional Experience </h2>
 
         <div className={"resume-dont-indent"}>
-          <h4>
-            <strong>
-              <SmallCaps>Bentley Systems</SmallCaps>, <em>Software Engineer II</em>
-            </strong>
-            &nbsp;
-            (May 2018&mdash;May 2024, resigned, gap until August) <br/>
-          </h4>
+
+          <TwoCols>
+            <div>
+              <h4 style={{margin: "0"}}>
+                <strong><SmallCaps>Bentley Systems</SmallCaps></strong>
+              </h4>
+              <div><em>Software Engineer II</em></div>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <div>May 2018&mdash;May 2024</div>
+              <div>Exton, PA</div>
+            </div>
+          </TwoCols>
 
           <ul>
             <li>Led architecture and design for our next-generation Electron-based desktop app framework, mentoring all team members and helped manage day-to-day development</li>
@@ -53,42 +85,33 @@ export const ResumeContent = (props: {
         </div>
 
         <div className={"resume-dont-indent"}>
-          <h4>
-            <strong>
-              <SmallCaps>ITS</SmallCaps>, <em>Security Team Developer</em>
-            </strong>
-            &nbsp;
-            (December 2016&mdash;May 2019) <br/>
-          </h4>
+          <TwoCols>
+            <div>
+              <h4 style={{margin: "0"}}>
+                <strong><SmallCaps>ITS</SmallCaps></strong>
+              </h4>
+              <div><em>Security Team Student Developer</em></div>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <div>December 2016&mdash;May 2019</div>
+              <div>Storrs, CT</div>
+            </div>
+          </TwoCols>
+
           <ul>
             <li>
-              Wrote <a href="https://github.com/MichaelBelousov/L2-Vis-Tools">an SVG network diagramming toolset</a> that uses SNMP,
+              Wrote <a href="https://github.com/MichaelBelousov/L2-Vis-Tools">an SVG network diagramming toolset</a> in <strong>Python</strong> that uses SNMP,
               CDP scanning, and a CISCO router CLI parser
             </li>
-            <li> Migrated a PHP-Python2-XMLRPC+jQuery web stack to Python3+Vue.js</li>
-            {/* MENTION THIS: <li> managed multiple RHEL linux and PostgreSQL servers </li>*/}
+            <li> Migrated a <strong>PHP, Python2-XMLRPC, and jQuery</strong> web stack to <strong>Python3 and Vue.js</strong></li>
+            <li> Administered multiple RHEL <strong>Linux</strong> and <strong>PostgreSQL</strong> server clusters </li>
           </ul>
         </div>
 
-        <div className={"resume-dont-indent"}>
-          <h4>
-            <strong>
-              <SmallCaps>UCONN Speech and Hearing research</SmallCaps>, <em>Technical Contractor</em>
-            </strong>
-            &nbsp;
-            (March 2017&mdash;July 2018) <br/>
-          </h4>
-          <ul>
-            <li>
-              Built (solo) a car driving simulation in Unreal Engine 4
-              for tracking navigation patterns, for neurological research, with Python/TkInter tooling for replaying patient sessions
-            </li>
-          </ul>
-        </div>
       </section>
 
-      <section>
-        <h2> Technical Writing </h2>
+      <section className="resume-noprint">
+        <h2> Technical Writing <small>(omitted in print)</small> </h2>
         <ul>
           <li><a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">introducing @bentley/imodel-react-hooks</a></li>
           <li><a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">iTwin Platform Unreal integration tutorial (archive)</a></li>
@@ -98,31 +121,8 @@ export const ResumeContent = (props: {
         </ul>
       </section>
 
-      <section>
-        <h2> Education </h2>
-        <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
-        <em>Bachelor of Science</em>, Computer Science and Engineering. Completed May 2019
-      </section>
-
-      <section className="resume-section-techskills">
-        <h2> Technical Skills </h2>
-          <div>
-            {(props.customSkills || <>
-              Zig, C++/C, TypeScript, Python, GNU/Linux, Git, React, Node.js,
-              <br/>
-              GitHub Actions, Azure Pipelines, Azure cloud platform,
-              <br/>
-              .NET, C#, HTML5/CSS, SQLite, PostgreSQL, MongoDb,
-              <br/>
-              Web Assembly, PHP, Godot, Unreal Engine, Docker,
-              <br/>
-              Rust, Electron, Lisp+Scheme, Java, Valgrind, ASan, libfuzzer, libAFL, rr, gdb
-            </>)}
-          </div>
-      </section>
-
-      <section>
-        <h2> Notable open source contributions </h2>
+      <section className="resume-noprint">
+        <h2> Notable open source contributions <small>(omitted in print)</small> </h2>
         <ul>
           <li> <code><a href="https://github.com/lint-staged/lint-staged/pull/816">lint-staged</a></code> msys2/cygwin platform support </li>
           <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint/pull/3601">typescript-eslint</a></code> bug in return-await lint rule </li>
@@ -132,22 +132,10 @@ export const ResumeContent = (props: {
       </section>
 
       <section>
-        <h2> Awards </h2>
-        <ul>
-          <li>2021 Founder's Award in Product Advancement at Bentley Systems</li>
-          <li>2022 Founder's Award in Product Advancement at Bentley Systems</li>
-        </ul>
+        <h2> Education </h2>
+        <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
+        <em>Bachelor of Science</em>, Computer Science and Engineering
       </section>
-
-      {/*
-        // FIXME: apparently alternis's HTML5 embedding is broken lol
-      <section>
-        <h2> Notable projects </h2>
-        <ul>
-          <li><a href="https://alternis.io">alternis.io</a> embeddable dialogue middleware (in zig) and visual flow-based dialogue editor app</li>
-        </ul>
-      </section>
-      */}
 
     </div>
   );
