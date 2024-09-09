@@ -40,7 +40,7 @@ export const ResumeContent = (props: {
         <h2> Technical Skills </h2>
           <div>
             {(props.customSkills || <>
-              <Underline>Languages:</Underline> TypeScript/JavaScript, C++/C/Zig, Python, SQL, C#, Java, Rust, PHP
+              <Underline>Languages:</Underline> C++, C, Zig, Python, TypeScript, SQL, C#, Java, Rust, PHP
               <br/>
               <Underline>Backend:</Underline> PostgreSQL, MongoDB, Linux, Node.js, Azure Service Fabric+Storage, nginx, gRPC
               <br/>
