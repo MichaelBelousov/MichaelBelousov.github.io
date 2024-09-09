@@ -46,7 +46,7 @@ export const ResumeContent = (props: {
               <br/>
               <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, GraphQL, CSS, Redux, Electron, Playwright, Web security
               <br/>
-              <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, GDB, libAFL, libfuzzer, Valgrind, Docker
+              <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, GDB, libAFL, Valgrind, rr, Clang
             </>)}
           </div>
       </section>

@@ -29,6 +29,7 @@ const Work = () => {
         </div>
       </div>
 
+      {
       <div style={{fontSize: "12pt"}}>
         <p>
           Michael Belousov
@@ -42,29 +43,32 @@ const Work = () => {
 
         <p>
           Some friends of mine were telling me about Hudson River Trading company recently, and that I'd be
-          a great fit with my high performance C++ experience. But, as someone who wears many hats, I am also
-          a long time professional user of Linux and Python, so I am also applying to your Systems Software Engineer
-          position, as well.
+          a great fit with my high performance C++ experience. But, as someone who wears many hats,
+          including professional Python and Linux for over a decade, I am applying to multiple positions
+          to see where I can fit best at HRT!
         </p>
 
         <p>
-          I've managed Linux (RHEL/CentOS) server infrastructure at the UCONN's Information Technology Services
-          security team, ran an Ubuntu-based GitLab installation for an international hobby development team,
-          and been the Linux expert at Bentley Systems, frequently debugging generic issues in our deployments
-          and CI/CD pipelines.
+          I'm a long time high-performance programming enthusiast, and I've always sought to strike a balance
+          between code my colleagues are comfortable working with, and efficient usage of modern performance
+          techniques, be they algorithms or language, runtime and hardware features like vectorization,
+          and manual unrolling for memory dependency reduction.
         </p>
 
         <p>
-          I've also been using desktop Linux (Debian/Arch derivatives) for over a decade, which is a great motivator
-          to run into new issues and then fix them.
+          I think my previous colleagues at Bentley Systems would attest to me being one of the highest output, most knowledgeable
+          and most helpful contributors, as I was the local expert in domains like Linux, C++, and even TypeScript, HTML5 security,
+          and React. But, after talking with management, I realized it was time to move on if I wanted to advance my
+          career and grow at a pace suited to my ability. So, I resigned and traveled with family for the summer.
         </p>
 
         <p>
-          I think I would be a great fit for HRT's culture, and would love to bring my skills and grow them with you!
+          Now that I'm back, I think Hudson River Trading is that place, and I would love to bring my skills and grow them with you!
         </p>
 
         Sincerely,<br/>Michael Belousov
       </div>
+      }
       {/*
       <ResumeContent customSkills={customSkills === "" ? undefined : customSkills} />
       */}
