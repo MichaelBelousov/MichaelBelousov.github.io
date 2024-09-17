@@ -40,13 +40,15 @@ export const ResumeContent = (props: {
         <h2> Technical Skills </h2>
           <div>
             {(props.customSkills || <>
-              <Underline>Languages:</Underline> TypeScript/JavaScript, C++/C/Zig, Python, SQL, C#, Java, Rust, PHP
+              <Underline>Languages:</Underline> TypeScript/JavaScript, C++, C, Zig, Python, Rust, SQL, C#
               <br/>
-              <Underline>Backend:</Underline> PostgreSQL, MongoDB, Linux, Node.js, Azure Service Fabric+Storage, nginx, gRPC
+              <Underline>Backend:</Underline> PostgreSQL, MongoDB, Linux, Node.js, nginx, gRPC, Redis
               <br/>
-              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, GraphQL, CSS, Redux, Electron, Playwright, Web security
+              <Underline>Cloud:</Underline> Terraform, Docker, Azure containers, Azure Monitor, Azure Storage, Azure Functions
               <br/>
-              <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, GDB, libAFL, libfuzzer, Valgrind, Docker
+              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, GraphQL, CSS, Redux, Electron, Playwright, TailwindCSS
+              <br/>
+              <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, GDB, Valgrind, neovim
             </>)}
           </div>
       </section>
@@ -70,15 +72,22 @@ export const ResumeContent = (props: {
           </TwoCols>
 
           <ul>
-            <li>Led architecture and design for our next-gen <strong>Electron</strong>-based desktop app framework, mentored midsize team of <strong>10+</strong> junior to senior level engineers and managed development</li>
-            <li>Led team of 5 engineers building service for transforming data in the iTwin Platform, leveraging <strong>TypeScript</strong>, <strong>Node.js</strong>, and <strong>C++</strong></li>
+            <li>
+              Led architecture and design for our next-gen <strong>Electron</strong>-based
+              desktop app framework, mentored midsize team of <strong>10+</strong> junior to senior
+              level engineers and managed development
+            </li>
+            <li>Led team of 5 engineers building services for transforming data in the iTwin Platform, in <strong>TypeScript</strong>, <strong>Node.js</strong>, and <strong>C++</strong></li>
             <li>Implemented <strong>5-10&times; speed</strong> improvement of Transformation API through profiling and eliminating IO bottlenecks, after taking over service ownership</li>
-            <li> Built several customer-facing full-stack applications
-              with <strong>Node.js</strong>, <strong>C++</strong>, <strong>React</strong>, <strong>ASP.NET</strong>, <strong>MongoDB</strong>, <strong>Azure Service Fabric</strong> and <strong>Cloud-Backed SQLite</strong> </li>
+            <li>
+              Built several customer-facing full-stack applications leveraging <strong>microservice</strong> architectures
+              , <strong>Node.js</strong>, <strong>C++</strong>, <strong>React</strong>
+              , <strong>ASP.NET</strong>, <strong>MongoDB</strong>, and <strong>Redis</strong>
+            </li>
             <li> Maintained dozens of CI/CD pipelines across <strong>Github Actions</strong> and <strong>Azure Pipelines</strong> </li>
             <li> Introduced fuzzing, sanitizers, and <strong>Clang</strong> static analysis to native buildology, patching dozens of severe security holes </li>
             <li>
-              Produced webinar of platform integration with platform's highest impressions (30K) on LinkedIn.
+              Produced webinar of platform integration with platform's highest impressions (&gt;30K) on LinkedIn.
               Wrote marketing webpages, <a href="/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">tutorials</a>,
               and <a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">blog posts</a>
             </li>
