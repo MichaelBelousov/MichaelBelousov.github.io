@@ -40,7 +40,7 @@ export const ResumeContent = (props: {
         <h2> Technical Skills </h2>
           <div>
             {(props.customSkills || <>
-              <Underline>Languages:</Underline> TypeScript/JavaScript, C++, C, Zig, Python, Rust, SQL, C#
+              <Underline>Languages:</Underline> TypeScript/JavaScript, C++, Python, C, Zig, Rust, SQL, C#
               <br/>
               <Underline>Backend:</Underline> PostgreSQL, MongoDB, Linux, Node.js, nginx, gRPC, Redis
               <br/>
@@ -66,7 +66,7 @@ export const ResumeContent = (props: {
               <div><em>Software Engineer II</em></div>
             </div>
             <div style={{ textAlign: "right" }}>
-              <div>May 2018&mdash;May 2024</div>
+              <div>May 2019&mdash;May 2024</div>
               <div>Exton, PA</div>
             </div>
           </TwoCols>
@@ -84,7 +84,7 @@ export const ResumeContent = (props: {
               , <strong>Node.js</strong>, <strong>C++</strong>, <strong>React</strong>
               , <strong>ASP.NET</strong>, <strong>MongoDB</strong>, and <strong>Redis</strong>
             </li>
-            <li> Maintained dozens of CI/CD pipelines across <strong>Github Actions</strong> and <strong>Azure Pipelines</strong> </li>
+            <li> Maintained dozens of CI/CD pipelines utilizing <strong>Github Actions</strong>, <strong>Azure Pipelines</strong>, and <strong>Python</strong> </li>
             <li> Introduced fuzzing, sanitizers, and <strong>Clang</strong> static analysis to native buildology, patching dozens of severe security holes </li>
             <li>
               Produced webinar of platform integration with platform's highest impressions (&gt;30K) on LinkedIn.
