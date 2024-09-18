@@ -46,7 +46,7 @@ export const ResumeContent = (props: {
               <br/>
               <Underline>Cloud:</Underline> Terraform, Docker, Azure containers, Azure Monitor, Azure Storage, Azure Functions
               <br/>
-              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, GraphQL, CSS, Redux, Electron, Playwright, TailwindCSS
+              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, GraphQL, CSS, Next.js, Electron, Playwright, TailwindCSS
               <br/>
               <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, GDB, Valgrind, neovim
             </>)}
