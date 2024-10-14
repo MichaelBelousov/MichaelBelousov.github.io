@@ -46,7 +46,7 @@ export const ResumeContent = (props: {
               <br/>
               <Underline>Cloud:</Underline> Terraform, Docker, Azure containers, Azure Monitor, Azure Storage, Azure Functions
               <br/>
-              <Underline>Frontend:</Underline> React, Vue, Vite, Webpack, GraphQL, CSS, Next.js, Electron, Playwright, TailwindCSS
+              <Underline>Frontend:</Underline> React, Vite, Webpack, GraphQL, CSS, Express, Playwright, WebAssembly
               <br/>
               <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, GDB, Valgrind, neovim
             </>)}
@@ -77,7 +77,7 @@ export const ResumeContent = (props: {
               desktop app framework, mentored midsize team of <strong>10+</strong> junior to senior
               level engineers and managed development
             </li>
-            <li>Led team of 5 engineers building services for transforming data in the iTwin Platform, in <strong>TypeScript</strong>, <strong>Node.js</strong>, and <strong>C++</strong></li>
+            <li>Led team of 5 engineers building APIs for transforming data in the iTwin Platform, in <strong>TypeScript</strong>, <strong>Node.js</strong>, and <strong>C++</strong></li>
             <li>Implemented <strong>5-10&times; speed</strong> improvement of Transformation API through profiling and eliminating IO bottlenecks, after taking over service ownership</li>
             <li>
               Built several customer-facing full-stack applications leveraging <strong>microservice</strong> architectures
