@@ -84,8 +84,8 @@ export const ResumeContent = (props: {
               , <strong>Node.js</strong>, <strong>C++</strong>, <strong>React</strong>
               , <strong>ASP.NET</strong>, <strong>MongoDB</strong>, and <strong>Redis</strong>
             </li>
-            <li> Maintained dozens of CI/CD pipelines utilizing <strong>Github Actions</strong>, <strong>Azure Pipelines</strong>, and <strong>Python</strong> </li>
-            <li> Introduced fuzzing, sanitizers, and <strong>Clang</strong> static analysis to native buildology, patching dozens of severe security holes </li>
+            <li> Designed <strong>30+</strong> CI/CD pipelines with <strong>Github Actions</strong>, <strong>Azure Pipelines</strong>, and <strong>Python</strong> </li>
+            <li> Prevented costly company breaches by discovering and patching <strong>15+</strong> severe vulnerabilities in critical systems by introducing fuzzing, sanitizers, and <strong>Clang</strong> static analysis</li>
             <li>
               Produced webinar of platform integration with platform's highest impressions (&gt;30K) on LinkedIn.
               Wrote marketing webpages, <a href="https://mikemikeb.com/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">tutorials</a>,
@@ -110,14 +110,22 @@ export const ResumeContent = (props: {
 
           <ul>
             <li>
-              Wrote <a href="https://github.com/MichaelBelousov/L2-Vis-Tools">an SVG network diagramming toolset</a> in <strong>Python</strong> that uses SNMP,
-              CDP scanning, and a custom CISCO router shell parser
+              Improved security issue resolution time by 10% by building <a href="https://github.com/MichaelBelousov/L2-Vis-Tools">an SVG network diagramming toolset</a> in <strong>Python</strong> to automate
+              network auditing using SNMP, CDP, and CISCO router shell
             </li>
-            <li> Migrated a <strong>PHP</strong>, <strong>Python2-XMLRPC</strong>, and <strong>jQuery</strong> web stack to <strong>Python3</strong> and <strong>Vue.js</strong></li>
-            <li> Administered multiple RHEL <strong>Linux</strong> and <strong>PostgreSQL</strong> server clusters </li>
+            <li> Designed a progressive migration strategy and migrated a <strong>PHP</strong>, <strong>Python2-XMLRPC</strong>, and <strong>jQuery</strong> web stack to <strong>Python3</strong> and <strong>Vue.js</strong></li>
+            <li> Maintained <strong>99%</strong> up-time RHEL <strong>Linux</strong> and <strong>PostgreSQL</strong> clusters </li>
           </ul>
         </div>
 
+      </section>
+
+      <div className="resume-pagebreak"/>
+
+      <section>
+        <h2> Education </h2>
+        <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
+        <em>Bachelor of Science</em>, Computer Science and Engineering
       </section>
 
       <section className="resume-noprint">
@@ -131,20 +139,14 @@ export const ResumeContent = (props: {
         </ul>
       </section>
 
-      <section className="resume-noprint">
-        <h2> Notable open source contributions <small>(omitted in print)</small> </h2>
+      <section>
+        <h2> Notable open source contributions </h2>
         <ul>
           <li> <code><a href="https://github.com/lint-staged/lint-staged/pull/816">lint-staged</a></code> msys2/cygwin platform support </li>
           <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint/pull/3601">typescript-eslint</a></code> bug in return-await lint rule </li>
           <li> <code><a href="https://github.com/godotengine/godot/pull/39739">Godot game engine</a></code> bug in initial C# object marshalling </li>
           <li> <code><a href="https://github.com/onivim/oni2/pull/2630">onivim2</a></code> command palette autocomplete bug in vim-like editor </li>
         </ul>
-      </section>
-
-      <section>
-        <h2> Education </h2>
-        <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
-        <em>Bachelor of Science</em>, Computer Science and Engineering
       </section>
 
     </div>

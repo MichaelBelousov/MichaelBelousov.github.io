@@ -12,6 +12,16 @@
   .resume-noprint {
     display: none;
   }
+
+  .resume-pagebreak {
+    page-break-after: always;
+  }
+}
+
+@media screen {
+  .resume-printonly {
+    display: none;
+  }
 }
 
 .resume-content {
