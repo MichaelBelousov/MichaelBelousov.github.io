@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" style="height: 100%;">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Grappl Editor</title>
+    <!-- FIXME: remove temp -->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script type="module" crossorigin src="/graphl-demo/assets/index-0feeecfa.js"></script>
+    <link rel="stylesheet" href="/graphl-demo/assets/index-745cdcde.css">
+  </head>
+
+  <body style="height: 100%; margin: 0; padding: 0;" >
+    <style>
+        body {
+          overflow-x: hidden;
+          display: grid;
+          grid-template-columns: 0px 100vw 50vw;
+          margin: 0;
+          padding: 0;
+        }
+        #dvui-canvas {
+          height: 100vh;
+          display: block;
+          outline: none;
+          caret-color: transparent;
+        }
+        #react-app {
+          height: 100vh;
+        }
+    </style>
+    <!-- need tabIndex for the canvas to receive keydown/keyup/beforeinput events -->
+    <canvas id="dvui-canvas" tabIndex="1"></canvas>
+    <div id="react-app"></div>
+    
+    
+  </body>
+</html>
