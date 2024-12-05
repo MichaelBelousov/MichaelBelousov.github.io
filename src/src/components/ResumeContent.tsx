@@ -46,7 +46,7 @@ export const ResumeContent = (props: {
               <br/>
               <Underline>Cloud:</Underline> Terraform, Docker, Azure containers, Azure Monitor, Azure Storage, Azure Functions
               <br/>
-              <Underline>Frontend:</Underline> React, Vite, Webpack, GraphQL, CSS, Express, Playwright, WebAssembly
+              <Underline>Frontend:</Underline> React, Vite, Webpack, GraphQL, CSS, Express, Cypress, Playwright, Jest
               <br/>
               <Underline>Tools:</Underline> Git, GNU/Linux, GitHub Actions, Azure Pipelines, GDB, Valgrind, neovim
             </>)}
@@ -80,10 +80,11 @@ export const ResumeContent = (props: {
             <li>Led team of 5 engineers building APIs for transforming data in the iTwin Platform, in <strong>TypeScript</strong>, <strong>Node.js</strong>, and <strong>C++</strong></li>
             <li>Implemented <strong>5-10&times; speed</strong> improvement of Transformation API through profiling and eliminating IO bottlenecks, after taking over service ownership</li>
             <li>
-              Built several customer-facing full-stack applications leveraging <strong>microservice</strong> architectures
+              Built several customer-facing full-stack applications leveraging <strong>micro-service</strong> architectures
               , <strong>Node.js</strong>, <strong>C++</strong>, <strong>React</strong>
               , <strong>ASP.NET</strong>, <strong>MongoDB</strong>, and <strong>Redis</strong>
             </li>
+            <li> Deployed and designed a <strong>micro-frontend</strong> architecture to handle multiple teams delivering components for &gt;15 applications </li>
             <li> Designed <strong>30+</strong> CI/CD pipelines with <strong>Github Actions</strong>, <strong>Azure Pipelines</strong>, and <strong>Python</strong> </li>
             <li> Prevented costly company breaches by discovering and patching <strong>15+</strong> severe vulnerabilities in critical systems by introducing fuzzing, sanitizers, and <strong>Clang</strong> static analysis</li>
             <li>
