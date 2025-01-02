@@ -62,23 +62,24 @@ export const ResumeContent = (props: {
               <h4 style={{margin: "0"}}>
                 <strong>Graphl</strong>
               </h4>
-              <div><em>Senior Software Engineer</em></div>
+              <div><em>personal project</em></div>
             </div>
             <div style={{ textAlign: "right" }}>
               <div>May 2024&mdash;Current</div>
-              <div>Remote</div>
+              <div></div>
             </div>
           </TwoCols>
 
           <ul>
             <li>
-              Led design for a workflow engine compiler to <strong>WebAssembly</strong> written in <strong>Zig</strong>
+              Implemented a visual scripting IDE and workflow engine compiler to <strong>WebAssembly</strong> using <strong>Zig</strong>
             </li>
             <li>
-              Shipped local-first web IDE for visual scripting and marketing page using <strong>Gatsby</strong>, <strong>React</strong>, <strong>Github Actions</strong>, <strong>Terraform</strong>, and <strong>Azure Cloud</strong>
+              Designed SDK with host-defined functions and <strong>JavaScript</strong>/<strong>WebAssembly</strong> interop
             </li>
             <li>
-              Shipped <strong>WebAssembly</strong> workflow execution platform for customers to run scheduled and on-demand compute jobs in the cloud
+              Shipped local-first web IDE and marketing page built with <strong>Gatsby</strong>, <strong>React</strong>, <strong>Github Actions</strong>, <strong>Terraform</strong>,
+              and <strong>Azure Cloud</strong>
             </li>
           </ul>
         </div>
