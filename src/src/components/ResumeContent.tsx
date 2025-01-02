@@ -111,7 +111,7 @@ export const ResumeContent = (props: {
               , <strong>Node.js</strong>, <strong>C++</strong>, <strong>React</strong>
               , <strong>ASP.NET</strong>, <strong>MongoDB</strong>, and <strong>Redis</strong>
             </li>
-            <li> Deployed and designed a <strong>micro-frontend</strong> architecture to handle multiple teams delivering components for &gt;15 applications </li>
+            <li> Deployed a <strong>micro-frontend</strong> architecture with version rollback to handle multiple teams delivering live component updates for &gt;15 applications </li>
             <li> Designed <strong>30+</strong> CI/CD pipelines with <strong>Github Actions</strong>, <strong>Azure Pipelines</strong>, and <strong>Python</strong> </li>
             <li> Prevented costly company breaches by discovering and patching <strong>15+</strong> severe vulnerabilities in critical systems by introducing fuzzing, sanitizers, and <strong>Clang</strong> static analysis</li>
             <li>
