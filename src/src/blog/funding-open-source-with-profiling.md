@@ -10,7 +10,7 @@ date: "2024-12-07"
 <!-- TODO: check linux foundation Census 3 for some quotes -->
 
 These days almost all software projects have some sort of open source dependency.
-If not explicitly, congrats, but perhaps you've written it in a programming languae that is open source?
+If not explicitly, congrats, but perhaps you've written it in a programming language that is open source?
 
 It often comes up that we don't pay these people anything. You've probably seen the essential XKCD post:
 
@@ -81,4 +81,4 @@ So I'm not saying it's perfect, it's impractical (possibly even non-performant ð
 deployed code to every client anyway.
 
 But a general profiling session of several of your core projects is probably a good start, and should give you some
-insight into who's shoulders you might have not realized you've been standing on this whole time.
+insight into whose shoulders you might have not realized you've been standing on this whole time.
