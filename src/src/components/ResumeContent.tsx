@@ -54,10 +54,33 @@ export const ResumeContent = (props: {
       </section>
 
       <section>
-        <h2> Professional Experience </h2>
+        <h2> Experience </h2>
 
         <div className={"resume-dont-indent"}>
+          <TwoCols>
+            <div>
+              <h4 style={{margin: "0"}}>
+                <strong>Graphl</strong>
+              </h4>
+              <div><em>Senior Software Engineer</em></div>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <div>May 2024&mdash;Current</div>
+              <div>Remote</div>
+            </div>
+          </TwoCols>
 
+          <ul>
+            <li>
+              Led engineering and design for a workflow engine compiler to <strong>WebAssembly</strong> written in <strong>Zig</strong>
+            </li>
+            <li>
+              Shipped local-first web IDE for visual scripting and marketing page using <strong>Gatsby</strong>, <strong>Github Actions</strong>, <strong>Terraform</strong>, and <strong>Azure Cloud</strong>
+            </li>
+          </ul>
+        </div>
+
+        <div className={"resume-dont-indent"}>
           <TwoCols>
             <div>
               <h4 style={{margin: "0"}}>
@@ -95,6 +118,8 @@ export const ResumeContent = (props: {
           </ul>
         </div>
 
+        <div className="resume-pagebreak"/>
+
         <div className={"resume-dont-indent"}>
           <TwoCols>
             <div>
@@ -121,8 +146,6 @@ export const ResumeContent = (props: {
 
       </section>
 
-      <div className="resume-pagebreak"/>
-
       <section>
         <h2> Education </h2>
         <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
@@ -143,6 +166,7 @@ export const ResumeContent = (props: {
       <section>
         <h2> Notable open source contributions </h2>
         <ul>
+          <li> <code><a href="https://github.com/donIsaac/zlint">zlint</a></code> linter for the zig programming language </li>
           <li> <code><a href="https://github.com/lint-staged/lint-staged/pull/816">lint-staged</a></code> msys2/cygwin platform support </li>
           <li> <code><a href="https://github.com/typescript-eslint/typescript-eslint/pull/3601">typescript-eslint</a></code> bug in return-await lint rule </li>
           <li> <code><a href="https://github.com/godotengine/godot/pull/39739">Godot game engine</a></code> bug in initial C# object marshalling </li>
