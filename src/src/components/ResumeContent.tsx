@@ -42,9 +42,9 @@ export const ResumeContent = (props: {
             {(props.customSkills || <>
               <Underline>Languages:</Underline> TypeScript/JavaScript, C++, Python, C, Zig, Rust, SQL, C#
               <br/>
-              <Underline>Backend:</Underline> PostgreSQL, MongoDB, Linux, Node.js, nginx, gRPC, Redis
+              <Underline>Backend:</Underline> PostgreSQL, MongoDB, Linux, Node.js, nginx, Redis
               <br/>
-              <Underline>Cloud:</Underline> Terraform, Docker, Azure containers, Azure Monitor, Azure Storage, Azure Functions
+              <Underline>Cloud:</Underline> Terraform, Docker, Azure Containers, Azure Monitor, Azure Storage, Azure Functions
               <br/>
               <Underline>Frontend:</Underline> React, Vite, Webpack, GraphQL, CSS, Express, Cypress, Playwright, Jest
               <br/>
@@ -72,10 +72,13 @@ export const ResumeContent = (props: {
 
           <ul>
             <li>
-              Led engineering and design for a workflow engine compiler to <strong>WebAssembly</strong> written in <strong>Zig</strong>
+              Led design for a workflow engine compiler to <strong>WebAssembly</strong> written in <strong>Zig</strong>
             </li>
             <li>
-              Shipped local-first web IDE for visual scripting and marketing page using <strong>Gatsby</strong>, <strong>Github Actions</strong>, <strong>Terraform</strong>, and <strong>Azure Cloud</strong>
+              Shipped local-first web IDE for visual scripting and marketing page using <strong>Gatsby</strong>, <strong>React</strong>, <strong>Github Actions</strong>, <strong>Terraform</strong>, and <strong>Azure Cloud</strong>
+            </li>
+            <li>
+              Shipped <strong>WebAssembly</strong> workflow execution platform for customers to run scheduled and on-demand compute jobs in the cloud
             </li>
           </ul>
         </div>
