@@ -6,6 +6,10 @@ date: "2025-01-08"
 
 ### ECSQL sucks (overview)
 
+Allow me to preface by saying JavaScript isn't the problem. The inconsistent approach to
+including both is the problem, a maintenance and cognitive burden. Pick a lane!
+Make it easier to use JavaScript for most tasks or make it easier to use ECSQL for more tasks.
+
 - ECSQL is a great idea, SQL is a standard for data access
 - SQL also abstracts away the implementation so if someone finds a slow query, Bentley
   could work on making it faster without breaking API changes!
