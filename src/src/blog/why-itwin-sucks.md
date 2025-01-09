@@ -158,6 +158,21 @@ Overall, I think JavaScript was a bad choice for iTwin:
 - this is a solved problem in almost every other viewer! Just generate tiles for it on-demand if it's taking
   up enough pixel space in the view frustrum!
 
+### ECDB sucks
+
+- custom properties in EC/Bis schemas tell the database how to layout data. But schemas are written
+  by domain experts, not database experts!
+- ECDB custom properties expose implementation details, when you should instead
+  have iTwin determine which is the best way to persist a schema and store what it did internally,
+  not exposed to schema writers
+- thanks to SQLite's row-oriented nature, editing a simple column on a geometry element
+  (e.g. moving its origin) requires copying the entire geometry blob into a new row. So
+  moving large pieces of geometry is unnecessarily expensive...
+  - you could fix this if you didn't leak implementation details to the user, then you could store
+    geometry in a separate table
+- SQLite as the only backend has other issues haha, would be nice if ECDb was a standard SQL db
+  abstraction, in the way that ECSQL is (mostly) just a SQL language abstraction
+
 ### Engineering leadership
 
 I won't go deep into this, but I have seen structural reasons that Bentley wastes a lot of time
