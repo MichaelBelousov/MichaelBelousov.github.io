@@ -110,6 +110,9 @@ Overall, I think JavaScript was a bad choice for iTwin:
 - iTwins use 64-bit ids which are hard to do performantly in JavaScript
 - lots of effort wasted porting node.js and debugging+implementing IPC on different platforms
 
+I'd even be fine with getting _rid_ of ECSQL, and use JavaScript for everything. At least that would
+remove the doubling of maintenance, be consistent, and lessen cognitive overload.
+
 ### The Transformer sucks
 
 - the transformer could be 10x faster (I proved this in an existing branch of iTwin)
