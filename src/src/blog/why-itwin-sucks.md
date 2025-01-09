@@ -180,6 +180,7 @@ remove the doubling of maintenance, be consistent, and lessen cognitive overload
 
 I won't go deep into this, but I have seen structural reasons that Bentley wastes a lot of time
 and resources building things poorly and shooting its own feet, there is a lot of siloing and a
-lack of central planning, especially on the engineering side. IMO this is one of the most pressing
-issues for organizational health and ability to deliver.
+lack of central planning, especially on the engineering side. And there wasn't an identification
+of this issue at the right levels, or attempts to accomodate the kind of platform team structures
+the iTwin project needs.
 
