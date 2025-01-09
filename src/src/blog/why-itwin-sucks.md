@@ -159,19 +159,6 @@ Overall, I think JavaScript was a bad choice for iTwin:
 - this is a solved problem in almost every other viewer! Just generate tiles for it on-demand if it's taking
   up enough pixel space in the view frustrum!
 
-### iTwin Studio sucks
-
-- should only have desktop-specific APIs e.g. loading files, load custom backend code
-- iTwin core should own everything else, e.g. configuration, settings, extensibility, progressive-web-app stuff
-- Studio should be built on an electron-like abstraction over itwin core libraries (mango/iTwin Desktop Framework)
-- the product team and leadership and developers are grid-locked,
-  someone needs to go and own the vision, and I for one like Keith's vision
-  (although it is a bit too visionary, but otherwise do:)
-- if you don't want to be visionary, you could break it up into:
-  - iTwin desktop framework
-  - real iTwin core extensions
-  - iTwin extension marketplace
-
 ### Engineering leadership
 
 I won't go deep into this, but I have seen structural reasons that Bentley wastes a lot of time
