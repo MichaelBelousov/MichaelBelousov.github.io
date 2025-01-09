@@ -36,8 +36,7 @@ FROM hydrology.Pipe
 
 ### Inspecting Geometry sucks
 
-Inspecting Geometry sucks. It's doable these days, you can trod though some alpha APIs to access it
-in JavaScript.
+Inspecting Geometry sucks. It's even no longer an alpha API these days in JavaScript.
 
 ```ts
 const elem = db.elements.getElement({ id, wantGeometry: true, wantBRepData: true, });
