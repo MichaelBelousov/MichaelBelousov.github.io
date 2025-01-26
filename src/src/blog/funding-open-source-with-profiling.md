@@ -77,44 +77,72 @@ Tradeoffs like:
 You might already thought of multiple issues with the whole concept, and I do too, in fact I can list a lot:
 
 - Isn't I/O and peripheral access slow? What about network requests? Might code in that area be unfairly overemphasized?
+- It's hard to make one profile "cover" all the branches that might occur in your deployments
 - Isn't AI inference slow?
 - Some code is ran way more often than others... e.g. rendering code?
 - What about slow hardware?
-- What about optimizations? Why would a more optimized library earn more than a less optimized library?
-- What about which language you're using? If your code is written in Python, should it really donate more to open source
+- What about which language you're using? If your code is written in Python,
+  should it really donate more to open source
   than using a dependency written in C++
+- What about packages that are slower on different runtimes?
 - What about your language's runtime? How do you measure how much you owe to the Python foundation for maintaining
   Python itself that you wrote in your language?
 - What about compilers? If they run longer but optimize your dependencies to run faster, how does that affect cost?
+- Can you make your own code slower to deflate the "value" of your dependencies?
 
-So I'm not saying it's perfect, it's impractical (and non-performant 😅) to profile all<sup><a href="#footnote-1">1</a></sup>
-your deployed code, which may be running on mobile clients.
-I still think the incentives are mostly right. If AI is slow and expensive, maybe you should be disincentivized to use it?
+So I'm not saying it's perfect, and taken to the _n_<sup>th</sup> degree, you would have to profile *all*<sup><a href="#footnote-1">1</a></sup>
+your deployed code, which is far from practical.
+
+Still, I think the incentives are mostly right. If AI is slow and expensive, maybe you should be disincentivized to use it?
 Same with unoptimized libraries. You can also be incentivized to go in and optimize them yourself!
-
-Regardless, I think a general profiling session of several of your core projects will probably give you some
+I think a general profiling session of several of your core projects will probably give you some
 insight into whose shoulders you might have not realized you've been standing on this whole time.
 
-## Profiling dependencies with Linux's perf
+## Profiling dependencies with Linux's `perf`
 
-let's start a script:
+Let's start a script. To use `perf`'s script generator, you need some data to know which events were tracked.
+Record whatever you want, I'll record `ls` for simplicity.
 
 ```sh
-
-# make sure to check the manpage
+perf record -g ls
+perf script -g python
+# man perf-script-python # make sure to check out the manpage
 ```
 
-I only care about profile stacks, so let's just process those without caring about other perf events. The man page says we
-can do that with this:
+I only care about profile stacks, so I only added `-g` and no perf events.
+You will be given `trace_begin` and `trace_end` functions, but we also need to add a `process_event`
+function since we didn't record any events for the script generator to add callbacks for,
+and stack probing is not considered by default.
+
+We'll immediately use the base `perf_script_context` with `perf_sample_srcline`
+to grab each probe's bottom frame's source location and start counting how often we're
+in a source directory, we'll improve that in a second
 
 ```python
+import perf_trace_context as perf
 
+dirs = {}
+
+def process_event(event):
+    file, _line = perf.perf_sample_srcline(perf.perf_script_context)
+    if file is not None:
+        key = os.path.dirname(file)
+        dirs[key] = dirs.get(key, 0) + 1
 ```
 
-And now let's group every dependency by finding its "root", where it has a README or src or include dir at the top:
+Now let's group every dependency by finding its "root", where it has a README or src or include dir at the top:
 
 ```python
-
+def process_event(event):
+    file, _line = perf.perf_sample_srcline(perf.perf_script_context)
+    if file is not None:
+        # TODO: this could be more efficient via prefix searches
+        key = os.path.dirname(file)
+        for prefix, target in remaps.items():
+            if file.startswith(prefix):
+                key = target
+                break
+        dirs[key] = dirs.get(key, 0) + 1
 ```
 
 -----------------------
