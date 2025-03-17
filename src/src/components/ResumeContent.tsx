@@ -60,34 +60,6 @@ export const ResumeContent = (props: {
           <TwoCols>
             <div>
               <h4 style={{margin: "0"}}>
-                <strong>Graphl</strong>
-              </h4>
-              <div><em>personal project</em></div>
-            </div>
-            <div style={{ textAlign: "right" }}>
-              <div>May 2024&mdash;Current</div>
-              <div></div>
-            </div>
-          </TwoCols>
-
-          <ul>
-            <li>
-              Implemented a visual scripting IDE and workflow engine compiler to <strong>WebAssembly</strong> using <strong>Zig</strong>
-            </li>
-            <li>
-              Designed SDK with host-defined functions and <strong>JavaScript</strong>/<strong>WebAssembly</strong> interop
-            </li>
-            <li>
-              Shipped local-first web IDE and marketing page built with <strong>Gatsby</strong>, <strong>React</strong>, <strong>Github Actions</strong>, <strong>Terraform</strong>,
-              and <strong>Azure Cloud</strong>
-            </li>
-          </ul>
-        </div>
-
-        <div className={"resume-dont-indent"}>
-          <TwoCols>
-            <div>
-              <h4 style={{margin: "0"}}>
                 <strong><SmallCaps>Bentley Systems</SmallCaps></strong>
               </h4>
               <div><em>Software Engineer II</em></div>
@@ -122,8 +94,6 @@ export const ResumeContent = (props: {
           </ul>
         </div>
 
-        <div className="resume-pagebreak"/>
-
         <div className={"resume-dont-indent"}>
           <TwoCols>
             <div>
@@ -150,14 +120,24 @@ export const ResumeContent = (props: {
 
       </section>
 
+
+      <div className="resume-pagebreak"/>
+
       <section>
         <h2> Education </h2>
-        <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
+        <TwoCols>
+          <div>
+            <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT
+          </div>
+          <div style={{ textAlign: "right" }}>
+            <span>August 2016&mdash;May 2019</span>
+          </div>
+        </TwoCols>
         <em>Bachelor of Science</em>, Computer Science and Engineering
       </section>
 
-      <section className="resume-noprint">
-        <h2> Technical Writing <small>(omitted in print)</small> </h2>
+      <section>
+        <h2> Technical Writing </h2>
         <ul>
           <li><a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">introducing @bentley/imodel-react-hooks</a></li>
           <li><a href="https://mikemikeb.com/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">iTwin Platform Unreal integration tutorial (archive)</a></li>
