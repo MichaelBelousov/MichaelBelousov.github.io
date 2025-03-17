@@ -56,7 +56,7 @@ your profiler captured and see how much time your project spends in those depend
 I wanted to try it quickly a month ago, and even found that there's a [perf script](/FIXME) to dump the contents of a
 perf.data profile into a sqlite database, but it required the Qt sqlite connector for some reason and
 it was not trivial to install on my Manjaro machine, so I gave up for a bit then.
-But I came back recently, rewrote it to use the [`sqlite3`] standard python module, and then realized it was easy enough to write
+But I came back recently, rewrote it to use the [`sqlite3`](https://docs.python.org/3/library/sqlite3.html) standard python module, and then realized it was easy enough to write
 my own Python perf script instead of SQL queries, so we're going to do that!
 
 ## How is profiling fair?
@@ -111,8 +111,8 @@ perf script -g python
 
 I only care about profile stacks, so I only added `-g` and no perf events.
 You will be given `trace_begin` and `trace_end` functions, but we also need to add a `process_event`
-function since we didn't record any events for the script generator to add callbacks for,
-and stack probing is not considered by default.
+function since we didn't record any specific event types, so the script generator decided not to add
+stub methods, stack probing is not considered by default.
 
 We'll immediately use the base `perf_script_context` with `perf_sample_srcline`
 to grab each probe's bottom frame's source location and start counting how often we're
@@ -143,6 +143,39 @@ def process_event(event):
                 key = target
                 break
         dirs[key] = dirs.get(key, 0) + 1
+```
+
+processing zig dependencies
+
+```python
+
+remaps = { '/usr/lib/zig/std': 'zig-std' }
+
+def populateRemapsFromZigPkgCache():
+    import re
+    zon_name_pat = re.compile(r'\.name\s*=\s*"(?P<name>[^"]*)"', flags=re.M)
+    zon_vers_pat = re.compile(r'\.version\s*=\s*"(?P<ver>[^"]*)"', flags=re.M)
+    zig_pkgs_root = os.path.join(os.environ['HOME'] + '/.cache/zig/p')
+    for pkg_hash in os.listdir(zig_pkgs_root):
+        pkg_path = os.path.join(zig_pkgs_root, pkg_hash)
+        name = None
+        zon_path = os.path.join(pkg_path, 'build.zig.zon')
+        try:
+            with open(zon_path, 'r') as zon:
+                content = zon.read()
+                name = zon_name_pat.search(content)['name']
+                version = zon_vers_pat.search(content)['ver'] + f'+{pkg_hash[:16]}'
+        except Exception as e:
+            sys.stderr.write(f'Error reading zon "{zon_path}": {e}\n')
+        if name is not None:
+            remaps[pkg_path] = f"{name}@{version}"
+
+def trace_end():
+    print(f"Summary:")
+    total = sum(dirs.values())
+    for dir, count in sorted(dirs.items(), key=lambda t: -t[1]):
+        print("{}: {:.2f}%".format(dir, 100 * count/total))
+
 ```
 
 -----------------------
