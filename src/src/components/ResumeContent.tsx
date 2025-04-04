@@ -40,7 +40,7 @@ export const ResumeContent = (props: {
         <h2> Technical Skills </h2>
           <div>
             {(props.customSkills || <>
-              <Underline>Languages:</Underline> TypeScript/JavaScript, C++, Python, C, Zig, Rust, SQL, C#
+              <Underline>Languages:</Underline> TypeScript/JavaScript, C++, Python, C, Zig, SQL, C#
               <br/>
               <Underline>Backend:</Underline> PostgreSQL, MongoDB, Linux, Node.js, nginx, Redis
               <br/>
@@ -60,7 +60,7 @@ export const ResumeContent = (props: {
           <TwoCols>
             <div>
               <h4 style={{margin: "0"}}>
-                <strong>Graphl</strong>
+                <strong>Graphl + Twin Sync Studio</strong>
               </h4>
               <div><em>personal project</em></div>
             </div>
@@ -72,14 +72,24 @@ export const ResumeContent = (props: {
 
           <ul>
             <li>
-              Implemented a visual scripting IDE and workflow engine compiler to <strong>WebAssembly</strong> using <strong>Zig</strong>
+              Shipped hybrid <strong>Electron</strong>+<strong>React</strong>+<strong>zig</strong> desktop application for
+              fault-tolerant large geometric scene transformations
             </li>
             <li>
-              Designed SDK with host-defined functions and <strong>JavaScript</strong>/<strong>WebAssembly</strong> interop
+              Shipped in-house anti-piracy licensing service using <strong>Bun TypeScript</strong> and
+              deployed with <strong>Terraform</strong> to <strong>Azure Cloud</strong>
             </li>
             <li>
-              Shipped local-first web IDE and marketing page built with <strong>Gatsby</strong>, <strong>React</strong>, <strong>Github Actions</strong>, <strong>Terraform</strong>,
-              and <strong>Azure Cloud</strong>
+              Implemented (in <strong>Zig</strong>) a visual scripting IDE and workflow engine compiler to <strong>WebAssembly</strong>
+            </li>
+            <li>
+              Published SDK with host-defined functions and <strong>JavaScript</strong>/<strong>WebAssembly</strong> interop
+            </li>
+            <li>
+              Shipped local-first web IDE and marketing page built with <strong>Gatsby</strong>, <strong>React</strong>, and <strong>Github Actions</strong>
+            </li>
+            <li>
+              Built architectural visualization pipeline for iTwin/Synchro 4D data in <strong>Unreal Engine</strong> <strong>C++</strong>
             </li>
           </ul>
         </div>
@@ -114,46 +124,18 @@ export const ResumeContent = (props: {
             <li> Deployed a <strong>micro-frontend</strong> architecture with version rollback to handle multiple teams delivering live component updates for &gt;15 applications </li>
             <li> Designed <strong>30+</strong> CI/CD pipelines with <strong>Github Actions</strong>, <strong>Azure Pipelines</strong>, and <strong>Python</strong> </li>
             <li> Prevented costly company breaches by discovering and patching <strong>15+</strong> severe vulnerabilities in critical systems by introducing fuzzing, sanitizers, and <strong>Clang</strong> static analysis</li>
-            <li>
-              Produced webinar of platform integration with platform's highest impressions (&gt;30K) on LinkedIn.
-              Wrote marketing webpages, <a href="https://mikemikeb.com/unreal-docs-site/tutorials/itwin-unreal-controlling-your-imodel.html">tutorials</a>,
-              and <a href="https://medium.com/itwinjs/introducing-bentley-imodel-react-hooks-8945a72711d2">blog posts</a>
-            </li>
           </ul>
         </div>
 
         <div className="resume-pagebreak"/>
 
-        <div className={"resume-dont-indent"}>
-          <TwoCols>
-            <div>
-              <h4 style={{margin: "0"}}>
-                <strong><SmallCaps>ITS</SmallCaps></strong>
-              </h4>
-              <div><em>Security Team Student Developer</em></div>
-            </div>
-            <div style={{ textAlign: "right" }}>
-              <div>December 2016&mdash;May 2019</div>
-              <div>Storrs, CT</div>
-            </div>
-          </TwoCols>
-
-          <ul>
-            <li>
-              Improved security issue resolution time by 10% by building <a href="https://github.com/MichaelBelousov/L2-Vis-Tools">an SVG network diagramming toolset</a> in <strong>Python</strong> to automate
-              network auditing using SNMP, CDP, and CISCO router shell
-            </li>
-            <li> Designed a progressive migration strategy and migrated a <strong>PHP</strong>, <strong>Python2-XMLRPC</strong>, and <strong>jQuery</strong> web stack to <strong>Python3</strong> and <strong>Vue.js</strong></li>
-            <li> Maintained <strong>99%</strong> up-time RHEL <strong>Linux</strong> and <strong>PostgreSQL</strong> clusters </li>
-          </ul>
-        </div>
-
       </section>
 
       <section>
         <h2> Education </h2>
-        <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT <br/>
-        <em>Bachelor of Science</em>, Computer Science and Engineering
+        <SmallCaps>University of Connecticut</SmallCaps>, Storrs, CT
+        <br/>
+        Graduated with <em>Bachelor of Science</em> in <em>Computer Science and Engineering</em> in 2019
       </section>
 
       <section className="resume-noprint">
