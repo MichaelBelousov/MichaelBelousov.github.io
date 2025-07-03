@@ -1,0 +1,10 @@
+# Distinct Types in Zig
+
+In zig there is a common idiom, `enum {_,}` which gives you.
+
+A lot of people complain that this doesn't work with everything.
+A lot of people complain that there is no "string" type, just slices of bytes.
+
+Well here is how IMO you can pretty easily make an air-tight string type.
+
+Just use opaque!
