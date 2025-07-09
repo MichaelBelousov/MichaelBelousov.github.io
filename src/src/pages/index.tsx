@@ -17,8 +17,8 @@ const Homepage = () => {
       <h2>Projects of varying sizes</h2>
       <ul>
         <li>
-          <a href="https://graphl.tech">Graphl</a>: visual scripting language and IDE that compiles to WebAssembly and
-           is being designed to be isomorphic to a new kind of custom Lisp
+          <a href="https://graphl.tech/graphl">Graphl</a>: visual scripting language and IDE that compiles to WebAssembly and
+           is being designed to be isomorphic to a variant of Lisp, with great support for visual DSLs like shaders
         </li>
         <li>
           <a href="https://alternis.io">alternis.io</a>: cross platform dialogue writing middleware in zig and editor
