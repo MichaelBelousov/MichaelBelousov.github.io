@@ -63,6 +63,7 @@ public/*
 !public/unreal-docs-site
 !public/MichaelBelousov_resume.pdf
 !public/graphl-demo
+!public/graphl-geom-demo
 
 # Mac files
 .DS_Store
