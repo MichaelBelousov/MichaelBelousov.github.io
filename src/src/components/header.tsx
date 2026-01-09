@@ -15,6 +15,7 @@ const Header = () => (
         <Link className={styles.navLink} to="/work">Resume</Link>
         <Link className={styles.navLink} to="/3d">Art</Link>
         <Link className={styles.navLink} to="/blog">Blog</Link>
+        <Link className={styles.navLink} to="/microblog">Microblog</Link>
         <a href="https://github.com/MichaelBelousov" className={sharedStyles.center}>
           <GithubLogo className={styles.navLink} style={{ width: 20, height: 20, marginTop: 4 }} viewBox="0 0 100 100" />
         </a>

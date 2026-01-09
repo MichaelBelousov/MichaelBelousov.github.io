@@ -51,6 +51,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `tweets`,
+        path: `${__dirname}/src/tweets`,
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -109,6 +116,38 @@ module.exports = {
             },
             output: "/rss.xml",
             title: "Mike Belousov's blog",
+          },
+          {
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { frontmatter: { date: DESC } },
+                  filter: { fields: { collection: { eq: "tweets" } } }
+                ) {
+                  nodes {
+                    excerpt
+                    html
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      date
+                    }
+                  }
+                }
+              }
+            `,
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.nodes.map(node => ({
+                description: node.excerpt,
+                date: node.frontmatter.date,
+                url: site.siteMetadata.siteUrl + node.fields.slug,
+                guid: site.siteMetadata.siteUrl + node.fields.slug,
+                custom_elements: [{ "content:encoded": node.html }],
+              }));
+            },
+            output: "/microblog/rss.xml",
+            title: "Mike Belousov's microblog",
           }
         ],
       },

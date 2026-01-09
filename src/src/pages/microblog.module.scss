@@ -1,0 +1,118 @@
+@import '../constants.scss';
+
+.microblogContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.feedHeader {
+  border-bottom: 1px solid #e1e8ed;
+  padding-bottom: 20px;
+  margin-bottom: 0;
+
+  h1 {
+    margin-bottom: 5px;
+    font-size: 1.8rem;
+  }
+}
+
+.subtitle {
+  color: #657786;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.tweetFeed {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweet {
+  border-bottom: 1px solid #e1e8ed;
+  padding: 16px 0;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(247, 249, 250, 0.01);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.tweetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.authorName {
+  font-weight: 700;
+  font-size: 1rem;
+  color: $body;
+}
+
+.username {
+  color: #657786;
+  font-size: 0.9rem;
+}
+
+.timestamp {
+  color: #657786;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.tweetContent {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $body;
+  word-wrap: break-word;
+
+  p {
+    margin: 0;
+  }
+
+  // Style hashtags
+  a[href*="#"] {
+    color: #1da1f2;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive adjustments
+@media only screen and (max-width: 700px) {
+  .microblogContainer {
+    padding: 10px;
+  }
+
+  .tweet {
+    padding: 12px 10px;
+  }
+
+  .authorName {
+    font-size: 0.95rem;
+  }
+
+  .tweetContent {
+    font-size: 0.95rem;
+  }
+}

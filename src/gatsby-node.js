@@ -52,10 +52,21 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === 'MarkdownRemark') {
-    // XXX: hackily concat to '/blog' since basePath doesn't seem to be working when
-    // generating the names
-    const slug = createFilePath({ node, getNode, basePath: `blog` })
-    createNodeField({ node, name: 'slug', value: `/blog${slug}` })
+    const fileNode = getNode(node.parent)
+    const sourceName = fileNode.sourceInstanceName
+
+    if (sourceName === 'tweets') {
+      // For tweets, create a simple slug based on filename
+      const slug = createFilePath({ node, getNode, basePath: `tweets` })
+      createNodeField({ node, name: 'slug', value: `/tweets${slug}` })
+      createNodeField({ node, name: 'collection', value: 'tweets' })
+    } else {
+      // XXX: hackily concat to '/blog' since basePath doesn't seem to be working when
+      // generating the names
+      const slug = createFilePath({ node, getNode, basePath: `blog` })
+      createNodeField({ node, name: 'slug', value: `/blog${slug}` })
+      createNodeField({ node, name: 'collection', value: 'blog' })
+    }
   }
 }
 
